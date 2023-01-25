@@ -1,5 +1,6 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import AudioVisualizer from "./AudioVisualizer";
 
   const setDefaultAlert = () => {
     alert(
@@ -8,6 +9,8 @@ import "react-h5-audio-player/lib/styles.css";
   };
 
 const Player = (props) => {
+
+  
   return (
     <section className="radio">
       <div className="radioPlayer">

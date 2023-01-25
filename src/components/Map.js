@@ -5,7 +5,7 @@ import { Marker, Popup } from "react-leaflet";
 
 import { useState } from "react";
 
-import defaultImage from "./assets/radio.png";
+import defaultImage from "../assets/radio.png";
 
 const Map = (props) => {
 
@@ -29,6 +29,7 @@ const [radioUrl, setRadioUrl] = useState("")
         />
         {props.stations.map((stationDetails) => {
           return (
+            <div key={stationDetails.id}>
             <Marker
               position={[
                 `${stationDetails.geoLat}`,
@@ -36,7 +37,7 @@ const [radioUrl, setRadioUrl] = useState("")
               ]}
             >
               <Popup>
-                <div className="stationDetails" key={stationDetails.id}>
+                <div className="stationDetails">
                   <img
                     className="icon"
                     src={stationDetails.favicon}
@@ -61,6 +62,7 @@ const [radioUrl, setRadioUrl] = useState("")
                 </div>
               </Popup>
             </Marker>
+            </div>
           );
         })}
       </MapContainer>

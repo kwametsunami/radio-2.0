@@ -1,5 +1,5 @@
 import { useState } from "react";
-import defaultImage from "./assets/radio.png";
+import defaultImage from "../assets/radio.png";
 
 const List = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
@@ -37,6 +37,7 @@ const List = (props) => {
                 <div className="information">
                   <p className="stationName">{stationDetails.name}</p>
                   <p className="stationCountry">{stationDetails.country}</p>
+                  <p>{stationDetails.bitrate}</p>
                 </div>
 
                 <div className="buttonContainer" value={stationDetails}>

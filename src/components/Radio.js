@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Marker, Popup } from "react-leaflet";
-import "../src/radio.css";
 
 import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
 
-import defaultImage from "./assets/radio.png";
 
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
@@ -56,7 +50,7 @@ const Radio = (props) => {
     setupApi(stationFilter).then((data) => {
       setStations(data);
     });
-  }, [props.genre]);
+  }, [props.genre, props.quality]);
 
   const [stationUrl, setStationUrl] = useState("");
 
