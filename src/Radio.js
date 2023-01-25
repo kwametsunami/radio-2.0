@@ -6,6 +6,9 @@ import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
 import { Marker, Popup } from "react-leaflet";
 import "../src/radio.css";
+
+import Map from "./Map";
+import List from "./List";
 import Player from "./Player";
 
 import defaultImage from "./assets/radio.png";
@@ -13,9 +16,11 @@ import defaultImage from "./assets/radio.png";
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
   const [stationFilter, setStationFilter] = useState(props.genre);
-  const [kbps, setKbps] = useState()
+  const [listView, setListView] = useState(false);
 
-
+  const switchView = () => {
+    setListView(!listView);
+  };
 
   useEffect(() => {
     setStationFilter(props.genre);
@@ -28,7 +33,7 @@ const Radio = (props) => {
 
       const stations = await api.searchStations({
         tag: props.genre,
-        limit: 100,
+        limit: 250,
         hasGeoInfo: true,
         lastCheckOk: true,
         // offset: 5
@@ -53,63 +58,27 @@ const Radio = (props) => {
     });
   }, [props.genre]);
 
-  const [radioUrl, setRadioUrl] = useState("");
+  const [stationUrl, setStationUrl] = useState("");
 
-  const radioSelect = (event) => {
-    event.preventDefault();
-    setRadioUrl(event.target.value);
-  };
-
-  const setDefaultSrc = (event) => {
-    event.target.src = defaultImage;
+  const sendToRadio = (url) => {
+    setStationUrl(url);
   };
 
   return (
-    <div className="map">
-      <MapContainer center={[0, 0]} zoom={1} scrollWheelZoom={true}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {stations.map((stationDetails) => {
-          return (
-            <Marker
-              position={[
-                `${stationDetails.geoLat}`,
-                `${stationDetails.geoLong}`,
-              ]}
-            >
-              <Popup>
-                <div className="stationDetails" key={stationDetails.id}>
-                  <img
-                    className="icon"
-                    src={stationDetails.favicon}
-                    alt={stationDetails.name}
-                    onError={setDefaultSrc}
-                  />
-                  <p>{stationDetails.name}</p>
-                  <p className="stationCountry">{stationDetails.country}</p>
-                  <div className="buttonContainer" value={stationDetails}>
-                    <button
-                      className={
-                        radioUrl === stationDetails.url
-                          ? "infoButtonPlaying"
-                          : "infoButton"
-                      }
-                      value={stationDetails.url}
-                      onClick={radioSelect}
-                    >
-                      {radioUrl === stationDetails.url ? "" : "▶"}
-                    </button>
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
-      </MapContainer>
-      {radioUrl ? <Player audioSource={radioUrl} /> : null}
-    </div>
+    <section>
+      {listView ? (
+        <div className="listViewContainer">
+          <button onClick={switchView}>switch to map view</button>
+          <List stations={stations} sendToRadio={sendToRadio} />
+        </div>
+      ) : (
+        <div className="mapViewContainer">
+          <button onClick={switchView}>switch to list view</button>
+          <Map stations={stations} sendToRadio={sendToRadio} />
+        </div>
+      )}
+      {stationUrl ? <Player audioSource={stationUrl} /> : null}
+    </section>
   );
 };
 
