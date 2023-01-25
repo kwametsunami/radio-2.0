@@ -5,14 +5,17 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
 import { Marker, Popup } from "react-leaflet";
-import AudioPlayer from "react-h5-audio-player";
 import "../src/radio.css";
+import Player from "./Player";
 
 import defaultImage from "./assets/radio.png";
 
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
   const [stationFilter, setStationFilter] = useState(props.genre);
+  const [kbps, setKbps] = useState()
+
+
 
   useEffect(() => {
     setStationFilter(props.genre);
@@ -25,7 +28,6 @@ const Radio = (props) => {
 
       const stations = await api.searchStations({
         tag: props.genre,
-        // language: 'arabic',
         limit: 100,
         hasGeoInfo: true,
         lastCheckOk: true,
@@ -35,7 +37,7 @@ const Radio = (props) => {
       let filtered = [];
 
       for (let bitrate in stations) {
-        if (stations[bitrate].bitrate >= 32) {
+        if (stations[bitrate].bitrate >= props.quality) {
           filtered.push(stations[bitrate]);
         }
       }
@@ -63,12 +65,7 @@ const Radio = (props) => {
   };
 
   return (
-    <div className="radio">
-      {/* {stations.map((stationDetails) => {
-        return (
-          <p>{stationDetails.name}</p>
-        )
-      })} */}
+    <div className="map">
       <MapContainer center={[0, 0]} zoom={1} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -95,14 +92,14 @@ const Radio = (props) => {
                   <div className="buttonContainer" value={stationDetails}>
                     <button
                       className={
-                        radioUrl === stationDetails.url_resolved
+                        radioUrl === stationDetails.url
                           ? "infoButtonPlaying"
                           : "infoButton"
                       }
-                      value={stationDetails.url_resolved}
+                      value={stationDetails.url}
                       onClick={radioSelect}
                     >
-                      {radioUrl === stationDetails.url_resolved ? "" : "▶"}
+                      {radioUrl === stationDetails.url ? "" : "▶"}
                     </button>
                   </div>
                 </div>
@@ -111,6 +108,7 @@ const Radio = (props) => {
           );
         })}
       </MapContainer>
+      {radioUrl ? <Player audioSource={radioUrl} /> : null}
     </div>
   );
 };
