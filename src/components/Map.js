@@ -11,19 +11,25 @@ import defaultImage from "../assets/radio.png";
 const Map = (props) => {
 
 const [radioUrl, setRadioUrl] = useState("")
+const [stationName, setStationName] = useState("")
 
   const radioSelect = (event) => {
     event.preventDefault();
+
     props.sendToRadio(event.target.value);
+    props.sendToRadioName(event.target.id)
+
     setRadioUrl(event.target.value)
+    setStationName(event.target.id)
   };
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
   };
+
   return (
     <div className="map">
-      <MapContainer center={[0, 0]} zoom={1.5} scrollWheelZoom={true}>
+      <MapContainer center={[30.00, 10.00]} zoom={2.3} scrollWheelZoom={true}>
         <TileLayer
           // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -52,14 +58,15 @@ const [radioUrl, setRadioUrl] = useState("")
                     <div className="buttonContainer" value={stationDetails}>
                       <button
                         className={
-                          radioUrl === stationDetails.url
+                          radioUrl === stationDetails.urlResolved
                             ? "infoButtonPlaying"
                             : "infoButton"
                         }
-                        value={stationDetails.url}
+                        value={stationDetails.urlResolved}
                         onClick={radioSelect}
+                        id={stationDetails.name}
                       >
-                        {radioUrl === stationDetails.url ? "" : "▶"}
+                        {radioUrl === stationDetails.urlResolved ? "" : "▶"}
                       </button>
                     </div>
                   </div>

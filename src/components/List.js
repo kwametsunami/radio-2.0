@@ -3,10 +3,16 @@ import defaultImage from "../assets/radio.png";
 
 const List = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
+  const [stationName, setStationName] = useState("");
+
   const radioSelect = (event) => {
     event.preventDefault();
+
     props.sendToRadio(event.target.value);
+    props.sendToRadioName(event.target.id);
+
     setRadioUrl(event.target.value);
+    setStationName(event.target.id);
   };
 
   const setDefaultSrc = (event) => {
@@ -19,7 +25,7 @@ const List = (props) => {
             return (
               <div
                 className={
-                  radioUrl === stationDetails.url
+                  radioUrl === stationDetails.urlResolved
                     ? "stationInfoPlaying"
                     : "stationInfo"
                 }
@@ -43,14 +49,15 @@ const List = (props) => {
                 <div className="buttonContainer" value={stationDetails}>
                   <button
                     className={
-                      radioUrl === stationDetails.url
+                      radioUrl === stationDetails.urlResolved
                         ? "infoButtonPlaying"
                         : "infoButton"
                     }
-                    value={stationDetails.url}
+                    value={stationDetails.urlResolved}
                     onClick={radioSelect}
+                    id={stationDetails.name}
                   >
-                    {radioUrl === stationDetails.url ? "" : "▶"}
+                    {radioUrl === stationDetails.urlResolved ? "" : "▶"}
                   </button>
                 </div>
               </div>

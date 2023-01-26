@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 
-
+import Loading from "./Loading";
 import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
-
 
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
   const [stationFilter, setStationFilter] = useState(props.genre);
   const [listView, setListView] = useState(false);
+  const [badSearch, setBadSearch] = useState(false);
+  const [badResponse, setBadResponse] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const switchView = () => {
     setListView(!listView);
@@ -20,6 +22,7 @@ const Radio = (props) => {
     setStationFilter(props.genre);
 
     const setupApi = async (stationFilter) => {
+      setLoading(true);
       const api = new RadioBrowserApi(
         fetch.bind(window),
         "International Radio"
@@ -29,8 +32,7 @@ const Radio = (props) => {
         tag: props.genre,
         limit: 250,
         hasGeoInfo: true,
-        lastCheckOk: true,
-        // offset: 5
+        lastCheckOk: true
       });
 
       let filtered = [];
@@ -41,37 +43,79 @@ const Radio = (props) => {
         }
       }
 
-      setStations(filtered);
-      console.log(filtered);
+      if (filtered.length === 0) {
+        setBadSearch(true);
+      } else {
+        setStations(filtered);
+        setBadSearch(false);
+        setLoading(false);
+        console.log(filtered);
+      }
 
       return filtered;
     };
 
     setupApi(stationFilter).then((data) => {
       setStations(data);
-    });
+    })
+    .catch((error) => {
+      alert("api may be down...")
+      setBadResponse(true)
+    })
   }, [props.genre, props.quality]);
 
   const [stationUrl, setStationUrl] = useState("");
+  const [playingStation, setPlayingStation] = useState("")
 
   const sendToRadio = (url) => {
     setStationUrl(url);
   };
 
+  const sendToRadioName = (station) => {
+    setPlayingStation(station)
+  }
+
   return (
     <section>
-      {listView ? (
-        <div className="listViewContainer">
-          <button onClick={switchView}>switch to map view</button>
-          <List stations={stations} sendToRadio={sendToRadio} />
-        </div>
+      {loading ? (
+        <Loading />
       ) : (
-        <div className="mapViewContainer">
-          <button onClick={switchView}>switch to list view</button>
-          <Map stations={stations} sendToRadio={sendToRadio} />
+        <div className="error">
+          {badSearch ? (
+            <p>
+              Hmm... that's not music to our ears. We couldn't find any stations
+              matching {props.genre}. Maybe try Rock?
+            </p>
+          ) : (
+            <div className="results">
+              <h3>
+                Returned {stations.length} stations matching {props.genre}
+              </h3>
+              {listView ? (
+                <div className="listViewContainer">
+                  <button onClick={switchView}>switch to map view</button>
+                  <List
+                    stations={stations}
+                    sendToRadio={sendToRadio}
+                    sendToRadioName={sendToRadioName}
+                  />
+                </div>
+              ) : (
+                <div className="mapViewContainer">
+                  <button onClick={switchView}>switch to list view</button>
+                  <Map
+                    stations={stations}
+                    sendToRadio={sendToRadio}
+                    sendToRadioName={sendToRadioName}
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
-      {stationUrl ? <Player audioSource={stationUrl} /> : null}
+
+      {stationUrl ? <Player audioSource={stationUrl} stationName={playingStation}/> : null}
     </section>
   );
 };
