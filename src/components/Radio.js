@@ -13,6 +13,7 @@ const Radio = (props) => {
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [filterLimit, setFilterLimit] = useState(300)
 
   const switchView = () => {
     setListView(!listView);
@@ -30,7 +31,7 @@ const Radio = (props) => {
 
       const stations = await api.searchStations({
         tag: props.genre,
-        limit: 250,
+        limit: 300,
         hasGeoInfo: true,
         lastCheckOk: true
       });
@@ -43,13 +44,16 @@ const Radio = (props) => {
         }
       }
 
+      if (filterLimit < 300){
+        filtered.length = filterLimit
+      } 
+
       if (filtered.length === 0) {
         setBadSearch(true);
       } else {
         setStations(filtered);
         setBadSearch(false);
         setLoading(false);
-        console.log(filtered);
       }
 
       return filtered;
@@ -62,7 +66,7 @@ const Radio = (props) => {
       alert("api may be down...")
       setBadResponse(true)
     })
-  }, [props.genre, props.quality]);
+  }, [props.genre, props.quality, filterLimit]);
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("")
@@ -73,6 +77,10 @@ const Radio = (props) => {
 
   const sendToRadioName = (station) => {
     setPlayingStation(station)
+  }
+
+  const sendToNumFilter = (result) => {
+    setFilterLimit(result)
   }
 
   return (
@@ -98,6 +106,7 @@ const Radio = (props) => {
                     stations={stations}
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
+                    sendToNumFilter={sendToNumFilter}
                   />
                 </div>
               ) : (
@@ -107,6 +116,7 @@ const Radio = (props) => {
                     stations={stations}
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
+                    sendToNumFilter={sendToNumFilter}
                   />
                 </div>
               )}
@@ -115,7 +125,9 @@ const Radio = (props) => {
         </div>
       )}
 
-      {stationUrl ? <Player audioSource={stationUrl} stationName={playingStation}/> : null}
+      {stationUrl ? (
+        <Player audioSource={stationUrl} stationName={playingStation} />
+      ) : null}
     </section>
   );
 };

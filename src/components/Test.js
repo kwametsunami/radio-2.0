@@ -1,73 +1,49 @@
-import * as React from "react";
-import { render } from "react-dom";
-import Downshift from "downshift";
+import React from "react";
+import Select from "react-select";
 
-const Test = () => {
-  const items = [
-    { value: "apple" },
-    { value: "pear" },
-    { value: "orange" },
-    { value: "grape" },
-    { value: "banana" },
-  ];
 
-  render(
-    <Downshift
-      onChange={(selection) =>
-        alert(
-          selection ? `You selected ${selection.value}` : "Selection Cleared"
-        )
-      }
-      itemToString={(item) => (item ? item.value : "")}
-    >
-      {({
-        getInputProps,
-        getItemProps,
-        getLabelProps,
-        getMenuProps,
-        isOpen,
-        inputValue,
-        highlightedIndex,
-        selectedItem,
-        getRootProps,
-      }) => (
-        <div>
-          <label {...getLabelProps()}>Enter a fruit</label>
-          <div
-            style={{ display: "inline-block" }}
-            {...getRootProps({}, { suppressRefError: true })}
-          >
-            <input {...getInputProps()} />
-          </div>
-          <ul {...getMenuProps()}>
-            {isOpen
-              ? items
-                  .filter(
-                    (item) => !inputValue || item.value.includes(inputValue)
-                  )
-                  .map((item, index) => (
-                    <li
-                      {...getItemProps({
-                        key: item.value,
-                        index,
-                        item,
-                        style: {
-                          backgroundColor:
-                            highlightedIndex === index ? "lightgray" : "white",
-                          fontWeight: selectedItem === item ? "bold" : "normal",
-                        },
-                      })}
-                    >
-                      {item.value}
-                    </li>
-                  ))
-              : null}
-          </ul>
-        </div>
-      )}
-    </Downshift>,
-    document.getElementById("root")
+const customStyles = {
+  menu: (provided, state) => ({
+    ...provided,
+    width: state.selectProps.width,
+    borderBottom: "1px dotted pink",
+    color: state.selectProps.menuColor,
+    padding: 10,
+    backgroundColor: "rgba(100,100,50,0.8)",
+  }),
+
+  control: (_, { selectProps: { width } }) => ({
+    width: width,
+  }),
+
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = "opacity 300ms";
+
+    return { ...provided, opacity, transition };
+  },
+};
+
+function Test({
+  style,
+  label,
+  options,
+  onChange,
+  defaultValue,
+  // isMulti,
+}) {
+  return (
+    <div style={style}>
+      <h1>{label}</h1>
+      <Select
+        styles={customStyles}
+        // isMulti={isMulti}
+        options={options}
+        onChange={onChange}
+        // defaultValue={defaultValue}
+      />
+    </div>
   );
 }
 
-export default Test
+export default Test;

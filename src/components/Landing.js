@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Radio from "./Radio";
 import Login from "./Login";
 
-
 const genre = require("../data/genreData.json");
 
 const Search = () => {
@@ -15,8 +14,7 @@ const Search = () => {
 
   const [display, setDisplay] = useState(false);
 
-  const wrapperRef = useRef(null)
-
+  const wrapperRef = useRef(null);
 
   const login = () => {
     setLoginModal(!loginModal);
@@ -44,6 +42,7 @@ const Search = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setSearch(value);
+    setDisplay(false);
     console.log("submitting...");
   };
 
@@ -57,22 +56,20 @@ const Search = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("mousedown", handleClickOutside)
-    console.log("its doing something...")
+    window.addEventListener("mousedown", handleClickOutside);
+    console.log("its doing something...");
 
     return () => {
-      window.removeEventListener("mousedown", handleClickOutside)
-    }
-
-
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
-  const handleClickOutside = event => {
-    const {current: wrap} = wrapperRef
+  const handleClickOutside = (event) => {
+    const { current: wrap } = wrapperRef;
     if (wrap && !wrap.contains(event.target)) {
-      setDisplay(false)
+      setDisplay(false);
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -106,35 +103,34 @@ const Search = () => {
               onClick={() => setDisplay(!display)}
             />
           </div>
-          {
-            display && (
-                        <div className="dropdown">
-            {genre.tag
-              .filter((item) => {
-                const searchTerm = value.toLowerCase();
-                const tag = item.genre.toLowerCase();
+          {display && (
+            <div className="dropdown">
+              {genre.tag
+                .filter((item) => {
+                  const searchTerm = value.toLowerCase();
+                  const tag = item.genre.toLowerCase();
 
-                return (
-                  searchTerm && tag.startsWith(searchTerm) && tag != searchTerm
-                );
-              })
-              .slice(0, 5)
-              .map((item) => {
-                return (
-                  <div
-                    onClick={() => onSearch(item.genre)}
-                    className="dropdownRow"
-                    key={item.genre}
-                    tabIndex="0"
-                  >
-                    <p>{item.genre}</p>
-                  </div>
-                );
-              })}
-          </div>
-            )
-          }
-
+                  return (
+                    searchTerm &&
+                    tag.startsWith(searchTerm) &&
+                    tag != searchTerm
+                  );
+                })
+                .slice(0, 5)
+                .map((item) => {
+                  return (
+                    <div
+                      onClick={() => onSearch(item.genre)}
+                      className="dropdownRow"
+                      key={item.genre}
+                      tabIndex="0"
+                    >
+                      <p>{item.genre}</p>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
         </div>
         <button onClick={() => onSearch(value)}>Search</button>
       </form>

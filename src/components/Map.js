@@ -27,9 +27,22 @@ const [stationName, setStationName] = useState("")
     event.target.src = defaultImage;
   };
 
+  const filterResNum = (event) => {
+    props.sendToNumFilter(event.target.value);
+  }
+
   return (
     <div className="map">
-      <MapContainer center={[30.00, 10.00]} zoom={2.3} scrollWheelZoom={true}>
+      <label htmlFor="number">Show results:</label>
+      <select name="number" id="filterNum" onChange={filterResNum}>
+        <option selected="selected" value="250">All</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <MapContainer center={[30.0, 10.0]} zoom={2.3} scrollWheelZoom={true}>
+        <h2>yes hello</h2>
         <TileLayer
           // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
