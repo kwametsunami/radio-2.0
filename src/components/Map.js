@@ -60,23 +60,28 @@ const Map = (props) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
       let limit = base + parseInt(event.target.value);
 
-      console.log("filter length", props.stations.length);
-      console.log("base and limit", base, limit);
-      console.log("filterLimit", event.target.value);
+      if (event.target.value > props.stations.length){
+        
+        let bottom = 0
+        let top = props.stations.length
 
-      if (limit > props.stations.length) {
+        setFilteredStations(props.stations.slice(bottom, parseInt(top)))
+        setFilterTrue(true)
+
+      } else if (limit > props.stations.length) {
+        
         let diff = limit - props.stations.length;
         let newBase = base - diff;
         let newLimit = newBase + event.target.value;
-        // setStations(filtered.slice(newBase, newLimit));
-        console.log("Math it", props.stations.slice(newBase, newLimit));
+
         setFilteredStations(props.stations.slice(newBase, newLimit));
         setFilterTrue(true)
+
       } else {
-        // setStations(filtered.slice(base, limit));
-        console.log("Little math involved", props.stations.slice(base, limit));
+
         setFilterTrue(true);
         setFilteredStations(props.stations.slice(base, limit));
+
       }
     };
 
@@ -84,16 +89,33 @@ const Map = (props) => {
   }
 
   const randomStation = () => {
-    const randomizer = (min = 0, max = props.stations.length) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
 
-    let surpriseStation = props.stations[randomizer()];
+    if (filterTrue){
+      const randomizer = (min = 0, max = filteredStations.length) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
 
-    setRadioUrl(surpriseStation.urlResolved);
-    setStationName(surpriseStation.name);
-    props.sendToRadio(surpriseStation.urlResolved);
-    props.sendToRadioName(surpriseStation.name);
+      console.log("filtering from the filterTrue if")
+
+      let surpriseStation = filteredStations[randomizer()];
+
+      setRadioUrl(surpriseStation.urlResolved);
+      setStationName(surpriseStation.name);
+      props.sendToRadio(surpriseStation.urlResolved);
+      props.sendToRadioName(surpriseStation.name);
+    } else {
+      const randomizer = (min = 0, max = props.stations.length) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+      console.log("filtering from the filterFalse if");
+  
+      let surpriseStation = props.stations[randomizer()];
+  
+      setRadioUrl(surpriseStation.urlResolved);
+      setStationName(surpriseStation.name);
+      props.sendToRadio(surpriseStation.urlResolved);
+      props.sendToRadioName(surpriseStation.name);
+    }
   };
 
   const alreadySeenCoordinates = [];

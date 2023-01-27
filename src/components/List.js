@@ -43,27 +43,23 @@ const List = (props) => {
         let base = Math.floor(Math.random() * (max - min + 1)) + min;
         let limit = base + parseInt(event.target.value);
 
-        console.log("filter length", props.stations.length);
-        console.log("base and limit", base, limit);
-        console.log("filterLimit", event.target.value);
+      if (event.target.value > props.stations.length) {
+        let bottom = 0;
+        let top = props.stations.length;
 
-        if (limit > props.stations.length) {
-          let diff = limit - props.stations.length;
-          let newBase = base - diff;
-          let newLimit = newBase + event.target.value;
-          // setStations(filtered.slice(newBase, newLimit));
-          console.log("Math it", props.stations.slice(newBase, newLimit));
-          setFilteredStations(props.stations.slice(newBase, newLimit));
-          setFilterTrue(true);
-        } else {
-          // setStations(filtered.slice(base, limit));
-          console.log(
-            "Little math involved",
-            props.stations.slice(base, limit)
-          );
-          setFilterTrue(true);
-          setFilteredStations(props.stations.slice(base, limit));
-        }
+        setFilteredStations(props.stations.slice(bottom, parseInt(top)));
+        setFilterTrue(true);
+      } else if (limit > props.stations.length) {
+        let diff = limit - props.stations.length;
+        let newBase = base - diff;
+        let newLimit = newBase + event.target.value;
+
+        setFilteredStations(props.stations.slice(newBase, newLimit));
+        setFilterTrue(true);
+      } else {
+        setFilterTrue(true);
+        setFilteredStations(props.stations.slice(base, limit));
+      }
       };
 
       randomizer();

@@ -5,27 +5,29 @@ import defaultImage from "../assets/radio.png";
 
 import { useState, useEffect } from "react";
 
-  const setDefaultAlert = () => {
-    alert(
-      "Sorry, this station is offline or unavailable in your region. Please select another stream."
-    );
-  };
+const setDefaultAlert = () => {
+  alert(
+    "Sorry, this station is offline or unavailable in your region. Please select another stream."
+  );
+};
 
-    const setDefaultSrc = (event) => {
-      event.target.src = defaultImage;
-    };
-  
+const setDefaultSrc = (event) => {
+  event.target.src = defaultImage;
+};
 
 const Player = (props) => {
-
-  const [formattedTitle, setFormattedTitle] = useState('')
+  const [formattedTitle, setFormattedTitle] = useState("");
 
   useEffect(() => {
     let ogTitle = props.stationName;
-    let format = ogTitle.replace(/_/g, "").replace(/-/g, " ").replace(/  +/, ' ').replace(/\//g, '');
+    let format = ogTitle
+      .replace(/_/g, "")
+      .replace(/-/g, " ")
+      .replace(/  +/, " ")
+      .replace(/\//g, "");
 
     setFormattedTitle(format);
-  }, [props.stationName])
+  }, [props.stationName]);
 
   return (
     <section className="radio">
