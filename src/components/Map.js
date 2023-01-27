@@ -13,8 +13,8 @@ const Map = (props) => {
   const [stationName, setStationName] = useState("");
   const [favicon, setFavicon] = useState("");
 
-  const [filterTrue, setFilterTrue] = useState(false)
-  const [filteredStations, setFilteredStations] = useState([])
+  const [filterTrue, setFilterTrue] = useState(false);
+  const [filteredStations, setFilteredStations] = useState([]);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -29,7 +29,6 @@ const Map = (props) => {
         props.sendImage(imageGrab);
       }
     }
-
   }, [radioUrl, props.stations, filterTrue]);
 
   const radioSelect = (event) => {
@@ -40,16 +39,11 @@ const Map = (props) => {
 
     setRadioUrl(event.target.value);
     setStationName(event.target.id);
-
   };
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
   };
-
-  // const filterResNum = (event) => {
-  //   props.sendToNumFilter(event.target.value);
-  // };
 
   const grabFilter = (event) => {
     console.log(event.target.value);
@@ -60,42 +54,33 @@ const Map = (props) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
       let limit = base + parseInt(event.target.value);
 
-      if (event.target.value > props.stations.length){
-        
-        let bottom = 0
-        let top = props.stations.length
+      if (event.target.value > props.stations.length) {
+        let bottom = 0;
+        let top = props.stations.length;
 
-        setFilteredStations(props.stations.slice(bottom, parseInt(top)))
-        setFilterTrue(true)
-
+        setFilteredStations(props.stations.slice(bottom, parseInt(top)));
+        setFilterTrue(true);
       } else if (limit > props.stations.length) {
-        
         let diff = limit - props.stations.length;
         let newBase = base - diff;
         let newLimit = newBase + event.target.value;
 
         setFilteredStations(props.stations.slice(newBase, newLimit));
-        setFilterTrue(true)
-
+        setFilterTrue(true);
       } else {
-
         setFilterTrue(true);
         setFilteredStations(props.stations.slice(base, limit));
-
       }
     };
 
     randomizer();
-  }
+  };
 
   const randomStation = () => {
-
-    if (filterTrue){
+    if (filterTrue) {
       const randomizer = (min = 0, max = filteredStations.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       };
-
-      console.log("filtering from the filterTrue if")
 
       let surpriseStation = filteredStations[randomizer()];
 
@@ -107,10 +92,9 @@ const Map = (props) => {
       const randomizer = (min = 0, max = props.stations.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       };
-      console.log("filtering from the filterFalse if");
-  
+
       let surpriseStation = props.stations[randomizer()];
-  
+
       setRadioUrl(surpriseStation.urlResolved);
       setStationName(surpriseStation.name);
       props.sendToRadio(surpriseStation.urlResolved);
@@ -144,7 +128,10 @@ const Map = (props) => {
 
   return (
     <div className="map">
-      <h3>returned {filterTrue ? filteredStations.length : props.stations.length} stations matching {props.selectedGenre}</h3>
+      <h3>
+        returned {filterTrue ? filteredStations.length : props.stations.length}{" "}
+        stations matching {props.selectedGenre}
+      </h3>
       <label htmlFor="number">Show results:</label>
       <select name="number" id="filterNum" onChange={grabFilter} value="--">
         <option disabled>--</option>
@@ -167,99 +154,111 @@ const Map = (props) => {
           url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"
           attribution={`<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>`}
         />
-        {filterTrue ? filteredStations.map((stationDetails) => {
-          return (
-            <div key={stationDetails.id}>
-              <Marker
-                position={[
-                  `${stationDetails.geoLat}`,
-                  `${stationDetails.geoLong}`,
-                ]}
-              >
-                <Popup>
-                  <div className="stationDetails">
-                    <img
-                      className="icon"
-                      src={stationDetails.favicon}
-                      alt={stationDetails.name}
-                      onError={setDefaultSrc}
-                    />
-                    <p>{stationDetails.name.replace(/_/g, "").replace(/-/g, " ").replace(/  +/, ' ').replace(/\//g, "")}</p>
-                    <p className="stationCountry">{stationDetails.country}</p>
-                    <div className="buttonContainer" value={stationDetails}>
-                      <button
-                        className={
-                          radioUrl === stationDetails.urlResolved ||
-                          props.stationCheck
-                            ? "infoButtonPlaying"
-                            : "infoButton"
-                        }
-                        value={stationDetails.urlResolved}
-                        onClick={radioSelect}
-                        id={stationDetails.name}
-                        key={stationDetails.favicon}
-                      >
-                        {radioUrl === stationDetails.urlResolved ||
-                        props.stationCheck
-                          ? ""
-                          : "▶"}
-                      </button>
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            </div>
-          );
-        }) : props.stations.map((stationDetails) => {
-          return (
-            <div key={stationDetails.id}>
-              <Marker
-                position={[
-                  `${stationDetails.geoLat}`,
-                  `${stationDetails.geoLong}`,
-                ]}
-              >
-                <Popup>
-                  <div className="stationDetails">
-                    <img
-                      className="icon"
-                      src={stationDetails.favicon}
-                      alt={stationDetails.name}
-                      onError={setDefaultSrc}
-                    />
-                    <p>
-                      {stationDetails.name
-                        .replace(/_/g, "")
-                        .replace(/-/g, " ")
-                        .replace(/  +/, " ")
-                        .replace(/\//g, "")}
-                    </p>
-                    <p className="stationCountry">{stationDetails.country}</p>
-                    <div className="buttonContainer" value={stationDetails}>
-                      <button
-                        className={
-                          radioUrl === stationDetails.urlResolved ||
-                          props.stationCheck
-                            ? "infoButtonPlaying"
-                            : "infoButton"
-                        }
-                        value={stationDetails.urlResolved}
-                        onClick={radioSelect}
-                        id={stationDetails.name}
-                        key={stationDetails.favicon}
-                      >
-                        {radioUrl === stationDetails.urlResolved ||
-                        props.stationCheck
-                          ? ""
-                          : "▶"}
-                      </button>
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            </div>
-          );
-        })}
+        {filterTrue
+          ? filteredStations.map((stationDetails) => {
+              return (
+                <div key={stationDetails.id}>
+                  <Marker
+                    position={[
+                      `${stationDetails.geoLat}`,
+                      `${stationDetails.geoLong}`,
+                    ]}
+                  >
+                    <Popup>
+                      <div className="stationDetails">
+                        <img
+                          className="icon"
+                          src={stationDetails.favicon}
+                          alt={stationDetails.name}
+                          onError={setDefaultSrc}
+                        />
+                        <p>
+                          {stationDetails.name
+                            .replace(/_/g, "")
+                            .replace(/-/g, " ")
+                            .replace(/  +/, " ")
+                            .replace(/\//g, "")}
+                        </p>
+                        <p className="stationCountry">
+                          {stationDetails.country}
+                        </p>
+                        <div className="buttonContainer" value={stationDetails}>
+                          <button
+                            className={
+                              radioUrl === stationDetails.urlResolved ||
+                              props.stationCheck
+                                ? "infoButtonPlaying"
+                                : "infoButton"
+                            }
+                            value={stationDetails.urlResolved}
+                            onClick={radioSelect}
+                            id={stationDetails.name}
+                            key={stationDetails.favicon}
+                          >
+                            {radioUrl === stationDetails.urlResolved ||
+                            props.stationCheck
+                              ? ""
+                              : "▶"}
+                          </button>
+                        </div>
+                      </div>
+                    </Popup>
+                  </Marker>
+                </div>
+              );
+            })
+          : props.stations.map((stationDetails) => {
+              return (
+                <div key={stationDetails.id}>
+                  <Marker
+                    position={[
+                      `${stationDetails.geoLat}`,
+                      `${stationDetails.geoLong}`,
+                    ]}
+                  >
+                    <Popup>
+                      <div className="stationDetails">
+                        <img
+                          className="icon"
+                          src={stationDetails.favicon}
+                          alt={stationDetails.name}
+                          onError={setDefaultSrc}
+                        />
+                        <p>
+                          {stationDetails.name
+                            .replace(/_/g, "")
+                            .replace(/-/g, " ")
+                            .replace(/  +/, " ")
+                            .replace(/\//g, "")}
+                        </p>
+                        <p className="stationCountry">
+                          {stationDetails.country}
+                        </p>
+                        <div className="buttonContainer" value={stationDetails}>
+                          <button
+                            className={
+                              radioUrl === stationDetails.urlResolved ||
+                              props.stationCheck
+                                ? "infoButtonPlaying"
+                                : "infoButton"
+                            }
+                            value={stationDetails.urlResolved}
+                            onClick={radioSelect}
+                            id={stationDetails.name}
+                            key={stationDetails.favicon}
+                          >
+                            {radioUrl === stationDetails.urlResolved ||
+                            props.stationCheck
+                              ? ""
+                              : "▶"}
+                          </button>
+                        </div>
+                      </div>
+                    </Popup>
+                  </Marker>
+                </div>
+              );
+            })}
       </MapContainer>
     </div>
   );

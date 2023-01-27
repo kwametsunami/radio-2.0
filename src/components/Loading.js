@@ -1,9 +1,9 @@
-import PulseLoader from "react-spinners/PulseLoader";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const Loading = () => {
   return (
     <div className="loadingPage">
-      <PulseLoader
+      <ScaleLoader
         color={"#EDD060"}
         size={20}
         aria-label="Loading Spinner"

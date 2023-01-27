@@ -6,23 +6,23 @@ const List = (props) => {
   const [stationName, setStationName] = useState("");
   const [favicon, setFavicon] = useState("");
 
-    const [filterTrue, setFilterTrue] = useState(false);
-    const [filteredStations, setFilteredStations] = useState([]);
+  const [filterTrue, setFilterTrue] = useState(false);
+  const [filteredStations, setFilteredStations] = useState([]);
 
-    useEffect(() => {
-      for (let i = 0; i < props.stations.length; i++) {
-        if (props.stations[i].urlResolved === radioUrl) {
-          let imageGrab = props.stations[i].favicon;
+  useEffect(() => {
+    for (let i = 0; i < props.stations.length; i++) {
+      if (props.stations[i].urlResolved === radioUrl) {
+        let imageGrab = props.stations[i].favicon;
 
-          if (imageGrab === "") {
-            setFavicon(defaultImage);
-          } else {
-            setFavicon(imageGrab);
-          }
-          props.sendImage(imageGrab);
+        if (imageGrab === "") {
+          setFavicon(defaultImage);
+        } else {
+          setFavicon(imageGrab);
         }
+        props.sendImage(imageGrab);
       }
-    }, [radioUrl, props.stations, filterTrue]);
+    }
+  }, [radioUrl, props.stations, filterTrue]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -34,14 +34,14 @@ const List = (props) => {
     setStationName(event.target.id);
   };
 
-    const grabFilter = (event) => {
-      console.log(event.target.value);
+  const grabFilter = (event) => {
+    console.log(event.target.value);
 
-      console.log(props.stations.length);
+    console.log(props.stations.length);
 
-      const randomizer = (min = 0, max = props.stations.length) => {
-        let base = Math.floor(Math.random() * (max - min + 1)) + min;
-        let limit = base + parseInt(event.target.value);
+    const randomizer = (min = 0, max = props.stations.length) => {
+      let base = Math.floor(Math.random() * (max - min + 1)) + min;
+      let limit = base + parseInt(event.target.value);
 
       if (event.target.value > props.stations.length) {
         let bottom = 0;
@@ -60,31 +60,27 @@ const List = (props) => {
         setFilterTrue(true);
         setFilteredStations(props.stations.slice(base, limit));
       }
-      };
-
-      randomizer();
     };
+
+    randomizer();
+  };
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
   };
 
-  //  const filterResNum = (event) => {
-  //    props.sendToNumFilter(event.target.value);
-  //  };
+  const randomStation = () => {
+    const randomizer = (min = 0, max = props.stations.length) => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
 
-     const randomStation = () => {
-       const randomizer = (min = 0, max = props.stations.length) => {
-         return Math.floor(Math.random() * (max - min + 1)) + min;
-       };
+    let surpriseStation = props.stations[randomizer()];
 
-       let surpriseStation = props.stations[randomizer()];
-
-       setRadioUrl(surpriseStation.urlResolved);
-       setStationName(surpriseStation.name);
-       props.sendToRadio(surpriseStation.urlResolved);
-       props.sendToRadioName(surpriseStation.name);
-     };
+    setRadioUrl(surpriseStation.urlResolved);
+    setStationName(surpriseStation.name);
+    props.sendToRadio(surpriseStation.urlResolved);
+    props.sendToRadioName(surpriseStation.name);
+  };
 
   return (
     <div className="stationList">
