@@ -22,7 +22,7 @@ const Player = (props) => {
 
   useEffect(() => {
     let ogTitle = props.stationName;
-    let format = ogTitle.replace(/_/g, "");
+    let format = ogTitle.replace(/_/g, "").replace(/-/g, " ").replace(/  +/, ' ').replace(/\//g, '');
 
     setFormattedTitle(format);
   }, [props.stationName])

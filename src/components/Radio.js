@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 
+
 import Loading from "./Loading";
 import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
+
+const list = require("../data/genreData.json");
 
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
@@ -12,6 +15,7 @@ const Radio = (props) => {
   const [listView, setListView] = useState(false);
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
+  const [aGenre, setAGenre] = useState("")
   const [loading, setLoading] = useState(false);
 
   const switchView = () => {
@@ -40,8 +44,6 @@ const Radio = (props) => {
         }
       }
 
-      console.log(filtered.length, "running before if")
-
       if (filtered.length > 0) {
         setStations(filtered);
         setBadSearch(false);
@@ -54,19 +56,29 @@ const Radio = (props) => {
       .then((data) => {
         setStations(data);
 
-        console.log(data.length)
-
-        if (data.length === 0){
-          setLoading(false)
-        setBadSearch(true);
-        console.log(badSearch, `you searched ${props.genre}`);
+        if (data.length === 0) {
+          setLoading(false);
+          setBadSearch(true);
+          randomGenre();
         }
       })
       .catch((error) => {
         alert("api may be down...");
         setBadResponse(true);
       });
-  }, [props.genre, props.quality, badSearch]);
+  }, [props.genre, props.quality]);
+
+  const randomGenre = () => {
+    console.log(list.tag.length)
+    const randomizer = (min = 0, max = list.tag.length) => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    let rnd = list.tag[randomizer()].genre.toUpperCase()
+    setAGenre(rnd)
+  };
+
+  
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");
@@ -86,21 +98,17 @@ const Radio = (props) => {
 
   return (
     <section>
-      {loading ? 
+      {loading ? (
         <Loading />
-       : 
+      ) : (
         <div className="error">
           {badSearch ? (
             <p>
               Hmm... that's not music to our ears. We couldn't find any stations
-              matching {props.genre}. Maybe try Rock?
+              matching {props.genre}. Maybe try {aGenre}?
             </p>
           ) : (
             <div className="results">
-              <h3>
-                Returned {stations.length} stations matching {props.genre}
-              </h3>
-              <button>play a random station</button>
               {listView ? (
                 <div className="listViewContainer">
                   <button onClick={switchView}>switch to map view</button>
@@ -109,6 +117,7 @@ const Radio = (props) => {
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
                     sendImage={sendImage}
+                    selectedGenre={props.genre}
                   />
                 </div>
               ) : (
@@ -119,13 +128,14 @@ const Radio = (props) => {
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
                     sendImage={sendImage}
+                    selectedGenre={props.genre}
                   />
                 </div>
               )}
             </div>
           )}
         </div>
-      }
+      )}
 
       {stationUrl ? (
         <Player

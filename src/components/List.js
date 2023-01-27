@@ -92,6 +92,10 @@ const List = (props) => {
 
   return (
     <div className="stationList">
+      <h3>
+        returned {filterTrue ? filteredStations.length : props.stations.length}{" "}
+        stations matching {props.selectedGenre}
+      </h3>
       <label htmlFor="number">Show results:</label>
       <select name="number" id="filterNum" onChange={grabFilter} value="--">
         <option disabled>--</option>
@@ -102,90 +106,103 @@ const List = (props) => {
         <option value="300">All</option>
       </select>
       <button onClick={randomStation}>Select a random station</button>
-      {filterTrue ? filteredStations.map((stationDetails) => {
-                return (
-          <div
-            className={
-              radioUrl === stationDetails.urlResolved
-                ? "stationInfoPlaying"
-                : "stationInfo"
-            }
-            key={stationDetails.id}
-          >
-            <div className="image">
-              <img
-                src={stationDetails.favicon}
-                alt={stationDetails.name}
-                className="icon"
-                onError={setDefaultSrc}
-              />
-            </div>
-
-            <div className="information">
-              <p className="stationName">{stationDetails.name}</p>
-              <p className="stationCountry">{stationDetails.country}</p>
-              <p>{stationDetails.bitrate}</p>
-            </div>
-
-            <div className="buttonContainer" value={stationDetails}>
-              <button
+      {filterTrue
+        ? filteredStations.map((stationDetails) => {
+            return (
+              <div
                 className={
                   radioUrl === stationDetails.urlResolved
-                    ? "infoButtonPlaying"
-                    : "infoButton"
+                    ? "stationInfoPlaying"
+                    : "stationInfo"
                 }
-                value={stationDetails.urlResolved}
-                onClick={radioSelect}
-                id={stationDetails.name}
+                key={stationDetails.id}
               >
-                {radioUrl === stationDetails.urlResolved ? "" : "▶"}
-              </button>
-            </div>
-          </div>
-        );
-      }) :
-      props.stations.map((stationDetails) => {
-        return (
-          <div
-            className={
-              radioUrl === stationDetails.urlResolved
-                ? "stationInfoPlaying"
-                : "stationInfo"
-            }
-            key={stationDetails.id}
-          >
-            <div className="image">
-              <img
-                src={stationDetails.favicon}
-                alt={stationDetails.name}
-                className="icon"
-                onError={setDefaultSrc}
-              />
-            </div>
+                <div className="image">
+                  <img
+                    src={stationDetails.favicon}
+                    alt={stationDetails.name}
+                    className="icon"
+                    onError={setDefaultSrc}
+                  />
+                </div>
 
-            <div className="information">
-              <p className="stationName">{stationDetails.name}</p>
-              <p className="stationCountry">{stationDetails.country}</p>
-              <p>{stationDetails.bitrate}</p>
-            </div>
+                <div className="information">
+                  <p className="stationName">
+                    {stationDetails.name
+                      .replace(/_/g, "")
+                      .replace(/-/g, " ")
+                      .replace(/  +/, " ")
+                      .replace(/\//g, "")}
+                  </p>
+                  <p className="stationCountry">{stationDetails.country}</p>
+                  <p>{stationDetails.bitrate}</p>
+                </div>
 
-            <div className="buttonContainer" value={stationDetails}>
-              <button
+                <div className="buttonContainer" value={stationDetails}>
+                  <button
+                    className={
+                      radioUrl === stationDetails.urlResolved
+                        ? "infoButtonPlaying"
+                        : "infoButton"
+                    }
+                    value={stationDetails.urlResolved}
+                    onClick={radioSelect}
+                    id={stationDetails.name}
+                  >
+                    {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        : props.stations.map((stationDetails) => {
+            return (
+              <div
                 className={
                   radioUrl === stationDetails.urlResolved
-                    ? "infoButtonPlaying"
-                    : "infoButton"
+                    ? "stationInfoPlaying"
+                    : "stationInfo"
                 }
-                value={stationDetails.urlResolved}
-                onClick={radioSelect}
-                id={stationDetails.name}
+                key={stationDetails.id}
               >
-                {radioUrl === stationDetails.urlResolved ? "" : "▶"}
-              </button>
-            </div>
-          </div>
-        );
-      })}
+                <div className="image">
+                  <img
+                    src={stationDetails.favicon}
+                    alt={stationDetails.name}
+                    className="icon"
+                    onError={setDefaultSrc}
+                  />
+                </div>
+
+                <div className="information">
+                  <p className="stationName">
+                    {stationDetails.name
+                      .replace(/_/g, "")
+                      .replace(/-/g, " ")
+                      .replace(/  +/, " ")
+                      .replace(/\//g, "")}
+                  </p>
+                  <p className="stationCountry">{stationDetails.country}</p>
+                  <p>{stationDetails.bitrate}</p>
+                </div>
+
+                <div className="buttonContainer" value={stationDetails}>
+                  <button
+                    className={
+                      radioUrl === stationDetails.urlResolved
+                        ? "infoButtonPlaying"
+                        : "infoButton"
+                    }
+                    value={stationDetails.urlResolved}
+                    onClick={radioSelect}
+                    id={stationDetails.name}
+                  >
+                    {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
     </div>
   );
 };

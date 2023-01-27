@@ -122,6 +122,7 @@ const Map = (props) => {
 
   return (
     <div className="map">
+      <h3>returned {filterTrue ? filteredStations.length : props.stations.length} stations matching {props.selectedGenre}</h3>
       <label htmlFor="number">Show results:</label>
       <select name="number" id="filterNum" onChange={grabFilter} value="--">
         <option disabled>--</option>
@@ -161,7 +162,7 @@ const Map = (props) => {
                       alt={stationDetails.name}
                       onError={setDefaultSrc}
                     />
-                    <p>{stationDetails.name.replace(/_/g, "")}</p>
+                    <p>{stationDetails.name.replace(/_/g, "").replace(/-/g, " ").replace(/  +/, ' ').replace(/\//g, "")}</p>
                     <p className="stationCountry">{stationDetails.country}</p>
                     <div className="buttonContainer" value={stationDetails}>
                       <button
@@ -204,7 +205,13 @@ const Map = (props) => {
                       alt={stationDetails.name}
                       onError={setDefaultSrc}
                     />
-                    <p>{stationDetails.name.replace(/_/g, "")}</p>
+                    <p>
+                      {stationDetails.name
+                        .replace(/_/g, "")
+                        .replace(/-/g, " ")
+                        .replace(/  +/, " ")
+                        .replace(/\//g, "")}
+                    </p>
                     <p className="stationCountry">{stationDetails.country}</p>
                     <div className="buttonContainer" value={stationDetails}>
                       <button
