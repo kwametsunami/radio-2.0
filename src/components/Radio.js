@@ -24,10 +24,7 @@ const Radio = (props) => {
 
     const setupApi = async (stationFilter) => {
       setLoading(true);
-      const api = new RadioBrowserApi(
-        fetch.bind(window),
-        "My Radio App"
-      );
+      const api = new RadioBrowserApi(fetch.bind(window), "My Radio");
 
       const stations = await api.searchStations({
         tag: props.genre,
@@ -52,10 +49,6 @@ const Radio = (props) => {
         setLoading(false);
       }
 
-      if (filterLimit < 300) {
-        filtered.length = filterLimit;
-      }
-
       return filtered;
     };
 
@@ -71,7 +64,7 @@ const Radio = (props) => {
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");
-  const [currentIcon, setCurrentIcon] = useState("")
+  const [currentIcon, setCurrentIcon] = useState("");
 
   const sendToRadio = (url) => {
     setStationUrl(url);
@@ -81,13 +74,10 @@ const Radio = (props) => {
     setPlayingStation(station);
   };
 
-  const sendToNumFilter = (result) => {
-    setFilterLimit(result);
-  };
 
   const sendImage = (favicon) => {
-    setCurrentIcon(favicon)
-  }
+    setCurrentIcon(favicon);
+  };
 
   return (
     <section>
@@ -113,7 +103,6 @@ const Radio = (props) => {
                     stations={stations}
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
-                    sendToNumFilter={sendToNumFilter}
                     sendImage={sendImage}
                   />
                 </div>
@@ -124,7 +113,6 @@ const Radio = (props) => {
                     stations={stations}
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
-                    sendToNumFilter={sendToNumFilter}
                     sendImage={sendImage}
                   />
                 </div>

@@ -3,6 +3,8 @@ import "react-h5-audio-player/lib/styles.css";
 
 import defaultImage from "../assets/radio.png";
 
+import { useState, useEffect } from "react";
+
   const setDefaultAlert = () => {
     alert(
       "Sorry, this station is offline or unavailable in your region. Please select another stream."
@@ -16,6 +18,15 @@ import defaultImage from "../assets/radio.png";
 
 const Player = (props) => {
 
+  const [formattedTitle, setFormattedTitle] = useState('')
+
+  useEffect(() => {
+    let ogTitle = props.stationName;
+    let format = ogTitle.replace(/_/g, "");
+
+    setFormattedTitle(format);
+  }, [props.stationName])
+
   return (
     <section className="radio">
       <div className="radioPlayer">
@@ -24,7 +35,7 @@ const Player = (props) => {
           alt={props.stationName}
           onError={setDefaultSrc}
         />
-        <h3>{props.stationName}</h3>
+        <h3>{formattedTitle}</h3>
         <AudioPlayer
           autoPlay
           layout="horizontal-reverse"

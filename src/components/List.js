@@ -6,6 +6,9 @@ const List = (props) => {
   const [stationName, setStationName] = useState("");
   const [favicon, setFavicon] = useState("");
 
+    const [filterTrue, setFilterTrue] = useState(false);
+    const [filteredStations, setFilteredStations] = useState([]);
+
     useEffect(() => {
       for (let i = 0; i < props.stations.length; i++) {
         if (props.stations[i].urlResolved === radioUrl) {
@@ -19,7 +22,7 @@ const List = (props) => {
           props.sendImage(imageGrab);
         }
       }
-    }, [radioUrl]);
+    }, [radioUrl, props.stations, filterTrue]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -31,13 +34,48 @@ const List = (props) => {
     setStationName(event.target.id);
   };
 
+    const grabFilter = (event) => {
+      console.log(event.target.value);
+
+      console.log(props.stations.length);
+
+      const randomizer = (min = 0, max = props.stations.length) => {
+        let base = Math.floor(Math.random() * (max - min + 1)) + min;
+        let limit = base + parseInt(event.target.value);
+
+        console.log("filter length", props.stations.length);
+        console.log("base and limit", base, limit);
+        console.log("filterLimit", event.target.value);
+
+        if (limit > props.stations.length) {
+          let diff = limit - props.stations.length;
+          let newBase = base - diff;
+          let newLimit = newBase + event.target.value;
+          // setStations(filtered.slice(newBase, newLimit));
+          console.log("Math it", props.stations.slice(newBase, newLimit));
+          setFilteredStations(props.stations.slice(newBase, newLimit));
+          setFilterTrue(true);
+        } else {
+          // setStations(filtered.slice(base, limit));
+          console.log(
+            "Little math involved",
+            props.stations.slice(base, limit)
+          );
+          setFilterTrue(true);
+          setFilteredStations(props.stations.slice(base, limit));
+        }
+      };
+
+      randomizer();
+    };
+
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
   };
 
-   const filterResNum = (event) => {
-     props.sendToNumFilter(event.target.value);
-   };
+  //  const filterResNum = (event) => {
+  //    props.sendToNumFilter(event.target.value);
+  //  };
 
      const randomStation = () => {
        const randomizer = (min = 0, max = props.stations.length) => {
@@ -55,7 +93,7 @@ const List = (props) => {
   return (
     <div className="stationList">
       <label htmlFor="number">Show results:</label>
-      <select name="number" id="filterNum" onChange={filterResNum} value="--">
+      <select name="number" id="filterNum" onChange={grabFilter} value="--">
         <option disabled>--</option>
         <option value="10">10</option>
         <option value="25">25</option>
@@ -64,7 +102,49 @@ const List = (props) => {
         <option value="300">All</option>
       </select>
       <button onClick={randomStation}>Select a random station</button>
-      {props.stations.map((stationDetails) => {
+      {filterTrue ? filteredStations.map((stationDetails) => {
+                return (
+          <div
+            className={
+              radioUrl === stationDetails.urlResolved
+                ? "stationInfoPlaying"
+                : "stationInfo"
+            }
+            key={stationDetails.id}
+          >
+            <div className="image">
+              <img
+                src={stationDetails.favicon}
+                alt={stationDetails.name}
+                className="icon"
+                onError={setDefaultSrc}
+              />
+            </div>
+
+            <div className="information">
+              <p className="stationName">{stationDetails.name}</p>
+              <p className="stationCountry">{stationDetails.country}</p>
+              <p>{stationDetails.bitrate}</p>
+            </div>
+
+            <div className="buttonContainer" value={stationDetails}>
+              <button
+                className={
+                  radioUrl === stationDetails.urlResolved
+                    ? "infoButtonPlaying"
+                    : "infoButton"
+                }
+                value={stationDetails.urlResolved}
+                onClick={radioSelect}
+                id={stationDetails.name}
+              >
+                {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+              </button>
+            </div>
+          </div>
+        );
+      }) :
+      props.stations.map((stationDetails) => {
         return (
           <div
             className={
