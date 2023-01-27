@@ -70,10 +70,12 @@ const Search = () => {
   return (
     <div className="App">
       {/* <Searchbar placeholder="Search something" data={music}/> */}
+      <Link to="/">
       <h1>Radio Player</h1>
+      </Link>
       <button onClick={login}>login</button>
       {loginModal ? <Login showModal={login} /> : null}
-      <Link to="/about">
+      <Link to="/About">
         <p>about page</p>
       </Link>
       <h2>{`${greeting}`}</h2>

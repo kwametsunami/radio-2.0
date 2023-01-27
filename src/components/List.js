@@ -126,7 +126,14 @@ const List = (props) => {
                       .replace(/  +/, " ")
                       .replace(/\//g, "")}
                   </p>
-                  <p className="stationCountry">{stationDetails.country}</p>
+                  <p className="stationCountry">
+                    {stationDetails.state !== ""
+                      ? `${stationDetails.state}, `
+                      : null}{" "}
+                    {stationDetails.country === "The United States Of America"
+                      ? "USA"
+                      : stationDetails.country}
+                  </p>
                   <p>{stationDetails.bitrate}</p>
                 </div>
 
@@ -174,7 +181,14 @@ const List = (props) => {
                       .replace(/  +/, " ")
                       .replace(/\//g, "")}
                   </p>
-                  <p className="stationCountry">{stationDetails.country}</p>
+                  <p className="stationCountry">
+                    {stationDetails.state !== ""
+                      ? `${stationDetails.state}, `
+                      : null}
+                    {stationDetails.country === "The United States Of America"
+                      ? "USA"
+                      : stationDetails.country}
+                  </p>
                   <p>{stationDetails.bitrate}</p>
                 </div>
 

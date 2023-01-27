@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 
-
 import Loading from "./Loading";
+import Dashboard from "./Dashboard";
 import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
@@ -15,7 +15,7 @@ const Radio = (props) => {
   const [listView, setListView] = useState(false);
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
-  const [aGenre, setAGenre] = useState("")
+  const [aGenre, setAGenre] = useState("");
   const [loading, setLoading] = useState(false);
 
   const switchView = () => {
@@ -55,7 +55,7 @@ const Radio = (props) => {
     setupApi(stationFilter)
       .then((data) => {
         setStations(data);
-
+console.log(data)
         if (data.length === 0) {
           setLoading(false);
           setBadSearch(true);
@@ -69,16 +69,14 @@ const Radio = (props) => {
   }, [props.genre, props.quality]);
 
   const randomGenre = () => {
-    console.log(list.tag.length)
+    console.log(list.tag.length);
     const randomizer = (min = 0, max = list.tag.length) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    let rnd = list.tag[randomizer()].genre.toUpperCase()
-    setAGenre(rnd)
+    let rnd = list.tag[randomizer()].genre.toUpperCase();
+    setAGenre(rnd);
   };
-
-  
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");
@@ -108,30 +106,36 @@ const Radio = (props) => {
               matching {props.genre}. Maybe try {aGenre}?
             </p>
           ) : (
-            <div className="results">
-              {listView ? (
-                <div className="listViewContainer">
-                  <button onClick={switchView}>switch to map view</button>
-                  <List
-                    stations={stations}
-                    sendToRadio={sendToRadio}
-                    sendToRadioName={sendToRadioName}
-                    sendImage={sendImage}
-                    selectedGenre={props.genre}
-                  />
-                </div>
-              ) : (
-                <div className="mapViewContainer">
-                  <button onClick={switchView}>switch to list view</button>
-                  <Map
-                    stations={stations}
-                    sendToRadio={sendToRadio}
-                    sendToRadioName={sendToRadioName}
-                    sendImage={sendImage}
-                    selectedGenre={props.genre}
-                  />
-                </div>
-              )}
+            <div className="resultsContainer">
+              <div className="dashboard">
+                <Dashboard />
+              </div>
+
+              <div className="results">
+                {listView ? (
+                  <div className="listViewContainer">
+                    <button onClick={switchView}>switch to map view</button>
+                    <List
+                      stations={stations}
+                      sendToRadio={sendToRadio}
+                      sendToRadioName={sendToRadioName}
+                      sendImage={sendImage}
+                      selectedGenre={props.genre}
+                    />
+                  </div>
+                ) : (
+                  <div className="mapViewContainer">
+                    <button onClick={switchView}>switch to list view</button>
+                    <Map
+                      stations={stations}
+                      sendToRadio={sendToRadio}
+                      sendToRadioName={sendToRadioName}
+                      sendImage={sendImage}
+                      selectedGenre={props.genre}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>

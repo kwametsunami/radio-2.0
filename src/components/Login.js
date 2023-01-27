@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 const Login = (props) => {
   return (
     <div>
-      <button onClick={props.showModal}>close</button>
+      {props.showModal ? (
+        <button onClick={props.showModal}>close</button>
+      ) : (
+        <Link to="/">
+          <h2>logo</h2>
+        </Link>
+      )}
       <h2>sign into your account</h2>
       <form action="">
         <input type="email" placeholder="email" />

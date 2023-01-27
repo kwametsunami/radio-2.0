@@ -16,6 +16,9 @@ const Map = (props) => {
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
+  const [coordinates, setCoordinates] = useState([])
+  const [joinedData, setJoinedData] = useState([])
+
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
       if (props.stations[i].urlResolved === radioUrl) {
@@ -29,6 +32,37 @@ const Map = (props) => {
         props.sendImage(imageGrab);
       }
     }
+
+        const alreadySeenCoordinates = [];
+        for (const station of props.stations) {
+          let latitude = station.geoLat;
+          let longitude = station.geoLong;
+          // Check if another station has these exact coordinates. If so, bump the lat,lon by one.
+          for (const seenCoordinates of alreadySeenCoordinates) {
+            if (
+              seenCoordinates.latitude === latitude &&
+              seenCoordinates.longitude === longitude
+            ) {
+              latitude = latitude + 1 // or however you feel like
+              longitude = longitude + 1 // modifying these things
+              break;
+            }
+          }
+          // Store the updated coordinates in the already seen array for future checking.
+          alreadySeenCoordinates.push({
+            latitude: latitude,
+            longitude: longitude,
+          });
+          
+          setCoordinates(alreadySeenCoordinates);
+
+          // let info = props.stations
+
+          // let alreadySeenCoordinates = info
+
+        }
+
+        
   }, [radioUrl, props.stations, filterTrue]);
 
   const radioSelect = (event) => {
@@ -102,29 +136,21 @@ const Map = (props) => {
     }
   };
 
-  const alreadySeenCoordinates = [];
-  for (const station of props.stations) {
-    let latitude = station.geoLat;
-    let longitude = station.geoLong;
-    // Check if another station has these exact coordinates. If so, bump the lat,lon by one.
-    for (const seenCoordinates of alreadySeenCoordinates) {
-      if (
-        seenCoordinates.latitude === latitude &&
-        seenCoordinates.longitude === longitude
-      ) {
-        latitude += 1; // or however you feel like
-        longitude += 1; // modifying these things
-        break;
-      }
-    }
-    // Store the updated coordinates in the already seen array for future checking.
-    alreadySeenCoordinates.push({
-      latitude: latitude,
-      longitude: longitude,
-    });
-  }
+  useEffect (() => {
+let radioData = [...props.stations];
+let newCoordinates = [...coordinates];
 
-  // console.log(alreadySeenCoordinates)
+let newArray = [];
+
+for (let i = 0; i < radioData.length; i++) {
+  newArray.push([radioData[i], newCoordinates[i]]);
+}
+
+setJoinedData(newArray);
+  }, [props.stations])
+
+
+// console.log(merge(radioData, newCoordinates))
 
   return (
     <div className="map">
@@ -180,7 +206,12 @@ const Map = (props) => {
                             .replace(/\//g, "")}
                         </p>
                         <p className="stationCountry">
-                          {stationDetails.country}
+                          {stationDetails.state !== ""
+                            ? `${stationDetails.state}, `
+                            : null}
+                          { stationDetails.country === "The United States Of America"
+                          ? "USA"
+                          : stationDetails.country}
                         </p>
                         <div className="buttonContainer" value={stationDetails}>
                           <button
@@ -232,7 +263,13 @@ const Map = (props) => {
                             .replace(/\//g, "")}
                         </p>
                         <p className="stationCountry">
-                          {stationDetails.country}
+                          {stationDetails.state !== ""
+                            ? `${stationDetails.state}, `
+                            : null}{" "}
+                          {stationDetails.country ===
+                          "The United States Of America"
+                            ? "USA"
+                            : stationDetails.country}
                         </p>
                         <div className="buttonContainer" value={stationDetails}>
                           <button
