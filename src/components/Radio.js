@@ -13,7 +13,6 @@ const Radio = (props) => {
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [filterLimit, setFilterLimit] = useState(300);
 
   const switchView = () => {
     setListView(!listView);
@@ -41,26 +40,33 @@ const Radio = (props) => {
         }
       }
 
-      if (filtered.length === 0) {
-        setBadSearch(true);
-      } else {
+      console.log(filtered.length, "running before if")
+
+      if (filtered.length > 0) {
         setStations(filtered);
         setBadSearch(false);
         setLoading(false);
       }
-
       return filtered;
     };
 
     setupApi(stationFilter)
       .then((data) => {
         setStations(data);
+
+        console.log(data.length)
+
+        if (data.length === 0){
+          setLoading(false)
+        setBadSearch(true);
+        console.log(badSearch, `you searched ${props.genre}`);
+        }
       })
       .catch((error) => {
         alert("api may be down...");
         setBadResponse(true);
       });
-  }, [props.genre, props.quality, filterLimit]);
+  }, [props.genre, props.quality, badSearch]);
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");
@@ -74,16 +80,15 @@ const Radio = (props) => {
     setPlayingStation(station);
   };
 
-
   const sendImage = (favicon) => {
     setCurrentIcon(favicon);
   };
 
   return (
     <section>
-      {loading ? (
+      {loading ? 
         <Loading />
-      ) : (
+       : 
         <div className="error">
           {badSearch ? (
             <p>
@@ -120,7 +125,7 @@ const Radio = (props) => {
             </div>
           )}
         </div>
-      )}
+      }
 
       {stationUrl ? (
         <Player
