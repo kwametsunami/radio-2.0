@@ -13,22 +13,6 @@ const Map = (props) => {
   const [stationName, setStationName] = useState("");
   const [favicon, setFavicon] = useState("");
 
-  // const imageCheck = () => {
-  //   for (let i = 0; i < props.stations.length; i++) {
-  //     if (props.stations[i].urlResolved === radioUrl) {
-  //       let imageGrab = props.stations[i].favicon;
-
-  //       console.log(
-  //         "image Grabbed --",
-  //         imageGrab,
-  //         "currently Playing --",
-  //         radioUrl
-  //       );
-
-  //       setFavicon(imageGrab);
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -41,7 +25,6 @@ const Map = (props) => {
           setFavicon(imageGrab);
         }
         props.sendImage(imageGrab);
-        console.log(imageGrab);
       }
     }
 
@@ -56,7 +39,6 @@ const Map = (props) => {
     setRadioUrl(event.target.value);
     setStationName(event.target.id);
 
-    console.log(props.stations.length);
   };
 
   const setDefaultSrc = (event) => {

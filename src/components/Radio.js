@@ -26,7 +26,7 @@ const Radio = (props) => {
       setLoading(true);
       const api = new RadioBrowserApi(
         fetch.bind(window),
-        "International Radio"
+        "My Radio App"
       );
 
       const stations = await api.searchStations({
@@ -87,7 +87,6 @@ const Radio = (props) => {
 
   const sendImage = (favicon) => {
     setCurrentIcon(favicon)
-    console.log("Recieved favicon")
   }
 
   return (

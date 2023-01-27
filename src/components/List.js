@@ -17,7 +17,6 @@ const List = (props) => {
             setFavicon(imageGrab);
           }
           props.sendImage(imageGrab);
-          console.log(imageGrab);
         }
       }
     }, [radioUrl]);

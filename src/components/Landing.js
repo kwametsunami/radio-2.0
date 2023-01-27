@@ -19,7 +19,6 @@ const Search = () => {
   const login = () => {
     setLoginModal(!loginModal);
     setCloseModal(!closeModal);
-    console.log("closing!!");
   };
 
   const currentTime = new Date().getHours();
@@ -36,14 +35,12 @@ const Search = () => {
 
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
-    console.log("search", searchTerm);
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
     setSearch(value);
     setDisplay(false);
-    console.log("submitting...");
   };
 
   const setHighQuality = (kbps) => {
@@ -57,7 +54,6 @@ const Search = () => {
 
   useEffect(() => {
     window.addEventListener("mousedown", handleClickOutside);
-    console.log("its doing something...");
 
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
