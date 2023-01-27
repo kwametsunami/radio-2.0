@@ -2,25 +2,61 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
 import { Marker, Popup } from "react-leaflet";
-import { Icon } from "leaflet"
+import { Icon } from "leaflet";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import defaultImage from "../assets/radio.png";
 
 const Map = (props) => {
+  const [radioUrl, setRadioUrl] = useState("");
+  const [stationName, setStationName] = useState("");
+  const [favicon, setFavicon] = useState("");
 
-const [radioUrl, setRadioUrl] = useState("")
-const [stationName, setStationName] = useState("")
+  // const imageCheck = () => {
+  //   for (let i = 0; i < props.stations.length; i++) {
+  //     if (props.stations[i].urlResolved === radioUrl) {
+  //       let imageGrab = props.stations[i].favicon;
+
+  //       console.log(
+  //         "image Grabbed --",
+  //         imageGrab,
+  //         "currently Playing --",
+  //         radioUrl
+  //       );
+
+  //       setFavicon(imageGrab);
+  //     }
+  //   }
+  // };
+
+  useEffect(() => {
+    for (let i = 0; i < props.stations.length; i++) {
+      if (props.stations[i].urlResolved === radioUrl) {
+        let imageGrab = props.stations[i].favicon;
+
+        if (imageGrab === "") {
+          setFavicon(defaultImage);
+        } else {
+          setFavicon(imageGrab);
+        }
+        props.sendImage(imageGrab);
+        console.log(imageGrab);
+      }
+    }
+
+  }, [radioUrl]);
 
   const radioSelect = (event) => {
     event.preventDefault();
 
     props.sendToRadio(event.target.value);
-    props.sendToRadioName(event.target.id)
+    props.sendToRadioName(event.target.id);
 
-    setRadioUrl(event.target.value)
-    setStationName(event.target.id)
+    setRadioUrl(event.target.value);
+    setStationName(event.target.id);
+
+    console.log(props.stations.length);
   };
 
   const setDefaultSrc = (event) => {
@@ -29,23 +65,66 @@ const [stationName, setStationName] = useState("")
 
   const filterResNum = (event) => {
     props.sendToNumFilter(event.target.value);
+  };
+
+  const randomStation = () => {
+    const randomizer = (min = 0, max = props.stations.length) => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    let surpriseStation = props.stations[randomizer()];
+
+    setRadioUrl(surpriseStation.urlResolved);
+    setStationName(surpriseStation.name);
+    props.sendToRadio(surpriseStation.urlResolved);
+    props.sendToRadioName(surpriseStation.name);
+  };
+
+  const alreadySeenCoordinates = [];
+  for (const station of props.stations) {
+    let latitude = station.geoLat;
+    let longitude = station.geoLong;
+    // Check if another station has these exact coordinates. If so, bump the lat,lon by one.
+    for (const seenCoordinates of alreadySeenCoordinates) {
+      if (
+        seenCoordinates.latitude === latitude &&
+        seenCoordinates.longitude === longitude
+      ) {
+        latitude += 1; // or however you feel like
+        longitude += 1; // modifying these things
+        break;
+      }
+    }
+    // Store the updated coordinates in the already seen array for future checking.
+    alreadySeenCoordinates.push({
+      latitude: latitude,
+      longitude: longitude,
+    });
   }
+
+  // console.log(alreadySeenCoordinates)
 
   return (
     <div className="map">
       <label htmlFor="number">Show results:</label>
-      <select name="number" id="filterNum" onChange={filterResNum}>
-        <option selected="selected" value="250">All</option>
+      <select name="number" id="filterNum" onChange={filterResNum} value="--">
+        <option disabled>--</option>
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
         <option value="100">100</option>
+        <option value="300">All</option>
       </select>
-      <MapContainer center={[30.0, 10.0]} zoom={2.3} scrollWheelZoom={true}>
+      <button onClick={randomStation}>Select a random station</button>
+      <MapContainer
+        center={[30.0, 10.0]}
+        zoom={2.3}
+        scrollWheelZoom={true}
+        maxZoom={30}
+        minZoom={2}
+      >
         <h2>yes hello</h2>
         <TileLayer
-          // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"
           attribution={`<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>`}
         />
@@ -71,15 +150,20 @@ const [stationName, setStationName] = useState("")
                     <div className="buttonContainer" value={stationDetails}>
                       <button
                         className={
-                          radioUrl === stationDetails.urlResolved
+                          radioUrl === stationDetails.urlResolved ||
+                          props.stationCheck
                             ? "infoButtonPlaying"
                             : "infoButton"
                         }
                         value={stationDetails.urlResolved}
                         onClick={radioSelect}
                         id={stationDetails.name}
+                        key={stationDetails.favicon}
                       >
-                        {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+                        {radioUrl === stationDetails.urlResolved ||
+                        props.stationCheck
+                          ? ""
+                          : "▶"}
                       </button>
                     </div>
                   </div>

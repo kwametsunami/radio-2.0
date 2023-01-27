@@ -13,7 +13,7 @@ const Radio = (props) => {
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [filterLimit, setFilterLimit] = useState(300)
+  const [filterLimit, setFilterLimit] = useState(300);
 
   const switchView = () => {
     setListView(!listView);
@@ -33,7 +33,7 @@ const Radio = (props) => {
         tag: props.genre,
         limit: 300,
         hasGeoInfo: true,
-        lastCheckOk: true
+        lastCheckOk: true,
       });
 
       let filtered = [];
@@ -44,10 +44,6 @@ const Radio = (props) => {
         }
       }
 
-      if (filterLimit < 300){
-        filtered.length = filterLimit
-      } 
-
       if (filtered.length === 0) {
         setBadSearch(true);
       } else {
@@ -56,31 +52,42 @@ const Radio = (props) => {
         setLoading(false);
       }
 
+      if (filterLimit < 300) {
+        filtered.length = filterLimit;
+      }
+
       return filtered;
     };
 
-    setupApi(stationFilter).then((data) => {
-      setStations(data);
-    })
-    .catch((error) => {
-      alert("api may be down...")
-      setBadResponse(true)
-    })
+    setupApi(stationFilter)
+      .then((data) => {
+        setStations(data);
+      })
+      .catch((error) => {
+        alert("api may be down...");
+        setBadResponse(true);
+      });
   }, [props.genre, props.quality, filterLimit]);
 
   const [stationUrl, setStationUrl] = useState("");
-  const [playingStation, setPlayingStation] = useState("")
+  const [playingStation, setPlayingStation] = useState("");
+  const [currentIcon, setCurrentIcon] = useState("")
 
   const sendToRadio = (url) => {
     setStationUrl(url);
   };
 
   const sendToRadioName = (station) => {
-    setPlayingStation(station)
-  }
+    setPlayingStation(station);
+  };
 
   const sendToNumFilter = (result) => {
-    setFilterLimit(result)
+    setFilterLimit(result);
+  };
+
+  const sendImage = (favicon) => {
+    setCurrentIcon(favicon)
+    console.log("Recieved favicon")
   }
 
   return (
@@ -99,6 +106,7 @@ const Radio = (props) => {
               <h3>
                 Returned {stations.length} stations matching {props.genre}
               </h3>
+              <button>play a random station</button>
               {listView ? (
                 <div className="listViewContainer">
                   <button onClick={switchView}>switch to map view</button>
@@ -107,6 +115,7 @@ const Radio = (props) => {
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
                     sendToNumFilter={sendToNumFilter}
+                    sendImage={sendImage}
                   />
                 </div>
               ) : (
@@ -117,6 +126,7 @@ const Radio = (props) => {
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
                     sendToNumFilter={sendToNumFilter}
+                    sendImage={sendImage}
                   />
                 </div>
               )}
@@ -126,7 +136,11 @@ const Radio = (props) => {
       )}
 
       {stationUrl ? (
-        <Player audioSource={stationUrl} stationName={playingStation} />
+        <Player
+          audioSource={stationUrl}
+          stationName={playingStation}
+          stationImage={currentIcon}
+        />
       ) : null}
     </section>
   );
