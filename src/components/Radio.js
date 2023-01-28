@@ -48,7 +48,7 @@ const Radio = (props) => {
         setStations(filtered);
         setBadSearch(false);
         setLoading(false);
-        setBadResponse(false)
+        setBadResponse(false);
       }
       return filtered;
     };
@@ -99,23 +99,35 @@ const Radio = (props) => {
     <section>
       <nav>
         <Link onClick={props.landingView} to="/">
-        <h1>logo</h1>
+          <h1>logo</h1>
         </Link>
-        <Link to="/About">
-        <h1>about</h1>
-        </Link>
+        <form autoComplete="off" onSubmit={props.onSubmit}>
+          <input
+            type="text"
+            onChange={props.onChange}
+            value={props.value}
+            onSubmit={props.onSubmit}
+          />
+        </form>
       </nav>
       {loading ? (
         <Loading />
       ) : (
-        <div className="badSearch">
+        <div className="resultsContainer">
           {badResponse ? (
-            <h2>The API might be down.</h2>
+            <div className="badResponse">
+              <h2>This is embarassing, something seems to be down on our end. Try again soon!</h2>
+              <button>
+                Refresh
+              </button>
+            </div>
           ) : badSearch ? (
-            <p>
-              Hmm... that's not music to our ears. We couldn't find any stations
-              matching {props.genre}. Maybe try {aGenre}?
-            </p>
+            <div className="badSearch">
+              <p>
+                Hmm... that's not music to our ears. We couldn't find any
+                stations matching {props.genre}. Maybe try {aGenre}?
+              </p>
+            </div>
           ) : (
             <div className="results">
               {listView ? (

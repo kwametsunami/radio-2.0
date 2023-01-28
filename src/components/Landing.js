@@ -13,7 +13,7 @@ const Search = () => {
   const [closeModal, setCloseModal] = useState(true);
 
   const [display, setDisplay] = useState(false);
-  const [showLanding, setShowLanding]= useState(true);
+  const [showLanding, setShowLanding] = useState(true);
 
   const wrapperRef = useRef(null);
 
@@ -36,7 +36,7 @@ const Search = () => {
 
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
-    console.log(searchTerm)
+    console.log(searchTerm);
   };
 
   const onSubmit = (event) => {
@@ -71,9 +71,9 @@ const Search = () => {
   };
 
   const landingView = () => {
-    setShowLanding(true)
-    setSearch("")
-  }
+    setShowLanding(true);
+    setSearch("");
+  };
 
   return (
     <section className="landing">
@@ -81,14 +81,17 @@ const Search = () => {
         {showLanding ? (
           <div className="landingInfo">
             {/* <Searchbar placeholder="Search something" data={music}/> */}
+            <nav className="landingNav">
+              <button onClick={login}>login</button>
+              {loginModal ? <Login showModal={login} /> : null}
+              <Link to="/About">
+                <h3>about page</h3>
+              </Link>
+            </nav>
             <Link to="/">
-              <h1>Radio Player</h1>
+              <h1>Satch.fm</h1>
             </Link>
-            <button onClick={login}>login</button>
-            {loginModal ? <Login showModal={login} /> : null}
-            <Link to="/About">
-              <p>about page</p>
-            </Link>
+            <h2>Music from around the world</h2>
             <h2>{`${greeting}`}</h2>
             <h2>Search a genre, language, or decade</h2>
             <form autoComplete="off" onSubmit={onSubmit}>
@@ -154,6 +157,10 @@ const Search = () => {
             quality={bitrate}
             setQuality={setBitrate}
             landingView={landingView}
+            value={value}
+            onSearch={onSearch}
+            onChange={onChange}
+            onSubmit={onSubmit}
           />
         ) : null}
       </div>

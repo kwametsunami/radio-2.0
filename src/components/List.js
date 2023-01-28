@@ -121,9 +121,6 @@ const List = (props) => {
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
           stations matching {props.selectedGenre}
         </h3>
-        <Link to="/">
-          <h1>logo</h1>
-        </Link>
         <label htmlFor="number">Show results:</label>
         <select name="number" id="filterNum" onChange={grabFilter} value="--">
           <option disabled>--</option>
