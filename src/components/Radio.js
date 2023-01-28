@@ -64,6 +64,7 @@ const Radio = (props) => {
       .catch((error) => {
         alert("api may be down...");
         setBadResponse(true);
+        setLoading(false);
       });
   }, [props.genre, props.quality]);
 
@@ -95,12 +96,13 @@ const Radio = (props) => {
 
   return (
     <section>
-      {badResponse ? <h2>The API might be down.</h2> : null}
       {loading ? (
         <Loading />
       ) : (
         <div className="badSearch">
-          {badSearch ? (
+          {badResponse ? (
+            <h2>The API might be down.</h2>
+          ) : badSearch ? (
             <p>
               Hmm... that's not music to our ears. We couldn't find any stations
               matching {props.genre}. Maybe try {aGenre}?
@@ -115,8 +117,9 @@ const Radio = (props) => {
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
                     sendImage={sendImage}
-                    selectedGenre={props.genre}
                     stationUrl={stationUrl}
+                    badResponse={badResponse}
+                    selectedGenre={props.genre}
                   />
                 </div>
               ) : (
@@ -127,8 +130,9 @@ const Radio = (props) => {
                     sendToRadio={sendToRadio}
                     sendToRadioName={sendToRadioName}
                     sendImage={sendImage}
-                    selectedGenre={props.genre}
                     stationUrl={stationUrl}
+                    badResponse={badResponse}
+                    selectedGenre={props.genre}
                   />
                 </div>
               )}

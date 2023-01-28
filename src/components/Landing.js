@@ -132,7 +132,7 @@ const Search = () => {
         </div>
         <button onClick={() => onSearch(value)}>Search</button>
       </form>
-      {search ? <Radio genre={search} quality={bitrate} /> : null}
+      {search ? <Radio genre={search} quality={bitrate} setQuality={setBitrate}/> : null}
     </div>
   );
 };

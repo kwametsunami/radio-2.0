@@ -174,7 +174,7 @@ const Map = (props) => {
   return (
     <section className="resultContainer">
       <div className="dashboard">
-        <Dashboard favouritedStations={favouritedStations}/>
+        <Dashboard favouritedStations={favouritedStations} />
       </div>
       <div className="map">
         <h3>
@@ -194,7 +194,7 @@ const Map = (props) => {
         <button onClick={randomStation}>Select a random station</button>
         <MapContainer
           center={[30.0, 10.0]}
-          zoom={2.3}
+          zoom={2.45}
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}
