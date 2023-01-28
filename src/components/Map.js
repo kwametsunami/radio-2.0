@@ -6,6 +6,8 @@ import { Icon } from "leaflet";
 
 import { useEffect, useState } from "react";
 
+import Dashboard from "./Dashboard";
+
 import defaultImage from "../assets/radio.png";
 
 const Map = (props) => {
@@ -17,7 +19,7 @@ const Map = (props) => {
   const [filteredStations, setFilteredStations] = useState([]);
 
   const [favouritedStations, setFavouritedStations] = useState([]);
-  const [favourited, setFavourited] = useState(false)
+  const [favourited, setFavourited] = useState(false);
 
   const [coordinates, setCoordinates] = useState([]);
   const [joinedData, setJoinedData] = useState([]);
@@ -152,191 +154,210 @@ const Map = (props) => {
   // console.log(merge(radioData, newCoordinates))
 
   const favourite = (event) => {
-    // event.preventDefault();
     const stationFav = event.currentTarget.value;
 
     const stationFavArr = stationFav.split(",");
 
-    setFavouritedStations([...favouritedStations, {favourite: stationFavArr}]);
-    setFavourited(true)
-    //  else {
-
-
-    // console.log(favouritedStations);
+    setFavouritedStations([
+      ...favouritedStations,
+      { favourite: stationFavArr },
+    ]);
+    setFavourited(true);
   };
 
   return (
-    <div className="map">
-      <h3>
-        returned {filterTrue ? filteredStations.length : props.stations.length}{" "}
-        stations matching {props.selectedGenre}
-      </h3>
-      <label htmlFor="number">Show results:</label>
-      <select name="number" id="filterNum" onChange={grabFilter} value="--">
-        <option disabled>--</option>
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        <option value="300">All</option>
-      </select>
-      <button onClick={randomStation}>Select a random station</button>
-      <MapContainer
-        center={[30.0, 10.0]}
-        zoom={2.3}
-        scrollWheelZoom={true}
-        maxZoom={30}
-        minZoom={2}
-      >
-        <h2>yes hello</h2>
-        <TileLayer
-          url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"
-          attribution={`<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>`}
-        />
-        {filterTrue
-          ? filteredStations.map((stationDetails) => {
-              return (
-                <div key={stationDetails.id}>
-                  <Marker
-                    position={[
-                      `${stationDetails.geoLat}`,
-                      `${stationDetails.geoLong}`,
-                    ]}
-                  >
-                    <Popup>
-                      <div className="stationDetails">
-                        <img
-                          className="icon"
-                          src={stationDetails.favicon}
-                          alt={stationDetails.name}
-                          onError={setDefaultSrc}
-                        />
-                        <p>
-                          {stationDetails.name
-                            .replace(/_/g, "")
-                            .replace(/-/g, " ")
-                            .replace(/  +/, " ")
-                            .replace(/\//g, "")}
-                        </p>
-                        <p className="stationCountry">
-                          {stationDetails.state !== ""
-                            ? `${stationDetails.state}, `
-                            : null}
-                          {stationDetails.country ===
-                          "The United States Of America"
-                            ? "USA"
-                            : stationDetails.country}
-                        </p>
-                        <div
-                          className="buttonContainer"
-                          value={[
-                            stationDetails.name,
-                            stationDetails.url,
-                            stationDetails.favicon,
-                          ]}
-                        >
-                          <button
-                            className={
-                              radioUrl === stationDetails.urlResolved ||
-                              props.stationCheck
-                                ? "infoButtonPlaying"
-                                : "infoButton"
-                            }
-                            value={stationDetails.urlResolved}
-                            onClick={radioSelect}
-                            id={stationDetails.name}
-                            key={stationDetails.favicon}
-                          >
-                            {radioUrl === stationDetails.urlResolved ||
-                            props.stationCheck
-                              ? ""
-                              : "▶"}
-                          </button>
-                          <button className="favourite">
-                            <i class="fa-solid fa-star"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </Popup>
-                  </Marker>
-                </div>
-              );
-            })
-          : props.stations.map((stationDetails) => {
-              return (
-                <div key={stationDetails.id}>
-                  <Marker
-                    position={[
-                      `${stationDetails.geoLat}`,
-                      `${stationDetails.geoLong}`,
-                    ]}
-                  >
-                    <Popup>
-                      <div className="stationDetails">
-                        <img
-                          className="icon"
-                          src={stationDetails.favicon}
-                          alt={stationDetails.name}
-                          onError={setDefaultSrc}
-                        />
-                        <p>
-                          {stationDetails.name
-                            .replace(/_/g, "")
-                            .replace(/-/g, " ")
-                            .replace(/  +/, " ")
-                            .replace(/\//g, "")}
-                        </p>
-                        <p className="stationCountry">
-                          {stationDetails.state !== ""
-                            ? `${stationDetails.state}, `
-                            : null}{" "}
-                          {stationDetails.country ===
-                          "The United States Of America"
-                            ? "USA"
-                            : stationDetails.country}
-                        </p>
-                        <div className="buttonContainer" value={stationDetails}>
-                          <button
-                            className={
-                              radioUrl === stationDetails.urlResolved ||
-                              props.stationCheck
-                                ? "infoButtonPlaying"
-                                : "infoButton"
-                            }
-                            value={stationDetails.urlResolved}
-                            onClick={radioSelect}
-                            id={stationDetails.name}
-                            key={stationDetails.favicon}
-                          >
-                            {radioUrl === stationDetails.urlResolved ||
-                            props.stationCheck
-                              ? ""
-                              : "▶"}
-                          </button>
-                          <button
-                            className="favourite"
-                            onClick={favourite}
+    <section resultContainer>
+      <div className="dashboard">
+        <Dashboard />
+      </div>
+      <div className="map">
+        <h3>
+          returned{" "}
+          {filterTrue ? filteredStations.length : props.stations.length}{" "}
+          stations matching {props.selectedGenre}
+        </h3>
+        <label htmlFor="number">Show results:</label>
+        <select name="number" id="filterNum" onChange={grabFilter} value="--">
+          <option disabled>--</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="300">All</option>
+        </select>
+        <button onClick={randomStation}>Select a random station</button>
+        <MapContainer
+          center={[30.0, 10.0]}
+          zoom={2.3}
+          scrollWheelZoom={true}
+          maxZoom={30}
+          minZoom={2}
+        >
+          <h2>yes hello</h2>
+          <TileLayer
+            url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"
+            attribution={`<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>`}
+          />
+          {filterTrue
+            ? filteredStations.map((stationDetails) => {
+                return (
+                  <div key={stationDetails.id}>
+                    <Marker
+                      position={[
+                        `${stationDetails.geoLat}`,
+                        `${stationDetails.geoLong}`,
+                      ]}
+                    >
+                      <Popup>
+                        <div className="stationDetails">
+                          <img
+                            className="icon"
+                            src={stationDetails.favicon}
+                            alt={stationDetails.name}
+                            onError={setDefaultSrc}
+                          />
+                          <p>
+                            {stationDetails.name
+                              .replace(/_/g, "")
+                              .replace(/-/g, " ")
+                              .replace(/  +/, " ")
+                              .replace(/\//g, "")}
+                          </p>
+                          <p className="stationCountry">
+                            {stationDetails.state !== ""
+                              ? `${stationDetails.state}, `
+                              : null}
+                            {stationDetails.country ===
+                            "The United States Of America"
+                              ? "USA"
+                              : stationDetails.country}
+                          </p>
+                          <div
+                            className="buttonContainer"
                             value={[
-                              `${stationDetails.id}`,
-                              `${stationDetails.name}`,
-                              `${stationDetails.urlResolved}`,
-                              `${stationDetails.favicon}`,
-                              `${stationDetails.state}`,
-                              `${stationDetails.country}`,
+                              stationDetails.name,
+                              stationDetails.url,
+                              stationDetails.favicon,
                             ]}
-                            disabled={favourited ? true : null}
                           >
-                            <i className="fa-solid fa-star"></i>
-                          </button>
+                            <button
+                              className={
+                                radioUrl === stationDetails.urlResolved ||
+                                props.stationCheck
+                                  ? "infoButtonPlaying"
+                                  : "infoButton"
+                              }
+                              value={stationDetails.urlResolved}
+                              onClick={radioSelect}
+                              id={stationDetails.name}
+                              key={stationDetails.favicon}
+                            >
+                              {radioUrl === stationDetails.urlResolved ||
+                              props.stationCheck
+                                ? ""
+                                : "▶"}
+                            </button>
+                            <button
+                              className="favourite"
+                              onClick={favourite}
+                              value={[
+                                `${stationDetails.id}`,
+                                `${stationDetails.name}`,
+                                `${stationDetails.urlResolved}`,
+                                `${stationDetails.favicon}`,
+                                `${stationDetails.state}`,
+                                `${stationDetails.country}`,
+                              ]}
+                              disabled={favourited ? true : null}
+                            >
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    </Popup>
-                  </Marker>
-                </div>
-              );
-            })}
-      </MapContainer>
-    </div>
+                      </Popup>
+                    </Marker>
+                  </div>
+                );
+              })
+            : props.stations.map((stationDetails) => {
+                return (
+                  <div key={stationDetails.id}>
+                    <Marker
+                      position={[
+                        `${stationDetails.geoLat}`,
+                        `${stationDetails.geoLong}`,
+                      ]}
+                    >
+                      <Popup>
+                        <div className="stationDetails">
+                          <img
+                            className="icon"
+                            src={stationDetails.favicon}
+                            alt={stationDetails.name}
+                            onError={setDefaultSrc}
+                          />
+                          <p>
+                            {stationDetails.name
+                              .replace(/_/g, "")
+                              .replace(/-/g, " ")
+                              .replace(/  +/, " ")
+                              .replace(/\//g, "")}
+                          </p>
+                          <p className="stationCountry">
+                            {stationDetails.state !== ""
+                              ? `${stationDetails.state}, `
+                              : null}{" "}
+                            {stationDetails.country ===
+                            "The United States Of America"
+                              ? "USA"
+                              : stationDetails.country}
+                          </p>
+                          <div
+                            className="buttonContainer"
+                            value={stationDetails}
+                          >
+                            <button
+                              className={
+                                radioUrl === stationDetails.urlResolved ||
+                                props.stationCheck
+                                  ? "infoButtonPlaying"
+                                  : "infoButton"
+                              }
+                              value={stationDetails.urlResolved}
+                              onClick={radioSelect}
+                              id={stationDetails.name}
+                              key={stationDetails.favicon}
+                            >
+                              {radioUrl === stationDetails.urlResolved ||
+                              props.stationCheck
+                                ? ""
+                                : "▶"}
+                            </button>
+                            <button
+                              className="favourite"
+                              onClick={favourite}
+                              value={[
+                                `${stationDetails.id}`,
+                                `${stationDetails.name}`,
+                                `${stationDetails.urlResolved}`,
+                                `${stationDetails.favicon}`,
+                                `${stationDetails.state}`,
+                                `${stationDetails.country}`,
+                              ]}
+                              disabled={favourited ? true : null}
+                            >
+                              <i className="fa-solid fa-star"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  </div>
+                );
+              })}
+        </MapContainer>
+      </div>
+    </section>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { RadioBrowserApi } from "radio-browser-api";
 
 import Loading from "./Loading";
-import Dashboard from "./Dashboard";
 import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
@@ -106,11 +105,6 @@ console.log(data)
               matching {props.genre}. Maybe try {aGenre}?
             </p>
           ) : (
-            <div className="resultsContainer">
-              <div className="dashboard">
-                <Dashboard />
-              </div>
-
               <div className="results">
                 {listView ? (
                   <div className="listViewContainer">
@@ -136,7 +130,6 @@ console.log(data)
                   </div>
                 )}
               </div>
-            </div>
           )}
         </div>
       )}
