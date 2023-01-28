@@ -17,6 +17,7 @@ const Map = (props) => {
   const [filteredStations, setFilteredStations] = useState([]);
 
   const [favouritedStations, setFavouritedStations] = useState([]);
+  const [favourited, setFavourited] = useState(false)
 
   const [coordinates, setCoordinates] = useState([]);
   const [joinedData, setJoinedData] = useState([]);
@@ -157,15 +158,7 @@ const Map = (props) => {
     const stationFavArr = stationFav.split(",");
 
     setFavouritedStations([...favouritedStations, {favourite: stationFavArr}]);
-
-    if (favouritedStations.length > 0) {
-      for (let i = 0; i < favouritedStations.length; i++) {
-        if (stationFavArr[0] === favouritedStations[i][0]) {
-          setFavouritedStations(favouritedStations.filter(index => index[0] === favouritedStations[i]))
-          console.log("removed a duplicate", favouritedStations)
-        }
-      }
-    }
+    setFavourited(true)
     //  else {
 
 
@@ -331,6 +324,7 @@ const Map = (props) => {
                               `${stationDetails.state}`,
                               `${stationDetails.country}`,
                             ]}
+                            disabled={favourited ? true : null}
                           >
                             <i className="fa-solid fa-star"></i>
                           </button>
