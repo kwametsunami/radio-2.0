@@ -110,7 +110,10 @@ const List = (props) => {
   return (
     <section className="resultContainer">
       <div className="dashboard">
-        <Dashboard favouritedStations={favouritedStations} />
+        <Dashboard
+          favouritedStations={favouritedStations}
+          setFavouritedStations={setFavouritedStations}
+        />
       </div>
       <div className="stationList">
         <h3>
@@ -119,7 +122,7 @@ const List = (props) => {
           stations matching {props.selectedGenre}
         </h3>
         <Link to="/">
-        <h1>logo</h1>
+          <h1>logo</h1>
         </Link>
         <label htmlFor="number">Show results:</label>
         <select name="number" id="filterNum" onChange={grabFilter} value="--">

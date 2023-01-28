@@ -176,7 +176,7 @@ const Map = (props) => {
   return (
     <section className="resultContainer">
       <div className="dashboard">
-        <Dashboard favouritedStations={favouritedStations} />
+        <Dashboard favouritedStations={favouritedStations} setFavouritedStations={setFavouritedStations}/>
       </div>
       <div className="map">
         <h3>
