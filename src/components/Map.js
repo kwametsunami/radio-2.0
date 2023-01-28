@@ -16,8 +16,10 @@ const Map = (props) => {
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
-  const [coordinates, setCoordinates] = useState([])
-  const [joinedData, setJoinedData] = useState([])
+  const [favouritedStations, setFavouritedStations] = useState([]);
+
+  const [coordinates, setCoordinates] = useState([]);
+  const [joinedData, setJoinedData] = useState([]);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -33,36 +35,33 @@ const Map = (props) => {
       }
     }
 
-        const alreadySeenCoordinates = [];
-        for (const station of props.stations) {
-          let latitude = station.geoLat;
-          let longitude = station.geoLong;
-          // Check if another station has these exact coordinates. If so, bump the lat,lon by one.
-          for (const seenCoordinates of alreadySeenCoordinates) {
-            if (
-              seenCoordinates.latitude === latitude &&
-              seenCoordinates.longitude === longitude
-            ) {
-              latitude = latitude + 1 // or however you feel like
-              longitude = longitude + 1 // modifying these things
-              break;
-            }
-          }
-          // Store the updated coordinates in the already seen array for future checking.
-          alreadySeenCoordinates.push({
-            latitude: latitude,
-            longitude: longitude,
-          });
-          
-          setCoordinates(alreadySeenCoordinates);
-
-          // let info = props.stations
-
-          // let alreadySeenCoordinates = info
-
+    const alreadySeenCoordinates = [];
+    for (const station of props.stations) {
+      let latitude = station.geoLat;
+      let longitude = station.geoLong;
+      // Check if another station has these exact coordinates. If so, bump the lat,lon by one.
+      for (const seenCoordinates of alreadySeenCoordinates) {
+        if (
+          seenCoordinates.latitude === latitude &&
+          seenCoordinates.longitude === longitude
+        ) {
+          latitude = latitude + 1; // or however you feel like
+          longitude = longitude + 1; // modifying these things
+          break;
         }
+      }
+      // Store the updated coordinates in the already seen array for future checking.
+      alreadySeenCoordinates.push({
+        latitude: latitude,
+        longitude: longitude,
+      });
 
-        
+      setCoordinates(alreadySeenCoordinates);
+
+      // let info = props.stations
+
+      // let alreadySeenCoordinates = info
+    }
   }, [radioUrl, props.stations, filterTrue]);
 
   const radioSelect = (event) => {
@@ -136,21 +135,42 @@ const Map = (props) => {
     }
   };
 
-  useEffect (() => {
-let radioData = [...props.stations];
-let newCoordinates = [...coordinates];
+  useEffect(() => {
+    let radioData = [...props.stations];
+    let newCoordinates = [...coordinates];
 
-let newArray = [];
+    let newArray = [];
 
-for (let i = 0; i < radioData.length; i++) {
-  newArray.push([radioData[i], newCoordinates[i]]);
-}
+    for (let i = 0; i < radioData.length; i++) {
+      newArray.push([radioData[i], newCoordinates[i]]);
+    }
 
-setJoinedData(newArray);
-  }, [props.stations])
+    setJoinedData(newArray);
+  }, [props.stations]);
+
+  // console.log(merge(radioData, newCoordinates))
+
+  const favourite = (event) => {
+    // event.preventDefault();
+    const stationFav = event.currentTarget.value;
+
+    const stationFavArr = stationFav.split(",");
+
+    setFavouritedStations([...favouritedStations, {favourite: stationFavArr}]);
+
+    if (favouritedStations.length > 0) {
+      for (let i = 0; i < favouritedStations.length; i++) {
+        if (stationFavArr[0] === favouritedStations[i][0]) {
+          setFavouritedStations(favouritedStations.filter(index => index[0] === favouritedStations[i]))
+          console.log("removed a duplicate", favouritedStations)
+        }
+      }
+    }
+    //  else {
 
 
-// console.log(merge(radioData, newCoordinates))
+    // console.log(favouritedStations);
+  };
 
   return (
     <div className="map">
@@ -209,11 +229,19 @@ setJoinedData(newArray);
                           {stationDetails.state !== ""
                             ? `${stationDetails.state}, `
                             : null}
-                          { stationDetails.country === "The United States Of America"
-                          ? "USA"
-                          : stationDetails.country}
+                          {stationDetails.country ===
+                          "The United States Of America"
+                            ? "USA"
+                            : stationDetails.country}
                         </p>
-                        <div className="buttonContainer" value={stationDetails}>
+                        <div
+                          className="buttonContainer"
+                          value={[
+                            stationDetails.name,
+                            stationDetails.url,
+                            stationDetails.favicon,
+                          ]}
+                        >
                           <button
                             className={
                               radioUrl === stationDetails.urlResolved ||
@@ -230,6 +258,9 @@ setJoinedData(newArray);
                             props.stationCheck
                               ? ""
                               : "▶"}
+                          </button>
+                          <button className="favourite">
+                            <i class="fa-solid fa-star"></i>
                           </button>
                         </div>
                       </div>
@@ -288,6 +319,20 @@ setJoinedData(newArray);
                             props.stationCheck
                               ? ""
                               : "▶"}
+                          </button>
+                          <button
+                            className="favourite"
+                            onClick={favourite}
+                            value={[
+                              `${stationDetails.id}`,
+                              `${stationDetails.name}`,
+                              `${stationDetails.urlResolved}`,
+                              `${stationDetails.favicon}`,
+                              `${stationDetails.state}`,
+                              `${stationDetails.country}`,
+                            ]}
+                          >
+                            <i className="fa-solid fa-star"></i>
                           </button>
                         </div>
                       </div>

@@ -150,6 +150,9 @@ const List = (props) => {
                   >
                     {radioUrl === stationDetails.urlResolved ? "" : "▶"}
                   </button>
+                  <button className="favourite">
+                    <i class="fa-solid fa-star"></i>
+                  </button>
                 </div>
               </div>
             );
@@ -204,6 +207,9 @@ const List = (props) => {
                     id={stationDetails.name}
                   >
                     {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+                  </button>
+                  <button className="favourite">
+                    <i class="fa-solid fa-star"></i>
                   </button>
                 </div>
               </div>
