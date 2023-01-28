@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { RadioBrowserApi } from "radio-browser-api";
 
 import Loading from "./Loading";
@@ -96,6 +97,14 @@ const Radio = (props) => {
 
   return (
     <section>
+      <nav>
+        <Link onClick={props.landingView} to="/">
+        <h1>logo</h1>
+        </Link>
+        <Link to="/About">
+        <h1>about</h1>
+        </Link>
+      </nav>
       {loading ? (
         <Loading />
       ) : (
@@ -111,7 +120,6 @@ const Radio = (props) => {
             <div className="results">
               {listView ? (
                 <div className="listViewContainer">
-                  <button onClick={switchView}>switch to map view</button>
                   <List
                     stations={stations}
                     sendToRadio={sendToRadio}
@@ -119,12 +127,12 @@ const Radio = (props) => {
                     sendImage={sendImage}
                     stationUrl={stationUrl}
                     badResponse={badResponse}
+                    mapView={switchView}
                     selectedGenre={props.genre}
                   />
                 </div>
               ) : (
                 <div className="mapViewContainer">
-                  <button onClick={switchView}>switch to list view</button>
                   <Map
                     stations={stations}
                     sendToRadio={sendToRadio}
@@ -132,6 +140,7 @@ const Radio = (props) => {
                     sendImage={sendImage}
                     stationUrl={stationUrl}
                     badResponse={badResponse}
+                    listView={switchView}
                     selectedGenre={props.genre}
                   />
                 </div>

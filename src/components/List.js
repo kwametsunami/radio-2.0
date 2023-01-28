@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
 
@@ -109,7 +110,7 @@ const List = (props) => {
   return (
     <section className="resultContainer">
       <div className="dashboard">
-        <Dashboard favouritedStations={favouritedStations}/>
+        <Dashboard favouritedStations={favouritedStations} />
       </div>
       <div className="stationList">
         <h3>
@@ -117,6 +118,9 @@ const List = (props) => {
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
           stations matching {props.selectedGenre}
         </h3>
+        <Link to="/">
+        <h1>logo</h1>
+        </Link>
         <label htmlFor="number">Show results:</label>
         <select name="number" id="filterNum" onChange={grabFilter} value="--">
           <option disabled>--</option>
@@ -127,6 +131,7 @@ const List = (props) => {
           <option value="300">All</option>
         </select>
         <button onClick={randomStation}>Select a random station</button>
+        <button onClick={props.mapView}>map view</button>
         {filterTrue
           ? filteredStations.map((stationDetails) => {
               return (

@@ -5,6 +5,7 @@ import { Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
 
@@ -171,6 +172,7 @@ const Map = (props) => {
     }
   };
 
+
   return (
     <section className="resultContainer">
       <div className="dashboard">
@@ -182,6 +184,9 @@ const Map = (props) => {
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
           stations matching {props.selectedGenre}
         </h3>
+        <Link to="/">
+          <h1>logo</h1>
+        </Link>
         <label htmlFor="number">Show results:</label>
         <select name="number" id="filterNum" onChange={grabFilter} value="--">
           <option disabled>--</option>
@@ -192,6 +197,7 @@ const Map = (props) => {
           <option value="300">All</option>
         </select>
         <button onClick={randomStation}>Select a random station</button>
+        <button onClick={props.listView}>list view</button>
         <MapContainer
           center={[30.0, 10.0]}
           zoom={2.45}
