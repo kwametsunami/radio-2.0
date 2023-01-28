@@ -6,8 +6,6 @@ const Dashboard = (props) => {
 
     favArr.push(props.favouritedStations)
 
-    console.log(favArr)
-
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
   };

@@ -36,6 +36,7 @@ const Search = () => {
 
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
+    console.log(searchTerm)
   };
 
   const onSubmit = (event) => {
@@ -77,74 +78,83 @@ const Search = () => {
   return (
     <section className="landing">
       <div className="App">
-        {showLanding ? 
-        <div className="landingInfo">
-          {/* <Searchbar placeholder="Search something" data={music}/> */}
-          <Link to="/">
-            <h1>Radio Player</h1>
-          </Link>
-          <button onClick={login}>login</button>
-          {loginModal ? <Login showModal={login} /> : null}
-          <Link to="/About">
-            <p>about page</p>
-          </Link>
-          <h2>{`${greeting}`}</h2>
-          <h2>Search a genre, language, or decade</h2>
-          <form autoComplete="off" onSubmit={onSubmit}>
-            <div ref={wrapperRef} className="searchContainer">
-              <input
-                type="checkbox"
-                name="hq"
-                id="hq"
-                onChange={() => setHighQuality(bitrate)}
-                value={bitrate}
-              />
-              <p>Show only high quality radio stations</p>
-              <div className="searchInner">
+        {showLanding ? (
+          <div className="landingInfo">
+            {/* <Searchbar placeholder="Search something" data={music}/> */}
+            <Link to="/">
+              <h1>Radio Player</h1>
+            </Link>
+            <button onClick={login}>login</button>
+            {loginModal ? <Login showModal={login} /> : null}
+            <Link to="/About">
+              <p>about page</p>
+            </Link>
+            <h2>{`${greeting}`}</h2>
+            <h2>Search a genre, language, or decade</h2>
+            <form autoComplete="off" onSubmit={onSubmit}>
+              <div className="searchContainer">
                 <input
-                  id="inputAuto"
-                  type="text"
-                  list="genre"
-                  placeholder="enter a genre"
-                  value={value}
-                  onChange={onChange}
-                  onClick={() => setDisplay(!display)}
+                  type="checkbox"
+                  name="hq"
+                  id="hq"
+                  onChange={() => setHighQuality(bitrate)}
+                  value={bitrate}
+                  autoFocus
                 />
-              </div>
-              {display && (
-                <div className="dropdown">
-                  {genre.tag
-                    .filter((item) => {
-                      const searchTerm = value.toLowerCase();
-                      const tag = item.genre.toLowerCase();
-
-                      return (
-                        searchTerm &&
-                        tag.startsWith(searchTerm) &&
-                        tag != searchTerm
-                      );
-                    })
-                    .slice(0, 5)
-                    .map((item) => {
-                      return (
-                        <div
-                          onClick={() => onSearch(item.genre)}
-                          className="dropdownRow"
-                          key={item.genre}
-                          tabIndex="0"
-                        >
-                          <p>{item.genre}</p>
-                        </div>
-                      );
-                    })}
+                <p>Show only high quality radio stations</p>
+                <div className="searchInner">
+                  <input
+                    id="inputAuto"
+                    type="text"
+                    list="genre"
+                    placeholder="enter a genre"
+                    value={value}
+                    onChange={onChange}
+                    onClick={() => setDisplay(!display)}
+                    autoFocus
+                  />
                 </div>
-              )}
-            </div>
-            <button onClick={() => onSearch(value)}>Search</button>
-          </form>
-        </div> : null}
+                {display && (
+                  <div ref={wrapperRef} className="dropdown">
+                    {genre.tag
+                      .filter((item) => {
+                        const searchTerm = value.toLowerCase();
+                        const tag = item.genre.toLowerCase();
+
+                        return (
+                          searchTerm &&
+                          tag.startsWith(searchTerm) &&
+                          tag != searchTerm
+                        );
+                      })
+                      .slice(0, 5)
+                      .map((item) => {
+                        return (
+                          <button
+                            onClick={() => onSearch(item.genre)}
+                            className="dropdownRow"
+                            key={item.index}
+                            value={item.genre}
+                            tabIndex="0"
+                          >
+                            <p>{item.genre}</p>
+                          </button>
+                        );
+                      })}
+                  </div>
+                )}
+              </div>
+              <button onClick={() => onSearch(value)}>Search</button>
+            </form>
+          </div>
+        ) : null}
         {search ? (
-          <Radio genre={search} quality={bitrate} setQuality={setBitrate} landingView={landingView}/>
+          <Radio
+            genre={search}
+            quality={bitrate}
+            setQuality={setBitrate}
+            landingView={landingView}
+          />
         ) : null}
       </div>
     </section>
