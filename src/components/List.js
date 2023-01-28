@@ -13,7 +13,6 @@ const List = (props) => {
   const [filteredStations, setFilteredStations] = useState([]);
 
   const [favouritedStations, setFavouritedStations] = useState([]);
-  const [favourited, setFavourited] = useState(false);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -27,6 +26,10 @@ const List = (props) => {
         }
         props.sendImage(imageGrab);
       }
+    }
+
+    if (props.stationUrl !== ""){
+      setRadioUrl(props.stationUrl)
     }
   }, [radioUrl, props.stations, filterTrue]);
 
@@ -97,13 +100,16 @@ const List = (props) => {
       ...favouritedStations,
       { favourite: stationFavArr },
     ]);
-    setFavourited(true);
+
+    if (event.currentTarget.id === stationFavArr[0]) {
+      event.currentTarget.disabled = true;
+    }
   };
 
   return (
-    <section resultContainer>
+    <section className="resultContainer">
       <div className="dashboard">
-        <Dashboard />
+        <Dashboard favouritedStations={favouritedStations}/>
       </div>
       <div className="stationList">
         <h3>
@@ -184,9 +190,8 @@ const List = (props) => {
                         `${stationDetails.state}`,
                         `${stationDetails.country}`,
                       ]}
-                      disabled={favourited ? true : null}
                     >
-                      <i class="fa-solid fa-star"></i>
+                      <i className="fa-solid fa-star"></i>
                     </button>
                   </div>
                 </div>
@@ -254,9 +259,8 @@ const List = (props) => {
                         `${stationDetails.state}`,
                         `${stationDetails.country}`,
                       ]}
-                      disabled={favourited ? true : null}
                     >
-                      <i class="fa-solid fa-star"></i>
+                      <i className="fa-solid fa-star"></i>
                     </button>
                   </div>
                 </div>

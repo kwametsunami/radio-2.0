@@ -47,6 +47,7 @@ const Radio = (props) => {
         setStations(filtered);
         setBadSearch(false);
         setLoading(false);
+        setBadResponse(false)
       }
       return filtered;
     };
@@ -54,7 +55,6 @@ const Radio = (props) => {
     setupApi(stationFilter)
       .then((data) => {
         setStations(data);
-console.log(data)
         if (data.length === 0) {
           setLoading(false);
           setBadSearch(true);
@@ -95,41 +95,44 @@ console.log(data)
 
   return (
     <section>
+      {badResponse ? <h2>The API might be down.</h2> : null}
       {loading ? (
         <Loading />
       ) : (
-        <div className="error">
+        <div className="badSearch">
           {badSearch ? (
             <p>
               Hmm... that's not music to our ears. We couldn't find any stations
               matching {props.genre}. Maybe try {aGenre}?
             </p>
           ) : (
-              <div className="results">
-                {listView ? (
-                  <div className="listViewContainer">
-                    <button onClick={switchView}>switch to map view</button>
-                    <List
-                      stations={stations}
-                      sendToRadio={sendToRadio}
-                      sendToRadioName={sendToRadioName}
-                      sendImage={sendImage}
-                      selectedGenre={props.genre}
-                    />
-                  </div>
-                ) : (
-                  <div className="mapViewContainer">
-                    <button onClick={switchView}>switch to list view</button>
-                    <Map
-                      stations={stations}
-                      sendToRadio={sendToRadio}
-                      sendToRadioName={sendToRadioName}
-                      sendImage={sendImage}
-                      selectedGenre={props.genre}
-                    />
-                  </div>
-                )}
-              </div>
+            <div className="results">
+              {listView ? (
+                <div className="listViewContainer">
+                  <button onClick={switchView}>switch to map view</button>
+                  <List
+                    stations={stations}
+                    sendToRadio={sendToRadio}
+                    sendToRadioName={sendToRadioName}
+                    sendImage={sendImage}
+                    selectedGenre={props.genre}
+                    stationUrl={stationUrl}
+                  />
+                </div>
+              ) : (
+                <div className="mapViewContainer">
+                  <button onClick={switchView}>switch to list view</button>
+                  <Map
+                    stations={stations}
+                    sendToRadio={sendToRadio}
+                    sendToRadioName={sendToRadioName}
+                    sendImage={sendImage}
+                    selectedGenre={props.genre}
+                    stationUrl={stationUrl}
+                  />
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}

@@ -19,10 +19,11 @@ const Map = (props) => {
   const [filteredStations, setFilteredStations] = useState([]);
 
   const [favouritedStations, setFavouritedStations] = useState([]);
-  const [favourited, setFavourited] = useState(false);
 
   const [coordinates, setCoordinates] = useState([]);
   const [joinedData, setJoinedData] = useState([]);
+
+  const [listCheck, setListCheck] = useState(false)
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -36,6 +37,10 @@ const Map = (props) => {
         }
         props.sendImage(imageGrab);
       }
+    }
+
+    if (props.stationUrl !== ""){
+      setRadioUrl(props.stationUrl)
     }
 
     const alreadySeenCoordinates = [];
@@ -151,24 +156,25 @@ const Map = (props) => {
     setJoinedData(newArray);
   }, [props.stations]);
 
-  // console.log(merge(radioData, newCoordinates))
 
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
-
     const stationFavArr = stationFav.split(",");
 
     setFavouritedStations([
       ...favouritedStations,
       { favourite: stationFavArr },
     ]);
-    setFavourited(true);
+
+    if (event.currentTarget.id === stationFavArr[0]){
+      event.currentTarget.disabled = true
+    }
   };
 
   return (
-    <section resultContainer>
+    <section className="resultContainer">
       <div className="dashboard">
-        <Dashboard />
+        <Dashboard favouritedStations={favouritedStations}/>
       </div>
       <div className="map">
         <h3>
@@ -268,7 +274,7 @@ const Map = (props) => {
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,
                               ]}
-                              disabled={favourited ? true : null}
+                              id={stationDetails.id}
                             >
                               <i class="fa-solid fa-star"></i>
                             </button>
@@ -344,7 +350,7 @@ const Map = (props) => {
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,
                               ]}
-                              disabled={favourited ? true : null}
+                              id={stationDetails.id}
                             >
                               <i className="fa-solid fa-star"></i>
                             </button>
