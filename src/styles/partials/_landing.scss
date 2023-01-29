@@ -1,0 +1,38 @@
+.landing {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  .landingNav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+    .loginBtn {
+      margin: 0 15px;
+    }
+  }
+  .centerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .centerText {
+      margin: 100px 0 0;
+      text-align: center;
+    }
+    .searchForm {
+      display: flex;
+      justify-content: center;
+      width: 35%;
+      .searchContainer {
+        width: 100%;
+        .searchInner {
+          display: flex;
+          .searchButton {
+            background-color: red;
+            border-radius: 0 5px 5px 0;
+          }
+        }
+      }
+    }
+  }
+}

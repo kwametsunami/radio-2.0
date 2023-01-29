@@ -5,7 +5,8 @@ const Loading = () => {
     <div className="loadingPage">
       <ScaleLoader
         color={"#EDD060"}
-        size={20}
+        height={80}
+        width={25}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

@@ -1,0 +1,27 @@
+@use "./partials/setup";
+@use "./partials/global";
+
+//sections
+@use "./partials/landing";
+@use "./partials/radio";
+@use "./partials/dashboard";
+@use "./partials/loading";
+@use "./partials/map";
+@use "./partials/list";
+@use "./partials/player";
+
+
+.audio-visualizer {
+  display: flex;
+  align-items: flex-end;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.audio-bar {
+  width: 2px;
+  background-color: #fff;
+  margin-right: 3px;
+}
+

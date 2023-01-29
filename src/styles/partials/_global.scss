@@ -1,0 +1,61 @@
+html {
+  overflow-x: hidden;
+}
+
+.wrapper {
+  max-width: 1728px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  font-size: clamp(0.9375rem, 0.865rem + 0.3623vw, 1.25rem);
+  transition: 0.3s;
+  padding: 5px 2px;
+  border: 2px solid transparent;
+  //   border-radius: 30px;
+  text-align: center;
+  //   &:hover {
+  //     background-color: $secondaryColor;
+  //     color: $white;
+  //   }
+  //   &:focus {
+  //     background-color: $tertiaryColor;
+  //     color: $white;
+  //   }
+}
+
+input {
+  width: 100%;
+  border: 3px solid red;
+  border-right: none;
+  padding: 20px;
+  height: 25px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+.dropdownRow {
+  cursor: pointer;
+  text-align: start;
+  text-transform: capitalize;
+  &:hover {
+    background: grey;
+  }
+}
+
+.leaflet-popup-close-button {
+  margin: 2.5px 0 2.5px 2.5px;
+  font: 28px/24px Tahoma, Verdana, sans-serif;
+}

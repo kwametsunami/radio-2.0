@@ -1,7 +1,7 @@
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import { Marker, Popup } from "react-leaflet";
+import { Marker, Popup, ZoomControl } from "react-leaflet";
 import { Icon } from "leaflet";
 
 import { useEffect, useState } from "react";
@@ -24,7 +24,7 @@ const Map = (props) => {
   const [coordinates, setCoordinates] = useState([]);
   const [joinedData, setJoinedData] = useState([]);
 
-  const [listCheck, setListCheck] = useState(false)
+  const [listCheck, setListCheck] = useState(false);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -40,8 +40,8 @@ const Map = (props) => {
       }
     }
 
-    if (props.stationUrl !== ""){
-      setRadioUrl(props.stationUrl)
+    if (props.stationUrl !== "") {
+      setRadioUrl(props.stationUrl);
     }
 
     const alreadySeenCoordinates = [];
@@ -88,10 +88,6 @@ const Map = (props) => {
   };
 
   const grabFilter = (event) => {
-    console.log(event.target.value);
-
-    console.log(props.stations.length);
-
     const randomizer = (min = 0, max = props.stations.length) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
       let limit = base + parseInt(event.target.value);
@@ -157,47 +153,59 @@ const Map = (props) => {
     setJoinedData(newArray);
   }, [props.stations]);
 
-
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    setFavouritedStations([
+    props.setFavStationInfo([
       ...favouritedStations,
       { favourite: stationFavArr },
     ]);
 
-    if (event.currentTarget.id === stationFavArr[0]){
-      event.currentTarget.disabled = true
-    }
+    // if (event.currentTarget.id === stationFavArr[0]) {
+    //   event.currentTarget.disabled = true;
+    // }
   };
-
 
   return (
     <section className="resultContainer">
-      <div className="dashboard">
-        <Dashboard favouritedStations={favouritedStations} setFavouritedStations={setFavouritedStations}/>
-      </div>
-      <div className="map">
-        <h3>
+      <div className="mapFilters">
+        <h3 className="returned">
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
           stations matching {props.selectedGenre}
         </h3>
-        <label htmlFor="number">Show results:</label>
-        <select name="number" id="filterNum" onChange={grabFilter} value="--">
-          <option disabled>--</option>
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="300">All</option>
-        </select>
-        <button onClick={randomStation}>Select a random station</button>
-        <button onClick={props.listView}>list view</button>
+        <div className="topControls">
+          <div className="filterButtonContainer">
+            <button className="randomStation" onClick={randomStation}>
+              <i class="fa-solid fa-shuffle"></i>
+            </button>
+            <button className="listButton" onClick={props.listView}>
+              <i class="fa-solid fa-list"></i>
+            </button>
+            <label htmlFor="number"></label>
+          </div>
+          <div className="selectDropdown">
+            <select
+              name="number"
+              id="filterNum"
+              onChange={grabFilter}
+              value="Limit Results"
+            >
+              <option disabled>Limit Results</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="300">All</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className="actualMap">
         <MapContainer
           center={[30.0, 10.0]}
-          zoom={2.45}
+          zoom={2.4}
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}
@@ -225,22 +233,24 @@ const Map = (props) => {
                             alt={stationDetails.name}
                             onError={setDefaultSrc}
                           />
-                          <p>
-                            {stationDetails.name
-                              .replace(/_/g, "")
-                              .replace(/-/g, " ")
-                              .replace(/  +/, " ")
-                              .replace(/\//g, "")}
-                          </p>
-                          <p className="stationCountry">
-                            {stationDetails.state !== ""
-                              ? `${stationDetails.state}, `
-                              : null}
-                            {stationDetails.country ===
-                            "The United States Of America"
-                              ? "USA"
-                              : stationDetails.country}
-                          </p>
+                          <div className="stationText">
+                            <p>
+                              {stationDetails.name
+                                .replace(/_/g, "")
+                                .replace(/-/g, " ")
+                                .replace(/  +/, " ")
+                                .replace(/\//g, "")}
+                            </p>
+                            <p className="stationCountry">
+                              {stationDetails.state !== ""
+                                ? `${stationDetails.state}, `
+                                : null}
+                              {stationDetails.country ===
+                              "The United States Of America"
+                                ? "USA"
+                                : stationDetails.country}
+                            </p>
+                          </div>
                           <div
                             className="buttonContainer"
                             value={[
@@ -305,22 +315,24 @@ const Map = (props) => {
                             alt={stationDetails.name}
                             onError={setDefaultSrc}
                           />
-                          <p>
-                            {stationDetails.name
-                              .replace(/_/g, "")
-                              .replace(/-/g, " ")
-                              .replace(/  +/, " ")
-                              .replace(/\//g, "")}
-                          </p>
-                          <p className="stationCountry">
-                            {stationDetails.state !== ""
-                              ? `${stationDetails.state}, `
-                              : null}{" "}
-                            {stationDetails.country ===
-                            "The United States Of America"
-                              ? "USA"
-                              : stationDetails.country}
-                          </p>
+                          <div className="stationText">
+                            <p>
+                              {stationDetails.name
+                                .replace(/_/g, "")
+                                .replace(/-/g, " ")
+                                .replace(/  +/, " ")
+                                .replace(/\//g, "")}
+                            </p>
+                            <p className="stationCountry">
+                              {stationDetails.state !== ""
+                                ? `${stationDetails.state}, `
+                                : null}
+                              {stationDetails.country ===
+                              "The United States Of America"
+                                ? "USA"
+                                : stationDetails.country}
+                            </p>
+                          </div>
                           <div
                             className="buttonContainer"
                             value={stationDetails}

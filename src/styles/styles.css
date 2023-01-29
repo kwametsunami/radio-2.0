@@ -1,0 +1,681 @@
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+article, aside, footer, header, nav, section {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+figcaption, figure, main {
+  display: block;
+}
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+b, strong {
+  font-weight: inherit;
+}
+
+b, strong {
+  font-weight: bolder;
+}
+
+code, kbd, samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+dfn {
+  font-style: italic;
+}
+
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+audio, video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+img {
+  border-style: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, html [type=button], [type=reset], [type=submit] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type=checkbox], [type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details, menu {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+canvas {
+  display: inline-block;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.wrapper {
+  max-width: 1728px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  font-size: clamp(0.9375rem, 0.865rem + 0.3623vw, 1.25rem);
+  transition: 0.3s;
+  padding: 5px 2px;
+  border: 2px solid transparent;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  border: 3px solid red;
+  border-right: none;
+  padding: 20px;
+  height: 25px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdownRow {
+  cursor: pointer;
+  text-align: start;
+  text-transform: capitalize;
+}
+.dropdownRow:hover {
+  background: grey;
+}
+
+.leaflet-popup-close-button {
+  margin: 2.5px 0 2.5px 2.5px;
+  font: 28px/24px Tahoma, Verdana, sans-serif;
+}
+
+.landing {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+.landing .landingNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10px;
+}
+.landing .landingNav .loginBtn {
+  margin: 0 15px;
+}
+.landing .centerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landing .centerContent .centerText {
+  margin: 100px 0 0;
+  text-align: center;
+}
+.landing .centerContent .searchForm {
+  display: flex;
+  justify-content: center;
+  width: 35%;
+}
+.landing .centerContent .searchForm .searchContainer {
+  width: 100%;
+}
+.landing .centerContent .searchForm .searchContainer .searchInner {
+  display: flex;
+}
+.landing .centerContent .searchForm .searchContainer .searchInner .searchButton {
+  background-color: red;
+  border-radius: 0 5px 5px 0;
+}
+
+.searchNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  z-index: 2;
+}
+.searchNav .searchNavContents {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.searchNav .searchNavContents .infoForm {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 100px;
+  margin-top: 20px;
+}
+.searchNav .searchNavContents .infoForm .infoSearch {
+  width: 70%;
+}
+.searchNav .searchNavContents .infoForm .searchButton {
+  width: 25%;
+  background-color: red;
+  border-radius: 0 5px 5px 0;
+}
+
+.radioView {
+  display: flex;
+  width: 100vw;
+}
+.radioView .resultsContainer {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.dashboard {
+  height: 100vh;
+  width: 13vw;
+  background-color: tomato;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  text-align: center;
+}
+
+.dashboardContainer {
+  background: yellow;
+  height: 72%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboardContainer .favContainer {
+  border: 2px solid black;
+}
+.dashboardContainer .favContainer .favItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid orange;
+}
+.dashboardContainer .favContainer .favItems .favText {
+  padding: 4px;
+}
+.dashboardContainer .favContainer .favItems .favText p {
+  margin: 0;
+}
+.dashboardContainer .favContainer .favItems img {
+  height: 35px;
+  width: 35px;
+}
+.dashboardContainer .favContainer .favItems .favButtons {
+  display: flex;
+}
+.dashboardContainer .favContainer .favItems .favButtons button {
+  background: transparent;
+  border: 1px solid black;
+  margin: 0 4px;
+}
+.dashboardContainer .infoContainer {
+  display: flex;
+  justify-content: center;
+}
+.dashboardContainer .infoContainer .infoButtons {
+  display: flex;
+}
+
+.loadingContainer {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.mapFilters {
+  position: fixed;
+  top: 0%;
+  left: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: red;
+  width: 35%;
+  padding: 12px;
+}
+.mapFilters .topControls {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+}
+.mapFilters .topControls .filterButtonContainer .randomStation {
+  margin: 0 10px;
+}
+.mapFilters .topControls .returned h3 {
+  margin: 0;
+}
+
+.actualMap {
+  display: flex;
+  justify-content: flex-end;
+}
+.actualMap .leaflet-popup-content {
+  margin: 15px 20px;
+}
+.actualMap .leaflet-popup-content .stationDetails {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.actualMap .leaflet-popup-content .stationDetails .stationText p {
+  margin: 5px 0;
+}
+.actualMap .leaflet-popup-content .stationDetails .icon {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-height: 100px;
+  max-width: 100px;
+}
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButton {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  color: #d64b4b;
+  background-color: transparent;
+  align-self: center;
+  margin: 2px 5px;
+}
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButtonPlaying {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  background-color: transparent;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  align-self: center;
+  margin: 2px 5px;
+}
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  margin: 2px 5px;
+}
+
+.stationList {
+  height: 100vh;
+  width: 100%;
+  margin: 150px 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.stationList .stationInfoList {
+  display: flex;
+  justify-content: center;
+  width: calc(40% - 30px);
+  max-height: 150px;
+  margin: 10px;
+  border: 4px solid #09a9f4;
+  border-radius: 20px;
+  background-color: #ebe7e7;
+}
+.stationList .stationInfoList .imageInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+}
+.stationList .stationInfoList .imageInfoContainer .imageList {
+  width: 25%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.stationList .stationInfoList .imageInfoContainer .imageList .icon {
+  margin: auto 0;
+  width: 70px;
+  height: 70px;
+}
+.stationList .stationInfoList .imageInfoContainer .buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stationList .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  color: #d64b4b;
+  background-color: transparent;
+  margin: 2px 5px;
+}
+.stationList .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  margin: 2px 5px;
+}
+.stationList .stationInfoPlayingList {
+  display: flex;
+  width: calc(40% - 30px);
+  margin: 10px;
+  max-height: 150px;
+  border: 4px solid #d64b4b;
+  border-radius: 20px;
+  background-color: #ebe7e7;
+}
+.stationList .stationInfoPlayingList .imageInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+}
+.stationList .stationInfoPlayingList .imageInfoContainer .imageList {
+  width: 25%;
+  margin: 0 15px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.stationList .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+  margin: auto 0;
+  width: 70px;
+  height: 70px;
+}
+.stationList .stationInfoPlayingList .imageInfoContainer .buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stationList .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  margin: 2px 5px;
+}
+.stationList .stationInfoPlayingList .imageInfoContainer .buttonContainer .infoButtonPlaying {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #1e2021;
+  background-color: transparent;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+
+.radio {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  background: white;
+}
+.radio .radioPlayer {
+  width: 56%;
+}
+
+.rhap_container {
+  box-shadow: none;
+}
+
+.rhap_current-time {
+  display: none;
+}
+
+.rhap_progress-section {
+  display: none !important;
+}
+
+.rhap_additional-controls {
+  display: none !important;
+}
+
+.rhap_volume-controls {
+  justify-content: flex-start !important;
+}
+
+.rhap_repeat-button {
+  display: none;
+}
+
+.radioInfo {
+  position: absolute;
+  bottom: -5%;
+  left: 0;
+  width: 20%;
+}
+.radioInfo img {
+  width: 175px;
+  height: 175px;
+  border: 2px solid green;
+  background: black;
+}
+.radioInfo .radioInfoTitle {
+  margin-left: 25px;
+  text-align: center;
+}
+
+.audio-visualizer {
+  display: flex;
+  align-items: flex-end;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.audio-bar {
+  width: 2px;
+  background-color: #fff;
+  margin-right: 3px;
+}/*# sourceMappingURL=styles.css.map */

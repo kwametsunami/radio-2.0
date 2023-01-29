@@ -29,8 +29,8 @@ const List = (props) => {
       }
     }
 
-    if (props.stationUrl !== ""){
-      setRadioUrl(props.stationUrl)
+    if (props.stationUrl !== "") {
+      setRadioUrl(props.stationUrl);
     }
   }, [radioUrl, props.stations, filterTrue]);
 
@@ -94,56 +94,66 @@ const List = (props) => {
 
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
-
     const stationFavArr = stationFav.split(",");
 
-    setFavouritedStations([
+    props.setFavStationInfo([
       ...favouritedStations,
       { favourite: stationFavArr },
     ]);
 
-    if (event.currentTarget.id === stationFavArr[0]) {
-      event.currentTarget.disabled = true;
-    }
+    // if (event.currentTarget.id === stationFavArr[0]) {
+    //   event.currentTarget.disabled = true;
+    // }
   };
 
   return (
-    <section className="resultContainer">
-      <div className="dashboard">
-        <Dashboard
-          favouritedStations={favouritedStations}
-          setFavouritedStations={setFavouritedStations}
-        />
-      </div>
-      <div className="stationList">
-        <h3>
+    <section className="stationList">
+      <div className="mapFilters">
+        <h3 className="returned">
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
           stations matching {props.selectedGenre}
         </h3>
-        <label htmlFor="number">Show results:</label>
-        <select name="number" id="filterNum" onChange={grabFilter} value="--">
-          <option disabled>--</option>
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="300">All</option>
-        </select>
-        <button onClick={randomStation}>Select a random station</button>
-        <button onClick={props.mapView}>map view</button>
-        {filterTrue
-          ? filteredStations.map((stationDetails) => {
-              return (
-                <div
-                  className={
-                    radioUrl === stationDetails.urlResolved
-                      ? "stationInfoPlaying"
-                      : "stationInfo"
-                  }
-                  key={stationDetails.id}
-                >
-                  <div className="image">
+        <div className="topControls">
+          <div className="filterButtonContainer">
+            <button className="randomStation" onClick={randomStation}>
+              <i className="fa-solid fa-shuffle"></i>
+            </button>
+            <button onClick={props.mapView}>
+              <i className="fa-solid fa-earth-americas"></i>
+            </button>
+            <label htmlFor="number"></label>
+          </div>
+          <div className="selectDropdown">
+            <select
+              name="number"
+              id="filterNum"
+              onChange={grabFilter}
+              value="Limit Results"
+            >
+              <option disabled>Limit Results</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="300">All</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      {filterTrue
+        ? filteredStations.map((stationDetails) => {
+            return (
+              <div
+                className={
+                  radioUrl === stationDetails.urlResolved
+                    ? "stationInfoPlayingList"
+                    : "stationInfoList"
+                }
+                key={stationDetails.id}
+              >
+                <div className="imageInfoContainer">
+                  <div className="imageList">
                     <img
                       src={stationDetails.favicon}
                       alt={stationDetails.name}
@@ -174,7 +184,8 @@ const List = (props) => {
                   <div className="buttonContainer" value={stationDetails}>
                     <button
                       className={
-                        radioUrl === stationDetails.urlResolved
+                        radioUrl === stationDetails.urlResolved ||
+                        props.stationCheck
                           ? "infoButtonPlaying"
                           : "infoButton"
                       }
@@ -182,7 +193,10 @@ const List = (props) => {
                       onClick={radioSelect}
                       id={stationDetails.name}
                     >
-                      {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+                      {radioUrl === stationDetails.urlResolved ||
+                      props.stationCheck
+                        ? ""
+                        : "▶"}
                     </button>
                     <button
                       className="favourite"
@@ -200,19 +214,21 @@ const List = (props) => {
                     </button>
                   </div>
                 </div>
-              );
-            })
-          : props.stations.map((stationDetails) => {
-              return (
-                <div
-                  className={
-                    radioUrl === stationDetails.urlResolved
-                      ? "stationInfoPlaying"
-                      : "stationInfo"
-                  }
-                  key={stationDetails.id}
-                >
-                  <div className="image">
+              </div>
+            );
+          })
+        : props.stations.map((stationDetails) => {
+            return (
+              <div
+                className={
+                  radioUrl === stationDetails.urlResolved
+                    ? "stationInfoPlayingList"
+                    : "stationInfoList"
+                }
+                key={stationDetails.id}
+              >
+                <div className="imageInfoContainer">
+                  <div className="imageList">
                     <img
                       src={stationDetails.favicon}
                       alt={stationDetails.name}
@@ -243,7 +259,8 @@ const List = (props) => {
                   <div className="buttonContainer" value={stationDetails}>
                     <button
                       className={
-                        radioUrl === stationDetails.urlResolved
+                        radioUrl === stationDetails.urlResolved ||
+                        props.stationCheck
                           ? "infoButtonPlaying"
                           : "infoButton"
                       }
@@ -251,7 +268,10 @@ const List = (props) => {
                       onClick={radioSelect}
                       id={stationDetails.name}
                     >
-                      {radioUrl === stationDetails.urlResolved ? "" : "▶"}
+                      {radioUrl === stationDetails.urlResolved ||
+                      props.stationCheck
+                        ? ""
+                        : "▶"}
                     </button>
                     <button
                       className="favourite"
@@ -269,9 +289,9 @@ const List = (props) => {
                     </button>
                   </div>
                 </div>
-              );
-            })}
-      </div>
+              </div>
+            );
+          })}
     </section>
   );
 };

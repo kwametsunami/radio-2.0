@@ -32,12 +32,14 @@ const Player = (props) => {
   return (
     <section className="radio">
       <div className="radioPlayer">
+        <div className="radioInfo">
         <img
           src={props.stationImage}
           alt={props.stationName}
           onError={setDefaultSrc}
         />
-        <h3>{formattedTitle}</h3>
+        <h3 className="radioInfoTitle">{formattedTitle}</h3>
+        </div>
         <AudioPlayer
           autoPlay
           layout="horizontal-reverse"

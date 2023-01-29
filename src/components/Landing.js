@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Radio from "./Radio";
 import Login from "./Login";
 
+import Checkbox from "react-custom-checkbox";
+
+
 const genre = require("../data/genreData.json");
 
 const Search = () => {
@@ -44,6 +47,7 @@ const Search = () => {
     setSearch(value);
     setDisplay(false);
     setShowLanding(false);
+    setValue("")
   };
 
   const setHighQuality = (kbps) => {
@@ -77,45 +81,48 @@ const Search = () => {
 
   return (
     <section className="landing">
-      <div className="App">
-        {showLanding ? (
-          <div className="landingInfo">
-            {/* <Searchbar placeholder="Search something" data={music}/> */}
-            <nav className="landingNav">
-              <button onClick={login}>login</button>
-              {loginModal ? <Login showModal={login} /> : null}
-              <Link to="/About">
-                <h3>about page</h3>
-              </Link>
-            </nav>
-            <Link to="/">
-              <h1>Satch.fm</h1>
+      {showLanding ? (
+        <div className="landingInfo wrapper">
+          <nav className="landingNav">
+            <button className="loginBtn" onClick={login}>
+              login
+            </button>
+            {loginModal ? <Login showModal={login} /> : null}
+            <Link to="/About">
+              <h3>About</h3>
             </Link>
-            <h2>Music from around the world</h2>
-            <h2>{`${greeting}`}</h2>
-            <h2>Search a genre, language, or decade</h2>
-            <form autoComplete="off" onSubmit={onSubmit}>
+          </nav>
+          <div className="centerContent">
+            <div className="centerText">
+              <h1 className="title">Satch.fm</h1>
+              <h2>{`${greeting}`}</h2>
+            </div>
+            <form className="searchForm" autoComplete="off" onSubmit={onSubmit}>
               <div className="searchContainer">
-                <input
+                {/* <input
                   type="checkbox"
+                  className="hqCheckbox"
                   name="hq"
                   id="hq"
                   onChange={() => setHighQuality(bitrate)}
                   value={bitrate}
-                  autoFocus
                 />
-                <p>Show only high quality radio stations</p>
+                <p>Show only high quality radio stations</p> */}
                 <div className="searchInner">
                   <input
+                    className="landingSearch"
                     id="inputAuto"
                     type="text"
                     list="genre"
-                    placeholder="enter a genre"
+                    placeholder="Search by genre, decade, or language"
                     value={value}
                     onChange={onChange}
                     onClick={() => setDisplay(!display)}
                     autoFocus
                   />
+                  <button class="searchButton" onClick={() => onSearch(value)}>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
                 </div>
                 {display && (
                   <div ref={wrapperRef} className="dropdown">
@@ -147,23 +154,22 @@ const Search = () => {
                   </div>
                 )}
               </div>
-              <button onClick={() => onSearch(value)}>Search</button>
             </form>
           </div>
-        ) : null}
-        {search ? (
-          <Radio
-            genre={search}
-            quality={bitrate}
-            setQuality={setBitrate}
-            landingView={landingView}
-            value={value}
-            onSearch={onSearch}
-            onChange={onChange}
-            onSubmit={onSubmit}
-          />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
+      {search ? (
+        <Radio
+          genre={search}
+          quality={bitrate}
+          setQuality={setBitrate}
+          landingView={landingView}
+          value={value}
+          onSearch={onSearch}
+          onChange={onChange}
+          onSubmit={onSubmit}
+        />
+      ) : null}
     </section>
   );
 };

@@ -1,0 +1,76 @@
+.radio {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    background: white;
+    .radioPlayer {
+        width: 56%;
+    }
+}
+
+.rhap_container {
+    box-shadow: none;
+}
+.rhap_current-time {
+    display: none;
+}
+.rhap_progress-section {
+    display: none !important;
+}
+
+.rhap_additional-controls {
+    display: none !important;
+}
+
+.rhap_volume-controls {
+    justify-content: flex-start !important;
+}
+
+.rhap_repeat-button {
+    display: none;
+}
+
+.radioInfo{
+    position: absolute;
+    bottom: -5%;
+    left: 0;
+    width: 20%;
+    img {
+        width: 175px;
+        height: 175px;
+        border: 2px solid green;
+        background: black;
+    }
+    .radioInfoTitle {
+        margin-left: 25px;
+        text-align: center;
+    }
+}
+
+
+
+// @media (max-width: 850px) {
+
+//     .rhap_horizontal-reverse {
+//         margin: 0 auto;
+//     }
+
+//     .rhap_volume-bar-area {
+//         display: none;
+//     }
+
+//     #rhap_current-time {
+//         display: none;
+//     }
+
+//     .rhap_progress-bar {
+//         display: none;
+//     }
+
+//     .rhap_progress-section {
+//         display: none;
+//     }
+// }

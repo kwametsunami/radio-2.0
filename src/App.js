@@ -1,4 +1,4 @@
-import "./App.scss";
+import "../src/styles/styles.scss"
 import { Route, Routes } from "react-router-dom"
 
 import Landing from "./components/Landing";

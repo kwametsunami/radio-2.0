@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { RadioBrowserApi } from "radio-browser-api";
 
 import Loading from "./Loading";
+import Dashboard from "./Dashboard";
 import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
@@ -17,6 +18,7 @@ const Radio = (props) => {
   const [badResponse, setBadResponse] = useState(false);
   const [aGenre, setAGenre] = useState("");
   const [loading, setLoading] = useState(false);
+  const [favStationInfo, setFavStationInfo] = useState([])
 
   const switchView = () => {
     setListView(!listView);
@@ -27,7 +29,7 @@ const Radio = (props) => {
 
     const setupApi = async (stationFilter) => {
       setLoading(true);
-      const api = new RadioBrowserApi(fetch.bind(window), "My Radio");
+      const api = new RadioBrowserApi(fetch.bind(window), "Radio");
 
       const stations = await api.searchStations({
         tag: props.genre,
@@ -96,71 +98,97 @@ const Radio = (props) => {
   };
 
   return (
-    <section>
-      <nav>
-        <Link onClick={props.landingView} to="/">
-          <h1>logo</h1>
-        </Link>
-        <form autoComplete="off" onSubmit={props.onSubmit}>
-          <input
-            type="text"
-            onChange={props.onChange}
-            value={props.value}
+    <section className="infoContainer">
+      <nav className="searchNav">
+        <div className="searchNavContents">
+          {/* <Link onClick={props.landingView} to="/">
+            <h1 className="infoLogo">logo</h1>
+          </Link> */}
+          <form
+            className="infoForm"
+            autoComplete="off"
             onSubmit={props.onSubmit}
-          />
-        </form>
-      </nav>
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="resultsContainer">
-          {badResponse ? (
-            <div className="badResponse">
-              <h2>This is embarassing, something seems to be down on our end. Try again soon!</h2>
-              <button>
-                Refresh
-              </button>
-            </div>
-          ) : badSearch ? (
-            <div className="badSearch">
-              <p>
-                Hmm... that's not music to our ears. We couldn't find any
-                stations matching {props.genre}. Maybe try {aGenre}?
-              </p>
-            </div>
-          ) : (
-            <div className="results">
-              {listView ? (
-                <div className="listViewContainer">
-                  <List
-                    stations={stations}
-                    sendToRadio={sendToRadio}
-                    sendToRadioName={sendToRadioName}
-                    sendImage={sendImage}
-                    stationUrl={stationUrl}
-                    badResponse={badResponse}
-                    mapView={switchView}
-                    selectedGenre={props.genre}
-                  />
-                </div>
-              ) : (
-                <div className="mapViewContainer">
-                  <Map
-                    stations={stations}
-                    sendToRadio={sendToRadio}
-                    sendToRadioName={sendToRadioName}
-                    sendImage={sendImage}
-                    stationUrl={stationUrl}
-                    badResponse={badResponse}
-                    listView={switchView}
-                    selectedGenre={props.genre}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          >
+            <input
+              className="infoSearch"
+              type="text"
+              onChange={props.onChange}
+              value={props.value}
+              onSubmit={props.onSubmit}
+            />
+            <button class="searchButton">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
         </div>
-      )}
+      </nav>
+      <div className="radioView">
+        <div className="dashboard">
+          <Dashboard
+            landingView={props.landingView}
+            favourites={favStationInfo}
+            setFavourites={setFavStationInfo}
+          />
+        </div>
+        {loading ? (
+          <div className="loadingContainer">
+            <Loading />
+          </div>
+        ) : (
+          <div className="resultsContainer">
+            {badResponse ? (
+              <div className="badResponse">
+                <h2>
+                  This is embarassing, something seems to be down on our end.
+                  Try again soon!
+                </h2>
+                <Link to="/">
+                  <button onClick={props.landingView}>Refresh</button>
+                </Link>
+              </div>
+            ) : badSearch ? (
+              <div className="badSearch">
+                <p>
+                  Hmm... that's not music to our ears. We couldn't find any
+                  stations matching {props.genre}. Maybe try {aGenre}?
+                </p>
+              </div>
+            ) : (
+              <div className="results">
+                {listView ? (
+                  <div className="listViewContainer">
+                    <List
+                      stations={stations}
+                      sendToRadio={sendToRadio}
+                      sendToRadioName={sendToRadioName}
+                      sendImage={sendImage}
+                      stationUrl={stationUrl}
+                      badResponse={badResponse}
+                      mapView={switchView}
+                      selectedGenre={props.genre}
+                      setFavStationInfo={setFavStationInfo}
+                    />
+                  </div>
+                ) : (
+                  <div className="mapViewContainer">
+                    <Map
+                      stations={stations}
+                      sendToRadio={sendToRadio}
+                      sendToRadioName={sendToRadioName}
+                      sendImage={sendImage}
+                      stationUrl={stationUrl}
+                      badResponse={badResponse}
+                      listView={switchView}
+                      selectedGenre={props.genre}
+                      setFavStationInfo={setFavStationInfo}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       {stationUrl ? (
         <Player
