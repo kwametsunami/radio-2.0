@@ -137,7 +137,7 @@ const Search = () => {
                         return (
                           searchTerm &&
                           tag.startsWith(searchTerm) &&
-                          tag != searchTerm
+                          tag !== searchTerm
                         );
                       })
                       .slice(0, 5)
