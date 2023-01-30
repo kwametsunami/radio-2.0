@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Radio from "./Radio";
-import Login from "./Login";
 import Footer from "./Footer";
 
 const genre = require("../data/genreData.json");

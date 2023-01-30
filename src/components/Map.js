@@ -1,30 +1,16 @@
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Marker, Popup, ZoomControl } from "react-leaflet";
-import { Icon } from "leaflet";
+import { Marker, Popup } from "react-leaflet";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-import Dashboard from "./Dashboard";
 
 import defaultImage from "../assets/radio.png";
 
 const Map = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
-  const [stationName, setStationName] = useState("");
-  const [favicon, setFavicon] = useState("");
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
-
-  const [favouritedStations, setFavouritedStations] = useState([]);
-
-  const [coordinates, setCoordinates] = useState([]);
-  const [joinedData, setJoinedData] = useState([]);
-
-  const [listCheck, setListCheck] = useState(false);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -32,9 +18,9 @@ const Map = (props) => {
         let imageGrab = props.stations[i].favicon;
 
         if (imageGrab === "") {
-          setFavicon(defaultImage);
+          props.sendImage(defaultImage);
         } else {
-          setFavicon(imageGrab);
+          props.sendImage(imageGrab);
         }
         props.sendImage(imageGrab);
       }
@@ -42,34 +28,6 @@ const Map = (props) => {
 
     if (props.stationUrl !== "") {
       setRadioUrl(props.stationUrl);
-    }
-
-    const alreadySeenCoordinates = [];
-    for (const station of props.stations) {
-      let latitude = station.geoLat;
-      let longitude = station.geoLong;
-      // Check if another station has these exact coordinates. If so, bump the lat,lon by one.
-      for (const seenCoordinates of alreadySeenCoordinates) {
-        if (
-          seenCoordinates.latitude === latitude &&
-          seenCoordinates.longitude === longitude
-        ) {
-          latitude = latitude + 1; // or however you feel like
-          longitude = longitude + 1; // modifying these things
-          break;
-        }
-      }
-      // Store the updated coordinates in the already seen array for future checking.
-      alreadySeenCoordinates.push({
-        latitude: latitude,
-        longitude: longitude,
-      });
-
-      setCoordinates(alreadySeenCoordinates);
-
-      // let info = props.stations
-
-      // let alreadySeenCoordinates = info
     }
   }, [radioUrl, props.stations, filterTrue, props.sendToRadio]);
 
@@ -80,7 +38,6 @@ const Map = (props) => {
     props.sendToRadioName(event.target.id);
 
     setRadioUrl(event.target.value);
-    setStationName(event.target.id);
   };
 
   const setDefaultSrc = (event) => {
@@ -123,7 +80,6 @@ const Map = (props) => {
       let surpriseStation = filteredStations[randomizer()];
 
       setRadioUrl(surpriseStation.urlResolved);
-      setStationName(surpriseStation.name);
       props.sendToRadio(surpriseStation.urlResolved);
       props.sendToRadioName(surpriseStation.name);
     } else {
@@ -134,37 +90,21 @@ const Map = (props) => {
       let surpriseStation = props.stations[randomizer()];
 
       setRadioUrl(surpriseStation.urlResolved);
-      setStationName(surpriseStation.name);
       props.sendToRadio(surpriseStation.urlResolved);
       props.sendToRadioName(surpriseStation.name);
     }
   };
 
-  useEffect(() => {
-    let radioData = [...props.stations];
-    let newCoordinates = [...coordinates];
-
-    let newArray = [];
-
-    for (let i = 0; i < radioData.length; i++) {
-      newArray.push([radioData[i], newCoordinates[i]]);
-    }
-
-    setJoinedData(newArray);
-  }, [props.stations]);
-
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
+
+    const favouritedStations = []
 
     props.setFavStationInfo([
       ...favouritedStations,
       { favourite: stationFavArr },
     ]);
-
-    // if (event.currentTarget.id === stationFavArr[0]) {
-    //   event.currentTarget.disabled = true;
-    // }
   };
 
   return (

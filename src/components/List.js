@@ -4,13 +4,10 @@ import defaultImage from "../assets/radio.png";
 
 const List = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
-  const [stationName, setStationName] = useState("");
-  const [favicon, setFavicon] = useState("");
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
-  const [favouritedStations, setFavouritedStations] = useState([]);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -18,9 +15,9 @@ const List = (props) => {
         let imageGrab = props.stations[i].favicon;
 
         if (imageGrab === "") {
-          setFavicon(defaultImage);
+          props.sendImage(defaultImage);
         } else {
-          setFavicon(imageGrab);
+          props.sendImage(imageGrab);
         }
         props.sendImage(imageGrab);
       }
@@ -38,13 +35,9 @@ const List = (props) => {
     props.sendToRadioName(event.target.id);
 
     setRadioUrl(event.target.value);
-    setStationName(event.target.id);
   };
 
   const grabFilter = (event) => {
-    console.log(event.target.value);
-
-    console.log(props.stations.length);
 
     const randomizer = (min = 0, max = props.stations.length) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -84,7 +77,6 @@ const List = (props) => {
     let surpriseStation = props.stations[randomizer()];
 
     setRadioUrl(surpriseStation.urlResolved);
-    setStationName(surpriseStation.name);
     props.sendToRadio(surpriseStation.urlResolved);
     props.sendToRadioName(surpriseStation.name);
   };
@@ -92,6 +84,8 @@ const List = (props) => {
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
+
+    const favouritedStations = []
 
     props.setFavStationInfo([
       ...favouritedStations,

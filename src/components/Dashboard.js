@@ -96,6 +96,7 @@ const Dashboard = (props) => {
                 <div className="favItems" key={`${favStation.favourite[0]}`}>
                   <img
                     src={`${favStation.favourite[3]}`}
+                    alt={`${favStation.favourite[1]}`}
                     onError={setDefaultSrc}
                   />
                   <div className="favText">
