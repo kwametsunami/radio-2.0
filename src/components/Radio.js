@@ -33,7 +33,7 @@ const Radio = (props) => {
     const setupApi = async (stationFilter) => {
       setLoading(true);
       setDashboardLoading(true);
-      const api = new RadioBrowserApi(fetch.bind(window), "Radio");
+      const api = new RadioBrowserApi(fetch.bind(window), "tr-1.fm");
 
       const stations = await api.searchStations({
         tag: props.genre,
@@ -222,7 +222,6 @@ const Radio = (props) => {
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       listView={switchView}
-                      quality={props.quality}
                       selectedGenre={props.genre}
                       setFavStationInfo={setFavStationInfo}
                     />
