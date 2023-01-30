@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
-import Dashboard from "./Dashboard";
 
 import defaultImage from "../assets/radio.png";
 
