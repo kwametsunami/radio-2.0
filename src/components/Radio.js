@@ -67,34 +67,32 @@ const Radio = (props) => {
           setBadSearch(true);
           randomGenre();
         }
+            const sort_by = (field, reverse, primer) => {
+              const key = primer
+                ? function (x) {
+                    return primer(x[field]);
+                  }
+                : function (x) {
+                    return x[field];
+                  };
+
+              reverse = !reverse ? 1 : -1;
+
+              return function (a, b) {
+                return (
+                  (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a))
+                );
+              };
+            };
+              setDashboardLoading(false);
+              let dataArray = data.slice(0, 5);
+
+              setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
       })
       .catch((error) => {
         setBadResponse(true);
         setLoading(false);
       });
-
-    const sort_by = (field, reverse, primer) => {
-      const key = primer
-        ? function (x) {
-            return primer(x[field]);
-          }
-        : function (x) {
-            return x[field];
-          };
-
-      reverse = !reverse ? 1 : -1;
-
-      return function (a, b) {
-        return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
-      };
-    };
-
-    setupApi("all").then((data) => {
-      setDashboardLoading(false);
-      let dataArray = data.slice(0, 5);
-
-      setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
-    });
 
     const randomGenre = () => {
       const randomizer = (min = 0, max = list.tag.length) => {
