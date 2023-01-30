@@ -12,10 +12,12 @@
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      padding-right: 100px;
+      padding-right: 80px;
       margin-top: 20px;
       .infoSearch {
         width: 70%;
+        font-size: 2rem;
+        padding: 15px;
       }
       .searchButton {
         width: 25%;

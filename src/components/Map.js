@@ -171,9 +171,9 @@ const Map = (props) => {
     <section className="resultContainer">
       <div className="mapFilters">
         <h3 className="returned">
-          Returned{" "}
+          returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
-          stations matching {props.selectedGenre.charAt(0).toUpperCase() + props.selectedGenre.slice(1)}
+          stations matching {props.selectedGenre}
         </h3>
         <div className="topControls">
           <div className="filterButtonContainer">
@@ -183,16 +183,16 @@ const Map = (props) => {
             <button className="listButton" onClick={props.listView}>
               <i class="fa-solid fa-list"></i>
             </button>
-            <label htmlFor="number"></label>
           </div>
           <div className="selectDropdown">
+            <label htmlFor="number"></label>
             <select
               name="number"
               id="filterNum"
               onChange={grabFilter}
-              value="Limit Results"
+              value="limit results"
             >
-              <option disabled>Limit Results</option>
+              <option disabled>limit results</option>
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>

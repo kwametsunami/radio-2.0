@@ -108,7 +108,7 @@ const List = (props) => {
 
   return (
     <section className="stationList">
-      <div className="mapFilters">
+      <div className="listFilters">
         <h3 className="returned">
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
@@ -119,7 +119,7 @@ const List = (props) => {
             <button className="randomStation" onClick={randomStation}>
               <i className="fa-solid fa-shuffle"></i>
             </button>
-            <button onClick={props.mapView}>
+            <button className="mapViewButton" onClick={props.mapView}>
               <i className="fa-solid fa-earth-americas"></i>
             </button>
             <label htmlFor="number"></label>
@@ -179,7 +179,6 @@ const List = (props) => {
                         ? "USA"
                         : stationDetails.country}
                     </p>
-                    <p>{stationDetails.bitrate}</p>
                   </div>
 
                   <div className="buttonContainer" value={stationDetails}>
@@ -254,7 +253,6 @@ const List = (props) => {
                         ? "USA"
                         : stationDetails.country}
                     </p>
-                    <p>{stationDetails.bitrate}</p>
                   </div>
 
                   <div className="buttonContainer" value={stationDetails}>

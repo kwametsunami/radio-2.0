@@ -7,30 +7,52 @@
 .mapFilters {
   position: fixed;
   top: 0%;
-  left: 35%;
+  left: 42%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 2;
   background: red;
-  width: 35%;
+  width: 20%;
   padding: 12px;
+  .returned {
+    font-size: 2rem;
+    text-align: center;
+    margin: 2px 0 15px;
+    h3 {
+      margin: 0;
+    }
+  }
   .topControls {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
-    .filterButtonContainer {
-      .randomStation {
-        margin: 0 10px;
+      .filterButtonContainer {
+        .randomStation {
+          width: 50px;
+          padding: 5px 10px;
+          margin: 0 6px;
+          i {
+            font-size: 2rem;
+          }
+        }
+        .listButton {
+          width: 50px;
+          padding: 5px 10px;
+          margin: 0 6px;
+          i {
+            font-size: 2rem;
+          }
+        }
       }
-    }
-    .returned {
-      h3 {
-        margin: 0;
+      .selectDropdown {
+        select {
+          padding: 7px 10px;
+          font-size: 1.5rem;
+        }
       }
-    }
   }
 }
 

@@ -247,6 +247,9 @@ p {
 a {
   text-decoration: none;
 }
+a:visited {
+  color: black;
+}
 
 html {
   overflow-x: hidden;
@@ -440,11 +443,13 @@ input {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding-right: 100px;
+  padding-right: 80px;
   margin-top: 20px;
 }
 .searchNav .searchNavContents .infoForm .infoSearch {
   width: 70%;
+  font-size: 2rem;
+  padding: 15px;
 }
 .searchNav .searchNavContents .infoForm .searchButton {
   width: 25%;
@@ -516,8 +521,9 @@ input {
 }
 .dashboardContainer .dashboardLogo {
   position: fixed;
-  top: 0;
   left: 60px;
+  top: 0;
+  margin-top: 25px;
 }
 .dashboardContainer .middleDashboard {
   overflow: hidden;
@@ -538,6 +544,7 @@ input {
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
   margin: 0;
+  font-size: 1.5rem;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
   border: 2px solid red;
@@ -610,6 +617,7 @@ input {
 }
 .dashboardContainer .infoContainer .infoButtons button {
   width: 33.3333333333%;
+  font-size: 1.7rem;
 }
 .dashboardContainer .infoContainer .instructions {
   position: fixed;
@@ -692,15 +700,23 @@ input {
 .mapFilters {
   position: fixed;
   top: 0%;
-  left: 35%;
+  left: 42%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 2;
   background: red;
-  width: 35%;
+  width: 20%;
   padding: 12px;
+}
+.mapFilters .returned {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2px 0 15px;
+}
+.mapFilters .returned h3 {
+  margin: 0;
 }
 .mapFilters .topControls {
   display: flex;
@@ -709,10 +725,24 @@ input {
   align-items: center;
 }
 .mapFilters .topControls .filterButtonContainer .randomStation {
-  margin: 0 10px;
+  width: 50px;
+  padding: 5px 10px;
+  margin: 0 6px;
 }
-.mapFilters .topControls .returned h3 {
-  margin: 0;
+.mapFilters .topControls .filterButtonContainer .randomStation i {
+  font-size: 2rem;
+}
+.mapFilters .topControls .filterButtonContainer .listButton {
+  width: 50px;
+  padding: 5px 10px;
+  margin: 0 6px;
+}
+.mapFilters .topControls .filterButtonContainer .listButton i {
+  font-size: 2rem;
+}
+.mapFilters .topControls .selectDropdown select {
+  padding: 7px 10px;
+  font-size: 1.5rem;
 }
 
 .actualMap {
@@ -780,11 +810,46 @@ input {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+.stationList .listFilters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.stationList .listFilters .returned {
+  font-size: 3rem;
+}
+.stationList .listFilters .topControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin-bottom: 10px;
+}
+.stationList .listFilters .topControls .filterButtonContainer .randomStation {
+  width: 100px;
+  padding: 15px 22.5px;
+  margin: 0 10px;
+}
+.stationList .listFilters .topControls .filterButtonContainer .randomStation i {
+  font-size: 2rem;
+}
+.stationList .listFilters .topControls .filterButtonContainer .mapViewButton {
+  width: 100px;
+  padding: 15px 22.5px;
+  margin: 0 10px;
+}
+.stationList .listFilters .topControls .filterButtonContainer .mapViewButton i {
+  font-size: 2rem;
+}
+.stationList .listFilters .topControls .selectDropdown select {
+  padding: 15px 22.5px;
+  font-size: 1.5rem;
+}
 .stationList .stationListContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 135px;
   margin-bottom: 55px;
 }
 .stationList .stationListContainer .stationInfoList {
@@ -802,6 +867,12 @@ input {
   justify-content: space-between;
   width: 100%;
   padding: 5px;
+}
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
+  width: 50%;
+}
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .information p {
+  font-size: 1.5rem;
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
   width: 25%;
@@ -847,6 +918,12 @@ input {
   justify-content: space-between;
   width: 100%;
   padding: 5px;
+}
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
+  width: 50%;
+}
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
+  font-size: 1.5rem;
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
   width: 25%;
@@ -925,7 +1002,7 @@ input {
 
 .radioInfo {
   position: absolute;
-  bottom: -5%;
+  bottom: -8%;
   left: 0;
   width: 600px;
 }
@@ -941,6 +1018,7 @@ input {
   margin-left: 14px;
   width: 500px;
   text-transform: capitalize;
+  font-size: 2rem;
 }
 
 .footer {
