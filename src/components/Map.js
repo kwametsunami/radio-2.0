@@ -71,7 +71,7 @@ const Map = (props) => {
 
       // let alreadySeenCoordinates = info
     }
-  }, [radioUrl, props.stations, filterTrue]);
+  }, [radioUrl, props.stations, filterTrue, props.sendToRadio]);
 
   const radioSelect = (event) => {
     event.preventDefault();

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import DashboardLoading from "./DashboardLoading";
+
 import defaultImage from "../assets/radio.png";
 
 const Dashboard = (props) => {
@@ -19,10 +21,10 @@ const Dashboard = (props) => {
     const popularStation = event.currentTarget.value;
     const popularStationArr = popularStation.split(",");
 
-    props.sendToRadio(popularStationArr[0])
-    props.sendToRadioName(popularStationArr[1])
-    props.sendImage(popularStationArr[2])
-  }
+    props.sendToRadio(popularStationArr[0]);
+    props.sendToRadioName(popularStationArr[1]);
+    props.sendImage(popularStationArr[2]);
+  };
 
   const favArr = [];
 
@@ -42,8 +44,10 @@ const Dashboard = (props) => {
       <div className="middleDashboard">
         {popularView ? (
           <div className="popularView">
-            <h2>popular</h2>
-            {props.popular.map((stations) => {
+            {!props.dashboardLoading ? <p>Top {props.genreName} stations</p> : null}
+            {props.dashboardLoading ? <DashboardLoading /> : null}
+            {props.dashboardLoading ? null :
+            props.popular.map((stations) => {
               return (
                 <div className="popularResults">
                   <img
@@ -57,14 +61,14 @@ const Dashboard = (props) => {
                       .replace(/-/g, " ")
                       .replace(/  +/, " ")
                       .replace(/\//g, "")}`}</p>
-                    <p>{`${
-                      stations.country === "The United States Of America"
-                        ? "USA"
-                        : stations.country
-                    }`}</p>
                   </div>
                   <div className="popularButtons">
                     <button
+                      className={
+                        props.stationUrl === stations.urlResolved
+                          ? "popularButtonPlaying"
+                          : "popularButton"
+                      }
                       onClick={playPopular}
                       value={[
                         `${stations.urlResolved}`,
@@ -81,7 +85,7 @@ const Dashboard = (props) => {
           </div>
         ) : (
           <div className="favContainer">
-            <h1>Your favourited stations</h1>
+            <h3>Your favourited stations</h3>
             {props.favourites.map((favStation) => {
               return (
                 <div className="favItems" key={`${favStation.favourite[0]}`}>
@@ -91,13 +95,12 @@ const Dashboard = (props) => {
                   />
                   <div className="favText">
                     <p>{`${favStation.favourite[1]}`}</p>
-                    <p>{`${favStation.favourite[5]}`}</p>
                   </div>
                   <div className="favButtons">
                     <button value={`${favStation.favourite[2]}`}>▶</button>
-                    <button>
+                    {/* <button>
                       <i class="fa-solid fa-xmark"></i>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               );
@@ -105,7 +108,11 @@ const Dashboard = (props) => {
           </div>
         )}
       </div>
-      <div className="infoContainer">
+      <div
+        className={
+          props.stationUrl === "" ? "infoContainerBottom" : "infoContainer"
+        }
+      >
         <div className="infoButtons">
           <button>login</button>
           <button onClick={infoButton}>
@@ -121,13 +128,13 @@ const Dashboard = (props) => {
         </div>
         {showInfo ? (
           <div className="instructions">
-            <button onClick={infoButton}>
+            <button className="infoButton"onClick={infoButton}>
               <i class="fa-solid fa-window-minimize"></i>
             </button>
-            <p>
-              Click on a marker to get more information on the station. If you
-              like what you see hit play!
-            </p>
+              <p>
+                Click on a marker to get more information on the station. If you
+                like what you see hit play!
+              </p>
           </div>
         ) : null}
       </div>

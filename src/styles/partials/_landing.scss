@@ -13,7 +13,18 @@
     justify-content: flex-end;
     margin: 10px;
     .loginBtn {
-      margin: 0 15px;
+      margin: 0 5px;
+      width: 75px;
+      font-size: 2rem;
+      padding: 5px 10px;
+      background: transparent;
+    }
+    .aboutBtn {
+      margin: 0 5px;
+      width: 75px;
+      font-size: 2rem;
+      padding: 5px 10px;
+      background: transparent;
     }
   }
   .centerContent {
@@ -23,6 +34,9 @@
     .centerText {
       margin: 100px 0 0;
       text-align: center;
+      .greeting {
+        margin: 2px 0 10px;
+      }
     }
     .searchForm {
       display: flex;
@@ -30,11 +44,15 @@
       width: 35%;
       .searchContainer {
         width: 100%;
+        margin: 12.5px 0;
         .searchInner {
           display: flex;
+          font-size: 2rem;
+          text-align: center;
           .searchButton {
             background-color: red;
             border-radius: 0 5px 5px 0;
+            width: 100px;
           }
         }
       }

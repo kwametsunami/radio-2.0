@@ -5,3 +5,22 @@
     justify-content: center;
     align-items: center;
 }
+
+.loadingPage {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-right: 165px;
+    margin-bottom: 155px;
+    .loadingText {
+        width: 225px;
+        text-align: center;
+        position: absolute;
+        top: 95px;
+        left: -35px;
+    }
+}
+
+.beatloader {
+margin-top: 200px;
+}

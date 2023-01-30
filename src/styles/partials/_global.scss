@@ -1,5 +1,24 @@
+@use "./variables" as *;
+
 html {
   overflow-x: hidden;
+  font-family: $font;
+  font-size: 62.5%;
+  scrollbar-width: thin;
+  scrollbar-color: red transparent;
+  background: $accentColor;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: red;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: purple;
+  }
 }
 
 .wrapper {
@@ -30,7 +49,7 @@ input {
   width: 100%;
   border: 3px solid red;
   border-right: none;
-  padding: 20px;
+  padding: 30px;
   height: 25px;
   border-radius: 5px 0 0 5px;
   outline: none;
@@ -49,7 +68,6 @@ input {
 .dropdownRow {
   cursor: pointer;
   text-align: start;
-  text-transform: capitalize;
   &:hover {
     background: grey;
   }

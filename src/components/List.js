@@ -32,7 +32,7 @@ const List = (props) => {
     if (props.stationUrl !== "") {
       setRadioUrl(props.stationUrl);
     }
-  }, [radioUrl, props.stations, filterTrue]);
+  }, [radioUrl, props.stations, filterTrue, props.sendToRadio]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -141,6 +141,7 @@ const List = (props) => {
           </div>
         </div>
       </div>
+      <div className="stationListContainer">
       {filterTrue
         ? filteredStations.map((stationDetails) => {
             return (
@@ -292,6 +293,7 @@ const List = (props) => {
               </div>
             );
           })}
+      </div>
     </section>
   );
 };

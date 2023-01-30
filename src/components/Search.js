@@ -27,10 +27,10 @@ const Search = () => {
   const currentTime = new Date().getHours();
   const greeting =
     currentTime >= 5 && currentTime < 12
-      ? "Good Morning"
+      ? "good morning"
       : currentTime >= 12 && currentTime < 18
-      ? "Good Afternoon"
-      : "Good Evening";
+      ? "good afternoon"
+      : "good evening";
 
   const onChange = (event) => {
     setValue(event.target.value);
@@ -38,7 +38,6 @@ const Search = () => {
 
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
-    console.log(searchTerm);
   };
 
   const onSubmit = (event) => {
@@ -83,18 +82,19 @@ const Search = () => {
       {showLanding ? (
         <div className="landingInfo">
           <nav className="landingNav wrapper">
+            <Link to="/Login">
             <button className="loginBtn" onClick={login}>
               login
             </button>
-            {loginModal ? <Login showModal={login} /> : null}
+            </Link>
             <Link to="/About">
-              <h3>About</h3>
+              <button className="aboutBtn">about</button>
             </Link>
           </nav>
           <div className="centerContent">
             <div className="centerText">
-              <h1 className="title">Satch.fm</h1>
-              <h2>{`${greeting}`}</h2>
+              <h1 className="title">tr-1.fm</h1>
+              <h2 className="greeting">{`${greeting}`}</h2>
             </div>
             <form className="searchForm" autoComplete="off" onSubmit={onSubmit}>
               <div className="searchContainer">
@@ -113,15 +113,15 @@ const Search = () => {
                     id="inputAuto"
                     type="text"
                     list="genre"
-                    placeholder="Search by genre, decade, or language"
+                    placeholder="search by genre, decade, or language"
                     value={value}
                     onChange={onChange}
                     onClick={() => setDisplay(!display)}
                     autoFocus
                     required
                   />
-                  <button class="searchButton" onClick={() => onSearch(value)}>
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                  <button className="searchButton" onClick={() => onSearch(value)}>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                   </button>
                 </div>
                 {display && (

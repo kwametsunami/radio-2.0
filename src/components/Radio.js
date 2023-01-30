@@ -18,9 +18,10 @@ const Radio = (props) => {
   const [badResponse, setBadResponse] = useState(false);
   const [aGenre, setAGenre] = useState("");
   const [loading, setLoading] = useState(false);
-  const [favStationInfo, setFavStationInfo] = useState([])
+  const [dashboardLoading, setDashboardLoading] = useState(false);
+  const [favStationInfo, setFavStationInfo] = useState([]);
 
-  const [popular, setPopular] = useState([])
+  const [popular, setPopular] = useState([]);
 
   const switchView = () => {
     setListView(!listView);
@@ -31,6 +32,7 @@ const Radio = (props) => {
 
     const setupApi = async (stationFilter) => {
       setLoading(true);
+      setDashboardLoading(true);
       const api = new RadioBrowserApi(fetch.bind(window), "Radio");
 
       const stations = await api.searchStations({
@@ -72,40 +74,42 @@ const Radio = (props) => {
         setLoading(false);
       });
 
-      const sort_by = (field, reverse, primer) => {
-        const key = primer
-          ? function (x) {
-              return primer(x[field]);
-            }
-          : function (x) {
-              return x[field];
-            };
+    const sort_by = (field, reverse, primer) => {
+      const key = primer
+        ? function (x) {
+            return primer(x[field]);
+          }
+        : function (x) {
+            return x[field];
+          };
 
-        reverse = !reverse ? 1 : -1;
+      reverse = !reverse ? 1 : -1;
 
-        return function (a, b) {
-          return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
-        };
+      return function (a, b) {
+        return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
       };
-
-      setupApi("all").then((data) => {
-
-        let dataArray = data.slice(0, 5)
-
-        setPopular(dataArray.sort(sort_by('votes', true, parseInt)))
-      })
-
-  }, [props.genre, props.quality]);
-
-  const randomGenre = () => {
-    console.log(list.tag.length);
-    const randomizer = (min = 0, max = list.tag.length) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    let rnd = list.tag[randomizer()].genre.toUpperCase();
-    setAGenre(rnd);
-  };
+    setupApi("all").then((data) => {
+      setDashboardLoading(false);
+      let dataArray = data.slice(0, 5);
+
+      setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
+    });
+
+    const randomGenre = () => {
+      const randomizer = (min = 0, max = list.tag.length) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+
+      const rnd = list.tag[randomizer()].genre
+
+      setAGenre(rnd);
+    };
+
+    randomGenre();
+
+  }, [props.genre, props.quality]);
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");
@@ -153,6 +157,7 @@ const Radio = (props) => {
         <div className="dashboard">
           <Dashboard
             landingView={props.landingView}
+            genreName={props.genre}
             favourites={favStationInfo}
             setFavourites={setFavStationInfo}
             popular={popular}
@@ -160,6 +165,7 @@ const Radio = (props) => {
             sendToRadioName={sendToRadioName}
             sendImage={sendImage}
             stationUrl={stationUrl}
+            dashboardLoading={dashboardLoading}
           />
         </div>
         {loading ? (
@@ -170,20 +176,25 @@ const Radio = (props) => {
           <div className="resultsContainer">
             {badResponse ? (
               <div className="badResponse">
-                <h2>
-                  This is embarassing, something seems to be down on our end.
-                  Try again soon!
-                </h2>
-                <Link to="/">
-                  <button onClick={props.landingView}>Refresh</button>
-                </Link>
+                <div className="badResponseContent">
+                  <h2>
+                    This is embarassing, {"\n"} something seems to be down on
+                    our end. Try again soon!
+                  </h2>
+                  <Link to="/">
+                    <button onClick={props.landingView}>Refresh</button>
+                  </Link>
+                </div>
               </div>
             ) : badSearch ? (
               <div className="badSearch">
-                <p>
-                  Hmm... that's not music to our ears. We couldn't find any
-                  stations matching {props.genre}. Maybe try {aGenre}?
-                </p>
+                <div className="badSearchContent">
+                  <h2>
+                    Hmm... that's not music to our ears. We couldn't find any
+                    stations matching "{props.genre}". Maybe try{" "}
+                    <span className="genreSuggestion">{aGenre}?</span>
+                  </h2>
+                </div>
               </div>
             ) : (
               <div className="results">

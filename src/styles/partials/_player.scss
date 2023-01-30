@@ -8,6 +8,7 @@
     background: white;
     .radioPlayer {
         width: 56%;
+        z-index: 1;
     }
 }
 
@@ -37,17 +38,18 @@
     position: absolute;
     bottom: -5%;
     left: 0;
-    width: 50%;
+    width: 600px;
     img {
         width: 200px;
         height: 200px;
-        border: 2px solid green;
         background: black;
     }
     .radioInfoTitleContainer {
         width: 100%;
         .radioInfoTitle {
             margin-left: 14px;
+            width: 500px;
+            text-transform: capitalize;
         }
     }
 }

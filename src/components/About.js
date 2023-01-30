@@ -2,24 +2,23 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <section>
-        <nav>
+    <section className="about">
+      <nav className="aboutNav wrapper">
         <Link to="/">
-        <h2>logo</h2>
+          <h2>tr1-fm</h2>
         </Link>
-        <Link to="Signup">
-        <h2>sign up</h2>
-        </Link>
-        <Link to="/Login">
-        <h2>login</h2>
-        </Link>
-        </nav>
+        <div className="aboutLogin">
+          <Link to="Signup">
+            <button className="signUpAbout">register</button>
+          </Link>
+          <Link to="/Login">
+            <button className="logInAbout">log in</button>
+          </Link>
+        </div>
+      </nav>
 
-      <div>
-        <Link to="/">
-          <h3>home</h3>
-        </Link>
-        <h1>What is International Radio?</h1>
+      <div className="aboutContent wrapper">
+        <h2 className="aboutTitle">what is tr1-fm?</h2>
         <p>
           Vibecession meditation keffiyeh iceland narwhal. Offal heirloom
           bitters, bicycle rights listicle post-ironic vice green juice cliche
@@ -51,6 +50,11 @@ const About = () => {
           marfa art party green juice austin chartreuse tacos XOXO. Dummy text?
           More like dummy thicc text, amirite?
         </p>
+        <Link to="/">
+          <button className="aboutGetStarted">
+            Get Started
+          </button>
+        </Link>
       </div>
     </section>
   );

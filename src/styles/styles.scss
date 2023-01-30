@@ -1,8 +1,11 @@
+@use "./partials/variables" as *;
 @use "./partials/setup";
+@use "./partials/fonts";
 @use "./partials/global";
 
 //sections
 @use "./partials/landing";
+@use "./partials/about";
 @use "./partials/radio";
 @use "./partials/dashboard";
 @use "./partials/loading";

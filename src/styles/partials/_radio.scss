@@ -26,6 +26,40 @@
   }
 }
 
+.resultsContainer {
+  .badResponse {
+    height: 100vh;
+    width: calc(100vw - 350px);
+    display: flex;
+    justify-content: center;
+  }
+  .badResponseContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 35%;
+  }
+  .badSearch {
+    height: 100vh;
+    width: calc(100vw - 350px);
+    display: flex;
+    justify-content: center;
+  }
+  .badSearchContent {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 35%;
+    .genreSuggestion {
+      text-transform: capitalize;
+    }
+  }
+}
+
 .radioView {
     display: flex;
     width: 100vw;

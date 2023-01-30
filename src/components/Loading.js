@@ -10,6 +10,9 @@ const Loading = () => {
         aria-label="Loading Spinner"
         data-testid="loader"
       />
+      <div className="loadingText">
+        <h2>Hang tight, {"\n"}grabbing stations</h2>
+      </div>
     </div>
   );
 };

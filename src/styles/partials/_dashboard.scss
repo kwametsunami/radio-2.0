@@ -12,10 +12,16 @@
 
 .dashboardContainer {
   background: yellow;
-  height: 69%;
+  width: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 100px;
+  .dashboardLogo {
+    position: fixed;
+    top: 0;
+    left: 60px;
+  }
   .middleDashboard {
     overflow: hidden;
     .popularView {
@@ -23,6 +29,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background: powderblue;
+        padding: 2px;
         img {
           width: 35px;
           height: 35px;
@@ -34,21 +42,44 @@
           }
         }
         .popularButtons {
-            button{
-                background: transparent;
-            }
+          .popularButton {
+            border: 2px solid red;
+            width: 35px;
+            height: 35px;
+            margin: 2px 5px;
+          }
+          .popularButtonPlaying {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #1e2021;
+            background-color: transparent;
+            font-family: "Poppins", sans-serif;
+            background-image: url("../../assets/soundBars.gif");
+            background-size: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            margin: 2px 5px;
+          }
+          button {
+            background: transparent;
+          }
         }
       }
     }
     .favContainer {
       border: 2px solid black;
+      overflow: hidden;
       .favItems {
         display: flex;
         align-items: center;
-        justify-content: center;
-        border: 2px solid orange;
+        justify-content: space-between;
+        background: orange;
+        text-align: center;
+        padding: 2px;
         .favText {
-          padding: 4px;
+          width: 60%;
+          word-wrap: break-word;
           p {
             margin: 0;
           }
@@ -63,6 +94,10 @@
             background: transparent;
             border: 1px solid black;
             margin: 0 4px;
+            border: 2px solid red;
+            width: 35px;
+            height: 35px;
+            margin: 2px 5px;
           }
         }
       }
@@ -70,13 +105,60 @@
   }
   .infoContainer {
     display: flex;
+    position: fixed;
+    bottom: 258px;
+    width: 200px;
     justify-content: center;
     .infoButtons {
       display: flex;
       justify-content: space-between;
       width: 100%;
       button {
-        width: calc(100% / 3)
+        width: calc(100% / 3);
+      }
+    }
+    .instructions {
+      position: fixed;
+      bottom: 290px;
+      width: 200px;
+      height: 258px;
+      background: palegoldenrod;
+      display: flex;
+      align-items: center;
+      .infoButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+  .infoContainerBottom {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 200px;
+    justify-content: center;
+    .infoButtons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: relative;
+      button {
+        width: calc(100% / 3);
+      }
+    }
+    .instructions {
+      position: fixed;
+      bottom: 35px;
+      width: 200px;
+      height: 258px;
+      background: palegoldenrod;
+      display: flex;
+      align-items: center;
+      .infoButton {
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
   }
