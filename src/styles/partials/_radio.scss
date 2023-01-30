@@ -48,6 +48,8 @@
     flex-direction: column;
     text-align: center;
     width: 35%;
+    opacity: 0;
+    animation: showUp 3s linear 1 normal forwards;
     button {
       width: 150px;
       padding: 10px 0;
@@ -92,4 +94,18 @@
         height: 100vh;
         overflow-y: hidden;
     }
+}
+
+///////////////////// animations
+
+@keyframes showUp {
+  0% {
+    opacity: 0
+  }
+  98% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
 }
