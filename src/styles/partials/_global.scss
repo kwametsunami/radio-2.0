@@ -6,7 +6,7 @@ html {
   font-size: 62.5%;
   scrollbar-width: thin;
   scrollbar-color: red transparent;
-  background: $accentColor;
+  background: $red;
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -32,7 +32,7 @@ button {
   font-size: clamp(0.9375rem, 0.865rem + 0.3623vw, 1.25rem);
   transition: 0.3s;
   padding: 5px 2px;
-  border: 2px solid transparent;
+  border: 2px solid $black;
   //   border-radius: 30px;
   text-align: center;
   //   &:hover {
@@ -47,7 +47,9 @@ button {
 
 input {
   width: 100%;
-  border: 3px solid red;
+  border: 2px solid $black;
+  background: $white;
+  color: $black;
   border-right: none;
   padding: 30px;
   height: 25px;
@@ -59,7 +61,13 @@ input {
   background-color: white;
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
+  // border: 1px solid $black;
+  border-bottom: none;
+  border-radius: 5px;
+  &:last-child {
+    border-bottom: 1px solid $black;
+    border-top: none;
+  }
 }
 
 .dropdown:empty {
@@ -68,8 +76,20 @@ input {
 .dropdownRow {
   cursor: pointer;
   text-align: start;
+  background: $white;
+border: 1px solid $black;
+&:last-of-type {
+  border-radius: 0 0 5px 5px;
+}
+  p {
+    color: $black;
+    margin: 5px;
+  }
   &:hover {
-    background: grey;
+    background: $grey;
+    p {
+      color: $black;
+    }
   }
 }
 

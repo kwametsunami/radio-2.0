@@ -1,7 +1,14 @@
+@use "./variables" as *;
+
 .footer {
     position: fixed;
     bottom: 0;
-    background: green;
-    width: 100vw;
+    background: $red;
+    width: 100%;
     text-align: center;
+    p {
+        a {
+            color: $white;
+        }
+    }
 }

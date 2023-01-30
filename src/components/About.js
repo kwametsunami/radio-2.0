@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const About = () => {
   return (
     <section className="about">
-      <nav className="aboutNav wrapper">
+      <nav className="aboutNav">
         <Link to="/">
           <h2>tr1-fm</h2>
         </Link>

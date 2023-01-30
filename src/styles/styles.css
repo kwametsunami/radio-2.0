@@ -228,6 +228,7 @@ html {
 }
 h1, h2, h3, h4, h5, h6, p, a, button, input, select, option {
   font-family: "Karla";
+  color: #EDD05F;
 }
 
 h1 {
@@ -257,7 +258,7 @@ html {
   font-size: 62.5%;
   scrollbar-width: thin;
   scrollbar-color: red transparent;
-  background: #EDD060;
+  background: #D32631;
 }
 html::-webkit-scrollbar {
   width: 10px;
@@ -283,13 +284,15 @@ button {
   font-size: clamp(0.9375rem, 0.865rem + 0.3623vw, 1.25rem);
   transition: 0.3s;
   padding: 5px 2px;
-  border: 2px solid transparent;
+  border: 2px solid #1a1a1c;
   text-align: center;
 }
 
 input {
   width: 100%;
-  border: 3px solid red;
+  border: 2px solid #1a1a1c;
+  background: #ebebeb;
+  color: #1a1a1c;
   border-right: none;
   padding: 30px;
   height: 25px;
@@ -301,7 +304,12 @@ input {
   background-color: white;
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
+  border-bottom: none;
+  border-radius: 5px;
+}
+.dropdown:last-child {
+  border-bottom: 1px solid #1a1a1c;
+  border-top: none;
 }
 
 .dropdown:empty {
@@ -311,9 +319,21 @@ input {
 .dropdownRow {
   cursor: pointer;
   text-align: start;
+  background: #ebebeb;
+  border: 1px solid #1a1a1c;
+}
+.dropdownRow:last-of-type {
+  border-radius: 0 0 5px 5px;
+}
+.dropdownRow p {
+  color: #1a1a1c;
+  margin: 5px;
 }
 .dropdownRow:hover {
-  background: grey;
+  background: #C4C2C2;
+}
+.dropdownRow:hover p {
+  color: #1a1a1c;
 }
 
 .leaflet-popup-close-button {
@@ -335,7 +355,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 10px;
+  margin: 10px 50px 0 50px;
 }
 .landing .landingNav .loginBtn {
   margin: 0 5px;
@@ -343,6 +363,11 @@ input {
   font-size: 2rem;
   padding: 5px 10px;
   background: transparent;
+  color: #ebebeb;
+  border: none;
+}
+.landing .landingNav .loginBtn:hover {
+  color: #EDD05F;
 }
 .landing .landingNav .aboutBtn {
   margin: 0 5px;
@@ -350,6 +375,11 @@ input {
   font-size: 2rem;
   padding: 5px 10px;
   background: transparent;
+  color: #ebebeb;
+  border: none;
+}
+.landing .landingNav .aboutBtn:hover {
+  color: #EDD05F;
 }
 .landing .centerContent {
   display: flex;
@@ -378,16 +408,22 @@ input {
   text-align: center;
 }
 .landing .centerContent .searchForm .searchContainer .searchInner .searchButton {
-  background-color: red;
+  background-color: #EDD05F;
   border-radius: 0 5px 5px 0;
   width: 100px;
+  border: 2px solid #1a1a1c;
+  border-left: none;
+}
+.landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
+  color: #D32631;
+  font-size: 2rem;
 }
 
 .aboutNav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px 4px 0 50px;
 }
 .aboutNav .aboutLogin {
   display: flex;
@@ -503,7 +539,6 @@ input {
   height: 100vh;
   width: 200px;
   min-width: 200px;
-  background-color: tomato;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -512,7 +547,6 @@ input {
 }
 
 .dashboardContainer {
-  background: yellow;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -528,12 +562,21 @@ input {
 .dashboardContainer .middleDashboard {
   overflow: hidden;
 }
+.dashboardContainer .middleDashboard .popularView {
+  padding: 5px;
+}
+.dashboardContainer .middleDashboard .popularView #popularTitle {
+  color: #1a1a1c;
+}
 .dashboardContainer .middleDashboard .popularView .popularResults {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: powderblue;
   padding: 2px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults:hover {
+  background: #C4C2C2;
+  border-radius: 5px;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults img {
   width: 35px;
@@ -545,12 +588,16 @@ input {
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
   margin: 0;
   font-size: 1.5rem;
+  color: #1a1a1c;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
-  border: 2px solid red;
+  border: 2px solid #1a1a1c;
+  background: #ebebeb;
+  border-radius: 50px;
   width: 35px;
   height: 35px;
   margin: 2px 5px;
+  color: #D32631;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
   width: 35px;
@@ -606,7 +653,7 @@ input {
 .dashboardContainer .infoContainer {
   display: flex;
   position: fixed;
-  bottom: 258px;
+  bottom: 261px;
   width: 200px;
   justify-content: center;
 }
@@ -618,6 +665,13 @@ input {
 .dashboardContainer .infoContainer .infoButtons button {
   width: 33.3333333333%;
   font-size: 1.7rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+.dashboardContainer .infoContainer .infoButtons button:hover {
+  border: none;
+  border-bottom: 2px solid #EDD05F;
 }
 .dashboardContainer .infoContainer .instructions {
   position: fixed;
@@ -648,6 +702,13 @@ input {
 }
 .dashboardContainer .infoContainerBottom .infoButtons button {
   width: 33.3333333333%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+.dashboardContainer .infoContainerBottom .infoButtons button:hover {
+  border: none;
+  border-bottom: 2px solid #EDD05F;
 }
 .dashboardContainer .infoContainerBottom .instructions {
   position: fixed;
@@ -969,7 +1030,7 @@ input {
   z-index: 1;
   display: flex;
   justify-content: flex-end;
-  background: white;
+  background: #D32631;
 }
 .radio .radioPlayer {
   width: 56%;
@@ -977,7 +1038,16 @@ input {
 }
 
 .rhap_container {
-  box-shadow: none;
+  box-shadow: none !important;
+  background-color: #D32631 !important;
+}
+
+.rhap_button-clear {
+  color: #EDD05F !important;
+}
+
+.rhap_volume-indicator {
+  background: #EDD05F !important;
 }
 
 .rhap_current-time {
@@ -1009,24 +1079,32 @@ input {
 .radioInfo img {
   width: 200px;
   height: 200px;
-  background: black;
+  background: #D32631;
 }
 .radioInfo .radioInfoTitleContainer {
   width: 100%;
+  background-color: #D32631;
 }
 .radioInfo .radioInfoTitleContainer .radioInfoTitle {
   margin-left: 14px;
   width: 500px;
   text-transform: capitalize;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 2rem;
+  color: #1a1a1c;
 }
 
 .footer {
   position: fixed;
   bottom: 0;
-  background: green;
-  width: 100vw;
+  background: #D32631;
+  width: 100%;
   text-align: center;
+}
+.footer p a {
+  color: #ebebeb;
 }
 
 .audio-visualizer {

@@ -129,9 +129,9 @@ const List = (props) => {
               name="number"
               id="filterNum"
               onChange={grabFilter}
-              value="Limit Results"
+              value="limit results"
             >
-              <option disabled>Limit Results</option>
+              <option disabled>limit results</option>
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>

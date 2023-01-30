@@ -1,8 +1,9 @@
+@use "./variables" as *;
+
 .dashboard {
   height: 100vh;
   width: 200px;
   min-width: 200px;
-  background-color: tomato;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +12,6 @@
 }
 
 .dashboardContainer {
-  background: yellow;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -26,12 +26,19 @@
   .middleDashboard {
     overflow: hidden;
     .popularView {
+      padding: 5px;
+      #popularTitle {
+        color: $black;
+      }
       .popularResults {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: powderblue;
         padding: 2px;
+        &:hover {
+          background: $grey;
+          border-radius: 5px;
+        }
         img {
           width: 35px;
           height: 35px;
@@ -41,14 +48,18 @@
           p {
             margin: 0;
             font-size: 1.5rem;
+            color: $black;
           }
         }
         .popularButtons {
           .popularButton {
-            border: 2px solid red;
+            border: 2px solid $black;
+            background: $white;
+            border-radius: 50px;
             width: 35px;
             height: 35px;
             margin: 2px 5px;
+            color: $red;
           }
           .popularButtonPlaying {
             width: 35px;
@@ -108,7 +119,7 @@
   .infoContainer {
     display: flex;
     position: fixed;
-    bottom: 258px;
+    bottom: 261px;
     width: 200px;
     justify-content: center;
     .infoButtons {
@@ -118,6 +129,13 @@
       button {
         width: calc(100% / 3);
         font-size: 1.7rem;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $yellow;
+        }
       }
     }
     .instructions {
@@ -148,6 +166,14 @@
       position: relative;
       button {
         width: calc(100% / 3);
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $yellow;
+          // border-radius: 5px;
+        }
       }
     }
     .instructions {

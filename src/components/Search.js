@@ -81,7 +81,7 @@ const Search = () => {
     <section className="landing">
       {showLanding ? (
         <div className="landingInfo">
-          <nav className="landingNav wrapper">
+          <nav className="landingNav">
             <Link to="/Login">
             <button className="loginBtn" onClick={login}>
               login

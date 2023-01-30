@@ -44,44 +44,49 @@ const Dashboard = (props) => {
       <div className="middleDashboard">
         {popularView ? (
           <div className="popularView">
-            {!props.dashboardLoading ? <p>top {props.genreName} stations</p> : null}
+            {!props.dashboardLoading ? (
+              <p id="popularTitle">
+                top <span id="popularSearchTerm">{props.genreName} </span>stations
+              </p>
+            ) : null}
             {props.dashboardLoading ? <DashboardLoading /> : null}
-            {props.dashboardLoading ? null :
-            props.popular.map((stations) => {
-              return (
-                <div className="popularResults">
-                  <img
-                    src={`${stations.favicon}`}
-                    alt={`${stations.name}`}
-                    onError={setDefaultSrc}
-                  />
-                  <div className="popularText">
-                    <p>{`${stations.name
-                      .replace(/_/g, "")
-                      .replace(/-/g, " ")
-                      .replace(/  +/, " ")
-                      .replace(/\//g, "")}`}</p>
-                  </div>
-                  <div className="popularButtons">
-                    <button
-                      className={
-                        props.stationUrl === stations.urlResolved
-                          ? "popularButtonPlaying"
-                          : "popularButton"
-                      }
-                      onClick={playPopular}
-                      value={[
-                        `${stations.urlResolved}`,
-                        `${stations.name}`,
-                        `${stations.favicon}`,
-                      ]}
-                    >
-                      {props.stationUrl === stations.urlResolved ? "" : "▶"}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            {props.dashboardLoading
+              ? null
+              : props.popular.map((stations) => {
+                  return (
+                    <div className="popularResults">
+                      <img
+                        src={`${stations.favicon}`}
+                        alt={`${stations.name}`}
+                        onError={setDefaultSrc}
+                      />
+                      <div className="popularText">
+                        <p>{`${stations.name
+                          .replace(/_/g, "")
+                          .replace(/-/g, " ")
+                          .replace(/  +/, " ")
+                          .replace(/\//g, "")}`}</p>
+                      </div>
+                      <div className="popularButtons">
+                        <button
+                          className={
+                            props.stationUrl === stations.urlResolved
+                              ? "popularButtonPlaying"
+                              : "popularButton"
+                          }
+                          onClick={playPopular}
+                          value={[
+                            `${stations.urlResolved}`,
+                            `${stations.name}`,
+                            `${stations.favicon}`,
+                          ]}
+                        >
+                          {props.stationUrl === stations.urlResolved ? "" : "▶"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         ) : (
           <div className="favContainer">
@@ -128,13 +133,13 @@ const Dashboard = (props) => {
         </div>
         {showInfo ? (
           <div className="instructions">
-            <button className="infoButton"onClick={infoButton}>
+            <button className="infoButton" onClick={infoButton}>
               <i class="fa-solid fa-window-minimize"></i>
             </button>
-              <p>
-                Click on a marker to get more information on the station. If you
-                like what you see hit play!
-              </p>
+            <p>
+              Click on a marker to get more information on the station. If you
+              like what you see hit play!
+            </p>
           </div>
         ) : null}
       </div>

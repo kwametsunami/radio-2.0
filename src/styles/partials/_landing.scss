@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 .landing {
   height: 100vh;
   width: 100vw;
@@ -11,13 +13,18 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin: 10px;
+    margin: 10px 50px 0 50px;
     .loginBtn {
       margin: 0 5px;
       width: 75px;
       font-size: 2rem;
       padding: 5px 10px;
       background: transparent;
+      color: $white;
+      border: none;
+      &:hover {
+        color: $yellow;
+      }
     }
     .aboutBtn {
       margin: 0 5px;
@@ -25,6 +32,11 @@
       font-size: 2rem;
       padding: 5px 10px;
       background: transparent;
+      color: $white;
+      border: none;
+      &:hover {
+        color: $yellow;
+      }
     }
   }
   .centerContent {
@@ -34,6 +46,10 @@
     .centerText {
       margin: 100px 0 0;
       text-align: center;
+      // .title {
+      //   text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+      //     -1px -1px 0 #000;
+      // }
       .greeting {
         margin: 2px 0 10px;
       }
@@ -50,9 +66,15 @@
           font-size: 2rem;
           text-align: center;
           .searchButton {
-            background-color: red;
+            background-color: $yellow;
             border-radius: 0 5px 5px 0;
             width: 100px;
+            border: 2px solid $black;
+            border-left: none;
+            i {
+              color: $red;
+              font-size: 2rem;
+            }
           }
         }
       }

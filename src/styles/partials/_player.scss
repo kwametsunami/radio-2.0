@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 .radio {
     position: fixed;
     bottom: 0;
@@ -5,7 +7,7 @@
     z-index: 1;
     display: flex;
     justify-content: flex-end;
-    background: white;
+    background: $red;
     .radioPlayer {
         width: 56%;
         z-index: 1;
@@ -13,7 +15,14 @@
 }
 
 .rhap_container {
-    box-shadow: none;
+    box-shadow: none !important;
+    background-color: $red !important;
+}
+.rhap_button-clear {
+    color: $yellow !important;
+}
+.rhap_volume-indicator {
+    background: $yellow !important;
 }
 .rhap_current-time {
     display: none;
@@ -42,15 +51,20 @@
     img {
         width: 200px;
         height: 200px;
-        background: black;
+        background: $red;
     }
     .radioInfoTitleContainer {
         width: 100%;
+        background-color: $red;
         .radioInfoTitle {
             margin-left: 14px;
             width: 500px;
             text-transform: capitalize;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
             font-size: 2rem;
+            color: $black;
         }
     }
 }
