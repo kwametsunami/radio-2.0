@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 .stationList {
   height: 100vh;
   width: 100%;
@@ -10,6 +12,9 @@
     margin-top: 50px;
     .returned {
       font-size: 3rem;
+      color: $white;
+      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+        -0.5px -0.5px 0 #000;
     }
     .topControls {
       display: flex;
@@ -19,26 +24,40 @@
       margin-bottom: 10px;
       .filterButtonContainer {
         .randomStation {
-          width: 100px;
-          padding: 15px 22.5px;
-          margin: 0 10px;
+          width: 50px;
+          padding: 10px 10px;
+          // margin: 0 6px;
+          border-radius: 5px 0 0 5px;
+          border-right: 0.5px solid $black;
           i {
             font-size: 2rem;
+            color: $red;
+          }
+          &:hover {
+            background: $grey;
           }
         }
         .mapViewButton {
-          width: 100px;
-          padding: 15px 22.5px;
-          margin: 0 10px;
+          width: 50px;
+          padding: 10px 10px;
+          border-radius: 0 5px 5px 0;
+          border-left: 0.5px solid $black;
           i {
             font-size: 2rem;
+            color: $red;
+          }
+          &:hover {
+            background: $grey;
           }
         }
       }
       .selectDropdown {
         select {
-          padding: 15px 22.5px;
+          padding: 10px 10px;
           font-size: 1.5rem;
+          color: $black !important;
+          border: 2px solid $black;
+          border-radius: 5px;
         }
       }
     }
@@ -54,7 +73,7 @@
       width: calc((80% / 2) - 30px);
       max-height: 150px;
       margin: 10px;
-      border: 4px solid #09a9f4;
+      border: 2.5px solid $black;
       border-radius: 20px;
       background-color: #ebe7e7;
       .imageInfoContainer {
@@ -64,8 +83,12 @@
         padding: 5px;
         .information {
           width: 50%;
+          .stationCountry {
+            text-transform: capitalize;
+          }
           p {
             font-size: 1.5rem;
+            color: $black;
           }
         }
         .imageList {
@@ -77,6 +100,7 @@
             margin: auto 0;
             width: 70px;
             height: 70px;
+            border-radius: 5px;
           }
         }
         .buttonContainer {
@@ -87,7 +111,8 @@
             width: 45px;
             height: 45px;
             border: 2px solid #1e2021;
-            color: #d64b4b;
+            border-radius: 50px;
+            color: $red;
             background-color: transparent;
             margin: 2px 5px;
           }
@@ -95,7 +120,13 @@
             width: 45px;
             height: 45px;
             border: 2px solid #1e2021;
+            border-radius: 50px;
             margin: 2px 5px;
+            i {
+              color: $brightYellow;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
           }
         }
       }
@@ -105,9 +136,9 @@
       width: calc((80% / 2) - 30px);
       margin: 10px;
       max-height: 150px;
-      border: 4px solid #d64b4b;
+      border: 2.5px solid $black;
       border-radius: 20px;
-      background-color: #ebe7e7;
+      background-color: $yellow;
       .imageInfoContainer {
         display: flex;
         justify-content: space-between;
@@ -117,6 +148,7 @@
           width: 50%;
           p {
             font-size: 1.5rem;
+            color: $black;
           }
         }
         .imageList {
@@ -129,6 +161,7 @@
             margin: auto 0;
             width: 70px;
             height: 70px;
+            border-radius: 5px;
           }
         }
         .buttonContainer {
@@ -139,13 +172,20 @@
             width: 45px;
             height: 45px;
             border: 2px solid #1e2021;
+            border-radius: 50px;
             margin: 2px 5px;
+            i {
+              color: $brightYellow;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
           }
           .infoButtonPlaying {
             width: 45px;
             height: 45px;
             border: 2px solid #1e2021;
-            background-color: transparent;
+            border-radius: 50px;
+            background-color: $white;
             font-family: "Poppins", sans-serif;
             background-image: url("../../assets/soundBars.gif");
             background-size: 100px;
@@ -158,4 +198,24 @@
       }
     }
   }
+}
+
+.listViewContainer {
+  background: rgb(211, 38, 49);
+  background: -moz-linear-gradient(
+    180deg,
+    rgba(211, 38, 49, 1) 0%,
+    rgba(29, 28, 34, 0.9850533963585434) 90%
+  );
+  background: -webkit-linear-gradient(
+    180deg,
+    rgba(211, 38, 49, 1) 0%,
+    rgba(29, 28, 34, 0.9850533963585434) 90%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(211, 38, 49, 1) 0%,
+    rgba(29, 28, 34, 0.9850533963585434) 90%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }

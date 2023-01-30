@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 .loadingContainer {
     height: 100vh;
     width: 100vw;
@@ -18,6 +20,9 @@
         position: absolute;
         top: 95px;
         left: -35px;
+        h2 {
+            color: $white;
+        }
     }
 }
 

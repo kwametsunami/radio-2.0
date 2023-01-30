@@ -9,6 +9,11 @@
     p {
         a {
             color: $white;
+                    text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+          -0.5px -0.5px 0 #000;
+            &:hover {
+                color: $yellow;
+            }
         }
     }
 }

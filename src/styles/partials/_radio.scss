@@ -1,3 +1,4 @@
+@use "./variables" as *;
 .searchNav {
   position: fixed;
   top: 0;
@@ -18,11 +19,16 @@
         width: 70%;
         font-size: 2rem;
         padding: 15px;
+        background: $white;
       }
       .searchButton {
         width: 25%;
-        background-color: red;
-        border-radius: 0 5px 5px 0;
+        background-color: $yellow;
+        border-radius: 0 5px 5px 0; 
+        i {
+          font-size: 1.5rem;
+          color: $black;
+        }
       }
     }
   }
@@ -42,6 +48,18 @@
     flex-direction: column;
     text-align: center;
     width: 35%;
+    button {
+      width: 150px;
+      padding: 10px 0;
+      margin: 15px 0;
+      background: $yellow;
+      color: $black;
+      border-radius: 5px;
+      font-size: 2rem;
+      &:hover {
+        background: $white;
+      }
+    }
   }
   .badSearch {
     height: 100vh;
@@ -56,8 +74,12 @@
     flex-direction: column;
     text-align: center;
     width: 35%;
+    h2 {
+      color: $white;
+    }
     .genreSuggestion {
       text-transform: capitalize;
+      color: $yellow;
     }
   }
 }

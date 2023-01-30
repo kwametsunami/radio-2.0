@@ -4,7 +4,6 @@ import Radio from "./Radio";
 import Login from "./Login";
 import Footer from "./Footer";
 
-
 const genre = require("../data/genreData.json");
 
 const Search = () => {
@@ -45,7 +44,7 @@ const Search = () => {
     setSearch(value);
     setDisplay(false);
     setShowLanding(false);
-    setValue("")
+    setValue("");
   };
 
   const setHighQuality = (kbps) => {
@@ -83,9 +82,9 @@ const Search = () => {
         <div className="landingInfo">
           <nav className="landingNav">
             <Link to="/Login">
-            <button className="loginBtn" onClick={login}>
-              login
-            </button>
+              <button className="loginBtn" onClick={login}>
+                login
+              </button>
             </Link>
             <Link to="/About">
               <button className="aboutBtn">about</button>
@@ -98,15 +97,17 @@ const Search = () => {
             </div>
             <form className="searchForm" autoComplete="off" onSubmit={onSubmit}>
               <div className="searchContainer">
-                {/* <input
-                  type="checkbox"
-                  className="hqCheckbox"
-                  name="hq"
-                  id="hq"
-                  onChange={() => setHighQuality(bitrate)}
-                  value={bitrate}
-                />
-                <p>Show only high quality radio stations</p> */}
+                <div className="checkBox">
+                  <label htmlFor="checkbox">show only high quality stations</label>
+                  <input
+                    type="checkbox"
+                    className="hqCheckbox"
+                    name="hq"
+                    id="hq"
+                    onChange={() => setHighQuality(bitrate)}
+                    value={bitrate}
+                  />
+                </div>
                 <div className="searchInner">
                   <input
                     className="landingSearch"
@@ -120,7 +121,10 @@ const Search = () => {
                     autoFocus
                     required
                   />
-                  <button className="searchButton" onClick={() => onSearch(value)}>
+                  <button
+                    className="searchButton"
+                    onClick={() => onSearch(value)}
+                  >
                     <i className="fa-solid fa-magnifying-glass"></i>
                   </button>
                 </div>

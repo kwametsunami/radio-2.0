@@ -5,7 +5,7 @@ const About = () => {
     <section className="about">
       <nav className="aboutNav">
         <Link to="/">
-          <h2>tr1-fm</h2>
+          <h2 className="aboutLogo">tr1-fm</h2>
         </Link>
         <div className="aboutLogin">
           <Link to="Signup">

@@ -22,6 +22,8 @@
       background: transparent;
       color: $white;
       border: none;
+      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+        -0.5px -0.5px 0 #000;
       &:hover {
         color: $yellow;
       }
@@ -34,6 +36,8 @@
       background: transparent;
       color: $white;
       border: none;
+      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+        -0.5px -0.5px 0 #000;
       &:hover {
         color: $yellow;
       }
@@ -46,12 +50,22 @@
     .centerText {
       margin: 100px 0 0;
       text-align: center;
-      // .title {
-      //   text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-      //     -1px -1px 0 #000;
-      // }
+      .title {
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+        color: $white;
+        transition: 0.9s;
+        cursor: default;
+        &:hover {
+          color: $yellow;
+        }
+      }
       .greeting {
         margin: 2px 0 10px;
+        color: $white;
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+          cursor: default;
       }
     }
     .searchForm {
@@ -61,6 +75,21 @@
       .searchContainer {
         width: 100%;
         margin: 12.5px 0;
+        .checkBox {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          label {
+            font-size: 1.6rem;
+            color: $white;
+          }
+          input {
+            margin: 2px 5px 0;
+            width: 2.25%;
+            // height: 25px;
+            padding: 0;
+          }
+        }
         .searchInner {
           display: flex;
           font-size: 2rem;
@@ -70,9 +99,8 @@
             border-radius: 0 5px 5px 0;
             width: 100px;
             border: 2px solid $black;
-            border-left: none;
             i {
-              color: $red;
+              color: $black;
               font-size: 2rem;
             }
           }

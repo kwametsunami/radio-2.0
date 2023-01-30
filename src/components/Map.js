@@ -173,7 +173,7 @@ const Map = (props) => {
         <h3 className="returned">
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
-          stations matching {props.selectedGenre}
+          {props.quality === 96 ? "high quality " : null}stations matching <span id="searchTerm">{props.selectedGenre}</span>
         </h3>
         <div className="topControls">
           <div className="filterButtonContainer">

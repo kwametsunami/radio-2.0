@@ -38,16 +38,16 @@ const Dashboard = (props) => {
     <div className="dashboardContainer">
       <div className="dashboardLogo">
         <Link onClick={props.landingView} to="/">
-          <h2>tr1.fm</h2>
+          <h2>tr-1.fm</h2>
         </Link>
       </div>
       <div className="middleDashboard">
         {popularView ? (
           <div className="popularView">
             {!props.dashboardLoading ? (
-              <p id="popularTitle">
+              <h2 id="popularTitle">
                 top <span id="popularSearchTerm">{props.genreName} </span>stations
-              </p>
+              </h2>
             ) : null}
             {props.dashboardLoading ? <DashboardLoading /> : null}
             {props.dashboardLoading
@@ -90,7 +90,7 @@ const Dashboard = (props) => {
           </div>
         ) : (
           <div className="favContainer">
-            <h3>your favourited stations</h3>
+            <h2>your favourited stations</h2>
             {props.favourites.map((favStation) => {
               return (
                 <div className="favItems" key={`${favStation.favourite[0]}`}>

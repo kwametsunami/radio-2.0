@@ -22,13 +22,28 @@
     left: 60px;
     top: 0;
     margin-top: 25px;
+    a {
+      h2 {
+        transition: 0.9s;
+        color: $white;
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
   }
   .middleDashboard {
     overflow: hidden;
     .popularView {
       padding: 5px;
       #popularTitle {
-        color: $black;
+        color: $yellow;
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+          font-size: 1.75rem;
+          padding: 0 0 15px;
       }
       .popularResults {
         display: flex;
@@ -42,6 +57,7 @@
         img {
           width: 35px;
           height: 35px;
+          border-radius: 5px;
         }
         .popularText {
           padding: 4px;
@@ -65,7 +81,8 @@
             width: 35px;
             height: 35px;
             border: 2px solid #1e2021;
-            background-color: transparent;
+            border-radius: 50px;
+            background-color: $white;
             font-family: "Poppins", sans-serif;
             background-image: url("../../assets/soundBars.gif");
             background-size: 100px;
@@ -81,36 +98,49 @@
       }
     }
     .favContainer {
-      border: 2px solid black;
+      padding: 5px;
       overflow: hidden;
+      h2 {
+                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+          font-size: 1.75rem;
+      }
+      p {
+        color: $black;
+      }
       .favItems {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: orange;
-        text-align: center;
         padding: 2px;
+        &:hover {
+          background: $grey;
+          border-radius: 5px;
+        }
         .favText {
           width: 60%;
           word-wrap: break-word;
           p {
             margin: 0;
+            color: $black;
+            font-size: 1.5rem;
           }
         }
         img {
           height: 35px;
           width: 35px;
+          border-radius: 5px;
         }
         .favButtons {
           display: flex;
           button {
-            background: transparent;
-            border: 1px solid black;
-            margin: 0 4px;
-            border: 2px solid red;
+            border: 2px solid $black;
+            background: $white;
+            border-radius: 50px;
             width: 35px;
             height: 35px;
             margin: 2px 5px;
+            color: $red;
           }
         }
       }
@@ -132,9 +162,12 @@
         background: transparent;
         border: none;
         border-bottom: 2px solid transparent;
+        color: $white;
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         &:hover {
           border: none;
-          border-bottom: 2px solid $yellow;
+          border-bottom: 2px solid $white;
         }
       }
     }
@@ -142,14 +175,25 @@
       position: fixed;
       bottom: 290px;
       width: 200px;
-      height: 258px;
-      background: palegoldenrod;
+      height: 150px;
+      background: $white;
       display: flex;
       align-items: center;
+      border: 2px solid $black;
       .infoButton {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 1%;
+        right: 3%;
+        background: transparent;
+        border: none;
+        i {
+          color: $black;
+        }
+      }
+      p {
+        color: $black;
+        padding: 5px;
+        font-size: 1.5rem;
       }
     }
   }
@@ -167,11 +211,15 @@
       button {
         width: calc(100% / 3);
         background: transparent;
+        font-size: 1.7rem;
         border: none;
         border-bottom: 2px solid transparent;
+        color: $white;
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         &:hover {
           border: none;
-          border-bottom: 2px solid $yellow;
+          border-bottom: 2px solid $white;
           // border-radius: 5px;
         }
       }
@@ -181,7 +229,7 @@
       bottom: 35px;
       width: 200px;
       height: 258px;
-      background: palegoldenrod;
+      background: $white;
       display: flex;
       align-items: center;
       .infoButton {

@@ -5,6 +5,15 @@
   justify-content: space-between;
   align-items: center;
   margin: 10px 4px 0 50px;
+  .aboutLogo {
+    transition: 0.9s;
+    color: $white;
+            text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+          -0.5px -0.5px 0 #000;
+    &:hover {
+        color: $yellow;
+    }
+  }
   .aboutLogin {
     display: flex;
     flex-direction: row-reverse;
@@ -15,6 +24,13 @@
       font-size: 2rem;
       padding: 5px 10px;
       background: transparent;
+      border: none;
+      color: $white;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+          -0.5px -0.5px 0 #000;
+      &:hover {
+        color: $yellow;
+      }
     }
     .logInAbout {
       margin: 0 5px;
@@ -22,6 +38,13 @@
       font-size: 2rem;
       padding: 5px 10px;
       background: transparent;
+      border: none;
+      color: $white;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+          -0.5px -0.5px 0 #000;
+      &:hover {
+        color: $yellow;
+      }
     }
   }
 }
@@ -32,13 +55,28 @@
   align-items: center;
   margin-top: 120px;
   .aboutTitle {
-    font-size: 5rem;
+      font-size: 5rem;
+      color: $white;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+          -0.5px -0.5px 0 #000;
+  }
+  p {
+    color: $white;
   }
   .aboutGetStarted {
       margin: 0 5px;
-      width: 250px;
+      width: 150px;
       font-size: 2rem;
-      padding: 5px 10px;
+      padding: 10px 10px;
+      border-radius: 5px;
       background: transparent;
+      color: $black;
+      background: $yellow;
+      border: 2px solid $black;
+      &:hover {
+        background: $white;
+        color: $black;
+        border: 2px solid $black;
+      }
   }
 }

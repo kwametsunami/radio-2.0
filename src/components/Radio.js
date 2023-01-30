@@ -69,7 +69,6 @@ const Radio = (props) => {
         }
       })
       .catch((error) => {
-        alert("api may be down...");
         setBadResponse(true);
         setLoading(false);
       });
@@ -208,6 +207,7 @@ const Radio = (props) => {
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       mapView={switchView}
+                      quality={props.quality}
                       selectedGenre={props.genre}
                       setFavStationInfo={setFavStationInfo}
                     />
@@ -222,6 +222,7 @@ const Radio = (props) => {
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       listView={switchView}
+                      quality={props.quality}
                       selectedGenre={props.genre}
                       setFavStationInfo={setFavStationInfo}
                     />

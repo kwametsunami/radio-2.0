@@ -1,28 +1,31 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Footer from "./Footer";
+
 const Login = (props) => {
   return (
-    <div>
-      {props.showModal ? (
-        <button onClick={props.showModal}>close</button>
-      ) : (
-        <Link to="/">
-          <h2>logo</h2>
-        </Link>
-      )}
-      <h2>sign into your account</h2>
-      <form action="">
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <p>
-          Not registered? sign up
-          <Link to="/signup">here</Link>
-        </p>
+    <section className="login">
+      <nav className="loginNav">
+          <Link to="/">
+            <h1 className="title">tr-1.fm</h1>
+          </Link>
+      </nav>
+      <div className="loginContainer">
+        <h2>sign into your account</h2>
+        <form className="loginForm" action="">
+          <input type="email" placeholder="email" />
+          <input type="password" placeholder="password" />
+          <p className="signUpText">
+            Not registered? Sign up
+            <Link to="/signup"> here</Link>
+          </p>
 
-        <button>login!</button>
-      </form>
-    </div>
+          <button className="loginButton">login</button>
+        </form>
+      </div>
+      <Footer />
+    </section>
   );
 };
 

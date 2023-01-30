@@ -291,7 +291,7 @@ button {
 input {
   width: 100%;
   border: 2px solid #1a1a1c;
-  background: #ebebeb;
+  background: #f7f5ea;
   color: #1a1a1c;
   border-right: none;
   padding: 30px;
@@ -319,7 +319,7 @@ input {
 .dropdownRow {
   cursor: pointer;
   text-align: start;
-  background: #ebebeb;
+  background: #f7f5ea;
   border: 1px solid #1a1a1c;
 }
 .dropdownRow:last-of-type {
@@ -363,8 +363,9 @@ input {
   font-size: 2rem;
   padding: 5px 10px;
   background: transparent;
-  color: #ebebeb;
+  color: #f7f5ea;
   border: none;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .landing .landingNav .loginBtn:hover {
   color: #EDD05F;
@@ -375,8 +376,9 @@ input {
   font-size: 2rem;
   padding: 5px 10px;
   background: transparent;
-  color: #ebebeb;
+  color: #f7f5ea;
   border: none;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .landing .landingNav .aboutBtn:hover {
   color: #EDD05F;
@@ -390,8 +392,20 @@ input {
   margin: 100px 0 0;
   text-align: center;
 }
+.landing .centerContent .centerText .title {
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  color: #f7f5ea;
+  transition: 0.9s;
+  cursor: default;
+}
+.landing .centerContent .centerText .title:hover {
+  color: #EDD05F;
+}
 .landing .centerContent .centerText .greeting {
   margin: 2px 0 10px;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  cursor: default;
 }
 .landing .centerContent .searchForm {
   display: flex;
@@ -401,6 +415,20 @@ input {
 .landing .centerContent .searchForm .searchContainer {
   width: 100%;
   margin: 12.5px 0;
+}
+.landing .centerContent .searchForm .searchContainer .checkBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.landing .centerContent .searchForm .searchContainer .checkBox label {
+  font-size: 1.6rem;
+  color: #f7f5ea;
+}
+.landing .centerContent .searchForm .searchContainer .checkBox input {
+  margin: 2px 5px 0;
+  width: 2.25%;
+  padding: 0;
 }
 .landing .centerContent .searchForm .searchContainer .searchInner {
   display: flex;
@@ -412,10 +440,9 @@ input {
   border-radius: 0 5px 5px 0;
   width: 100px;
   border: 2px solid #1a1a1c;
-  border-left: none;
 }
 .landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
-  color: #D32631;
+  color: #1a1a1c;
   font-size: 2rem;
 }
 
@@ -424,6 +451,14 @@ input {
   justify-content: space-between;
   align-items: center;
   margin: 10px 4px 0 50px;
+}
+.aboutNav .aboutLogo {
+  transition: 0.9s;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.aboutNav .aboutLogo:hover {
+  color: #EDD05F;
 }
 .aboutNav .aboutLogin {
   display: flex;
@@ -436,6 +471,12 @@ input {
   font-size: 2rem;
   padding: 5px 10px;
   background: transparent;
+  border: none;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.aboutNav .aboutLogin .signUpAbout:hover {
+  color: #EDD05F;
 }
 .aboutNav .aboutLogin .logInAbout {
   margin: 0 5px;
@@ -443,6 +484,12 @@ input {
   font-size: 2rem;
   padding: 5px 10px;
   background: transparent;
+  border: none;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.aboutNav .aboutLogin .logInAbout:hover {
+  color: #EDD05F;
 }
 
 .aboutContent {
@@ -454,13 +501,167 @@ input {
 }
 .aboutContent .aboutTitle {
   font-size: 5rem;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.aboutContent p {
+  color: #f7f5ea;
 }
 .aboutContent .aboutGetStarted {
   margin: 0 5px;
-  width: 250px;
+  width: 150px;
   font-size: 2rem;
-  padding: 5px 10px;
+  padding: 10px 10px;
+  border-radius: 5px;
   background: transparent;
+  color: #1a1a1c;
+  background: #EDD05F;
+  border: 2px solid #1a1a1c;
+}
+.aboutContent .aboutGetStarted:hover {
+  background: #f7f5ea;
+  color: #1a1a1c;
+  border: 2px solid #1a1a1c;
+}
+
+.login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login .loginNav {
+  display: flex;
+  align-items: center;
+}
+.login .loginNav .title {
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  color: #f7f5ea;
+  transition: 0.9s;
+  cursor: pointer;
+}
+.login .loginNav .title:hover {
+  color: #EDD05F;
+}
+.login .loginContainer {
+  width: 35%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login .loginContainer .loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+.login .loginContainer .loginForm input {
+  width: 100%;
+  border: 2px solid #1a1a1c;
+  border-radius: 5px;
+  margin: 5px 0;
+  font-size: 2rem;
+}
+.login .loginContainer .loginForm p {
+  color: #f7f5ea;
+}
+.login .loginContainer .loginForm p a {
+  color: #EDD05F;
+}
+.login .loginContainer .loginForm .loginButton {
+  margin: 0 5px;
+  width: 150px;
+  font-size: 2rem;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: transparent;
+  color: #1a1a1c;
+  background: #EDD05F;
+  border: 2px solid #1a1a1c;
+}
+.login .loginContainer .loginForm .loginButton:hover {
+  background: #f7f5ea;
+  color: #1a1a1c;
+  border: 2px solid #1a1a1c;
+}
+.login .loginContainer h2 {
+  margin: 2px 0 10px;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  cursor: default;
+}
+
+.signUp {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signUp .signUpNav {
+  display: flex;
+  align-items: center;
+}
+.signUp .signUpNav .title {
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  color: #f7f5ea;
+  transition: 0.9s;
+  cursor: pointer;
+}
+.signUp .signUpNav .title:hover {
+  color: #EDD05F;
+}
+.signUp .signUpContainer {
+  width: 35%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signUp .signUpContainer .signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+.signUp .signUpContainer .signUpForm input {
+  width: 100%;
+  border: 2px solid #1a1a1c;
+  border-radius: 5px;
+  margin: 5px 0;
+  font-size: 2rem;
+}
+.signUp .signUpContainer .signUpForm p {
+  color: #f7f5ea;
+}
+.signUp .signUpContainer .signUpForm p a {
+  color: #EDD05F;
+}
+.signUp .signUpContainer .signUpForm .signupButton {
+  margin: 0 5px;
+  width: 150px;
+  font-size: 2rem;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: transparent;
+  color: #1a1a1c;
+  background: #EDD05F;
+  border: 2px solid #1a1a1c;
+}
+.signUp .signUpContainer .signUpForm .signupButton:hover {
+  background: #f7f5ea;
+  color: #1a1a1c;
+  border: 2px solid #1a1a1c;
+}
+.signUp .signUpContainer h2 {
+  margin: 2px 0 10px;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  cursor: default;
 }
 
 .searchNav {
@@ -486,11 +687,16 @@ input {
   width: 70%;
   font-size: 2rem;
   padding: 15px;
+  background: #f7f5ea;
 }
 .searchNav .searchNavContents .infoForm .searchButton {
   width: 25%;
-  background-color: red;
+  background-color: #EDD05F;
   border-radius: 0 5px 5px 0;
+}
+.searchNav .searchNavContents .infoForm .searchButton i {
+  font-size: 1.5rem;
+  color: #1a1a1c;
 }
 
 .resultsContainer .badResponse {
@@ -507,6 +713,18 @@ input {
   text-align: center;
   width: 35%;
 }
+.resultsContainer .badResponseContent button {
+  width: 150px;
+  padding: 10px 0;
+  margin: 15px 0;
+  background: #EDD05F;
+  color: #1a1a1c;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+.resultsContainer .badResponseContent button:hover {
+  background: #f7f5ea;
+}
 .resultsContainer .badSearch {
   height: 100vh;
   width: calc(100vw - 350px);
@@ -521,8 +739,12 @@ input {
   text-align: center;
   width: 35%;
 }
+.resultsContainer .badSearchContent h2 {
+  color: #f7f5ea;
+}
 .resultsContainer .badSearchContent .genreSuggestion {
   text-transform: capitalize;
+  color: #EDD05F;
 }
 
 .radioView {
@@ -559,6 +781,14 @@ input {
   top: 0;
   margin-top: 25px;
 }
+.dashboardContainer .dashboardLogo a h2 {
+  transition: 0.9s;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.dashboardContainer .dashboardLogo a h2:hover {
+  color: #EDD05F;
+}
 .dashboardContainer .middleDashboard {
   overflow: hidden;
 }
@@ -566,7 +796,10 @@ input {
   padding: 5px;
 }
 .dashboardContainer .middleDashboard .popularView #popularTitle {
-  color: #1a1a1c;
+  color: #EDD05F;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-size: 1.75rem;
+  padding: 0 0 15px;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults {
   display: flex;
@@ -581,6 +814,7 @@ input {
 .dashboardContainer .middleDashboard .popularView .popularResults img {
   width: 35px;
   height: 35px;
+  border-radius: 5px;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText {
   padding: 4px;
@@ -592,7 +826,7 @@ input {
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
   border: 2px solid #1a1a1c;
-  background: #ebebeb;
+  background: #f7f5ea;
   border-radius: 50px;
   width: 35px;
   height: 35px;
@@ -603,7 +837,8 @@ input {
   width: 35px;
   height: 35px;
   border: 2px solid #1e2021;
-  background-color: transparent;
+  border-radius: 50px;
+  background-color: #f7f5ea;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
   background-size: 100px;
@@ -616,16 +851,25 @@ input {
   background: transparent;
 }
 .dashboardContainer .middleDashboard .favContainer {
-  border: 2px solid black;
+  padding: 5px;
   overflow: hidden;
+}
+.dashboardContainer .middleDashboard .favContainer h2 {
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-size: 1.75rem;
+}
+.dashboardContainer .middleDashboard .favContainer p {
+  color: #1a1a1c;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: orange;
-  text-align: center;
   padding: 2px;
+}
+.dashboardContainer .middleDashboard .favContainer .favItems:hover {
+  background: #C4C2C2;
+  border-radius: 5px;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favText {
   width: 60%;
@@ -633,22 +877,25 @@ input {
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favText p {
   margin: 0;
+  color: #1a1a1c;
+  font-size: 1.5rem;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems img {
   height: 35px;
   width: 35px;
+  border-radius: 5px;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favButtons {
   display: flex;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favButtons button {
-  background: transparent;
-  border: 1px solid black;
-  margin: 0 4px;
-  border: 2px solid red;
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
   width: 35px;
   height: 35px;
   margin: 2px 5px;
+  color: #D32631;
 }
 .dashboardContainer .infoContainer {
   display: flex;
@@ -668,24 +915,37 @@ input {
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .dashboardContainer .infoContainer .infoButtons button:hover {
   border: none;
-  border-bottom: 2px solid #EDD05F;
+  border-bottom: 2px solid #f7f5ea;
 }
 .dashboardContainer .infoContainer .instructions {
   position: fixed;
   bottom: 290px;
   width: 200px;
-  height: 258px;
-  background: palegoldenrod;
+  height: 150px;
+  background: #f7f5ea;
   display: flex;
   align-items: center;
+  border: 2px solid #1a1a1c;
 }
 .dashboardContainer .infoContainer .instructions .infoButton {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1%;
+  right: 3%;
+  background: transparent;
+  border: none;
+}
+.dashboardContainer .infoContainer .instructions .infoButton i {
+  color: #1a1a1c;
+}
+.dashboardContainer .infoContainer .instructions p {
+  color: #1a1a1c;
+  padding: 5px;
+  font-size: 1.5rem;
 }
 .dashboardContainer .infoContainerBottom {
   display: flex;
@@ -703,19 +963,22 @@ input {
 .dashboardContainer .infoContainerBottom .infoButtons button {
   width: 33.3333333333%;
   background: transparent;
+  font-size: 1.7rem;
   border: none;
   border-bottom: 2px solid transparent;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .dashboardContainer .infoContainerBottom .infoButtons button:hover {
   border: none;
-  border-bottom: 2px solid #EDD05F;
+  border-bottom: 2px solid #f7f5ea;
 }
 .dashboardContainer .infoContainerBottom .instructions {
   position: fixed;
   bottom: 35px;
   width: 200px;
   height: 258px;
-  background: palegoldenrod;
+  background: #f7f5ea;
   display: flex;
   align-items: center;
 }
@@ -747,6 +1010,9 @@ input {
   top: 95px;
   left: -35px;
 }
+.loadingPage .loadingText h2 {
+  color: #f7f5ea;
+}
 
 .beatloader {
   margin-top: 200px;
@@ -756,6 +1022,9 @@ input {
   width: 100%;
   height: 100vh;
   z-index: 0;
+  background: rgb(211, 38, 49);
+  background: linear-gradient(180deg, rgb(211, 38, 49) 0%, rgba(29, 28, 34, 0.9850533964) 90%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }
 
 .mapFilters {
@@ -767,7 +1036,7 @@ input {
   align-items: center;
   justify-content: center;
   z-index: 2;
-  background: red;
+  background: transparent;
   width: 20%;
   padding: 12px;
 }
@@ -775,9 +1044,13 @@ input {
   font-size: 2rem;
   text-align: center;
   margin: 2px 0 15px;
+  color: #1a1a1c;
 }
 .mapFilters .returned h3 {
   margin: 0;
+}
+.mapFilters .returned #searchTerm {
+  color: #1a1a1c;
 }
 .mapFilters .topControls {
   display: flex;
@@ -787,23 +1060,37 @@ input {
 }
 .mapFilters .topControls .filterButtonContainer .randomStation {
   width: 50px;
-  padding: 5px 10px;
-  margin: 0 6px;
+  padding: 10px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
+}
+.mapFilters .topControls .filterButtonContainer .randomStation:hover {
+  background: #C4C2C2;
 }
 .mapFilters .topControls .filterButtonContainer .randomStation i {
   font-size: 2rem;
+  color: #D32631;
 }
 .mapFilters .topControls .filterButtonContainer .listButton {
   width: 50px;
-  padding: 5px 10px;
-  margin: 0 6px;
+  padding: 10px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
+}
+.mapFilters .topControls .filterButtonContainer .listButton:hover {
+  background: #C4C2C2;
 }
 .mapFilters .topControls .filterButtonContainer .listButton i {
   font-size: 2rem;
+  color: #D32631;
 }
 .mapFilters .topControls .selectDropdown select {
-  padding: 7px 10px;
+  padding: 10px 10px;
   font-size: 1.5rem;
+  color: #1a1a1c;
+  background-color: #f7f5ea;
+  border: 2px solid #1a1a1c;
+  border-radius: 5px;
 }
 
 .actualMap {
@@ -819,7 +1106,11 @@ input {
   flex-direction: column;
   justify-content: center;
 }
+.actualMap .leaflet-popup-content .stationDetails .stationText .stationCountry {
+  text-transform: capitalize;
+}
 .actualMap .leaflet-popup-content .stationDetails .stationText p {
+  color: #1a1a1c;
   margin: 5px 0;
 }
 .actualMap .leaflet-popup-content .stationDetails .icon {
@@ -830,6 +1121,7 @@ input {
   width: 100%;
   max-height: 100px;
   max-width: 100px;
+  border-radius: 5px;
 }
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer {
   display: flex;
@@ -838,7 +1130,8 @@ input {
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButton {
   width: 45px;
   height: 45px;
-  border: 2px solid #1e2021;
+  border: 2px solid #1a1a1c;
+  border-radius: 50px;
   color: #d64b4b;
   background-color: transparent;
   align-self: center;
@@ -848,6 +1141,7 @@ input {
   width: 45px;
   height: 45px;
   border: 2px solid #1e2021;
+  border-radius: 50px;
   background-color: transparent;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
@@ -862,7 +1156,13 @@ input {
   width: 45px;
   height: 45px;
   border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: transparent;
   margin: 2px 5px;
+}
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite i {
+  color: #FFE900;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 
 .stationList {
@@ -879,6 +1179,8 @@ input {
 }
 .stationList .listFilters .returned {
   font-size: 3rem;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .stationList .listFilters .topControls {
   display: flex;
@@ -888,24 +1190,37 @@ input {
   margin-bottom: 10px;
 }
 .stationList .listFilters .topControls .filterButtonContainer .randomStation {
-  width: 100px;
-  padding: 15px 22.5px;
-  margin: 0 10px;
+  width: 50px;
+  padding: 10px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
 }
 .stationList .listFilters .topControls .filterButtonContainer .randomStation i {
   font-size: 2rem;
+  color: #D32631;
+}
+.stationList .listFilters .topControls .filterButtonContainer .randomStation:hover {
+  background: #C4C2C2;
 }
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton {
-  width: 100px;
-  padding: 15px 22.5px;
-  margin: 0 10px;
+  width: 50px;
+  padding: 10px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
 }
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton i {
   font-size: 2rem;
+  color: #D32631;
+}
+.stationList .listFilters .topControls .filterButtonContainer .mapViewButton:hover {
+  background: #C4C2C2;
 }
 .stationList .listFilters .topControls .selectDropdown select {
-  padding: 15px 22.5px;
+  padding: 10px 10px;
   font-size: 1.5rem;
+  color: #1a1a1c !important;
+  border: 2px solid #1a1a1c;
+  border-radius: 5px;
 }
 .stationList .stationListContainer {
   display: flex;
@@ -919,7 +1234,7 @@ input {
   width: calc(40% - 30px);
   max-height: 150px;
   margin: 10px;
-  border: 4px solid #09a9f4;
+  border: 2.5px solid #1a1a1c;
   border-radius: 20px;
   background-color: #ebe7e7;
 }
@@ -932,8 +1247,12 @@ input {
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
   width: 50%;
 }
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .information .stationCountry {
+  text-transform: capitalize;
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information p {
   font-size: 1.5rem;
+  color: #1a1a1c;
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
   width: 25%;
@@ -945,6 +1264,7 @@ input {
   margin: auto 0;
   width: 70px;
   height: 70px;
+  border-radius: 5px;
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer {
   display: flex;
@@ -955,7 +1275,8 @@ input {
   width: 45px;
   height: 45px;
   border: 2px solid #1e2021;
-  color: #d64b4b;
+  border-radius: 50px;
+  color: #D32631;
   background-color: transparent;
   margin: 2px 5px;
 }
@@ -963,16 +1284,21 @@ input {
   width: 45px;
   height: 45px;
   border: 2px solid #1e2021;
+  border-radius: 50px;
   margin: 2px 5px;
+}
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite i {
+  color: #FFE900;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .stationList .stationListContainer .stationInfoPlayingList {
   display: flex;
   width: calc(40% - 30px);
   margin: 10px;
   max-height: 150px;
-  border: 4px solid #d64b4b;
+  border: 2.5px solid #1a1a1c;
   border-radius: 20px;
-  background-color: #ebe7e7;
+  background-color: #EDD05F;
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer {
   display: flex;
@@ -985,6 +1311,7 @@ input {
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
   font-size: 1.5rem;
+  color: #1a1a1c;
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
   width: 25%;
@@ -997,6 +1324,7 @@ input {
   margin: auto 0;
   width: 70px;
   height: 70px;
+  border-radius: 5px;
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer {
   display: flex;
@@ -1007,13 +1335,19 @@ input {
   width: 45px;
   height: 45px;
   border: 2px solid #1e2021;
+  border-radius: 50px;
   margin: 2px 5px;
+}
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
+  color: #FFE900;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .infoButtonPlaying {
   width: 45px;
   height: 45px;
   border: 2px solid #1e2021;
-  background-color: transparent;
+  border-radius: 50px;
+  background-color: #f7f5ea;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
   background-size: 100px;
@@ -1021,6 +1355,12 @@ input {
   background-position: center;
   display: inline-block;
   margin: 2px 5px;
+}
+
+.listViewContainer {
+  background: rgb(211, 38, 49);
+  background: linear-gradient(180deg, rgb(211, 38, 49) 0%, rgba(29, 28, 34, 0.9850533964) 90%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }
 
 .radio {
@@ -1031,6 +1371,7 @@ input {
   display: flex;
   justify-content: flex-end;
   background: #D32631;
+  border-top: 1px solid #1a1a1c;
 }
 .radio .radioPlayer {
   width: 56%;
@@ -1043,11 +1384,11 @@ input {
 }
 
 .rhap_button-clear {
-  color: #EDD05F !important;
+  color: #f7f5ea !important;
 }
 
 .rhap_volume-indicator {
-  background: #EDD05F !important;
+  background: #f7f5ea !important;
 }
 
 .rhap_current-time {
@@ -1074,12 +1415,13 @@ input {
   position: absolute;
   bottom: -8%;
   left: 0;
-  width: 600px;
+  max-width: 200px;
 }
 .radioInfo img {
   width: 200px;
   height: 200px;
   background: #D32631;
+  border-bottom: 1px solid #1a1a1c;
 }
 .radioInfo .radioInfoTitleContainer {
   width: 100%;
@@ -1093,7 +1435,8 @@ input {
   white-space: nowrap;
   overflow: hidden;
   font-size: 2rem;
-  color: #1a1a1c;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 
 .footer {
@@ -1104,7 +1447,11 @@ input {
   text-align: center;
 }
 .footer p a {
-  color: #ebebeb;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.footer p a:hover {
+  color: #EDD05F;
 }
 
 .audio-visualizer {

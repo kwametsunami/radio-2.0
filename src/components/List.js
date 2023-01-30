@@ -112,6 +112,7 @@ const List = (props) => {
         <h3 className="returned">
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
+          {props.quality === 96 ? "high quality " : null}
           stations matching {props.selectedGenre}
         </h3>
         <div className="topControls">
@@ -142,155 +143,157 @@ const List = (props) => {
         </div>
       </div>
       <div className="stationListContainer">
-      {filterTrue
-        ? filteredStations.map((stationDetails) => {
-            return (
-              <div
-                className={
-                  radioUrl === stationDetails.urlResolved
-                    ? "stationInfoPlayingList"
-                    : "stationInfoList"
-                }
-                key={stationDetails.id}
-              >
-                <div className="imageInfoContainer">
-                  <div className="imageList">
-                    <img
-                      src={stationDetails.favicon}
-                      alt={stationDetails.name}
-                      className="icon"
-                      onError={setDefaultSrc}
-                    />
-                  </div>
+        {filterTrue
+          ? filteredStations.map((stationDetails) => {
+              return (
+                <div
+                  className={
+                    radioUrl === stationDetails.urlResolved
+                      ? "stationInfoPlayingList"
+                      : "stationInfoList"
+                  }
+                  key={stationDetails.id}
+                >
+                  <div className="imageInfoContainer">
+                    <div className="imageList">
+                      <img
+                        src={stationDetails.favicon}
+                        alt={stationDetails.name}
+                        className="icon"
+                        onError={setDefaultSrc}
+                      />
+                    </div>
 
-                  <div className="information">
-                    <p className="stationName">
-                      {stationDetails.name
-                        .replace(/_/g, "")
-                        .replace(/-/g, " ")
-                        .replace(/  +/, " ")
-                        .replace(/\//g, "")}
-                    </p>
-                    <p className="stationCountry">
-                      {stationDetails.state !== ""
-                        ? `${stationDetails.state}, `
-                        : null}{" "}
-                      {stationDetails.country === "The United States Of America"
-                        ? "USA"
-                        : stationDetails.country}
-                    </p>
-                  </div>
+                    <div className="information">
+                      <p className="stationName">
+                        {stationDetails.name
+                          .replace(/_/g, "")
+                          .replace(/-/g, " ")
+                          .replace(/  +/, " ")
+                          .replace(/\//g, "")}
+                      </p>
+                      <p className="stationCountry">
+                        {stationDetails.state !== ""
+                          ? `${stationDetails.state}, `
+                          : null}{" "}
+                        {stationDetails.country ===
+                        "The United States Of America"
+                          ? "USA"
+                          : stationDetails.country}
+                      </p>
+                    </div>
 
-                  <div className="buttonContainer" value={stationDetails}>
-                    <button
-                      className={
-                        radioUrl === stationDetails.urlResolved ||
+                    <div className="buttonContainer" value={stationDetails}>
+                      <button
+                        className={
+                          radioUrl === stationDetails.urlResolved ||
+                          props.stationCheck
+                            ? "infoButtonPlaying"
+                            : "infoButton"
+                        }
+                        value={stationDetails.urlResolved}
+                        onClick={radioSelect}
+                        id={stationDetails.name}
+                      >
+                        {radioUrl === stationDetails.urlResolved ||
                         props.stationCheck
-                          ? "infoButtonPlaying"
-                          : "infoButton"
-                      }
-                      value={stationDetails.urlResolved}
-                      onClick={radioSelect}
-                      id={stationDetails.name}
-                    >
-                      {radioUrl === stationDetails.urlResolved ||
-                      props.stationCheck
-                        ? ""
-                        : "▶"}
-                    </button>
-                    <button
-                      className="favourite"
-                      onClick={favourite}
-                      value={[
-                        `${stationDetails.id}`,
-                        `${stationDetails.name}`,
-                        `${stationDetails.urlResolved}`,
-                        `${stationDetails.favicon}`,
-                        `${stationDetails.state}`,
-                        `${stationDetails.country}`,
-                      ]}
-                    >
-                      <i className="fa-solid fa-star"></i>
-                    </button>
+                          ? ""
+                          : "▶"}
+                      </button>
+                      <button
+                        className="favourite"
+                        onClick={favourite}
+                        value={[
+                          `${stationDetails.id}`,
+                          `${stationDetails.name}`,
+                          `${stationDetails.urlResolved}`,
+                          `${stationDetails.favicon}`,
+                          `${stationDetails.state}`,
+                          `${stationDetails.country}`,
+                        ]}
+                      >
+                        <i className="fa-solid fa-star"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })
-        : props.stations.map((stationDetails) => {
-            return (
-              <div
-                className={
-                  radioUrl === stationDetails.urlResolved
-                    ? "stationInfoPlayingList"
-                    : "stationInfoList"
-                }
-                key={stationDetails.id}
-              >
-                <div className="imageInfoContainer">
-                  <div className="imageList">
-                    <img
-                      src={stationDetails.favicon}
-                      alt={stationDetails.name}
-                      className="icon"
-                      onError={setDefaultSrc}
-                    />
-                  </div>
+              );
+            })
+          : props.stations.map((stationDetails) => {
+              return (
+                <div
+                  className={
+                    radioUrl === stationDetails.urlResolved
+                      ? "stationInfoPlayingList"
+                      : "stationInfoList"
+                  }
+                  key={stationDetails.id}
+                >
+                  <div className="imageInfoContainer">
+                    <div className="imageList">
+                      <img
+                        src={stationDetails.favicon}
+                        alt={stationDetails.name}
+                        className="icon"
+                        onError={setDefaultSrc}
+                      />
+                    </div>
 
-                  <div className="information">
-                    <p className="stationName">
-                      {stationDetails.name
-                        .replace(/_/g, "")
-                        .replace(/-/g, " ")
-                        .replace(/  +/, " ")
-                        .replace(/\//g, "")}
-                    </p>
-                    <p className="stationCountry">
-                      {stationDetails.state !== ""
-                        ? `${stationDetails.state}, `
-                        : null}
-                      {stationDetails.country === "The United States Of America"
-                        ? "USA"
-                        : stationDetails.country}
-                    </p>
-                  </div>
+                    <div className="information">
+                      <p className="stationName">
+                        {stationDetails.name
+                          .replace(/_/g, "")
+                          .replace(/-/g, " ")
+                          .replace(/  +/, " ")
+                          .replace(/\//g, "")}
+                      </p>
+                      <p className="stationCountry">
+                        {stationDetails.state !== ""
+                          ? `${stationDetails.state}, `
+                          : null}
+                        {stationDetails.country ===
+                        "The United States Of America"
+                          ? "USA"
+                          : stationDetails.country}
+                      </p>
+                    </div>
 
-                  <div className="buttonContainer" value={stationDetails}>
-                    <button
-                      className={
-                        radioUrl === stationDetails.urlResolved ||
+                    <div className="buttonContainer" value={stationDetails}>
+                      <button
+                        className={
+                          radioUrl === stationDetails.urlResolved ||
+                          props.stationCheck
+                            ? "infoButtonPlaying"
+                            : "infoButton"
+                        }
+                        value={stationDetails.urlResolved}
+                        onClick={radioSelect}
+                        id={stationDetails.name}
+                      >
+                        {radioUrl === stationDetails.urlResolved ||
                         props.stationCheck
-                          ? "infoButtonPlaying"
-                          : "infoButton"
-                      }
-                      value={stationDetails.urlResolved}
-                      onClick={radioSelect}
-                      id={stationDetails.name}
-                    >
-                      {radioUrl === stationDetails.urlResolved ||
-                      props.stationCheck
-                        ? ""
-                        : "▶"}
-                    </button>
-                    <button
-                      className="favourite"
-                      onClick={favourite}
-                      value={[
-                        `${stationDetails.id}`,
-                        `${stationDetails.name}`,
-                        `${stationDetails.urlResolved}`,
-                        `${stationDetails.favicon}`,
-                        `${stationDetails.state}`,
-                        `${stationDetails.country}`,
-                      ]}
-                    >
-                      <i className="fa-solid fa-star"></i>
-                    </button>
+                          ? ""
+                          : "▶"}
+                      </button>
+                      <button
+                        className="favourite"
+                        onClick={favourite}
+                        value={[
+                          `${stationDetails.id}`,
+                          `${stationDetails.name}`,
+                          `${stationDetails.urlResolved}`,
+                          `${stationDetails.favicon}`,
+                          `${stationDetails.state}`,
+                          `${stationDetails.country}`,
+                        ]}
+                      >
+                        <i className="fa-solid fa-star"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
       </div>
     </section>
   );
