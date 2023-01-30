@@ -2,8 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Radio from "./Radio";
 import Login from "./Login";
-
-import Checkbox from "react-custom-checkbox";
+import Footer from "./Footer";
 
 
 const genre = require("../data/genreData.json");
@@ -82,8 +81,8 @@ const Search = () => {
   return (
     <section className="landing">
       {showLanding ? (
-        <div className="landingInfo wrapper">
-          <nav className="landingNav">
+        <div className="landingInfo">
+          <nav className="landingNav wrapper">
             <button className="loginBtn" onClick={login}>
               login
             </button>
@@ -119,6 +118,7 @@ const Search = () => {
                     onChange={onChange}
                     onClick={() => setDisplay(!display)}
                     autoFocus
+                    required
                   />
                   <button class="searchButton" onClick={() => onSearch(value)}>
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -156,6 +156,7 @@ const Search = () => {
               </div>
             </form>
           </div>
+          <Footer />
         </div>
       ) : null}
       {search ? (

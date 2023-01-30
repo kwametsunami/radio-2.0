@@ -1,16 +1,11 @@
 import "../src/styles/styles.scss"
 import { Route, Routes } from "react-router-dom"
 
-import Landing from "./components/Landing";
+import Search from "./components/Search";
 import About from "./components/About";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NotFound from "./components/NotFound";
-
-import Test from "./components/Test";
-
-import Nice from "./components/Nice";
-
 
 function App() {
   const styles = {
@@ -49,14 +44,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Search />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/About" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* <Nice /> */}
-      {/* <Landing /> */}
     </div>
   );
 }

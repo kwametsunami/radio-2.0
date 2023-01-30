@@ -20,6 +20,8 @@ const Radio = (props) => {
   const [loading, setLoading] = useState(false);
   const [favStationInfo, setFavStationInfo] = useState([])
 
+  const [popular, setPopular] = useState([])
+
   const switchView = () => {
     setListView(!listView);
   };
@@ -69,6 +71,30 @@ const Radio = (props) => {
         setBadResponse(true);
         setLoading(false);
       });
+
+      const sort_by = (field, reverse, primer) => {
+        const key = primer
+          ? function (x) {
+              return primer(x[field]);
+            }
+          : function (x) {
+              return x[field];
+            };
+
+        reverse = !reverse ? 1 : -1;
+
+        return function (a, b) {
+          return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
+        };
+      };
+
+      setupApi("all").then((data) => {
+
+        let dataArray = data.slice(0, 5)
+
+        setPopular(dataArray.sort(sort_by('votes', true, parseInt)))
+      })
+
   }, [props.genre, props.quality]);
 
   const randomGenre = () => {
@@ -115,9 +141,10 @@ const Radio = (props) => {
               onChange={props.onChange}
               value={props.value}
               onSubmit={props.onSubmit}
+              required
             />
             <button class="searchButton">
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
         </div>
@@ -128,6 +155,11 @@ const Radio = (props) => {
             landingView={props.landingView}
             favourites={favStationInfo}
             setFavourites={setFavStationInfo}
+            popular={popular}
+            sendToRadio={sendToRadio}
+            sendToRadioName={sendToRadioName}
+            sendImage={sendImage}
+            stationUrl={stationUrl}
           />
         </div>
         {loading ? (

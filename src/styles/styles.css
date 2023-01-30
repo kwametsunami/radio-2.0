@@ -280,6 +280,11 @@ input {
   width: 100vw;
   display: flex;
 }
+.landing .landingInfo {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
 .landing .landingNav {
   display: flex;
   align-items: center;
@@ -354,7 +359,8 @@ input {
 
 .dashboard {
   height: 100vh;
-  width: 13vw;
+  width: 200px;
+  min-width: 200px;
   background-color: tomato;
   display: flex;
   flex-direction: column;
@@ -365,34 +371,55 @@ input {
 
 .dashboardContainer {
   background: yellow;
-  height: 72%;
+  height: 69%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.dashboardContainer .favContainer {
+.dashboardContainer .middleDashboard {
+  overflow: hidden;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults img {
+  width: 35px;
+  height: 35px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularText {
+  padding: 4px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
+  margin: 0;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons button {
+  background: transparent;
+}
+.dashboardContainer .middleDashboard .favContainer {
   border: 2px solid black;
 }
-.dashboardContainer .favContainer .favItems {
+.dashboardContainer .middleDashboard .favContainer .favItems {
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid orange;
 }
-.dashboardContainer .favContainer .favItems .favText {
+.dashboardContainer .middleDashboard .favContainer .favItems .favText {
   padding: 4px;
 }
-.dashboardContainer .favContainer .favItems .favText p {
+.dashboardContainer .middleDashboard .favContainer .favItems .favText p {
   margin: 0;
 }
-.dashboardContainer .favContainer .favItems img {
+.dashboardContainer .middleDashboard .favContainer .favItems img {
   height: 35px;
   width: 35px;
 }
-.dashboardContainer .favContainer .favItems .favButtons {
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons {
   display: flex;
 }
-.dashboardContainer .favContainer .favItems .favButtons button {
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons button {
   background: transparent;
   border: 1px solid black;
   margin: 0 4px;
@@ -403,6 +430,11 @@ input {
 }
 .dashboardContainer .infoContainer .infoButtons {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.dashboardContainer .infoContainer .infoButtons button {
+  width: 33.3333333333%;
 }
 
 .loadingContainer {
@@ -653,16 +685,26 @@ input {
   position: absolute;
   bottom: -5%;
   left: 0;
-  width: 20%;
+  width: 50%;
 }
 .radioInfo img {
-  width: 175px;
-  height: 175px;
+  width: 200px;
+  height: 200px;
   border: 2px solid green;
   background: black;
 }
-.radioInfo .radioInfoTitle {
-  margin-left: 25px;
+.radioInfo .radioInfoTitleContainer {
+  width: 100%;
+}
+.radioInfo .radioInfoTitleContainer .radioInfoTitle {
+  margin-left: 14px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  background: green;
+  width: 100vw;
   text-align: center;
 }
 

@@ -1,6 +1,7 @@
 .dashboard {
   height: 100vh;
-  width: 13vw;
+  width: 200px;
+  min-width: 200px;
   background-color: tomato;
   display: flex;
   flex-direction: column;
@@ -10,43 +11,73 @@
 }
 
 .dashboardContainer {
-    background: yellow;
-    height: 72%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .favContainer {
-        border: 2px solid black;
-        .favItems {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid orange;
-            .favText {
-                padding: 4px;
-                p {
-                    margin: 0;
-                }
-            }
-            img {
-                height: 35px;
-                width: 35px;
-            }
-            .favButtons {
-                display: flex;
-                button {
-                    background: transparent;
-                    border: 1px solid black;
-                    margin: 0 4px;
-                }
-            }
-        }
-    }
-    .infoContainer {
+  background: yellow;
+  height: 69%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .middleDashboard {
+    overflow: hidden;
+    .popularView {
+      .popularResults {
         display: flex;
-        justify-content: center;
-        .infoButtons {
-            display: flex;
+        align-items: center;
+        justify-content: space-between;
+        img {
+          width: 35px;
+          height: 35px;
         }
+        .popularText {
+          padding: 4px;
+          p {
+            margin: 0;
+          }
+        }
+        .popularButtons {
+            button{
+                background: transparent;
+            }
+        }
+      }
     }
+    .favContainer {
+      border: 2px solid black;
+      .favItems {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid orange;
+        .favText {
+          padding: 4px;
+          p {
+            margin: 0;
+          }
+        }
+        img {
+          height: 35px;
+          width: 35px;
+        }
+        .favButtons {
+          display: flex;
+          button {
+            background: transparent;
+            border: 1px solid black;
+            margin: 0 4px;
+          }
+        }
+      }
+    }
+  }
+  .infoContainer {
+    display: flex;
+    justify-content: center;
+    .infoButtons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      button {
+        width: calc(100% / 3)
+      }
+    }
+  }
 }

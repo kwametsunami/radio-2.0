@@ -171,9 +171,9 @@ const Map = (props) => {
     <section className="resultContainer">
       <div className="mapFilters">
         <h3 className="returned">
-          returned{" "}
+          Returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
-          stations matching {props.selectedGenre}
+          stations matching {props.selectedGenre.charAt(0).toUpperCase() + props.selectedGenre.slice(1)}
         </h3>
         <div className="topControls">
           <div className="filterButtonContainer">
@@ -209,8 +209,9 @@ const Map = (props) => {
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}
+          ZoomControl={false}
         >
-          <h2>yes hello</h2>
+          {/* <ZoomControl  position="topright"/> */}
           <TileLayer
             url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"
             attribution={`<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>`}

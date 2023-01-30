@@ -33,12 +33,14 @@ const Player = (props) => {
     <section className="radio">
       <div className="radioPlayer">
         <div className="radioInfo">
-        <img
-          src={props.stationImage}
-          alt={props.stationName}
-          onError={setDefaultSrc}
-        />
-        <h3 className="radioInfoTitle">{formattedTitle}</h3>
+          <img
+            src={props.stationImage}
+            alt={props.stationName}
+            onError={setDefaultSrc}
+          />
+          <div className="radioInfoTitleContainer">
+            <h3 className="radioInfoTitle">{formattedTitle}</h3>
+          </div>
         </div>
         <AudioPlayer
           autoPlay

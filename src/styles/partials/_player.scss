@@ -37,16 +37,18 @@
     position: absolute;
     bottom: -5%;
     left: 0;
-    width: 20%;
+    width: 50%;
     img {
-        width: 175px;
-        height: 175px;
+        width: 200px;
+        height: 200px;
         border: 2px solid green;
         background: black;
     }
-    .radioInfoTitle {
-        margin-left: 25px;
-        text-align: center;
+    .radioInfoTitleContainer {
+        width: 100%;
+        .radioInfoTitle {
+            margin-left: 14px;
+        }
     }
 }
 
