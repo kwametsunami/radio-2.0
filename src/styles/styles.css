@@ -1014,11 +1014,22 @@ input {
   background: #f7f5ea;
   display: flex;
   align-items: center;
+  border: 2px solid #1a1a1c;
 }
 .dashboardContainer .infoContainerBottom .instructions .infoButton {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1%;
+  right: 3%;
+  background: transparent;
+  border: none;
+}
+.dashboardContainer .infoContainerBottom .instructions .infoButton i {
+  color: #1a1a1c;
+}
+.dashboardContainer .infoContainerBottom .instructions p {
+  color: #1a1a1c;
+  padding: 5px;
+  font-size: 1.5rem;
 }
 
 .loadingContainer {
@@ -1400,6 +1411,7 @@ input {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 60px;
   z-index: 1;
   display: flex;
   justify-content: flex-end;
@@ -1409,6 +1421,7 @@ input {
 .radio .radioPlayer {
   width: 56%;
   z-index: 1;
+  padding: 10px 0;
 }
 
 .rhap_container {
@@ -1475,15 +1488,46 @@ input {
   position: fixed;
   bottom: 0;
   background: #D32631;
-  width: 100%;
-  text-align: center;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
-.footer p a {
+.footer .footerText p a {
   color: #f7f5ea;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
-.footer p a:hover {
+.footer .footerText p a:hover {
   color: #EDD05F;
+}
+
+.danceParty {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../../assets/clubBackground.jpg);
+  background-size: 100vw 100vh;
+}
+.danceParty .dancePartyContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  overflow-y: hidden;
+}
+.danceParty h3 {
+  font-size: 5rem;
+  color: #f7f5ea;
+}
+.danceParty h3 a {
+  color: #f7f5ea;
+  text-decoration: underline;
+}
+.danceParty .danceBuddies {
+  margin-top: 150px;
+}
+.danceParty .danceBuddies img {
+  width: 150px;
 }
 
 .audio-visualizer {

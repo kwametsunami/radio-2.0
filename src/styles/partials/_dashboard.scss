@@ -42,8 +42,8 @@
         color: $yellow;
         text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
           0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-          font-size: 1.75rem;
-          padding: 0 0 15px;
+        font-size: 1.75rem;
+        padding: 0 0 15px;
       }
       .popularResults {
         display: flex;
@@ -101,9 +101,9 @@
       padding: 5px;
       overflow: hidden;
       h2 {
-                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
           0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-          font-size: 1.75rem;
+        font-size: 1.75rem;
       }
       p {
         color: $black;
@@ -232,10 +232,21 @@
       background: $white;
       display: flex;
       align-items: center;
+      border: 2px solid $black;
       .infoButton {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 1%;
+        right: 3%;
+        background: transparent;
+        border: none;
+        i {
+          color: $black;
+        }
+      }
+      p {
+        color: $black;
+        padding: 5px;
+        font-size: 1.5rem;
       }
     }
   }

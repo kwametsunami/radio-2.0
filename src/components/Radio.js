@@ -20,8 +20,8 @@ const Radio = (props) => {
   const [loading, setLoading] = useState(false);
   const [dashboardLoading, setDashboardLoading] = useState(false);
   const [favStationInfo, setFavStationInfo] = useState([]);
-
   const [popular, setPopular] = useState([]);
+
 
   const switchView = () => {
     setListView(!listView);

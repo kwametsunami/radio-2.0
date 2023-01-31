@@ -54,7 +54,7 @@ const Dashboard = (props) => {
               ? null
               : props.popular.map((stations) => {
                   return (
-                    <div className="popularResults">
+                    <div className="popularResults" key={`${stations.id}`}>
                       <img
                         src={`${stations.favicon}`}
                         alt={`${stations.name}`}
@@ -104,9 +104,6 @@ const Dashboard = (props) => {
                   </div>
                   <div className="favButtons">
                     <button value={`${favStation.favourite[2]}`}>▶</button>
-                    {/* <button>
-                      <i class="fa-solid fa-xmark"></i>
-                    </button> */}
                   </div>
                 </div>
               );
@@ -135,7 +132,7 @@ const Dashboard = (props) => {
         {showInfo ? (
           <div className="instructions">
             <button className="infoButton" onClick={infoButton}>
-              <i class="fa-solid fa-window-minimize"></i>
+              <i className="fa-solid fa-window-minimize"></i>
             </button>
             <p>
               Click on a marker to get more information on the station. If you

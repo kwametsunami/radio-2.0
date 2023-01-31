@@ -13,29 +13,29 @@ import flamingo from "../assets/flamingo.gif"
 const NotFound = () => {
     return (
       <div className="danceParty">
-        <h1>
+        <div className="dancePartyContainer wrapper">
+        <h3>
           Hey! You made it to party 404.{" "}
           <Link to="/">Head back to the site</Link> or hit unmute and bust out your
           best moves with us.
-        </h1>
+        </h3>
         <iframe
           width="560"
           height="315"
           src="https://www.youtube.com/embed/pxw-5qfJ1dk?&autoplay=1&mute=1"
           title="YouTube video player"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
         <div className="danceBuddies">
+          <img src={floppy} alt="floppy yellow dude" />
           <img src={squidward} alt="squidward dancing" />
           <img src={twoDudes} alt="big guy n little guy dancing" />
-          <img src={lisa} alt="lisa simpson rockin out" />
           <img src={poliwhirl} alt="poliwhirl raising the roof" />
           <img src={guyDance} alt="bald green dude busting moves" />
+          <img src={lisa} alt="lisa simpson rockin out" />
           <img src={frogAndBud} alt="cat and frog happy to be here" />
-          <img src={floppy} alt="floppy yellow dude" />
-          <img src={flamingo} alt="flamingo is feeling it" />
+        </div>
         </div>
       </div>
     );
