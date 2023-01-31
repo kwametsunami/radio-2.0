@@ -129,9 +129,6 @@ const Radio = (props) => {
     <section className="infoContainer">
       <nav className="searchNav">
         <div className="searchNavContents">
-          {/* <Link onClick={props.landingView} to="/">
-            <h1 className="infoLogo">logo</h1>
-          </Link> */}
           <form
             className="infoForm"
             autoComplete="off"
