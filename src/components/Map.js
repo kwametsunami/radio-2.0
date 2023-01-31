@@ -118,10 +118,10 @@ const Map = (props) => {
         <div className="topControls">
           <div className="filterButtonContainer">
             <button className="randomStation" onClick={randomStation}>
-              <i class="fa-solid fa-shuffle"></i>
+              <i className="fa-solid fa-shuffle"></i>
             </button>
             <button className="listButton" onClick={props.listView}>
-              <i class="fa-solid fa-list"></i>
+              <i className="fa-solid fa-list"></i>
             </button>
           </div>
           <div className="selectDropdown">
@@ -230,7 +230,7 @@ const Map = (props) => {
                               ]}
                               id={stationDetails.id}
                             >
-                              <i class="fa-solid fa-star"></i>
+                              <i className="fa-solid fa-star"></i>
                             </button>
                           </div>
                         </div>

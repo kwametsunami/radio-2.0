@@ -20,40 +20,31 @@ const About = () => {
       <div className="aboutContent wrapper">
         <h2 className="aboutTitle">what is tr1-fm?</h2>
         <p>
-          Vibecession meditation keffiyeh iceland narwhal. Offal heirloom
-          bitters, bicycle rights listicle post-ironic vice green juice cliche
-          vegan narwhal schlitz banh mi. Vexillologist tofu church-key brunch
-          woke. Whatever everyday carry DSA meditation vice paleo 3 wolf moon
-          skateboard williamsburg fingerstache YOLO butcher deep v taiyaki small
-          batch. Cred pabst fixie stumptown thundercats asymmetrical synth.
-          Thundercats authentic iPhone subway tile praxis, hashtag craft beer
-          iceland echo park. Normcore tumeric kale chips vexillologist heirloom.
-          Austin lomo taxidermy readymade direct trade affogato, asymmetrical
-          ascot bushwick chicharrones pour-over enamel pin dreamcatcher
-          heirloom. Polaroid asymmetrical prism before they sold out aesthetic
-          pickled sriracha four dollar toast glossier yuccie af messenger bag.
-          DIY adaptogen williamsburg gochujang mustache. Unicorn gatekeep
-          mustache selvage tonx, viral big mood hexagon cliche disrupt tousled
-          chambray gochujang portland. Listicle mlkshk YOLO, selvage hoodie tofu
-          tilde brunch tacos 8-bit. Selvage everyday carry edison bulb banjo
-          church-key try-hard ethical knausgaard ramps yes plz 90's irony raw
-          denim mumblecore 3 wolf moon. Pop-up intelligentsia snackwave, flannel
-          stumptown twee bespoke roof party tumblr. Vinyl ennui shabby chic
-          chillwave four loko. Godard farm-to-table craft beer helvetica
-          gastropub neutra disrupt pabst locavore tousled marfa blog mixtape
-          knausgaard kogi. You probably haven't heard of them prism portland
-          tumeric put a bird on it ethical typewriter. Mixtape chicharrones blue
-          bottle bushwick, messenger bag banh mi sriracha chillwave big mood
-          cornhole. Tacos chillwave food truck, VHS disrupt artisan raclette
-          salvia street art sriracha single-origin coffee yuccie chicharrones
-          williamsburg craft beer. Kombucha edison bulb cloud bread kinfolk
-          marfa art party green juice austin chartreuse tacos XOXO. Dummy text?
-          More like dummy thicc text, amirite?
+          tr-1.fm (pronounced tee-arr-one-ef-em) is a website that allows you to
+          listen to stations across the world. Simply type in any genre, decade,
+          or language, and instantly gather radio stations to play. It's your
+          choice between a map or a list of results, whichever route you go,
+          you'll be jamming out in no time.
+        </p>
+        <p>
+          The name tr-1.fm is based on the legendary{" "}
+          <a href="https://en.wikipedia.org/wiki/Regency_TR-1" target="_blank" rel="noreferrer">Regency TR-1</a> which was the first commercially manufactured transistor radio, completely changing the game for hand held devices, leading into a future of portability and changing our relationship with our technology. Listen on your computer, mobile device, or tablet, tr-1.fm goes with you.   
+        </p>
+        <p>
+          tr-1.fm is based on the community assembled{" "}
+          <a
+            href="https://at1.api.radio-browser.info/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            radio-browser API
+          </a>
+          , that's amazed a database of over 35,000 stations across the globe,
+          ranging from high quality coorporate stations to college and amateur
+          ones, each with songs, and stories to tell.
         </p>
         <Link to="/">
-          <button className="aboutGetStarted">
-            Get Started
-          </button>
+          <button className="aboutGetStarted">Get Started</button>
         </Link>
       </div>
     </section>

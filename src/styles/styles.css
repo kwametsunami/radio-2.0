@@ -420,6 +420,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .landing .centerContent .searchForm .searchContainer .checkBox label {
   font-size: 1.6rem;
@@ -498,6 +499,7 @@ input {
   flex-direction: column;
   align-items: center;
   margin-top: 120px;
+  width: 50%;
 }
 .aboutContent .aboutTitle {
   font-size: 5rem;
@@ -592,6 +594,11 @@ input {
   color: #f7f5ea;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
   cursor: default;
+}
+
+.google button {
+  width: 50px;
+  padding: 50px;
 }
 
 .signUp {
@@ -1447,7 +1454,6 @@ input {
   width: 200px;
   height: 200px;
   background: #D32631;
-  border-bottom: 1px solid #1a1a1c;
 }
 .radioInfo .radioInfoTitleContainer {
   width: 100%;

@@ -34,7 +34,7 @@ const Radio = (props) => {
       setLoading(true);
       setDashboardLoading(true);
 
-      const api = new RadioBrowserApi(fetch.bind(window));
+      const api = new RadioBrowserApi(fetch.bind(window), "tr-1.fm");
 
       const stations = await api.searchStations({
         tag: props.genre,
