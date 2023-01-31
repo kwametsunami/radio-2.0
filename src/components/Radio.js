@@ -33,7 +33,8 @@ const Radio = (props) => {
     const setupApi = async (stationFilter) => {
       setLoading(true);
       setDashboardLoading(true);
-      const api = new RadioBrowserApi(fetch.bind(window), "tr-1.fm");
+
+      const api = new RadioBrowserApi(fetch.bind(window));
 
       const stations = await api.searchStations({
         tag: props.genre,
@@ -144,7 +145,7 @@ const Radio = (props) => {
               onSubmit={props.onSubmit}
               required
             />
-            <button class="searchButton">
+            <button className="searchButton">
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
