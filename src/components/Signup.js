@@ -62,9 +62,9 @@ const Signup = () => {
             Have an account? Log in
             <Link to="/Login"> here</Link>
           </p>
-          <Link to="/" state={{ user }}>
+          {/* <Link to="/" state={{ user }}> */}
           <button className="signupButton" onClick={register}>continue</button>
-          </Link>
+          {/* </Link> */}
         </form>
       </div>
       <Footer></Footer>

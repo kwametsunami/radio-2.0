@@ -11,7 +11,7 @@ const List = (props) => {
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
-      if (props.stations[i].urlResolved === radioUrl) {
+      if (props.stations[i].url_resolved === radioUrl) {
         let imageGrab = props.stations[i].favicon;
 
         if (imageGrab === "") {
@@ -76,8 +76,8 @@ const List = (props) => {
 
     let surpriseStation = props.stations[randomizer()];
 
-    setRadioUrl(surpriseStation.urlResolved);
-    props.sendToRadio(surpriseStation.urlResolved);
+    setRadioUrl(surpriseStation.url_resolved);
+    props.sendToRadio(surpriseStation.url_resolved);
     props.sendToRadioName(surpriseStation.name);
   };
 
@@ -139,7 +139,7 @@ const List = (props) => {
               return (
                 <div
                   className={
-                    radioUrl === stationDetails.urlResolved
+                    radioUrl === stationDetails.url_resolved
                       ? "stationInfoPlayingList"
                       : "stationInfoList"
                   }
@@ -177,16 +177,16 @@ const List = (props) => {
                     <div className="buttonContainer" value={stationDetails}>
                       <button
                         className={
-                          radioUrl === stationDetails.urlResolved ||
+                          radioUrl === stationDetails.url_resolved ||
                           props.stationCheck
                             ? "infoButtonPlaying"
                             : "infoButton"
                         }
-                        value={stationDetails.urlResolved}
+                        value={stationDetails.url_resolved}
                         onClick={radioSelect}
                         id={stationDetails.name}
                       >
-                        {radioUrl === stationDetails.urlResolved ||
+                        {radioUrl === stationDetails.url_resolved ||
                         props.stationCheck
                           ? ""
                           : "▶"}
@@ -197,7 +197,7 @@ const List = (props) => {
                         value={[
                           `${stationDetails.id}`,
                           `${stationDetails.name}`,
-                          `${stationDetails.urlResolved}`,
+                          `${stationDetails.url_resolved}`,
                           `${stationDetails.favicon}`,
                           `${stationDetails.state}`,
                           `${stationDetails.country}`,
@@ -214,7 +214,7 @@ const List = (props) => {
               return (
                 <div
                   className={
-                    radioUrl === stationDetails.urlResolved
+                    radioUrl === stationDetails.url_resolved
                       ? "stationInfoPlayingList"
                       : "stationInfoList"
                   }
@@ -252,16 +252,16 @@ const List = (props) => {
                     <div className="buttonContainer" value={stationDetails}>
                       <button
                         className={
-                          radioUrl === stationDetails.urlResolved ||
+                          radioUrl === stationDetails.url_resolved ||
                           props.stationCheck
                             ? "infoButtonPlaying"
                             : "infoButton"
                         }
-                        value={stationDetails.urlResolved}
+                        value={stationDetails.url_resolved}
                         onClick={radioSelect}
                         id={stationDetails.name}
                       >
-                        {radioUrl === stationDetails.urlResolved ||
+                        {radioUrl === stationDetails.url_resolved ||
                         props.stationCheck
                           ? ""
                           : "▶"}
@@ -272,7 +272,7 @@ const List = (props) => {
                         value={[
                           `${stationDetails.id}`,
                           `${stationDetails.name}`,
-                          `${stationDetails.urlResolved}`,
+                          `${stationDetails.url_resolved}`,
                           `${stationDetails.favicon}`,
                           `${stationDetails.state}`,
                           `${stationDetails.country}`,

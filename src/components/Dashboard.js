@@ -54,7 +54,7 @@ const Dashboard = (props) => {
               ? null
               : props.popular.map((stations) => {
                   return (
-                    <div className="popularResults" key={`${stations.id}`}>
+                    <div className="popularResults" key={`${stations.changeuuid}`}>
                       <img
                         src={`${stations.favicon}`}
                         alt={`${stations.name}`}

@@ -1518,6 +1518,7 @@ input {
 .danceParty h3 {
   font-size: 5rem;
   color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .danceParty h3 a {
   color: #f7f5ea;

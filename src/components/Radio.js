@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { RadioBrowserApi } from "radio-browser-api";
 
 import Loading from "./Loading";
 import Dashboard from "./Dashboard";
@@ -9,6 +8,15 @@ import List from "./List";
 import Player from "./Player";
 
 const list = require("../data/genreData.json");
+const stationsList = require("../data/stations.json");
+
+let geoFilter = [];
+
+for (let geo in stationsList) {
+  if (stationsList[geo].geo_lat != null) {
+    geoFilter.push(stationsList[geo]);
+  }
+}
 
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
@@ -22,92 +30,92 @@ const Radio = (props) => {
   const [favStationInfo, setFavStationInfo] = useState([]);
   const [popular, setPopular] = useState([]);
 
-
   const switchView = () => {
     setListView(!listView);
   };
 
   useEffect(() => {
+
     setStationFilter(props.genre);
 
-    const setupApi = async (stationFilter) => {
-      setLoading(true);
-      setDashboardLoading(true);
+    setLoading(true);
+    setDashboardLoading(true);
 
-      const api = new RadioBrowserApi(fetch.bind(window), "tr-1.fm");
+    let newFilter = [];
 
-      const stations = await api.searchStations({
-        tag: props.genre,
-        limit: 300,
-        hasGeoInfo: true,
-        lastCheckOk: true,
-      });
+    // for (let filter in geoFilter) {
+    //   if (geoFilter[filter].tags === props.genre) {
+    //     newFilter.push(geoFilter[filter]);
+    //   }
+    // }
 
-      let filtered = [];
-
-      for (let bitrate in stations) {
-        if (stations[bitrate].bitrate >= props.quality) {
-          filtered.push(stations[bitrate]);
-        }
+    for (let i = 0; i < geoFilter.length; i++) {
+      if (geoFilter[i].tags.includes(stationFilter)) {
+        newFilter.push(geoFilter[i]);
       }
+    }
 
-      if (filtered.length > 0) {
-        setStations(filtered);
-        setBadSearch(false);
-        setLoading(false);
-        setBadResponse(false);
+    console.log(newFilter);
+
+    newFilter.length = 400;
+
+    let bitrateFilter = [];
+
+    for (let bitrate in newFilter) {
+      if (newFilter[bitrate].bitrate >= props.quality) {
+        bitrateFilter.push(newFilter[bitrate]);
       }
-      return filtered;
-    };
-
-    setupApi(stationFilter)
-      .then((data) => {
-        setStations(data);
-        if (data.length === 0) {
-          setLoading(false);
-          setBadSearch(true);
-          randomGenre();
-        }
-            const sort_by = (field, reverse, primer) => {
-              const key = primer
-                ? function (x) {
-                    return primer(x[field]);
-                  }
-                : function (x) {
-                    return x[field];
-                  };
-
-              reverse = !reverse ? 1 : -1;
-
-              return function (a, b) {
-                return (
-                  (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a))
-                );
-              };
-            };
-              setDashboardLoading(false);
-              let dataArray = data.slice(0, 5);
-
-              setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
-      })
-      .catch((error) => {
-        setBadResponse(true);
-        setLoading(false);
-      });
+    }
 
     const randomGenre = () => {
       const randomizer = (min = 0, max = list.tag.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       };
 
-      const rnd = list.tag[randomizer()].genre
+      const rnd = list.tag[randomizer()].genre;
 
       setAGenre(rnd);
     };
 
     randomGenre();
 
-  }, [props.genre, props.quality]);
+    console.log(bitrateFilter);
+
+    if (bitrateFilter.length > 0) {
+      console.log("we good");
+      setStations(bitrateFilter);
+      setBadSearch(false);
+      setLoading(false);
+      setBadResponse(false);
+    }
+
+    if (bitrateFilter.length === 0) {
+      setLoading(false);
+      setBadSearch(true);
+      randomGenre();
+      console.log("failed");
+    }
+
+    const sort_by = (field, reverse, primer) => {
+      const key = primer
+        ? function (x) {
+            return primer(x[field]);
+          }
+        : function (x) {
+            return x[field];
+          };
+
+      reverse = !reverse ? 1 : -1;
+
+      return function (a, b) {
+        return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
+      };
+    };
+    let dataArray = bitrateFilter.slice(0, 5);
+    setDashboardLoading(false);
+
+    setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
+  }, [props.genre, props.quality, stationFilter]);
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");

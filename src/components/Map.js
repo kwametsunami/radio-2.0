@@ -14,8 +14,8 @@ const Map = (props) => {
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
-      if (props.stations[i].urlResolved === radioUrl) {
-        let imageGrab = props.stations[i].favicon;
+      if (props.stations[i].url_resolved === radioUrl) {
+      let imageGrab = props.stations[i].favicon;
 
         if (imageGrab === "") {
           props.sendImage(defaultImage);
@@ -79,8 +79,8 @@ const Map = (props) => {
 
       let surpriseStation = filteredStations[randomizer()];
 
-      setRadioUrl(surpriseStation.urlResolved);
-      props.sendToRadio(surpriseStation.urlResolved);
+      setRadioUrl(surpriseStation.url_resolved);
+      props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
     } else {
       const randomizer = (min = 0, max = props.stations.length) => {
@@ -89,8 +89,8 @@ const Map = (props) => {
 
       let surpriseStation = props.stations[randomizer()];
 
-      setRadioUrl(surpriseStation.urlResolved);
-      props.sendToRadio(surpriseStation.urlResolved);
+      setRadioUrl(surpriseStation.url_resolved);
+      props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
     }
   };
@@ -159,11 +159,11 @@ const Map = (props) => {
           {filterTrue
             ? filteredStations.map((stationDetails) => {
                 return (
-                  <div key={stationDetails.id}>
+                  <div key={stationDetails.changeuuid}>
                     <Marker
                       position={[
-                        `${stationDetails.geoLat}`,
-                        `${stationDetails.geoLong}`,
+                        `${stationDetails.geo_lat}`,
+                        `${stationDetails.geo_long}`,
                       ]}
                     >
                       <Popup>
@@ -202,17 +202,17 @@ const Map = (props) => {
                           >
                             <button
                               className={
-                                radioUrl === stationDetails.urlResolved ||
+                                radioUrl === stationDetails.url_resolved ||
                                 props.stationCheck
                                   ? "infoButtonPlaying"
                                   : "infoButton"
                               }
-                              value={stationDetails.urlResolved}
+                              value={stationDetails.url_resolved}
                               onClick={radioSelect}
                               id={stationDetails.name}
                               key={stationDetails.favicon}
                             >
-                              {radioUrl === stationDetails.urlResolved ||
+                              {radioUrl === stationDetails.url_resolved ||
                               props.stationCheck
                                 ? ""
                                 : "▶"}
@@ -223,7 +223,7 @@ const Map = (props) => {
                               value={[
                                 `${stationDetails.id}`,
                                 `${stationDetails.name}`,
-                                `${stationDetails.urlResolved}`,
+                                `${stationDetails.url_resolved}`,
                                 `${stationDetails.favicon}`,
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,
@@ -244,8 +244,8 @@ const Map = (props) => {
                   <div key={stationDetails.id}>
                     <Marker
                       position={[
-                        `${stationDetails.geoLat}`,
-                        `${stationDetails.geoLong}`,
+                        `${stationDetails.geo_lat}`,
+                        `${stationDetails.geo_long}`,
                       ]}
                     >
                       <Popup>
@@ -280,17 +280,17 @@ const Map = (props) => {
                           >
                             <button
                               className={
-                                radioUrl === stationDetails.urlResolved ||
+                                radioUrl === stationDetails.url_resolved ||
                                 props.stationCheck
                                   ? "infoButtonPlaying"
                                   : "infoButton"
                               }
-                              value={stationDetails.urlResolved}
+                              value={stationDetails.url_resolved}
                               onClick={radioSelect}
                               id={stationDetails.name}
                               key={stationDetails.favicon}
                             >
-                              {radioUrl === stationDetails.urlResolved ||
+                              {radioUrl === stationDetails.url_resolved ||
                               props.stationCheck
                                 ? ""
                                 : "▶"}
@@ -301,7 +301,7 @@ const Map = (props) => {
                               value={[
                                 `${stationDetails.id}`,
                                 `${stationDetails.name}`,
-                                `${stationDetails.urlResolved}`,
+                                `${stationDetails.url_resolved}`,
                                 `${stationDetails.favicon}`,
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,

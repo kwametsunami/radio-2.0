@@ -1,6 +1,7 @@
 import "../src/styles/styles.scss"
 import { Route, Routes } from "react-router-dom"
 
+
 import Search from "./components/Search";
 import About from "./components/About";
 import Login from "./components/Login";
