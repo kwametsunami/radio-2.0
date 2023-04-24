@@ -28,6 +28,7 @@ const Signup = () => {
         registerEmail,
         registerPassword
       );
+      console.log(user)
       setHasRegistered(true);
     } catch (error) {
       console.log(error.message);
@@ -43,7 +44,6 @@ const Signup = () => {
       </nav>
       <div className="signUpContainer">
         <h2>sign up</h2>
-        <form className="signUpForm" action="">
           <input
             type="email"
             placeholder="email"
@@ -65,7 +65,6 @@ const Signup = () => {
           {/* <Link to="/" state={{ user }}> */}
           <button className="signupButton" onClick={register}>continue</button>
           {/* </Link> */}
-        </form>
       </div>
       <Footer></Footer>
     </section>

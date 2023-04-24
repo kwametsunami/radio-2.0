@@ -10,7 +10,7 @@ import NotFound from "./components/NotFound";
 
 import SignUpTest from "./components/SignUpTest";
 
-function App() {
+const App = () => {
 
   return (
     <div className="App">
