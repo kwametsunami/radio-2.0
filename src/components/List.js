@@ -4,6 +4,7 @@ import defaultImage from "../assets/radio.png";
 
 const List = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
+  const [playingName, setPlayingName] = useState("")
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
@@ -35,6 +36,7 @@ const List = (props) => {
     props.sendToRadioName(event.target.id);
 
     setRadioUrl(event.target.value);
+    setPlayingName(event.target.id);
   };
 
   const grabFilter = (event) => {
@@ -139,7 +141,7 @@ const List = (props) => {
               return (
                 <div
                   className={
-                    radioUrl === stationDetails.url_resolved
+                    playingName === stationDetails.name
                       ? "stationInfoPlayingList"
                       : "stationInfoList"
                   }
@@ -177,7 +179,7 @@ const List = (props) => {
                     <div className="buttonContainer" value={stationDetails}>
                       <button
                         className={
-                          radioUrl === stationDetails.url_resolved ||
+                          playingName === stationDetails.name ||
                           props.stationCheck
                             ? "infoButtonPlaying"
                             : "infoButton"
@@ -186,7 +188,7 @@ const List = (props) => {
                         onClick={radioSelect}
                         id={stationDetails.name}
                       >
-                        {radioUrl === stationDetails.url_resolved ||
+                        {playingName === stationDetails.name ||
                         props.stationCheck
                           ? ""
                           : "▶"}
@@ -214,7 +216,7 @@ const List = (props) => {
               return (
                 <div
                   className={
-                    radioUrl === stationDetails.url_resolved
+                    playingName === stationDetails.name
                       ? "stationInfoPlayingList"
                       : "stationInfoList"
                   }
@@ -252,7 +254,7 @@ const List = (props) => {
                     <div className="buttonContainer" value={stationDetails}>
                       <button
                         className={
-                          radioUrl === stationDetails.url_resolved ||
+                          playingName === stationDetails.name ||
                           props.stationCheck
                             ? "infoButtonPlaying"
                             : "infoButton"
@@ -261,7 +263,7 @@ const List = (props) => {
                         onClick={radioSelect}
                         id={stationDetails.name}
                       >
-                        {radioUrl === stationDetails.url_resolved ||
+                        {playingName === stationDetails.name ||
                         props.stationCheck
                           ? ""
                           : "▶"}

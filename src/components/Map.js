@@ -8,6 +8,7 @@ import defaultImage from "../assets/radio.png";
 
 const Map = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
+  const [playingName, setPlayingName] = useState("");
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
@@ -38,6 +39,7 @@ const Map = (props) => {
     props.sendToRadioName(event.target.id);
 
     setRadioUrl(event.target.value);
+    setPlayingName(event.target.id);
   };
 
   const setDefaultSrc = (event) => {
@@ -145,7 +147,7 @@ const Map = (props) => {
       <div className="actualMap">
         <MapContainer
           center={[30.0, 10.0]}
-          zoom={2.4}
+          zoom={2.8}
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}
@@ -202,7 +204,7 @@ const Map = (props) => {
                           >
                             <button
                               className={
-                                radioUrl === stationDetails.url_resolved ||
+                                playingName === stationDetails.name ||
                                 props.stationCheck
                                   ? "infoButtonPlaying"
                                   : "infoButton"
@@ -212,7 +214,7 @@ const Map = (props) => {
                               id={stationDetails.name}
                               key={stationDetails.favicon}
                             >
-                              {radioUrl === stationDetails.url_resolved ||
+                              {playingName === stationDetails.name ||
                               props.stationCheck
                                 ? ""
                                 : "▶"}
@@ -280,7 +282,7 @@ const Map = (props) => {
                           >
                             <button
                               className={
-                                radioUrl === stationDetails.url_resolved ||
+                                playingName === stationDetails.name ||
                                 props.stationCheck
                                   ? "infoButtonPlaying"
                                   : "infoButton"
@@ -290,7 +292,7 @@ const Map = (props) => {
                               id={stationDetails.name}
                               key={stationDetails.favicon}
                             >
-                              {radioUrl === stationDetails.url_resolved ||
+                              {playingName === stationDetails.name ||
                               props.stationCheck
                                 ? ""
                                 : "▶"}

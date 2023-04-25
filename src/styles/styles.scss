@@ -16,6 +16,7 @@
 @use "./partials/player";
 @use "./partials/footer";
 @use "./partials/notFound";
+@use "./partials/mixins" as *;
 
 
 .audio-visualizer {
