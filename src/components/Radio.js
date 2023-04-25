@@ -25,8 +25,8 @@ const Radio = (props) => {
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
   const [aGenre, setAGenre] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [dashboardLoading, setDashboardLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [dashboardLoading, setDashboardLoading] = useState(true);
   const [favStationInfo, setFavStationInfo] = useState([]);
   const [popular, setPopular] = useState([]);
 
@@ -35,27 +35,15 @@ const Radio = (props) => {
   };
 
   useEffect(() => {
-
     setStationFilter(props.genre);
 
-    setLoading(true);
-    setDashboardLoading(true);
-
     let newFilter = [];
-
-    // for (let filter in geoFilter) {
-    //   if (geoFilter[filter].tags === props.genre) {
-    //     newFilter.push(geoFilter[filter]);
-    //   }
-    // }
 
     for (let i = 0; i < geoFilter.length; i++) {
       if (geoFilter[i].tags.includes(stationFilter)) {
         newFilter.push(geoFilter[i]);
       }
     }
-
-    console.log(newFilter);
 
     newFilter.length = 400;
 
@@ -79,7 +67,7 @@ const Radio = (props) => {
 
     randomGenre();
 
-    console.log(bitrateFilter);
+    setDashboardLoading(true);
 
     if (bitrateFilter.length > 0) {
       console.log("we good");
@@ -87,13 +75,14 @@ const Radio = (props) => {
       setBadSearch(false);
       setLoading(false);
       setBadResponse(false);
+      setDashboardLoading(false);
     }
 
     if (bitrateFilter.length === 0) {
       setLoading(false);
       setBadSearch(true);
       randomGenre();
-      console.log("failed");
+      setDashboardLoading(false);
     }
 
     const sort_by = (field, reverse, primer) => {
@@ -169,6 +158,7 @@ const Radio = (props) => {
             sendImage={sendImage}
             stationUrl={stationUrl}
             dashboardLoading={dashboardLoading}
+            badSearch={badSearch}
           />
         </div>
         {loading ? (

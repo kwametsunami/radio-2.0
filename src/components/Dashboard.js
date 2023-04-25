@@ -45,6 +45,7 @@ const Dashboard = (props) => {
         {popularView ? (
           <div className="popularView">
             {!props.dashboardLoading ? (
+              props.badSearch ? null :
               <h2 id="popularTitle">
                 top <span id="popularSearchTerm">{props.genreName} </span>stations
               </h2>
@@ -54,7 +55,10 @@ const Dashboard = (props) => {
               ? null
               : props.popular.map((stations) => {
                   return (
-                    <div className="popularResults" key={`${stations.changeuuid}`}>
+                    <div
+                      className="popularResults"
+                      key={`${stations.changeuuid}`}
+                    >
                       <img
                         src={`${stations.favicon}`}
                         alt={`${stations.name}`}
@@ -70,18 +74,20 @@ const Dashboard = (props) => {
                       <div className="popularButtons">
                         <button
                           className={
-                            props.stationUrl === stations.urlResolved
+                            props.stationUrl === stations.url_resolved
                               ? "popularButtonPlaying"
                               : "popularButton"
                           }
                           onClick={playPopular}
                           value={[
-                            `${stations.urlResolved}`,
+                            `${stations.url_resolved}`,
                             `${stations.name}`,
                             `${stations.favicon}`,
                           ]}
                         >
-                          {props.stationUrl === stations.urlResolved ? "" : "▶"}
+                          {props.stationUrl === stations.url_resolved
+                            ? ""
+                            : "▶"}
                         </button>
                       </div>
                     </div>
