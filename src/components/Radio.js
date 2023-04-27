@@ -135,7 +135,6 @@ const Radio = (props) => {
 
   const sendToRadioName = (station) => {
     setPlayingStation(station);
-    console.log(playingStation);
   };
 
   const sendImage = (favicon) => {

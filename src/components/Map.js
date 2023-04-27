@@ -1,10 +1,21 @@
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 
 import { useEffect, useState } from "react";
 
 import defaultImage from "../assets/radio.png";
+
+const defaultIcon = L.icon({
+  iconUrl: require("../assets/iconDefault.png"),
+  iconSize: [48, 48],
+});
+
+const selectedIcon = L.icon({
+  iconUrl: require("../assets/iconSelected.png"),
+  iconSize: [48, 48],
+});
 
 const Map = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
@@ -13,10 +24,13 @@ const Map = (props) => {
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
       if (props.stations[i].url_resolved === radioUrl) {
-      let imageGrab = props.stations[i].favicon;
+        let imageGrab = props.stations[i].favicon;
 
         if (imageGrab === "") {
           props.sendImage(defaultImage);
@@ -30,16 +44,31 @@ const Map = (props) => {
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
     }
-  }, [radioUrl, props.stations, filterTrue, props.sendToRadio, props.playingStation]);
+  }, [
+    radioUrl,
+    props.stations,
+    filterTrue,
+    props.sendToRadio,
+    props.playingStation,
+    latitude,
+    longitude,
+  ]);
 
   const radioSelect = (event) => {
     event.preventDefault();
 
-    props.sendToRadio(event.target.value);
+    const selectedStation = event.currentTarget.value;
+    const selectedStationArr = selectedStation.split(",");
+
+    props.sendToRadio(selectedStationArr[0]);
     props.sendToRadioName(event.target.id);
+    props.sendImage(selectedStationArr[3]);
 
     setRadioUrl(event.target.value);
     setPlayingName(event.target.id);
+
+    setLatitude(selectedStationArr[1]);
+    setLongitude(selectedStationArr[2]);
   };
 
   const setDefaultSrc = (event) => {
@@ -82,6 +111,9 @@ const Map = (props) => {
       let surpriseStation = filteredStations[randomizer()];
 
       setRadioUrl(surpriseStation.url_resolved);
+      setLatitude(surpriseStation.geo_lat);
+      setLongitude(surpriseStation.geo_long);
+
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
     } else {
@@ -92,6 +124,9 @@ const Map = (props) => {
       let surpriseStation = props.stations[randomizer()];
 
       setRadioUrl(surpriseStation.url_resolved);
+      setLatitude(surpriseStation.geo_lat);
+      setLongitude(surpriseStation.geo_long);
+      
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
     }
@@ -101,7 +136,7 @@ const Map = (props) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    const favouritedStations = []
+    const favouritedStations = [];
 
     props.setFavStationInfo([
       ...favouritedStations,
@@ -115,7 +150,8 @@ const Map = (props) => {
         <h3 className="returned">
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
-          {props.quality === 96 ? "high quality " : null}stations matching <span id="searchTerm">{props.selectedGenre}</span>
+          {props.quality === 96 ? "high quality " : null}stations matching{" "}
+          <span id="searchTerm">{props.selectedGenre}</span>
         </h3>
         <div className="topControls">
           <div className="filterButtonContainer">
@@ -163,6 +199,12 @@ const Map = (props) => {
                 return (
                   <div key={stationDetails.changeuuid}>
                     <Marker
+                      icon={
+                        latitude == stationDetails.geo_lat &&
+                        longitude == stationDetails.geo_long
+                          ? selectedIcon
+                          : defaultIcon
+                      }
                       position={[
                         `${stationDetails.geo_lat}`,
                         `${stationDetails.geo_long}`,
@@ -209,7 +251,12 @@ const Map = (props) => {
                                   ? "infoButtonPlaying"
                                   : "infoButton"
                               }
-                              value={stationDetails.url_resolved}
+                              value={[
+                                `${stationDetails.url_resolved}`,
+                                `${stationDetails.geo_lat}`,
+                                `${stationDetails.geo_long}`,
+                                `${stationDetails.favicon}`,
+                              ]}
                               onClick={radioSelect}
                               id={stationDetails.name}
                               key={stationDetails.favicon}
@@ -243,8 +290,14 @@ const Map = (props) => {
               })
             : props.stations.map((stationDetails) => {
                 return (
-                  <div key={stationDetails.id}>
+                  <div key={stationDetails.changeuuid}>
                     <Marker
+                      icon={
+                        latitude == stationDetails.geo_lat &&
+                        longitude == stationDetails.geo_long
+                          ? selectedIcon
+                          : defaultIcon
+                      }
                       position={[
                         `${stationDetails.geo_lat}`,
                         `${stationDetails.geo_long}`,
@@ -287,7 +340,12 @@ const Map = (props) => {
                                   ? "infoButtonPlaying"
                                   : "infoButton"
                               }
-                              value={stationDetails.url_resolved}
+                              value={[
+                                `${stationDetails.url_resolved}`,
+                                `${stationDetails.geo_lat}`,
+                                `${stationDetails.geo_long}`,
+                                `${stationDetails.favicon}`,
+                              ]}
                               onClick={radioSelect}
                               id={stationDetails.name}
                               key={stationDetails.favicon}
