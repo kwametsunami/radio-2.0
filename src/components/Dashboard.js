@@ -24,6 +24,9 @@ const Dashboard = (props) => {
     props.sendToRadio(popularStationArr[0]);
     props.sendToRadioName(popularStationArr[1]);
     props.sendImage(popularStationArr[2]);
+
+    props.latitude(popularStationArr[3]);
+    props.longitude(popularStationArr[4]);
   };
 
   const playFav = (event) => {
@@ -78,7 +81,7 @@ const Dashboard = (props) => {
                         onError={setDefaultSrc}
                       />
                       <div className="popularText">
-                        <p>{`${stations.name
+                        <p className="popularTextTitle">{`${stations.name
                           .replace(/_/g, "")
                           .replace(/-/g, " ")
                           .replace(/  +/, " ")
@@ -96,6 +99,8 @@ const Dashboard = (props) => {
                             `${stations.url_resolved}`,
                             `${stations.name}`,
                             `${stations.favicon}`,
+                            `${stations.geo_lat}`,
+                            `${stations.geo_long}`
                           ]}
                         >
                           {props.stationUrl === stations.url_resolved

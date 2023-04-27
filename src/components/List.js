@@ -5,7 +5,6 @@ import defaultImage from "../assets/radio.png";
 const List = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
   const [playingName, setPlayingName] = useState("");
-  const [playingId, setPlayingId] = useState("");
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);

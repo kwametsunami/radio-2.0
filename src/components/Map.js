@@ -23,6 +23,7 @@ const Map = (props) => {
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("");
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -44,15 +45,33 @@ const Map = (props) => {
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
     }
+
+    if (props.currentLat !== "" || props.currentLong !== "") {
+      setLatitude(props.currentLat);
+      setLongitude(props.currentLong);
+    }
   }, [
     radioUrl,
     props.stations,
     filterTrue,
+    currentFilter,
     props.sendToRadio,
     props.playingStation,
     latitude,
     longitude,
   ]);
+
+  useEffect(() => {
+
+    if (props.stations.length !== filteredStations) {
+      setFilterTrue(false);
+      console.log("filter off");
+    }
+    
+    console.log(props.stations.length);
+
+    console.log(filteredStations);
+  }, [props.stations]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -69,6 +88,9 @@ const Map = (props) => {
 
     setLatitude(selectedStationArr[1]);
     setLongitude(selectedStationArr[2]);
+
+    props.setCurrentLat(selectedStationArr[1]);
+    props.setCurrentLong(selectedStationArr[2]);
   };
 
   const setDefaultSrc = (event) => {
@@ -83,7 +105,6 @@ const Map = (props) => {
       if (event.target.value > props.stations.length) {
         let bottom = 0;
         let top = props.stations.length;
-
         setFilteredStations(props.stations.slice(bottom, parseInt(top)));
         setFilterTrue(true);
       } else if (limit > props.stations.length) {
@@ -110,12 +131,17 @@ const Map = (props) => {
 
       let surpriseStation = filteredStations[randomizer()];
 
+      console.log(surpriseStation.geo_lat);
+
       setRadioUrl(surpriseStation.url_resolved);
       setLatitude(surpriseStation.geo_lat);
       setLongitude(surpriseStation.geo_long);
 
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
+      props.sendImage(surpriseStation.favicon);
+      props.setCurrentLat(surpriseStation.geo_lat);
+      props.setCurrentLong(surpriseStation.geo_long);
     } else {
       const randomizer = (min = 0, max = props.stations.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -126,9 +152,12 @@ const Map = (props) => {
       setRadioUrl(surpriseStation.url_resolved);
       setLatitude(surpriseStation.geo_lat);
       setLongitude(surpriseStation.geo_long);
-      
+
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
+      props.sendImage(surpriseStation.favicon);
+      props.setCurrentLat(surpriseStation.geo_lat);
+      props.setCurrentLong(surpriseStation.geo_long);
     }
   };
 

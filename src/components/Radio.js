@@ -43,6 +43,8 @@ const Radio = (props) => {
   const [dashboardLoading, setDashboardLoading] = useState(true);
   const [favStationInfo, setFavStationInfo] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [currentLat, setCurrentLat] = useState("");
+  const [currentLong, setCurrentLong] = useState("");
 
   const switchView = () => {
     setListView(!listView);
@@ -178,6 +180,8 @@ const Radio = (props) => {
             stationUrl={stationUrl}
             dashboardLoading={dashboardLoading}
             badSearch={badSearch}
+            latitude={setCurrentLat}
+            longitude={setCurrentLong}
           />
         </div>
         {loading ? (
@@ -225,6 +229,8 @@ const Radio = (props) => {
                       quality={props.quality}
                       selectedGenre={props.genre}
                       setFavStationInfo={setFavStationInfo}
+                      latitude={setCurrentLat}
+                      longitude={setCurrentLong}
                     />
                   </div>
                 ) : (
@@ -240,6 +246,11 @@ const Radio = (props) => {
                       listView={switchView}
                       selectedGenre={props.genre}
                       setFavStationInfo={setFavStationInfo}
+                      currentLat={currentLat}
+                      currentLong={currentLong}
+                      setCurrentLat={setCurrentLat}
+                      setCurrentLong={setCurrentLong}
+                      stationFilter={stationFilter}
                     />
                   </div>
                 )}

@@ -1,4 +1,4 @@
-@use "./variables" as *;
+ @use "./variables" as *;
 
 .dashboard {
   height: 100vh;
@@ -64,8 +64,11 @@
           p {
             margin: 0;
             font-size: 1.5rem;
-            color: $black;
+            color: $white;
           }
+        }
+        &:hover .popularTextTitle {
+          color: $black;
         }
         .popularButtons {
           .popularButton {
