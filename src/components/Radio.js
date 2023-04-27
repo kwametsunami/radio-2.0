@@ -18,6 +18,20 @@ for (let geo in stationsList) {
   }
 }
 
+const coordinateCounts = {};
+
+geoFilter.forEach((station) => {
+  const coordinateKey = `${station.geo_lat},${station.geo_long}`;
+  if (coordinateKey in coordinateCounts) {
+    const count = coordinateCounts[coordinateKey];
+    coordinateCounts[coordinateKey] = count + 1;
+    station.geo_lat += 0.00005 * count;
+    station.geo_long += 0.00005 * count;
+  } else {
+    coordinateCounts[coordinateKey] = 1;
+  }
+});
+
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
   const [stationFilter, setStationFilter] = useState(props.genre);
@@ -45,7 +59,7 @@ const Radio = (props) => {
       }
     }
 
-    newFilter.length = 400;
+    newFilter.length = 500;
 
     let bitrateFilter = [];
 
@@ -69,16 +83,21 @@ const Radio = (props) => {
 
     setDashboardLoading(true);
 
-    if (bitrateFilter.length > 0) {
-      console.log("we good");
-      setStations(bitrateFilter);
+    let noDup = Array.from(
+      new Set(bitrateFilter.map((item) => item.name))
+    ).map((name) => {
+      return bitrateFilter.find((item) => item.name === name);
+    });
+
+    if (noDup.length > 0) {
+      setStations(noDup);
       setBadSearch(false);
       setLoading(false);
       setBadResponse(false);
       setDashboardLoading(false);
     }
 
-    if (bitrateFilter.length === 0) {
+    if (noDup.length === 0) {
       setLoading(false);
       setBadSearch(true);
       randomGenre();
@@ -100,7 +119,7 @@ const Radio = (props) => {
         return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
       };
     };
-    let dataArray = bitrateFilter.slice(0, 5);
+    let dataArray = noDup.slice(0, 5);
     setDashboardLoading(false);
 
     setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
@@ -116,6 +135,7 @@ const Radio = (props) => {
 
   const sendToRadioName = (station) => {
     setPlayingStation(station);
+    console.log(playingStation);
   };
 
   const sendImage = (favicon) => {
@@ -195,9 +215,11 @@ const Radio = (props) => {
                   <div className="listViewContainer">
                     <List
                       stations={stations}
+                      setStations={setStations}
                       sendToRadio={sendToRadio}
                       sendToRadioName={sendToRadioName}
                       sendImage={sendImage}
+                      playingStation={playingStation}
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       mapView={switchView}
@@ -213,6 +235,7 @@ const Radio = (props) => {
                       sendToRadio={sendToRadio}
                       sendToRadioName={sendToRadioName}
                       sendImage={sendImage}
+                      playingStation={playingStation}
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       listView={switchView}

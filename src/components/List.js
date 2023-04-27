@@ -4,11 +4,11 @@ import defaultImage from "../assets/radio.png";
 
 const List = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
-  const [playingName, setPlayingName] = useState("")
+  const [playingName, setPlayingName] = useState("");
+  const [playingId, setPlayingId] = useState("");
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
-
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -24,10 +24,17 @@ const List = (props) => {
       }
     }
 
-    if (props.stationUrl !== "") {
-      setRadioUrl(props.stationUrl);
+    if (props.playingStation !== "") {
+      setPlayingName(props.playingStation);
     }
-  }, [radioUrl, props.stations, filterTrue, props.sendToRadio]);
+
+  }, [
+    radioUrl,
+    props.stations,
+    filterTrue,
+    props.sendToRadio,
+    props.playingStation,
+  ]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -35,12 +42,13 @@ const List = (props) => {
     props.sendToRadio(event.target.value);
     props.sendToRadioName(event.target.id);
 
+    console.log(event.target.value);
+
     setRadioUrl(event.target.value);
     setPlayingName(event.target.id);
   };
 
   const grabFilter = (event) => {
-
     const randomizer = (min = 0, max = props.stations.length) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
       let limit = base + parseInt(event.target.value);
@@ -87,7 +95,7 @@ const List = (props) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    const favouritedStations = []
+    const favouritedStations = [];
 
     props.setFavStationInfo([
       ...favouritedStations,
@@ -145,7 +153,7 @@ const List = (props) => {
                       ? "stationInfoPlayingList"
                       : "stationInfoList"
                   }
-                  key={stationDetails.id}
+                  key={stationDetails.changeuuid}
                 >
                   <div className="imageInfoContainer">
                     <div className="imageList">
@@ -220,7 +228,7 @@ const List = (props) => {
                       ? "stationInfoPlayingList"
                       : "stationInfoList"
                   }
-                  key={stationDetails.id}
+                  key={stationDetails.changeuuid}
                 >
                   <div className="imageInfoContainer">
                     <div className="imageList">

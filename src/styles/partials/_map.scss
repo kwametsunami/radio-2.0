@@ -98,6 +98,9 @@
 .actualMap {
   display: flex;
   justify-content: flex-end;
+  .testingMap {
+    color: $yellow;
+  }
   .leaflet-popup-content {
     margin: 15px 20px;
     .stationDetails {

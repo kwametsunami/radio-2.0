@@ -26,9 +26,20 @@ const Dashboard = (props) => {
     props.sendImage(popularStationArr[2]);
   };
 
+  const playFav = (event) => {
+    const favStation = event.currentTarget.value;
+    const favStationArr = favStation.split(",");
+
+    props.sendToRadio(favStationArr[0]);
+    props.sendToRadioName(favStationArr[1]);
+    props.sendImage(favStationArr[2]);
+  };
+
   const favArr = [];
 
   favArr.push(props.favourites);
+
+  console.log(favArr);
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
@@ -45,10 +56,12 @@ const Dashboard = (props) => {
         {popularView ? (
           <div className="popularView">
             {!props.dashboardLoading ? (
-              props.badSearch ? null :
-              <h2 id="popularTitle">
-                top <span id="popularSearchTerm">{props.genreName} </span>stations
-              </h2>
+              props.badSearch ? null : (
+                <h2 id="popularTitle">
+                  top <span id="popularSearchTerm">{props.genreName} </span>
+                  stations
+                </h2>
+              )
             ) : null}
             {props.dashboardLoading ? <DashboardLoading /> : null}
             {props.dashboardLoading
@@ -109,7 +122,21 @@ const Dashboard = (props) => {
                     <p>{`${favStation.favourite[1]}`}</p>
                   </div>
                   <div className="favButtons">
-                    <button value={`${favStation.favourite[2]}`}>▶</button>
+                    <button
+                      className={
+                        props.stationUrl === favStation.favourite[2]
+                          ? "favButtonPlaying"
+                          : "favButton"
+                      }
+                      onClick={playFav}
+                      value={[
+                        `${favStation.favourite[2]}`,
+                        `${favStation.favourite[1]}`,
+                        `${favStation.favourite[3]}`,
+                      ]}
+                    >
+                      {props.stationUrl === favStation.favourite[2] ? "" : "▶"}
+                    </button>
                   </div>
                 </div>
               );

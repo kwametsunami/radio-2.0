@@ -27,10 +27,10 @@ const Map = (props) => {
       }
     }
 
-    if (props.stationUrl !== "") {
-      setRadioUrl(props.stationUrl);
+    if (props.playingStation !== "") {
+      setPlayingName(props.playingStation);
     }
-  }, [radioUrl, props.stations, filterTrue, props.sendToRadio]);
+  }, [radioUrl, props.stations, filterTrue, props.sendToRadio, props.playingStation]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -146,8 +146,8 @@ const Map = (props) => {
       </div>
       <div className="actualMap">
         <MapContainer
-          center={[30.0, 10.0]}
-          zoom={2.8}
+          center={[30.0, 20.0]}
+          zoom={2.5}
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}

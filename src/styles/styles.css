@@ -908,7 +908,7 @@ input {
 .dashboardContainer .middleDashboard .favContainer .favItems .favButtons {
   display: flex;
 }
-.dashboardContainer .middleDashboard .favContainer .favItems .favButtons button {
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons .favButton {
   border: 2px solid #1a1a1c;
   background: #f7f5ea;
   border-radius: 50px;
@@ -916,6 +916,20 @@ input {
   height: 35px;
   margin: 2px 5px;
   color: #D32631;
+}
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons .favButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
 }
 .dashboardContainer .infoContainer {
   display: flex;
@@ -1127,6 +1141,9 @@ input {
 .actualMap {
   display: flex;
   justify-content: flex-end;
+}
+.actualMap .testingMap {
+  color: #EDD05F;
 }
 .actualMap .leaflet-popup-content {
   margin: 15px 20px;
