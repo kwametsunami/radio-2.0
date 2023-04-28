@@ -25,6 +25,8 @@ const Dashboard = (props) => {
     props.sendToRadioName(popularStationArr[1]);
     props.sendImage(popularStationArr[2]);
 
+    console.log(popularStationArr[2])
+
     props.latitude(popularStationArr[3]);
     props.longitude(popularStationArr[4]);
   };

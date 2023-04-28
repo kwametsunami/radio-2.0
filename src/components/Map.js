@@ -14,7 +14,7 @@ const defaultIcon = L.icon({
 
 const selectedIcon = L.icon({
   iconUrl: require("../assets/iconSelected.png"),
-  iconSize: [48, 48],
+  iconSize: [60, 60],
 });
 
 const Map = (props) => {
@@ -23,7 +23,6 @@ const Map = (props) => {
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState("");
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -54,7 +53,6 @@ const Map = (props) => {
     radioUrl,
     props.stations,
     filterTrue,
-    currentFilter,
     props.sendToRadio,
     props.playingStation,
     latitude,
@@ -65,12 +63,8 @@ const Map = (props) => {
 
     if (props.stations.length !== filteredStations) {
       setFilterTrue(false);
-      console.log("filter off");
     }
-    
-    console.log(props.stations.length);
 
-    console.log(filteredStations);
   }, [props.stations]);
 
   const radioSelect = (event) => {
@@ -131,8 +125,6 @@ const Map = (props) => {
 
       let surpriseStation = filteredStations[randomizer()];
 
-      console.log(surpriseStation.geo_lat);
-
       setRadioUrl(surpriseStation.url_resolved);
       setLatitude(surpriseStation.geo_lat);
       setLongitude(surpriseStation.geo_long);
@@ -166,6 +158,10 @@ const Map = (props) => {
     const stationFavArr = stationFav.split(",");
 
     const favouritedStations = [];
+
+    favouritedStations.push(stationFavArr)
+
+    console.log(favouritedStations)
 
     props.setFavStationInfo([
       ...favouritedStations,
@@ -218,7 +214,6 @@ const Map = (props) => {
           minZoom={2}
           ZoomControl={false}
         >
-          {/* <ZoomControl  position="topright"/> */}
           <TileLayer
             url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"
             attribution={`<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>`}

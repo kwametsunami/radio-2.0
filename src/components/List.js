@@ -38,13 +38,18 @@ const List = (props) => {
   const radioSelect = (event) => {
     event.preventDefault();
 
-    props.sendToRadio(event.target.value);
-    props.sendToRadioName(event.target.id);
+    const selectedStation = event.currentTarget.value;
+    const selectedStationArr = selectedStation.split(",");
 
-    console.log(event.target.value);
+    props.sendToRadio(selectedStationArr[0]);
+    props.sendToRadioName(event.target.id);
+    props.sendImage(selectedStationArr[3]);
 
     setRadioUrl(event.target.value);
     setPlayingName(event.target.id);
+
+    props.latitude(selectedStationArr[1]);
+    props.longitude(selectedStationArr[2]);
   };
 
   const grabFilter = (event) => {
@@ -191,7 +196,12 @@ const List = (props) => {
                             ? "infoButtonPlaying"
                             : "infoButton"
                         }
-                        value={stationDetails.url_resolved}
+                        value={[
+                          `${stationDetails.url_resolved}`,
+                          `${stationDetails.geo_lat}`,
+                          `${stationDetails.geo_long}`,
+                          `${stationDetails.favicon}`,
+                        ]}
                         onClick={radioSelect}
                         id={stationDetails.name}
                       >
@@ -266,7 +276,12 @@ const List = (props) => {
                             ? "infoButtonPlaying"
                             : "infoButton"
                         }
-                        value={stationDetails.url_resolved}
+                        value={[
+                          `${stationDetails.url_resolved}`,
+                          `${stationDetails.geo_lat}`,
+                          `${stationDetails.geo_long}`,
+                          `${stationDetails.favicon}`,
+                        ]}
                         onClick={radioSelect}
                         id={stationDetails.name}
                       >
