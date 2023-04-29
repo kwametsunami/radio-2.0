@@ -1919,14 +1919,32 @@ input {
   right: 35px;
   transition: opacity 0.6s ease-in-out;
 }
+@media (max-width: 950px) {
+  .returnBtn {
+    bottom: 95px;
+    right: 20px;
+  }
+}
+@media (max-width: 680px) {
+  .returnBtn {
+    bottom: 12.5px;
+    z-index: 4;
+  }
+}
 .returnBtn .scrollToTop {
   height: 50px;
   width: 50px;
   border-radius: 100%;
   background-color: #3a3a3c;
-  color: #fff;
+  color: #f7f5ea;
   font-size: 16px;
   cursor: pointer;
+}
+@media (max-width: 950px) {
+  .returnBtn .scrollToTop {
+    height: 35px;
+    width: 35px;
+  }
 }
 .returnBtn .scrollToTop:hover {
   opacity: 0.8;
@@ -1934,8 +1952,18 @@ input {
 .returnBtn .scrollToTop:hover + #topText {
   display: block;
 }
+@media (max-width: 950px) {
+  .returnBtn .scrollToTop:hover + #topText {
+    display: none;
+  }
+}
 .returnBtn .scrollToTop i {
   font-size: 3rem;
+}
+@media (max-width: 950px) {
+  .returnBtn .scrollToTop i {
+    font-size: 2.2rem;
+  }
 }
 .returnBtn #topText {
   color: #f7f5ea;
@@ -2039,6 +2067,7 @@ input {
   .radioInfo .radioInfoTitleContainer .radioInfoTitle {
     font-size: 1.5rem;
     margin-left: 80px;
+    width: 125px;
   }
 }
 

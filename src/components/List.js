@@ -131,12 +131,15 @@ const List = (props) => {
   };
 
   const [isVisible, setIsVisible] = useState(false);
+  const [currentGenre, setCurrentGenre] = useState("");
+
   const pageRef = useRef(null);
 
   useEffect(() => {
     const toggleVisibility = () => {
       if (pageRef.current && pageRef.current.scrollTop > 300) {
         setIsVisible(true);
+        setCurrentGenre(props.selectedGenre);
       } else {
         setIsVisible(false);
       }
@@ -146,18 +149,31 @@ const List = (props) => {
       pageRef.current.addEventListener("scroll", toggleVisibility);
     }
 
+    if (currentGenre !== props.selectedGenre) {
+      searchScroll();
+    }
+
     return () => {
       if (pageRef.current) {
         pageRef.current.removeEventListener("scroll", toggleVisibility);
       }
     };
-  }, [pageRef]);
+  }, [pageRef, props.stations]);
 
   const scrollToTop = () => {
     if (pageRef.current) {
       pageRef.current.scrollTo({
         top: 0,
         behavior: "smooth",
+      });
+    }
+  };
+
+  const searchScroll = () => {
+    if (pageRef.current) {
+      pageRef.current.scrollTo({
+        top: 0,
+        behavior: "auto",
       });
     }
   };
