@@ -26,7 +26,6 @@ const List = (props) => {
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
     }
-
   }, [
     radioUrl,
     props.stations,
@@ -84,15 +83,35 @@ const List = (props) => {
   };
 
   const randomStation = () => {
-    const randomizer = (min = 0, max = props.stations.length) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
+    if (filterTrue) {
+      const randomizer = (min = 0, max = filteredStations.length) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
 
-    let surpriseStation = props.stations[randomizer()];
+      let surpriseStation = filteredStations[randomizer()];
 
-    setRadioUrl(surpriseStation.url_resolved);
-    props.sendToRadio(surpriseStation.url_resolved);
-    props.sendToRadioName(surpriseStation.name);
+      setRadioUrl(surpriseStation.url_resolved);
+
+      props.sendToRadio(surpriseStation.url_resolved);
+      props.sendToRadioName(surpriseStation.name);
+      props.sendImage(surpriseStation.favicon);
+      props.latitude(surpriseStation.geo_lat);
+      props.longitude(surpriseStation.geo_long);
+    } else {
+      const randomizer = (min = 0, max = props.stations.length) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+
+      let surpriseStation = props.stations[randomizer()];
+
+      setRadioUrl(surpriseStation.url_resolved);
+
+      props.sendToRadio(surpriseStation.url_resolved);
+      props.sendToRadioName(surpriseStation.name);
+      props.sendImage(surpriseStation.favicon);
+      props.latitude(surpriseStation.geo_lat);
+      props.longitude(surpriseStation.geo_long);
+    }
   };
 
   const favourite = (event) => {
@@ -118,7 +137,8 @@ const List = (props) => {
           returned{" "}
           {filterTrue ? filteredStations.length : props.stations.length}{" "}
           {props.quality === 96 ? "high quality " : null}
-          stations matching {props.selectedGenre}
+          stations matching{" "}
+          <span id="listSearchTerm">{props.selectedGenre}</span>
         </h3>
         <div className="topControls">
           <div className="filterButtonContainer">

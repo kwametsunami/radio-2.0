@@ -6,6 +6,12 @@
     src: url('../../fonts/Karla/static/Karla-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Karla Bold';
+    font-weight: bold;
+    src: url('../../fonts/Karla/static/Karla-Bold.ttf')
+}
+
 h1, h2, h3, h4, h5, h6, p, a, button, input, select, option {
     font-family: $font;
     color: $yellow;

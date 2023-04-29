@@ -14,8 +14,11 @@
     .returned {
       font-size: 3rem;
       color: $white;
-      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
-        -0.5px -0.5px 0 #000;
+      // text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+      //   -0.5px -0.5px 0 #000;
+      #listSearchTerm {
+        font-family: $bold;
+      }
     }
     .topControls {
       display: flex;
@@ -84,6 +87,9 @@
         padding: 5px;
         .information {
           width: 50%;
+          .stationName {
+            font-family: $bold;
+          }
           .stationCountry {
             text-transform: capitalize;
           }
@@ -147,6 +153,9 @@
         padding: 5px;
         .information {
           width: 50%;
+          .stationName {
+            font-family: $bold;
+          }
           p {
             font-size: 1.5rem;
             color: $black;

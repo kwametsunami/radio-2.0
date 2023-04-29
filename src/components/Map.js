@@ -257,7 +257,7 @@ const Map = (props) => {
                             onError={setDefaultSrc}
                           />
                           <div className="stationText">
-                            <p>
+                            <p id="stationNameMap">
                               {stationDetails.name
                                 .replace(/_/g, "")
                                 .replace(/-/g, " ")
@@ -350,7 +350,7 @@ const Map = (props) => {
                             onError={setDefaultSrc}
                           />
                           <div className="stationText">
-                            <p>
+                            <p id="stationNameMap">
                               {stationDetails.name
                                 .replace(/_/g, "")
                                 .replace(/-/g, " ")

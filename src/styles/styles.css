@@ -226,6 +226,11 @@ html {
   font-weight: normal;
   src: url("../../fonts/Karla/static/Karla-Regular.ttf");
 }
+@font-face {
+  font-family: "Karla Bold";
+  font-weight: bold;
+  src: url("../../fonts/Karla/static/Karla-Bold.ttf");
+}
 h1, h2, h3, h4, h5, h6, p, a, button, input, select, option {
   font-family: "Karla";
   color: #EDD05F;
@@ -804,6 +809,7 @@ input {
 .dashboardContainer .dashboardLogo a h2 {
   transition: 0.9s;
   color: #f7f5ea;
+  font-family: "Karla Bold";
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .dashboardContainer .dashboardLogo a h2:hover {
@@ -818,9 +824,11 @@ input {
 }
 .dashboardContainer .middleDashboard .popularView #popularTitle {
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
   font-size: 1.75rem;
   padding: 0 0 15px;
+}
+.dashboardContainer .middleDashboard .popularView #popularTitle #popularSearchTerm {
+  font-family: "Karla Bold";
 }
 .dashboardContainer .middleDashboard .popularView .popularResults {
   display: flex;
@@ -1096,13 +1104,14 @@ input {
   font-size: 2rem;
   text-align: center;
   margin: 2px 0 15px;
-  color: #1a1a1c;
+  color: #29292b;
 }
 .mapFilters .returned h3 {
   margin: 0;
 }
 .mapFilters .returned #searchTerm {
   color: #1a1a1c;
+  font-family: "Karla Bold";
 }
 .mapFilters .topControls {
   display: flex;
@@ -1167,6 +1176,9 @@ input {
 .actualMap .leaflet-popup-content .stationDetails .stationText p {
   color: #1a1a1c;
   margin: 5px 0;
+}
+.actualMap .leaflet-popup-content .stationDetails .stationText #stationNameMap {
+  font-family: "Karla Bold";
 }
 .actualMap .leaflet-popup-content .stationDetails .icon {
   width: 50%;
@@ -1236,7 +1248,9 @@ input {
 .stationList .listFilters .returned {
   font-size: 3rem;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.stationList .listFilters .returned #listSearchTerm {
+  font-family: "Karla Bold";
 }
 .stationList .listFilters .topControls {
   display: flex;
@@ -1303,6 +1317,9 @@ input {
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
   width: 50%;
 }
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .information .stationName {
+  font-family: "Karla Bold";
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information .stationCountry {
   text-transform: capitalize;
 }
@@ -1364,6 +1381,9 @@ input {
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
   width: 50%;
+}
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information .stationName {
+  font-family: "Karla Bold";
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
   font-size: 1.5rem;
@@ -1493,6 +1513,7 @@ input {
   overflow: hidden;
   font-size: 2rem;
   color: #f7f5ea;
+  font-family: "Karla Bold";
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 

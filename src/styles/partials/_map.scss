@@ -45,12 +45,15 @@
     font-size: 2rem;
     text-align: center;
     margin: 2px 0 15px;
-    color: $black;
+    color: $ash;
+    // text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+    //   0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
     h3 {
       margin: 0;
     }
     #searchTerm {
       color: $black;
+      font-family: $bold;
     }
   }
   .topControls {
@@ -113,14 +116,15 @@
       flex-direction: column;
       justify-content: center;
       .stationText {
-        // width: 65%;
-        // align-self: center;
         .stationCountry {
           text-transform: capitalize;
         }
         p {
           color: $black;
           margin: 5px 0;
+        }
+        #stationNameMap {
+          font-family: $bold;
         }
       }
       .icon {
