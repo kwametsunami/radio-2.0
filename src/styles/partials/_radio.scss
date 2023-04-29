@@ -1,4 +1,6 @@
 @use "./variables" as *;
+@use "./mixins" as *;
+
 .searchNav {
   position: fixed;
   top: 0;

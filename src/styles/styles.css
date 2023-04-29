@@ -840,6 +840,17 @@ input {
   z-index: 3;
   text-align: center;
 }
+@media (max-width: 1130px) {
+  .dashboard {
+    width: 150px;
+    min-width: 150px;
+  }
+}
+@media (max-width: 680px) {
+  .dashboard {
+    display: none;
+  }
+}
 
 .dashboardContainer {
   width: 200px;
@@ -848,11 +859,22 @@ input {
   justify-content: center;
   margin-top: 100px;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer {
+    width: 150px;
+    min-width: 150px;
+  }
+}
 .dashboardContainer .dashboardLogo {
   position: fixed;
   left: 60px;
   top: 0;
   margin-top: 25px;
+}
+@media (max-width: 680px) {
+  .dashboardContainer .dashboardLogo {
+    visibility: visible;
+  }
 }
 .dashboardContainer .dashboardLogo a h2 {
   transition: 0.9s;
@@ -871,7 +893,7 @@ input {
 }
 .dashboardContainer .middleDashboard .popularView #popularTitle {
   color: #f7f5ea;
-  font-size: 1.75rem;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   padding: 0 0 15px;
 }
 .dashboardContainer .middleDashboard .popularView #popularTitle #popularSearchTerm {
@@ -890,12 +912,18 @@ input {
   height: 35px;
   border-radius: 5px;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResultsPlaying img {
+    width: 20px;
+    height: 20px;
+  }
+}
 .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularText {
   padding: 4px;
 }
 .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularText p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #1a1a1c;
 }
 .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
@@ -906,6 +934,12 @@ input {
   height: 35px;
   margin: 2px 5px;
   color: #D32631;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
+    width: 20px;
+    height: 20px;
+  }
 }
 .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
   width: 35px;
@@ -921,6 +955,12 @@ input {
   display: inline-block;
   margin: 2px 5px;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
+    width: 20px;
+    height: 20px;
+  }
+}
 .dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons button {
   background: transparent;
 }
@@ -935,12 +975,18 @@ input {
   height: 35px;
   border-radius: 5px;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResults img {
+    width: 20px;
+    height: 20px;
+  }
+}
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText {
   padding: 4px;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #f7f5ea;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults:hover .popularTextTitle {
@@ -955,6 +1001,13 @@ input {
   margin: 2px 5px;
   color: #D32631;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+}
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
   width: 35px;
   height: 35px;
@@ -968,6 +1021,13 @@ input {
   background-position: center;
   display: inline-block;
   margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+    width: 20px;
+    height: 20px;
+    background-size: 50px;
+  }
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons button {
   background: transparent;
@@ -981,12 +1041,18 @@ input {
   height: 35px;
   border-radius: 5px;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResults img {
+    width: 20px;
+    height: 20px;
+  }
+}
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText {
   padding: 4px;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #f7f5ea;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults:hover .popularTextTitle {
@@ -1001,6 +1067,12 @@ input {
   margin: 2px 5px;
   color: #D32631;
 }
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+    width: 20px;
+    height: 20px;
+  }
+}
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
   width: 35px;
   height: 35px;
@@ -1014,6 +1086,12 @@ input {
   background-position: center;
   display: inline-block;
   margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+    width: 20px;
+    height: 20px;
+  }
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons button {
   background: transparent;
@@ -1442,8 +1520,13 @@ input {
   margin-top: 50px;
 }
 .stationList .listFilters .returned {
-  font-size: clamp(2.25rem, 2.1477rem + 0.5114vw, 3.375rem);
+  font-size: clamp(1.25rem, 1.0909rem + 0.7955vw, 3rem);
   color: #ebe7e7;
+}
+@media (max-width: 680px) {
+  .stationList .listFilters .returned {
+    text-align: center;
+  }
 }
 .stationList .listFilters .returned #amountReturned,
 .stationList .listFilters .returned #listSearchTerm {
@@ -1457,11 +1540,27 @@ input {
   width: 70%;
   margin-bottom: 10px;
 }
+@media (max-width: 450px) {
+  .stationList .listFilters .topControls {
+    justify-content: center;
+  }
+}
+@media (max-width: 450px) {
+  .stationList .listFilters .topControls .filterButtonContainer {
+    margin: 5px;
+  }
+}
 .stationList .listFilters .topControls .filterButtonContainer .randomStation {
   width: 50px;
   padding: 10px 10px;
   border-radius: 5px 0 0 5px;
   border-right: 0.5px solid #1a1a1c;
+}
+@media (max-width: 450px) {
+  .stationList .listFilters .topControls .filterButtonContainer .randomStation {
+    width: 42.5px;
+    padding: 7.5px 7.5px;
+  }
 }
 .stationList .listFilters .topControls .filterButtonContainer .randomStation i {
   font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
@@ -1476,6 +1575,12 @@ input {
   border-radius: 0 5px 5px 0;
   border-left: 0.5px solid #1a1a1c;
 }
+@media (max-width: 450px) {
+  .stationList .listFilters .topControls .filterButtonContainer .mapViewButton {
+    width: 42.5px;
+    padding: 7.5px 7.5px;
+  }
+}
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton i {
   font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #D32631;
@@ -1483,12 +1588,23 @@ input {
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton:hover {
   background: #C4C2C2;
 }
+@media (max-width: 450px) {
+  .stationList .listFilters .topControls .selectDropdown {
+    padding: 10px 0;
+  }
+}
 .stationList .listFilters .topControls .selectDropdown select {
   padding: 10px 10px;
-  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
+  font-size: clamp(0.625rem, 0.5455rem + 0.3977vw, 1.5rem);
   color: #1a1a1c !important;
-  border: 2px solid #1a1a1c;
+  border: 2px solid #3a3a3c;
   border-radius: 5px;
+}
+@media (max-width: 450px) {
+  .stationList .listFilters .topControls .selectDropdown select {
+    width: 85px;
+    padding: 9px 9px;
+  }
 }
 .stationList .stationListContainer {
   display: flex;
@@ -1511,14 +1627,33 @@ input {
     width: calc(42.5% - 25px);
   }
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList {
+    width: calc(46.25% - 25px);
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 5px;
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
   width: 50%;
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information .stationName {
   font-family: "Karla Bold";
@@ -1532,6 +1667,7 @@ input {
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
   width: 25%;
+  margin: 0 15px;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -1553,6 +1689,7 @@ input {
   .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
     width: 35px;
     height: 35px;
+    font-size: 0.7rem;
   }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer {
@@ -1578,6 +1715,19 @@ input {
     height: 30px;
   }
 }
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
   width: 45px;
   height: 45px;
@@ -1595,12 +1745,26 @@ input {
     height: 30px;
   }
 }
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite i {
   color: #FFE900;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .stationList .stationListContainer .stationInfoPlayingList {
   display: flex;
+  justify-content: center;
   width: calc(40% - 30px);
   margin: 10px;
   max-height: 150px;
@@ -1608,20 +1772,43 @@ input {
   border-radius: 20px;
   background-color: #EDD05F;
 }
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoPlayingList {
+    width: calc(42.5% - 25px);
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList {
+    width: calc(46.25% - 25px);
+  }
+}
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 5px;
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
   width: 50%;
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information .stationName {
   font-family: "Karla Bold";
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
-  font-size: 1.5rem;
+  font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
@@ -1636,6 +1823,19 @@ input {
   width: 70px;
   height: 70px;
   border-radius: 5px;
+  padding: 5px;
+}
+@media (max-width: 1130px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+    width: 35px;
+    height: 35px;
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer {
   display: flex;
@@ -1648,6 +1848,25 @@ input {
   border: 2px solid #1e2021;
   border-radius: 50px;
   margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+    width: 20px;
+    height: 20px;
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
   color: #FFE900;
@@ -1666,6 +1885,26 @@ input {
   background-position: center;
   display: inline-block;
   margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .infoButtonPlaying {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .infoButtonPlaying {
+    width: 25px;
+    height: 25px;
+    background-size: 60px;
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .infoButtonPlaying {
+    width: 20px;
+    height: 20px;
+    background-size: 45px;
+  }
 }
 
 .listViewContainer {
@@ -1762,10 +2001,24 @@ input {
   left: 0;
   max-width: 200px;
 }
+@media (max-width: 680px) {
+  .radioInfo {
+    bottom: 10%;
+  }
+}
 .radioInfo img {
   width: 200px;
   height: 200px;
   background: #D32631;
+}
+@media (max-width: 680px) {
+  .radioInfo img {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    bottom: -5.5px;
+    margin-left: 0px;
+  }
 }
 .radioInfo .radioInfoTitleContainer {
   width: 100%;
@@ -1781,6 +2034,12 @@ input {
   font-size: 2rem;
   color: #f7f5ea;
   font-family: "Karla Bold";
+}
+@media (max-width: 680px) {
+  .radioInfo .radioInfoTitleContainer .radioInfoTitle {
+    font-size: 1.5rem;
+    margin-left: 80px;
+  }
 }
 
 .footer {

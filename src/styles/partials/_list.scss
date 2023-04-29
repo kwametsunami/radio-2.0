@@ -13,8 +13,11 @@
     align-items: center;
     margin-top: 50px;
     .returned {
-      font-size: clamp(2.25rem, 2.1477rem + 0.5114vw, 3.375rem);
+      font-size: clamp(1.25rem, 1.0909rem + 0.7955vw, 3rem);
       color: $eggshell;
+      @include mobileLarge {
+        text-align: center;
+      }
       #amountReturned,
       #listSearchTerm {
         font-family: $bold;
@@ -27,13 +30,22 @@
       justify-content: space-between;
       width: 70%;
       margin-bottom: 10px;
+      @include mobile {
+        justify-content: center;
+      }
       .filterButtonContainer {
+        @include mobile {
+          margin: 5px;
+        }
         .randomStation {
           width: 50px;
           padding: 10px 10px;
-          // margin: 0 6px;
           border-radius: 5px 0 0 5px;
           border-right: 0.5px solid $black;
+          @include mobile {
+            width: 42.5px;
+            padding: 7.5px 7.5px;
+          }
           i {
             font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
             color: $red;
@@ -47,6 +59,10 @@
           padding: 10px 10px;
           border-radius: 0 5px 5px 0;
           border-left: 0.5px solid $black;
+          @include mobile {
+            width: 42.5px;
+            padding: 7.5px 7.5px;
+          }
           i {
             font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
             color: $red;
@@ -57,12 +73,19 @@
         }
       }
       .selectDropdown {
+        @include mobile {
+          padding: 10px 0;
+        }
         select {
           padding: 10px 10px;
-          font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
+          font-size: clamp(0.625rem, 0.5455rem + 0.3977vw, 1.5rem);
           color: $black !important;
-          border: 2px solid $black;
+          border: 2px solid $ash;
           border-radius: 5px;
+          @include mobile {
+            width: 85px;
+            padding: 9px 9px;
+          }
         }
       }
     }
@@ -84,13 +107,26 @@
       @include tablet {
         width: calc((85% / 2) - 25px);
       }
+      @include mobileLarge {
+        width: calc((92.5% / 2) - 25px);
+      }
       .imageInfoContainer {
         display: flex;
         justify-content: space-between;
         width: 100%;
         padding: 5px;
+        @include mobileLarge {
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
         .information {
           width: 50%;
+          @include tablet {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+          }
           .stationName {
             font-family: $bold;
           }
@@ -104,6 +140,133 @@
         }
         .imageList {
           width: 25%;
+          margin: 0 15px;
+          display: flex;
+          align-content: center;
+          justify-content: center;
+          .icon {
+            margin: auto 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            padding: 5px;
+            @include smallDesktop {
+              width: 50px;
+              height: 50px;
+            }
+            @include tablet {
+              width: 35px;
+              height: 35px;
+              font-size: 0.7rem;
+            }
+          }
+        }
+        .buttonContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // @include mobileLarge {
+          //   flex-direction: column;
+          // }
+          .infoButton {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #1e2021;
+            border-radius: 50px;
+            color: $red;
+            background-color: $white;
+            margin: 2px 5px;
+            &:hover {
+              transform: scale(1.05);
+            }
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              font-size: 0.7rem;
+            }
+          }
+          .favourite {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #1e2021;
+            border-radius: 50px;
+            margin: 2px 5px;
+            background-color: $white;
+            &:hover {
+              transform: scale(1.05);
+            }
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              font-size: 0.7rem;
+            }
+            i {
+              color: $brightYellow;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
+          }
+        }
+      }
+    }
+    .stationInfoPlayingList {
+      display: flex;
+      justify-content: center;
+      width: calc((80% / 2) - 30px);
+      margin: 10px;
+      max-height: 150px;
+      border: 2.5px solid $black;
+      border-radius: 20px;
+      background-color: $yellow;
+      @include tablet {
+        width: calc((85% / 2) - 25px);
+      }
+      @include mobileLarge {
+        width: calc((92.5% / 2) - 25px);
+      }
+      .imageInfoContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 5px;
+        @include mobileLarge {
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
+        .information {
+          width: 50%;
+          @include tablet {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .stationName {
+            font-family: $bold;
+          }
+          p {
+            font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
+            color: $black;
+          }
+        }
+        .imageList {
+          width: 25%;
+          margin: 0 15px;
           display: flex;
           align-content: center;
           justify-content: center;
@@ -127,91 +290,28 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          .infoButton {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            color: $red;
-            background-color: $white;
-            margin: 2px 5px;
-            &:hover {
-              transform: scale(1.05);
-            }
-            @include smallDesktop {
-              width: 30px;
-              height: 30px;
-            }
-          }
+          // @include mobileLarge {
+          //   flex-direction: column;
+          // }
           .favourite {
             width: 45px;
             height: 45px;
             border: 2px solid #1e2021;
             border-radius: 50px;
             margin: 2px 5px;
-            background-color: $white;
-            &:hover {
-              transform: scale(1.05);
-            }
             @include smallDesktop {
               width: 30px;
               height: 30px;
             }
-            i {
-              color: $brightYellow;
-              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            @include tablet {
+              width: 25px;
+              height: 25px;
+              font-size: 0.7rem;
             }
-          }
-        }
-      }
-    }
-    .stationInfoPlayingList {
-      display: flex;
-      width: calc((80% / 2) - 30px);
-      margin: 10px;
-      max-height: 150px;
-      border: 2.5px solid $black;
-      border-radius: 20px;
-      background-color: $yellow;
-      .imageInfoContainer {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding: 5px;
-        .information {
-          width: 50%;
-          .stationName {
-            font-family: $bold;
-          }
-          p {
-            font-size: 1.5rem;
-            color: $black;
-          }
-        }
-        .imageList {
-          width: 25%;
-          margin: 0 15px;
-          display: flex;
-          align-content: center;
-          justify-content: center;
-          .icon {
-            margin: auto 0;
-            width: 70px;
-            height: 70px;
-            border-radius: 5px;
-          }
-        }
-        .buttonContainer {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          .favourite {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            margin: 2px 5px;
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+            }
             i {
               color: $brightYellow;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
@@ -231,6 +331,20 @@
             background-position: center;
             display: inline-block;
             margin: 2px 5px;
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+              background-size: 60px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              background-size: 45px;
+            }
           }
         }
       }

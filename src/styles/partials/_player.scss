@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 
 .radio {
   position: fixed;
@@ -50,10 +51,20 @@
   bottom: -8%;
   left: 0;
   max-width: 200px;
+  @include mobileLarge {
+    bottom: 10%;
+  }
   img {
     width: 200px;
     height: 200px;
     background: $red;
+    @include mobileLarge {
+      width: 59px;
+      height: 59px;
+      position: absolute;
+      bottom: -5.5px;
+      margin-left: 0px;
+    }
   }
   .radioInfoTitleContainer {
     width: 100%;
@@ -68,6 +79,10 @@
       font-size: 2rem;
       color: $white;
       font-family: $bold;
+      @include mobileLarge {
+        font-size: 1.5rem;
+        margin-left: 80px;
+      }
     }
   }
 }
