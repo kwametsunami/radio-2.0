@@ -847,7 +847,7 @@ input {
 }
 .dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #f7f5ea;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults:hover .popularTextTitle {

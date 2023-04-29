@@ -244,6 +244,7 @@ const Radio = (props) => {
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       listView={switchView}
+                      quality={props.quality}
                       selectedGenre={props.genre}
                       setFavStationInfo={setFavStationInfo}
                       currentLat={currentLat}
