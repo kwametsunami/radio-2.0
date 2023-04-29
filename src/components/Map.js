@@ -224,6 +224,7 @@ const Map = (props) => {
           bounds={worldBounds}
           maxBounds={worldBounds}
           ZoomControl={false}
+          zoomDelta={2}
         >
           <TileLayer
             url="https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=dHvKVDnUdOwlCAyUhof0"

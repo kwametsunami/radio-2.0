@@ -820,7 +820,7 @@ input {
 }
 .dashboardContainer .middleDashboard {
   overflow: hidden;
-  max-height: 345px;
+  max-height: 500px;
 }
 .dashboardContainer .middleDashboard .popularView {
   padding: 5px;
