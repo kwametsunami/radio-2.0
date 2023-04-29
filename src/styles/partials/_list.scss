@@ -120,8 +120,11 @@
             border: 2px solid #1e2021;
             border-radius: 50px;
             color: $red;
-            background-color: transparent;
+            background-color: $white;
             margin: 2px 5px;
+            &:hover {
+              transform: scale(1.05);
+            }
           }
           .favourite {
             width: 45px;
@@ -129,6 +132,10 @@
             border: 2px solid #1e2021;
             border-radius: 50px;
             margin: 2px 5px;
+            background-color: $white;
+            &:hover {
+              transform: scale(1.05);
+            }
             i {
               color: $brightYellow;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
@@ -228,4 +235,44 @@
     rgba(29, 28, 34, 0.9850533963585434) 90%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
+}
+
+// .scrollToTop {
+//   position: absolute;
+//   top: 0%;
+//   right: 0%;
+//   color: $black;
+// }
+
+.returnBtn {
+  position: fixed;
+  bottom: 110px;
+  right: 35px;
+  transition: opacity 0.6s ease-in-out;
+  .scrollToTop {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background-color: $ash;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:hover + #topText {
+      display: block;
+    }
+    i {
+      font-size: 3rem;
+    }
+  }
+  #topText {
+    color: $white;
+    position: absolute;
+    margin: 5px 0;
+    text-align: center;
+    font-size: 1.5rem;
+    display: none;
+  }
 }

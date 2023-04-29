@@ -58,7 +58,6 @@
       .greeting {
         margin: 2px 0 10px;
         color: $white;
-        font-family: $bold;
         cursor: default;
       }
     }
@@ -94,6 +93,9 @@
             border-radius: 0 5px 5px 0;
             width: 100px;
             border: 2px solid $black;
+            &:hover {
+              background-color: $darkYellow;
+            }
             i {
               color: $black;
               font-size: 2rem;

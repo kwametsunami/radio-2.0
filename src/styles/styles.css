@@ -289,8 +289,9 @@ button {
   font-size: clamp(0.9375rem, 0.865rem + 0.3623vw, 1.25rem);
   transition: 0.3s;
   padding: 5px 2px;
-  border: 2px solid #1a1a1c;
+  border: 2px solid #3a3a3c;
   text-align: center;
+  transition: opacity 0.6s ease-in-out;
 }
 
 input {
@@ -407,7 +408,6 @@ input {
 .landing .centerContent .centerText .greeting {
   margin: 2px 0 10px;
   color: #f7f5ea;
-  font-family: "Karla Bold";
   cursor: default;
 }
 .landing .centerContent .searchForm {
@@ -444,6 +444,9 @@ input {
   border-radius: 0 5px 5px 0;
   width: 100px;
   border: 2px solid #1a1a1c;
+}
+.landing .centerContent .searchForm .searchContainer .searchInner .searchButton:hover {
+  background-color: #dcc155;
 }
 .landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
   color: #1a1a1c;
@@ -703,6 +706,9 @@ input {
   width: 25%;
   background-color: #EDD05F;
   border-radius: 0 5px 5px 0;
+}
+.searchNav .searchNavContents .infoForm .searchButton:hover {
+  background-color: #dcc155;
 }
 .searchNav .searchNavContents .infoForm .searchButton i {
   font-size: 1.5rem;
@@ -1081,6 +1087,11 @@ input {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }
 
+.leaflet-popup-close-button {
+  transform: scale(1.5);
+  padding: 0 7px 0 0;
+}
+
 .mapFilters {
   position: fixed;
   top: 0%;
@@ -1100,7 +1111,7 @@ input {
   font-size: 2rem;
   text-align: center;
   margin: 2px 0 15px;
-  color: #29292b;
+  color: #3a3a3c;
 }
 .mapFilters .returned h3 {
   margin: 0;
@@ -1200,6 +1211,9 @@ input {
   align-self: center;
   margin: 2px 5px;
 }
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButton:hover {
+  transform: scale(1.05);
+}
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButtonPlaying {
   width: 45px;
   height: 45px;
@@ -1222,6 +1236,9 @@ input {
   border-radius: 50px;
   background-color: transparent;
   margin: 2px 5px;
+}
+.actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite:hover {
+  transform: scale(1.05);
 }
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite i {
   color: #FFE900;
@@ -1346,8 +1363,11 @@ input {
   border: 2px solid #1e2021;
   border-radius: 50px;
   color: #D32631;
-  background-color: transparent;
+  background-color: #f7f5ea;
   margin: 2px 5px;
+}
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton:hover {
+  transform: scale(1.05);
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
   width: 45px;
@@ -1355,6 +1375,10 @@ input {
   border: 2px solid #1e2021;
   border-radius: 50px;
   margin: 2px 5px;
+  background-color: #f7f5ea;
+}
+.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite:hover {
+  transform: scale(1.05);
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite i {
   color: #FFE900;
@@ -1433,6 +1457,39 @@ input {
   background: rgb(211, 38, 49);
   background: linear-gradient(180deg, rgb(211, 38, 49) 0%, rgba(29, 28, 34, 0.9850533964) 90%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
+}
+
+.returnBtn {
+  position: fixed;
+  bottom: 110px;
+  right: 35px;
+  transition: opacity 0.6s ease-in-out;
+}
+.returnBtn .scrollToTop {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: #3a3a3c;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.returnBtn .scrollToTop:hover {
+  opacity: 0.8;
+}
+.returnBtn .scrollToTop:hover + #topText {
+  display: block;
+}
+.returnBtn .scrollToTop i {
+  font-size: 3rem;
+}
+.returnBtn #topText {
+  color: #f7f5ea;
+  position: absolute;
+  margin: 5px 0;
+  text-align: center;
+  font-size: 1.5rem;
+  display: none;
 }
 
 .radio {

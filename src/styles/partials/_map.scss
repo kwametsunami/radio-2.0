@@ -23,6 +23,11 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }
 
+.leaflet-popup-close-button {
+  transform: scale(1.5);
+  padding: 0 7px 0 0;
+}
+
 .mapFilters {
   position: fixed;
   top: 0%;
@@ -147,6 +152,9 @@
           background-color: transparent;
           align-self: center;
           margin: 2px 5px;
+          &:hover {
+            transform: scale(1.05);
+          }
         }
         .infoButtonPlaying {
           width: 45px;
@@ -170,6 +178,9 @@
           border-radius: 50px;
           background-color: transparent;
           margin: 2px 5px;
+          &:hover {
+            transform: scale(1.05);
+          }
           i {
             color: $brightYellow;
             text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,

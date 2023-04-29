@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import defaultImage from "../assets/radio.png";
 
@@ -130,8 +130,40 @@ const List = (props) => {
     // }
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (pageRef.current && pageRef.current.scrollTop > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    if (pageRef.current) {
+      pageRef.current.addEventListener("scroll", toggleVisibility);
+    }
+
+    return () => {
+      if (pageRef.current) {
+        pageRef.current.removeEventListener("scroll", toggleVisibility);
+      }
+    };
+  }, [pageRef]);
+
+  const scrollToTop = () => {
+    if (pageRef.current) {
+      pageRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section className="stationList">
+    <section className="stationList" ref={pageRef}>
       <div className="listFilters">
         <h3 className="returned">
           returned{" "}
@@ -330,6 +362,14 @@ const List = (props) => {
               );
             })}
       </div>
+      {isVisible && (
+        <div className="returnBtn">
+          <button className="scrollToTop" onClick={scrollToTop}>
+            <i class="fa-solid fa-circle-arrow-up"></i>
+          </button>
+          <p id="topText">return to top</p>
+        </div>
+      )}
     </section>
   );
 };
