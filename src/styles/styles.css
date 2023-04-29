@@ -231,23 +231,34 @@ html {
   font-weight: bold;
   src: url("../../fonts/Karla/static/Karla-Bold.ttf");
 }
-h1, h2, h3, h4, h5, h6, p, a, button, input, select, option {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button,
+input,
+select,
+option {
   font-family: "Karla";
   color: #EDD05F;
 }
 
 h1 {
-  font-size: 10rem;
+  font-size: clamp(5.3125rem, 4.375rem + 4.6875vw, 15.625rem);
   margin: 0;
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: clamp(1.25rem, 1.0227rem + 1.1364vw, 3.75rem);
   margin: 0;
 }
 
 p {
-  font-size: 2rem;
+  font-size: clamp(0.75rem, 0.6477rem + 0.5114vw, 1.875rem);
 }
 
 a {
@@ -304,6 +315,7 @@ input {
   height: 25px;
   border-radius: 5px 0 0 5px;
   outline: none;
+  font-size: 1rem;
 }
 
 .dropdown {
@@ -366,7 +378,7 @@ input {
 .landing .landingNav .loginBtn {
   margin: 0 5px;
   width: 75px;
-  font-size: 2rem;
+  font-size: clamp(0.875rem, 0.75rem + 0.625vw, 2.25rem);
   padding: 5px 10px;
   background: transparent;
   color: #f7f5ea;
@@ -378,7 +390,7 @@ input {
 .landing .landingNav .aboutBtn {
   margin: 0 5px;
   width: 75px;
-  font-size: 2rem;
+  font-size: clamp(0.875rem, 0.75rem + 0.625vw, 2.25rem);
   padding: 5px 10px;
   background: transparent;
   color: #f7f5ea;
@@ -415,6 +427,21 @@ input {
   justify-content: center;
   width: 35%;
 }
+@media (max-width: 950px) {
+  .landing .centerContent .searchForm {
+    width: 50%;
+  }
+}
+@media (max-width: 680px) {
+  .landing .centerContent .searchForm {
+    width: 70%;
+  }
+}
+@media (max-width: 450px) {
+  .landing .centerContent .searchForm {
+    width: 85%;
+  }
+}
 .landing .centerContent .searchForm .searchContainer {
   width: 100%;
   margin: 12.5px 0;
@@ -426,18 +453,30 @@ input {
   margin-bottom: 10px;
 }
 .landing .centerContent .searchForm .searchContainer .checkBox label {
-  font-size: 1.6rem;
+  font-size: clamp(0.75rem, 0.6136rem + 0.6818vw, 2.25rem);
   color: #f7f5ea;
 }
 .landing .centerContent .searchForm .searchContainer .checkBox input {
   margin: 2px 5px 0;
-  width: 2.25%;
+  width: 12.5px;
+  height: 12.5px;
   padding: 0;
+}
+@media (max-width: 680px) {
+  .landing .centerContent .searchForm .searchContainer .checkBox input {
+    width: 9px;
+    height: 9px;
+  }
 }
 .landing .centerContent .searchForm .searchContainer .searchInner {
   display: flex;
-  font-size: 2rem;
   text-align: center;
+}
+.landing .centerContent .searchForm .searchContainer .searchInner input::-moz-placeholder {
+  font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
+}
+.landing .centerContent .searchForm .searchContainer .searchInner input, .landing .centerContent .searchForm .searchContainer .searchInner input::placeholder {
+  font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
 }
 .landing .centerContent .searchForm .searchContainer .searchInner .searchButton {
   background-color: #EDD05F;
@@ -451,6 +490,11 @@ input {
 .landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
   color: #1a1a1c;
   font-size: 2rem;
+}
+@media (max-width: 680px) {
+  .landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
+    font-size: 1.5rem;
+  }
 }
 
 .aboutNav {
@@ -1181,10 +1225,16 @@ input {
   padding: 0 7px 0 0;
 }
 
+@media (max-width: 950px) {
+  .leaflet-control-zoom {
+    display: none;
+  }
+}
+
 .mapFilters {
   position: fixed;
   top: 0%;
-  left: 50%;
+  left: 52.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1196,8 +1246,21 @@ input {
   margin-left: -300px;
   padding: 12px;
 }
+@media (max-width: 1130px) {
+  .mapFilters {
+    width: 350px;
+    margin-left: -175px;
+  }
+}
+@media (max-width: 950px) {
+  .mapFilters {
+    width: 275px;
+    margin-left: 0px;
+    left: 200px;
+  }
+}
 .mapFilters .returned {
-  font-size: 2rem;
+  font-size: clamp(1rem, 0.8182rem + 0.9091vw, 3rem);
   text-align: center;
   margin: 2px 0 15px;
   color: #3a3a3c;
@@ -1205,7 +1268,8 @@ input {
 .mapFilters .returned h3 {
   margin: 0;
 }
-.mapFilters .returned #amountReturnedMap, .mapFilters .returned #searchTerm {
+.mapFilters .returned #amountReturnedMap,
+.mapFilters .returned #searchTerm {
   color: #1a1a1c;
   font-family: "Karla Bold";
 }
@@ -1215,17 +1279,32 @@ input {
   width: 100%;
   align-items: center;
 }
+@media (max-width: 950px) {
+  .mapFilters .topControls {
+    flex-direction: column;
+  }
+}
 .mapFilters .topControls .filterButtonContainer .randomStation {
   width: 50px;
   padding: 10px 10px;
   border-radius: 5px 0 0 5px;
   border-right: 0.5px solid #1a1a1c;
 }
+@media (max-width: 1130px) {
+  .mapFilters .topControls .filterButtonContainer .randomStation {
+    width: 45px;
+  }
+}
+@media (max-width: 950px) {
+  .mapFilters .topControls .filterButtonContainer .randomStation {
+    width: 35px;
+  }
+}
 .mapFilters .topControls .filterButtonContainer .randomStation:hover {
   background: #C4C2C2;
 }
 .mapFilters .topControls .filterButtonContainer .randomStation i {
-  font-size: 2rem;
+  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #D32631;
 }
 .mapFilters .topControls .filterButtonContainer .listButton {
@@ -1234,20 +1313,35 @@ input {
   border-radius: 0 5px 5px 0;
   border-left: 0.5px solid #1a1a1c;
 }
+@media (max-width: 1130px) {
+  .mapFilters .topControls .filterButtonContainer .listButton {
+    width: 45px;
+  }
+}
+@media (max-width: 950px) {
+  .mapFilters .topControls .filterButtonContainer .listButton {
+    width: 35px;
+  }
+}
 .mapFilters .topControls .filterButtonContainer .listButton:hover {
   background: #C4C2C2;
 }
 .mapFilters .topControls .filterButtonContainer .listButton i {
-  font-size: 2rem;
+  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #D32631;
 }
 .mapFilters .topControls .selectDropdown select {
   padding: 10px 10px;
-  font-size: 1.5rem;
+  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #1a1a1c;
   background-color: #f7f5ea;
   border: 2px solid #1a1a1c;
   border-radius: 5px;
+}
+@media (max-width: 950px) {
+  .mapFilters .topControls .selectDropdown select {
+    width: 70px;
+  }
 }
 
 .actualMap {
@@ -1348,10 +1442,11 @@ input {
   margin-top: 50px;
 }
 .stationList .listFilters .returned {
-  font-size: 3rem;
+  font-size: clamp(2.25rem, 2.1477rem + 0.5114vw, 3.375rem);
   color: #ebe7e7;
 }
-.stationList .listFilters .returned #amountReturned, .stationList .listFilters .returned #listSearchTerm {
+.stationList .listFilters .returned #amountReturned,
+.stationList .listFilters .returned #listSearchTerm {
   font-family: "Karla Bold";
   color: #ffffff;
 }
@@ -1369,7 +1464,7 @@ input {
   border-right: 0.5px solid #1a1a1c;
 }
 .stationList .listFilters .topControls .filterButtonContainer .randomStation i {
-  font-size: 2rem;
+  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #D32631;
 }
 .stationList .listFilters .topControls .filterButtonContainer .randomStation:hover {
@@ -1382,7 +1477,7 @@ input {
   border-left: 0.5px solid #1a1a1c;
 }
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton i {
-  font-size: 2rem;
+  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #D32631;
 }
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton:hover {
@@ -1390,7 +1485,7 @@ input {
 }
 .stationList .listFilters .topControls .selectDropdown select {
   padding: 10px 10px;
-  font-size: 1.5rem;
+  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #1a1a1c !important;
   border: 2px solid #1a1a1c;
   border-radius: 5px;
@@ -1411,6 +1506,11 @@ input {
   border-radius: 20px;
   background-color: #ebe7e7;
 }
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList {
+    width: calc(42.5% - 25px);
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer {
   display: flex;
   justify-content: space-between;
@@ -1427,7 +1527,7 @@ input {
   text-transform: capitalize;
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .information p {
-  font-size: 1.5rem;
+  font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
@@ -1441,6 +1541,19 @@ input {
   width: 70px;
   height: 70px;
   border-radius: 5px;
+  padding: 5px;
+}
+@media (max-width: 1130px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
+    width: 35px;
+    height: 35px;
+  }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer {
   display: flex;
@@ -1459,6 +1572,12 @@ input {
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton:hover {
   transform: scale(1.05);
 }
+@media (max-width: 1130px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
+    width: 30px;
+    height: 30px;
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
   width: 45px;
   height: 45px;
@@ -1469,6 +1588,12 @@ input {
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite:hover {
   transform: scale(1.05);
+}
+@media (max-width: 1130px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+    width: 30px;
+    height: 30px;
+  }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite i {
   color: #FFE900;

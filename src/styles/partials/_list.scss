@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 
 .stationList {
   height: 100vh;
@@ -12,9 +13,10 @@
     align-items: center;
     margin-top: 50px;
     .returned {
-      font-size: 3rem;
+      font-size: clamp(2.25rem, 2.1477rem + 0.5114vw, 3.375rem);
       color: $eggshell;
-      #amountReturned, #listSearchTerm {
+      #amountReturned,
+      #listSearchTerm {
         font-family: $bold;
         color: $brightWhite;
       }
@@ -33,7 +35,7 @@
           border-radius: 5px 0 0 5px;
           border-right: 0.5px solid $black;
           i {
-            font-size: 2rem;
+            font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
             color: $red;
           }
           &:hover {
@@ -46,7 +48,7 @@
           border-radius: 0 5px 5px 0;
           border-left: 0.5px solid $black;
           i {
-            font-size: 2rem;
+            font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
             color: $red;
           }
           &:hover {
@@ -57,7 +59,7 @@
       .selectDropdown {
         select {
           padding: 10px 10px;
-          font-size: 1.5rem;
+          font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
           color: $black !important;
           border: 2px solid $black;
           border-radius: 5px;
@@ -79,6 +81,9 @@
       border: 2.5px solid $black;
       border-radius: 20px;
       background-color: #ebe7e7;
+      @include tablet {
+        width: calc((85% / 2) - 25px);
+      }
       .imageInfoContainer {
         display: flex;
         justify-content: space-between;
@@ -93,7 +98,7 @@
             text-transform: capitalize;
           }
           p {
-            font-size: 1.5rem;
+            font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
             color: $black;
           }
         }
@@ -107,6 +112,15 @@
             width: 70px;
             height: 70px;
             border-radius: 5px;
+            padding: 5px;
+            @include smallDesktop {
+              width: 50px;
+              height: 50px;
+            }
+            @include tablet {
+              width: 35px;
+              height: 35px;
+            }
           }
         }
         .buttonContainer {
@@ -124,6 +138,10 @@
             &:hover {
               transform: scale(1.05);
             }
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
           }
           .favourite {
             width: 45px;
@@ -134,6 +152,10 @@
             background-color: $white;
             &:hover {
               transform: scale(1.05);
+            }
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
             }
             i {
               color: $brightYellow;

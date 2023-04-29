@@ -367,7 +367,7 @@ const List = (props) => {
       {isVisible && (
         <div className="returnBtn">
           <button className="scrollToTop" onClick={scrollToTop}>
-            <i class="fa-solid fa-circle-arrow-up"></i>
+            <i className="fa-solid fa-circle-arrow-up"></i>
           </button>
           <p id="topText">return to top</p>
         </div>

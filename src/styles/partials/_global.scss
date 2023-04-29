@@ -47,6 +47,7 @@ input {
   height: 25px;
   border-radius: 5px 0 0 5px;
   outline: none;
+  font-size: 1rem;
 }
 
 .dropdown {
@@ -69,10 +70,10 @@ input {
   cursor: pointer;
   text-align: start;
   background: $white;
-border: 1px solid $black;
-&:last-of-type {
-  border-radius: 0 0 5px 5px;
-}
+  border: 1px solid $black;
+  &:last-of-type {
+    border-radius: 0 0 5px 5px;
+  }
   p {
     color: $black;
     margin: 5px;

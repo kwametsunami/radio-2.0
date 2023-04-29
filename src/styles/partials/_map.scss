@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 
 .leaflet-container {
   width: 100%;
@@ -28,10 +29,16 @@
   padding: 0 7px 0 0;
 }
 
+.leaflet-control-zoom {
+  @include tablet {
+    display: none;
+  }
+}
+
 .mapFilters {
   position: fixed;
   top: 0%;
-  left: 50%;
+  left: 52.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,16 +53,26 @@
   width: 600px;
   margin-left: -300px;
   padding: 12px;
+  @include smallDesktop {
+    width: 350px;
+    margin-left: -175px;
+  }
+  @include tablet {
+    width: 275px;
+    margin-left: 0px;
+    left: 200px;
+  }
   .returned {
-    font-size: 2rem;
+    font-size: clamp(1rem, 0.8182rem + 0.9091vw, 3rem);
     text-align: center;
     margin: 2px 0 15px;
     color: $ash;
     h3 {
       margin: 0;
     }
-    #amountReturnedMap, #searchTerm {
-      color: $black; 
+    #amountReturnedMap,
+    #searchTerm {
+      color: $black;
       font-family: $bold;
     }
   }
@@ -64,17 +81,26 @@
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
+    @include tablet {
+      flex-direction: column;
+    }
     .filterButtonContainer {
       .randomStation {
         width: 50px;
         padding: 10px 10px;
         border-radius: 5px 0 0 5px;
         border-right: 0.5px solid $black;
+        @include smallDesktop {
+          width: 45px;
+        }
+        @include tablet {
+          width: 35px;
+        }
         &:hover {
           background: $grey;
         }
         i {
-          font-size: 2rem;
+          font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
           color: $red;
         }
       }
@@ -83,11 +109,17 @@
         padding: 10px 10px;
         border-radius: 0 5px 5px 0;
         border-left: 0.5px solid $black;
+        @include smallDesktop {
+          width: 45px;
+        }
+        @include tablet {
+          width: 35px;
+        }
         &:hover {
           background: $grey;
         }
         i {
-          font-size: 2rem;
+          font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
           color: $red;
         }
       }
@@ -95,11 +127,14 @@
     .selectDropdown {
       select {
         padding: 10px 10px;
-        font-size: 1.5rem;
+        font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
         color: $black;
         background-color: $white;
         border: 2px solid $black;
         border-radius: 5px;
+        @include tablet {
+          width: 70px;
+        }
       }
     }
   }

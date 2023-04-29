@@ -1,5 +1,5 @@
-@mixin mobileLarge {
-    @media (max-width: 680px) {
+@mixin smallDesktop {
+    @media (max-width: 1130px) {
       @content;
     }
   }
@@ -9,8 +9,12 @@
       @content;
     }
   }
-  
 
+@mixin mobileLarge {
+    @media (max-width: 680px) {
+      @content;
+    }
+  }
 
   @mixin mobile {
     @media (max-width: 450px){
