@@ -833,11 +833,100 @@ input {
 .dashboardContainer .middleDashboard .popularView #popularTitle #popularSearchTerm {
   font-family: "Karla Bold";
 }
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying {
+  background: #EDD05F;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularText {
+  padding: 4px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularText p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1a1a1c;
+}
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #D32631;
+}
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResultsPlaying .popularButtons button {
+  background: transparent;
+}
 .dashboardContainer .middleDashboard .popularView .popularResults {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularText {
+  padding: 4px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularText p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #f7f5ea;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults:hover .popularTextTitle {
+  color: #1a1a1c;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #D32631;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons button {
+  background: transparent;
 }
 .dashboardContainer .middleDashboard .popularView .popularResults:hover {
   background: #C4C2C2;
@@ -1102,7 +1191,7 @@ input {
   justify-content: center;
   z-index: 2;
   background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(215, 215, 215, 0.797));
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 35px 35px;
   width: 600px;
   margin-left: -300px;
   padding: 12px;
@@ -1116,7 +1205,7 @@ input {
 .mapFilters .returned h3 {
   margin: 0;
 }
-.mapFilters .returned #searchTerm {
+.mapFilters .returned #amountReturnedMap, .mapFilters .returned #searchTerm {
   color: #1a1a1c;
   font-family: "Karla Bold";
 }
@@ -1260,10 +1349,11 @@ input {
 }
 .stationList .listFilters .returned {
   font-size: 3rem;
-  color: #f7f5ea;
+  color: #ebe7e7;
 }
-.stationList .listFilters .returned #listSearchTerm {
+.stationList .listFilters .returned #amountReturned, .stationList .listFilters .returned #listSearchTerm {
   font-family: "Karla Bold";
+  color: #ffffff;
 }
 .stationList .listFilters .topControls {
   display: flex;
@@ -1501,7 +1591,6 @@ input {
   display: flex;
   justify-content: flex-end;
   background: #D32631;
-  border-top: 1px solid #1a1a1c;
 }
 .radio .radioPlayer {
   width: 56%;

@@ -1,4 +1,4 @@
- @use "./variables" as *;
+@use "./variables" as *;
 
 .dashboard {
   height: 100vh;
@@ -46,11 +46,104 @@
           font-family: $bold;
         }
       }
+      .popularResultsPlaying {
+        background: $yellow;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px;
+                img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+        }
+        .popularText {
+          padding: 4px;
+          p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: $black;
+          }
+        }
+        .popularButtons {
+          .popularButton {
+            border: 2px solid $black;
+            background: $white;
+            border-radius: 50px;
+            width: 35px;
+            height: 35px;
+            margin: 2px 5px;
+            color: $red;
+          }
+          .popularButtonPlaying {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #1e2021;
+            border-radius: 50px;
+            background-color: $white;
+            font-family: "Poppins", sans-serif;
+            background-image: url("../../assets/soundBars.gif");
+            background-size: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            margin: 2px 5px;
+          }
+          button {
+            background: transparent;
+          }
+        }
+      }
       .popularResults {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 2px;
+                img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+        }
+        .popularText {
+          padding: 4px;
+          p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: $white;
+          }
+        }
+        &:hover .popularTextTitle {
+          color: $black;
+        }
+        .popularButtons {
+          .popularButton {
+            border: 2px solid $black;
+            background: $white;
+            border-radius: 50px;
+            width: 35px;
+            height: 35px;
+            margin: 2px 5px;
+            color: $red;
+          }
+          .popularButtonPlaying {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #1e2021;
+            border-radius: 50px;
+            background-color: $white;
+            font-family: "Poppins", sans-serif;
+            background-image: url("../../assets/soundBars.gif");
+            background-size: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            margin: 2px 5px;
+          }
+          button {
+            background: transparent;
+          }
+        }
         &:hover {
           background: $grey;
           border-radius: 5px;

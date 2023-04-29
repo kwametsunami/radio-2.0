@@ -22,7 +22,6 @@ const worldBounds = [
   [90, 180], // northeast corner
 ];
 
-
 const Map = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
   const [playingName, setPlayingName] = useState("");
@@ -33,7 +32,7 @@ const Map = (props) => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  const [savedArr, setSavedArr] = useState([])
+  const [savedArr, setSavedArr] = useState([]);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -68,11 +67,9 @@ const Map = (props) => {
   ]);
 
   useEffect(() => {
-
     if (props.stations.length !== filteredStations) {
       setFilterTrue(false);
     }
-
   }, [props.stations]);
 
   const radioSelect = (event) => {
@@ -164,16 +161,14 @@ const Map = (props) => {
   let favouritedStations = [];
 
   const favourite = (event) => {
-
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    favouritedStations.push(...stationFavArr)
+    favouritedStations.push(...stationFavArr);
 
-    setSavedArr(favouritedStations => [favouritedStations, stationFavArr])
+    setSavedArr((favouritedStations) => [favouritedStations, stationFavArr]);
 
-    console.log(savedArr)
-
+    console.log(savedArr);
 
     props.setFavStationInfo([
       ...favouritedStations,
@@ -186,7 +181,9 @@ const Map = (props) => {
       <div className="mapFilters">
         <h3 className="returned">
           returned{" "}
-          {filterTrue ? filteredStations.length : props.stations.length}{" "}
+          <span id="amountReturnedMap">
+            {filterTrue ? filteredStations.length : props.stations.length}{" "}
+          </span>
           {props.quality === 96 ? "high quality " : null}stations matching{" "}
           <span id="searchTerm">{props.selectedGenre}</span>
         </h3>

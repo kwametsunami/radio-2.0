@@ -42,7 +42,7 @@
     rgba(255, 0, 0, 0),
     rgba(215, 215, 215, 0.797)
   );
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 35px 35px;
   width: 600px;
   margin-left: -300px;
   padding: 12px;
@@ -54,8 +54,8 @@
     h3 {
       margin: 0;
     }
-    #searchTerm {
-      color: $black;
+    #amountReturnedMap, #searchTerm {
+      color: $black; 
       font-family: $bold;
     }
   }

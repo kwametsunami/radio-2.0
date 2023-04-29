@@ -13,11 +13,10 @@
     margin-top: 50px;
     .returned {
       font-size: 3rem;
-      color: $white;
-      // text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
-      //   -0.5px -0.5px 0 #000;
-      #listSearchTerm {
+      color: $eggshell;
+      #amountReturned, #listSearchTerm {
         font-family: $bold;
+        color: $brightWhite;
       }
     }
     .topControls {

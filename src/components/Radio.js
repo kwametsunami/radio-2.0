@@ -61,7 +61,7 @@ const Radio = (props) => {
       }
     }
 
-    newFilter.length = 500;
+    newFilter.length = 700;
 
     let bitrateFilter = [];
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import DashboardLoading from "./DashboardLoading";
@@ -24,8 +24,8 @@ const Dashboard = (props) => {
     props.sendToRadio(popularStationArr[0]);
     props.sendToRadioName(popularStationArr[1]);
 
-    if(popularStationArr === ""){
-      props.sendImage(defaultImage)
+    if (popularStationArr === "") {
+      props.sendImage(defaultImage);
     } else {
       props.sendImage(popularStationArr[2]);
     }
@@ -77,7 +77,11 @@ const Dashboard = (props) => {
               : props.popular.map((stations) => {
                   return (
                     <div
-                      className="popularResults"
+                      className={
+                        props.stationUrl === stations.url_resolved
+                          ? "popularResultsPlaying"
+                          : "popularResults"
+                      }
                       key={`${stations.changeuuid}`}
                     >
                       <img
@@ -105,7 +109,7 @@ const Dashboard = (props) => {
                             `${stations.name}`,
                             `${stations.favicon}`,
                             `${stations.geo_lat}`,
-                            `${stations.geo_long}`
+                            `${stations.geo_long}`,
                           ]}
                         >
                           {props.stationUrl === stations.url_resolved

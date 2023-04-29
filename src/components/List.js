@@ -167,7 +167,9 @@ const List = (props) => {
       <div className="listFilters">
         <h3 className="returned">
           returned{" "}
-          {filterTrue ? filteredStations.length : props.stations.length}{" "}
+          <span id="amountReturned">
+            {filterTrue ? filteredStations.length : props.stations.length}
+          </span>{" "}
           {props.quality === 96 ? "high quality " : null}
           stations matching{" "}
           <span id="listSearchTerm">{props.selectedGenre}</span>
