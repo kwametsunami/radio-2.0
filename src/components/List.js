@@ -214,7 +214,7 @@ const List = (props) => {
                         className="favourite"
                         onClick={favourite}
                         value={[
-                          `${stationDetails.id}`,
+                          `${stationDetails.changeuuid}`,
                           `${stationDetails.name}`,
                           `${stationDetails.url_resolved}`,
                           `${stationDetails.favicon}`,
@@ -294,7 +294,7 @@ const List = (props) => {
                         className="favourite"
                         onClick={favourite}
                         value={[
-                          `${stationDetails.id}`,
+                          `${stationDetails.changeuuid}`,
                           `${stationDetails.name}`,
                           `${stationDetails.url_resolved}`,
                           `${stationDetails.favicon}`,

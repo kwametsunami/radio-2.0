@@ -141,7 +141,6 @@ const Radio = (props) => {
 
   const sendImage = (favicon) => {
     setCurrentIcon(favicon);
-    console.log("image set")
   };
 
   return (

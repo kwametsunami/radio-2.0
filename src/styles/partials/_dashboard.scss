@@ -36,10 +36,11 @@
   }
   .middleDashboard {
     overflow: hidden;
+    max-height: 345px;
     .popularView {
       padding: 5px;
       #popularTitle {
-        color: $yellow;
+        color: $white;
         text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
           0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         font-size: 1.75rem;
@@ -169,6 +170,7 @@
     bottom: 261px;
     width: 200px;
     justify-content: center;
+    z-index: 2;
     .infoButtons {
       display: flex;
       justify-content: space-between;

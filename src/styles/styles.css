@@ -811,12 +811,13 @@ input {
 }
 .dashboardContainer .middleDashboard {
   overflow: hidden;
+  max-height: 345px;
 }
 .dashboardContainer .middleDashboard .popularView {
   padding: 5px;
 }
 .dashboardContainer .middleDashboard .popularView #popularTitle {
-  color: #EDD05F;
+  color: #f7f5ea;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
   font-size: 1.75rem;
   padding: 0 0 15px;
@@ -940,6 +941,7 @@ input {
   bottom: 261px;
   width: 200px;
   justify-content: center;
+  z-index: 2;
 }
 .dashboardContainer .infoContainer .infoButtons {
   display: flex;
@@ -1078,7 +1080,7 @@ input {
 .mapFilters {
   position: fixed;
   top: 0%;
-  left: 32.5%;
+  left: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1087,6 +1089,7 @@ input {
   background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(255, 255, 255));
   border-radius: 0 0 20px 20px;
   width: 600px;
+  margin-left: -300px;
   padding: 12px;
 }
 .mapFilters .returned {

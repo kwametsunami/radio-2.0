@@ -17,6 +17,12 @@ const selectedIcon = L.icon({
   iconSize: [60, 60],
 });
 
+const worldBounds = [
+  [-90, -180], // southwest corner
+  [90, 180], // northeast corner
+];
+
+
 const Map = (props) => {
   const [radioUrl, setRadioUrl] = useState("");
   const [playingName, setPlayingName] = useState("");
@@ -26,6 +32,8 @@ const Map = (props) => {
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+
+  const [savedArr, setSavedArr] = useState([])
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -153,15 +161,19 @@ const Map = (props) => {
     }
   };
 
+  let favouritedStations = [];
+
   const favourite = (event) => {
+
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    const favouritedStations = [];
+    favouritedStations.push(...stationFavArr)
 
-    favouritedStations.push(stationFavArr)
+    setSavedArr(favouritedStations => [favouritedStations, stationFavArr])
 
-    console.log(favouritedStations)
+    console.log(savedArr)
+
 
     props.setFavStationInfo([
       ...favouritedStations,
@@ -212,6 +224,8 @@ const Map = (props) => {
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}
+          bounds={worldBounds}
+          maxBounds={worldBounds}
           ZoomControl={false}
         >
           <TileLayer
@@ -294,7 +308,7 @@ const Map = (props) => {
                               className="favourite"
                               onClick={favourite}
                               value={[
-                                `${stationDetails.id}`,
+                                `${stationDetails.changeuuid}`,
                                 `${stationDetails.name}`,
                                 `${stationDetails.url_resolved}`,
                                 `${stationDetails.favicon}`,
@@ -383,7 +397,7 @@ const Map = (props) => {
                               className="favourite"
                               onClick={favourite}
                               value={[
-                                `${stationDetails.id}`,
+                                `${stationDetails.changeuuid}`,
                                 `${stationDetails.name}`,
                                 `${stationDetails.url_resolved}`,
                                 `${stationDetails.favicon}`,

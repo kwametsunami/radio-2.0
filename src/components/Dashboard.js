@@ -23,9 +23,12 @@ const Dashboard = (props) => {
 
     props.sendToRadio(popularStationArr[0]);
     props.sendToRadioName(popularStationArr[1]);
-    props.sendImage(popularStationArr[2]);
 
-    console.log(popularStationArr[2])
+    if(popularStationArr === ""){
+      props.sendImage(defaultImage)
+    } else {
+      props.sendImage(popularStationArr[2]);
+    }
 
     props.latitude(popularStationArr[3]);
     props.longitude(popularStationArr[4]);
@@ -44,7 +47,7 @@ const Dashboard = (props) => {
 
   favArr.push(props.favourites);
 
-  console.log(favArr);
+  // console.log(favArr);
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
