@@ -370,7 +370,6 @@ input {
   background: transparent;
   color: #f7f5ea;
   border: none;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .landing .landingNav .loginBtn:hover {
   color: #EDD05F;
@@ -383,7 +382,6 @@ input {
   background: transparent;
   color: #f7f5ea;
   border: none;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .landing .landingNav .aboutBtn:hover {
   color: #EDD05F;
@@ -398,8 +396,8 @@ input {
   text-align: center;
 }
 .landing .centerContent .centerText .title {
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
   color: #f7f5ea;
+  font-family: "Karla Bold";
   transition: 0.9s;
   cursor: default;
 }
@@ -409,7 +407,7 @@ input {
 .landing .centerContent .centerText .greeting {
   margin: 2px 0 10px;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-family: "Karla Bold";
   cursor: default;
 }
 .landing .centerContent .searchForm {
@@ -810,7 +808,6 @@ input {
   transition: 0.9s;
   color: #f7f5ea;
   font-family: "Karla Bold";
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .dashboardContainer .dashboardLogo a h2:hover {
   color: #EDD05F;
@@ -963,7 +960,6 @@ input {
   border: none;
   border-bottom: 2px solid transparent;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .dashboardContainer .infoContainer .infoButtons button:hover {
   border: none;
@@ -1094,7 +1090,7 @@ input {
   align-items: center;
   justify-content: center;
   z-index: 2;
-  background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(255, 255, 255));
+  background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(215, 215, 215, 0.797));
   border-radius: 0 0 20px 20px;
   width: 600px;
   margin-left: -300px;
@@ -1514,7 +1510,6 @@ input {
   font-size: 2rem;
   color: #f7f5ea;
   font-family: "Karla Bold";
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 
 .footer {
@@ -1527,7 +1522,6 @@ input {
 }
 .footer .footerText p a {
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
 .footer .footerText p a:hover {
   color: #EDD05F;

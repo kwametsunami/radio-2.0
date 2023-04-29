@@ -27,8 +27,6 @@
         transition: 0.9s;
         color: $white;
         font-family: $bold;
-        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         &:hover {
           color: $yellow;
         }
@@ -42,10 +40,7 @@
       padding: 5px;
       #popularTitle {
         color: $white;
-        // text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-        //   0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         font-size: 1.75rem;
-        // font-family: $bold;
         padding: 0 0 15px;
         #popularSearchTerm {
           font-family: $bold;
@@ -187,8 +182,6 @@
         border: none;
         border-bottom: 2px solid transparent;
         color: $white;
-        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         &:hover {
           border: none;
           border-bottom: 2px solid $white;

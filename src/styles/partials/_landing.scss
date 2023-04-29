@@ -22,8 +22,6 @@
       background: transparent;
       color: $white;
       border: none;
-      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
-        -0.5px -0.5px 0 #000;
       &:hover {
         color: $yellow;
       }
@@ -36,8 +34,6 @@
       background: transparent;
       color: $white;
       border: none;
-      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
-        -0.5px -0.5px 0 #000;
       &:hover {
         color: $yellow;
       }
@@ -51,9 +47,8 @@
       margin: 100px 0 0;
       text-align: center;
       .title {
-        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
         color: $white;
+        font-family: $bold;
         transition: 0.9s;
         cursor: default;
         &:hover {
@@ -63,9 +58,8 @@
       .greeting {
         margin: 2px 0 10px;
         color: $white;
-        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-          cursor: default;
+        font-family: $bold;
+        cursor: default;
       }
     }
     .searchForm {

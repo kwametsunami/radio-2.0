@@ -160,7 +160,7 @@ const Dashboard = (props) => {
         }
       >
         <div className="infoButtons">
-          <button>login</button>
+          <button className="dashLogin">login</button>
           <button onClick={infoButton}>
             <i className="fa-solid fa-circle-info"></i>
           </button>
