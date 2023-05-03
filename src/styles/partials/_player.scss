@@ -55,27 +55,42 @@
 
 .radioInfo {
   position: absolute;
-  bottom: -8%;
+  bottom: -3px;
   left: 0;
   max-width: 200px;
-  @include mobileLarge {
-    bottom: 10%;
+  @include smallDesktop {
+    bottom: 5px;
   }
-  img {
+  @include tablet {
+    bottom: 9.5px;
+  }
+  @include mobileLarge {
+    bottom: 4.5px;
+  }
+  .playingImgContainer {
     width: 200px;
     height: 200px;
-    background: $red;
+    background: $white;
+    display: flex;
+    align-items: center;
     @include smallDesktop {
       width: 150px;
       height: 150px;
     }
     @include mobileLarge {
-      width: 59px;
-      height: 59px;
+      width: 61px;
+      height: 61px;
       position: absolute;
       bottom: -5.5px;
-      margin-left: 0px;
+      margin-left: 2.5px;
+      background: $red;
     }
+  }
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
   }
   .radioInfoTitleContainer {
     width: 100%;
@@ -100,7 +115,7 @@
       }
       @include mobileLarge {
         font-size: 1.5rem;
-        margin-left: 80px;
+        margin-left: 75px;
         width: 125px;
       }
       @include mobile {

@@ -6,6 +6,9 @@
   top: 0;
   right: 0;
   width: 300px;
+  @include smallDesktop {
+    width: 250px;
+  }
   z-index: 4;
   .searchNavContents {
     display: flex;
@@ -22,6 +25,9 @@
         font-size: 2rem;
         padding: 15px;
         background: $white;
+        @include tablet {
+          width: 50%;
+        }
       }
       .searchButton {
         width: 25%;

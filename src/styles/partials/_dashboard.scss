@@ -33,6 +33,9 @@
     left: 60px;
     top: 0;
     margin-top: 25px;
+    @include smallDesktop {
+      left: 35px;
+    }
     a {
       h2 {
         transition: 0.9s;
@@ -51,7 +54,7 @@
       padding: 5px;
       #popularTitle {
         color: $white;
-        font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+        font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
         padding: 0 0 15px;
         #popularSearchTerm {
           font-family: $bold;
@@ -313,6 +316,10 @@
     width: 200px;
     justify-content: center;
     z-index: 2;
+    @include smallDesktop {
+      width: 150px;
+      bottom: 211px;
+    }
     .infoButtons {
       display: flex;
       justify-content: space-between;
@@ -391,6 +398,9 @@
       display: flex;
       align-items: center;
       border: 2px solid $black;
+      @include smallDesktop {
+        width: 150px;
+      }
       .infoButton {
         position: absolute;
         top: 1%;
@@ -404,7 +414,7 @@
       p {
         color: $black;
         padding: 5px;
-        font-size: 1.5rem;
+        font-size: clamp(0.75rem, 0.7045rem + 0.2273vw, 1.25rem);
       }
     }
   }
@@ -837,7 +847,7 @@
   }
 }
 
-// animation 
+// animation
 
 @keyframes openMobile {
   0% {
@@ -845,7 +855,7 @@
     left: 45px;
   }
   99% {
-    opacity: 0.1
+    opacity: 0.1;
   }
   100% {
     opacity: 1;
@@ -859,7 +869,7 @@
     left: 150px;
   }
   99% {
-    opacity: 0.1
+    opacity: 0.1;
   }
   100% {
     opacity: 1;
