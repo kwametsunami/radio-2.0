@@ -1,6 +1,8 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
+//  desktop styling
+
 .dashboard {
   height: 100vh;
   width: 200px;
@@ -13,9 +15,6 @@
   @include smallDesktop {
     width: 150px;
     min-width: 150px;
-  }
-  @include mobileLarge {
-    display: none;
   }
 }
 
@@ -34,9 +33,6 @@
     left: 60px;
     top: 0;
     margin-top: 25px;
-    @include mobileLarge {
-      visibility: visible;
-    }
     a {
       h2 {
         transition: 0.9s;
@@ -411,5 +407,462 @@
         font-size: 1.5rem;
       }
     }
+  }
+}
+
+//////////////////////////////////////// mobile styling
+
+.dashboardContainerMobile {
+  background: transparent;
+  position: relative;
+  .hamburger {
+    font-size: 3rem;
+    position: fixed;
+    top: 20px;
+    left: 45px;
+    z-index: 5;
+    background: transparent;
+    border: none;
+    color: $black;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    animation: 0.2s linear forwards fade;
+  }
+  .hamburgerX {
+    font-size: 3.75rem;
+    position: fixed;
+    top: 18px;
+    left: 45px;
+    z-index: 5;
+    background: transparent;
+    border: none;
+    color: $black;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    animation: 0.2s linear forwards openMobile;
+  }
+  .dashboardPopOut {
+    width: 100vw;
+    height: 100px;
+    background: $red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .dashboardLogo {
+      position: fixed;
+      left: 60px;
+      top: 0;
+      margin-top: 25px;
+      a {
+        h2 {
+          transition: 0.9s;
+          color: $white;
+          font-family: $bold;
+          &:hover {
+            color: $yellow;
+          }
+        }
+      }
+    }
+    .middleDashboard {
+      overflow: hidden;
+      max-height: 500px;
+      .popularView {
+        padding: 5px;
+        #popularTitle {
+          color: $white;
+          font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+          padding: 0 0 15px;
+          #popularSearchTerm {
+            font-family: $bold;
+          }
+        }
+        .popularResultsPlaying {
+          background: $yellow;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 2px;
+          img {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .popularText {
+            padding: 4px;
+            p {
+              margin: 0;
+              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+              color: $black;
+            }
+          }
+          .popularButtons {
+            .popularButton {
+              border: 2px solid $black;
+              background: $white;
+              border-radius: 50px;
+              width: 35px;
+              height: 35px;
+              margin: 2px 5px;
+              color: $red;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+              }
+            }
+            .popularButtonPlaying {
+              width: 35px;
+              height: 35px;
+              border: 2px solid #1e2021;
+              border-radius: 50px;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 100px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
+              margin: 2px 5px;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+              }
+            }
+            button {
+              background: transparent;
+            }
+          }
+        }
+        .popularResults {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 2px;
+          img {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .popularText {
+            padding: 4px;
+            p {
+              margin: 0;
+              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+              color: $white;
+            }
+          }
+          &:hover .popularTextTitle {
+            color: $black;
+          }
+          .popularButtons {
+            .popularButton {
+              border: 2px solid $black;
+              background: $white;
+              border-radius: 50px;
+              width: 35px;
+              height: 35px;
+              margin: 2px 5px;
+              color: $red;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+              }
+            }
+            .popularButtonPlaying {
+              width: 35px;
+              height: 35px;
+              border: 2px solid #1e2021;
+              border-radius: 50px;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 100px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
+              margin: 2px 5px;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+                background-size: 50px;
+              }
+            }
+            button {
+              background: transparent;
+            }
+          }
+          &:hover {
+            background: $grey;
+            border-radius: 5px;
+          }
+          img {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .popularText {
+            padding: 4px;
+            p {
+              margin: 0;
+              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+              color: $white;
+            }
+          }
+          &:hover .popularTextTitle {
+            color: $black;
+          }
+          .popularButtons {
+            .popularButton {
+              border: 2px solid $black;
+              background: $white;
+              border-radius: 50px;
+              width: 35px;
+              height: 35px;
+              margin: 2px 5px;
+              color: $red;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+              }
+            }
+            .popularButtonPlaying {
+              width: 35px;
+              height: 35px;
+              border: 2px solid #1e2021;
+              border-radius: 50px;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 100px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
+              margin: 2px 5px;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+              }
+            }
+            button {
+              background: transparent;
+            }
+          }
+        }
+      }
+      .favContainer {
+        padding: 5px;
+        overflow: hidden;
+        h2 {
+          text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+            0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+          font-size: 1.75rem;
+        }
+        p {
+          color: $black;
+        }
+        .favItems {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 2px;
+          &:hover {
+            background: $grey;
+            border-radius: 5px;
+          }
+          .favText {
+            width: 60%;
+            word-wrap: break-word;
+            p {
+              margin: 0;
+              color: $black;
+              font-size: 1.5rem;
+            }
+          }
+          img {
+            height: 35px;
+            width: 35px;
+            border-radius: 5px;
+          }
+          .favButtons {
+            display: flex;
+            .favButton {
+              border: 2px solid $black;
+              background: $white;
+              border-radius: 50px;
+              width: 35px;
+              height: 35px;
+              margin: 2px 5px;
+              color: $red;
+            }
+            .favButtonPlaying {
+              width: 35px;
+              height: 35px;
+              border: 2px solid #1e2021;
+              border-radius: 50px;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 100px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
+              margin: 2px 5px;
+            }
+          }
+        }
+      }
+    }
+    .infoContainer {
+      display: flex;
+      position: fixed;
+      bottom: 261px;
+      width: 200px;
+      justify-content: center;
+      z-index: 2;
+      .infoButtons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        button {
+          width: calc(100% / 3);
+          font-size: 1.7rem;
+          background: transparent;
+          border: none;
+          border-bottom: 2px solid transparent;
+          color: $white;
+          &:hover {
+            border: none;
+            border-bottom: 2px solid $white;
+          }
+        }
+      }
+      .instructions {
+        position: fixed;
+        bottom: 290px;
+        width: 200px;
+        height: 150px;
+        background: $white;
+        display: flex;
+        align-items: center;
+        border: 2px solid $black;
+        .infoButton {
+          position: absolute;
+          top: 1%;
+          right: 3%;
+          background: transparent;
+          border: none;
+          i {
+            color: $black;
+          }
+        }
+        p {
+          color: $black;
+          padding: 5px;
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .infoContainerBottom {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      width: 200px;
+      justify-content: center;
+      .infoButtons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        position: relative;
+        button {
+          width: calc(100% / 3);
+          background: transparent;
+          font-size: 1.7rem;
+          border: none;
+          border-bottom: 2px solid transparent;
+          color: $white;
+          text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+            0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+          &:hover {
+            border: none;
+            border-bottom: 2px solid $white;
+          }
+        }
+      }
+      .instructions {
+        position: fixed;
+        bottom: 35px;
+        width: 200px;
+        height: 258px;
+        background: $white;
+        display: flex;
+        align-items: center;
+        border: 2px solid $black;
+        .infoButton {
+          position: absolute;
+          top: 1%;
+          right: 3%;
+          background: transparent;
+          border: none;
+          i {
+            color: $black;
+          }
+        }
+        p {
+          color: $black;
+          padding: 5px;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+// animation 
+
+@keyframes openMobile {
+  0% {
+    opacity: 0;
+    left: 45px;
+  }
+  99% {
+    opacity: 0.1
+  }
+  100% {
+    opacity: 1;
+    left: 150px;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    left: 150px;
+  }
+  99% {
+    opacity: 0.1
+  }
+  100% {
+    opacity: 1;
+    left: 45px;
   }
 }

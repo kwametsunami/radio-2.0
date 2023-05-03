@@ -846,11 +846,6 @@ input {
     min-width: 150px;
   }
 }
-@media (max-width: 680px) {
-  .dashboard {
-    display: none;
-  }
-}
 
 .dashboardContainer {
   width: 200px;
@@ -870,11 +865,6 @@ input {
   left: 60px;
   top: 0;
   margin-top: 25px;
-}
-@media (max-width: 680px) {
-  .dashboardContainer .dashboardLogo {
-    visibility: visible;
-  }
 }
 .dashboardContainer .dashboardLogo a h2 {
   transition: 0.9s;
@@ -1259,6 +1249,465 @@ input {
   font-size: 1.5rem;
 }
 
+.dashboardContainerMobile {
+  background: transparent;
+  position: relative;
+}
+.dashboardContainerMobile .hamburger {
+  font-size: 3rem;
+  position: fixed;
+  top: 20px;
+  left: 45px;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  color: #1a1a1c;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  animation: 0.2s linear forwards fade;
+}
+.dashboardContainerMobile .hamburgerX {
+  font-size: 3.75rem;
+  position: fixed;
+  top: 18px;
+  left: 45px;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  color: #1a1a1c;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  animation: 0.2s linear forwards openMobile;
+}
+.dashboardContainerMobile .dashboardPopOut {
+  width: 100vw;
+  height: 100px;
+  background: #D32631;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.dashboardContainerMobile .dashboardPopOut .dashboardLogo {
+  position: fixed;
+  left: 60px;
+  top: 0;
+  margin-top: 25px;
+}
+.dashboardContainerMobile .dashboardPopOut .dashboardLogo a h2 {
+  transition: 0.9s;
+  color: #f7f5ea;
+  font-family: "Karla Bold";
+}
+.dashboardContainerMobile .dashboardPopOut .dashboardLogo a h2:hover {
+  color: #EDD05F;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard {
+  overflow: hidden;
+  max-height: 500px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView {
+  padding: 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView #popularTitle {
+  color: #f7f5ea;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+  padding: 0 0 15px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView #popularTitle #popularSearchTerm {
+  font-family: "Karla Bold";
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying {
+  background: #EDD05F;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText {
+  padding: 4px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText p {
+  margin: 0;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #D32631;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons button {
+  background: transparent;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText {
+  padding: 4px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText p {
+  margin: 0;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+  color: #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults:hover .popularTextTitle {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #D32631;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+    width: 20px;
+    height: 20px;
+    background-size: 50px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons button {
+  background: transparent;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults:hover {
+  background: #C4C2C2;
+  border-radius: 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText {
+  padding: 4px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText p {
+  margin: 0;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+  color: #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults:hover .popularTextTitle {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #D32631;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons button {
+  background: transparent;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer {
+  padding: 5px;
+  overflow: hidden;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer h2 {
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-size: 1.75rem;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer p {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems:hover {
+  background: #C4C2C2;
+  border-radius: 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favText {
+  width: 60%;
+  word-wrap: break-word;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favText p {
+  margin: 0;
+  color: #1a1a1c;
+  font-size: 1.5rem;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems img {
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favButtons {
+  display: flex;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favButtons .favButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #D32631;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favButtons .favButtonPlaying {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #1e2021;
+  border-radius: 50px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin: 2px 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer {
+  display: flex;
+  position: fixed;
+  bottom: 261px;
+  width: 200px;
+  justify-content: center;
+  z-index: 2;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .infoButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .infoButtons button {
+  width: 33.3333333333%;
+  font-size: 1.7rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .infoButtons button:hover {
+  border: none;
+  border-bottom: 2px solid #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions {
+  position: fixed;
+  bottom: 290px;
+  width: 200px;
+  height: 150px;
+  background: #f7f5ea;
+  display: flex;
+  align-items: center;
+  border: 2px solid #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions .infoButton {
+  position: absolute;
+  top: 1%;
+  right: 3%;
+  background: transparent;
+  border: none;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions .infoButton i {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions p {
+  color: #1a1a1c;
+  padding: 5px;
+  font-size: 1.5rem;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 200px;
+  justify-content: center;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons button {
+  width: 33.3333333333%;
+  background: transparent;
+  font-size: 1.7rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #f7f5ea;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons button:hover {
+  border: none;
+  border-bottom: 2px solid #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions {
+  position: fixed;
+  bottom: 35px;
+  width: 200px;
+  height: 258px;
+  background: #f7f5ea;
+  display: flex;
+  align-items: center;
+  border: 2px solid #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions .infoButton {
+  position: absolute;
+  top: 1%;
+  right: 3%;
+  background: transparent;
+  border: none;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions .infoButton i {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions p {
+  color: #1a1a1c;
+  padding: 5px;
+  font-size: 1.5rem;
+}
+
+@keyframes openMobile {
+  0% {
+    opacity: 0;
+    left: 45px;
+  }
+  99% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+    left: 150px;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+    left: 150px;
+  }
+  99% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+    left: 45px;
+  }
+}
 .loadingContainer {
   height: 100vh;
   width: 100vw;
@@ -1931,6 +2380,12 @@ input {
     z-index: 4;
   }
 }
+@media (max-width: 450px) {
+  .returnBtn {
+    bottom: 95px;
+    right: 15px;
+  }
+}
 .returnBtn .scrollToTop {
   height: 50px;
   width: 50px;
@@ -1989,6 +2444,11 @@ input {
   z-index: 1;
   padding: 5px 0 15px;
 }
+@media (max-width: 450px) {
+  .radio .radioPlayer {
+    margin-left: 320px;
+  }
+}
 
 .rhap_container {
   box-shadow: none !important;
@@ -2018,6 +2478,11 @@ input {
 .rhap_volume-controls {
   justify-content: flex-start !important;
 }
+@media (max-width: 450px) {
+  .rhap_volume-controls {
+    display: none !important;
+  }
+}
 
 .rhap_repeat-button {
   display: none;
@@ -2038,6 +2503,12 @@ input {
   width: 200px;
   height: 200px;
   background: #D32631;
+}
+@media (max-width: 1130px) {
+  .radioInfo img {
+    width: 150px;
+    height: 150px;
+  }
 }
 @media (max-width: 680px) {
   .radioInfo img {
@@ -2063,11 +2534,33 @@ input {
   color: #f7f5ea;
   font-family: "Karla Bold";
 }
+@media (max-width: 1130px) {
+  .radioInfo .radioInfoTitleContainer .radioInfoTitle {
+    font-size: 1.75rem;
+    width: 400px;
+  }
+}
+@media (max-width: 950px) {
+  .radioInfo .radioInfoTitleContainer .radioInfoTitle {
+    font-size: 1.6rem;
+    width: 285px;
+  }
+}
 @media (max-width: 680px) {
   .radioInfo .radioInfoTitleContainer .radioInfoTitle {
     font-size: 1.5rem;
     margin-left: 80px;
     width: 125px;
+  }
+}
+@media (max-width: 450px) {
+  .radioInfo .radioInfoTitleContainer .radioInfoTitle {
+    width: 185px;
+  }
+}
+@media (max-width: 300px) {
+  .radioInfo .radioInfoTitleContainer .radioInfoTitle {
+    width: 145px;
   }
 }
 

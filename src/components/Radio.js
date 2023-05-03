@@ -85,11 +85,11 @@ const Radio = (props) => {
 
     setDashboardLoading(true);
 
-    let noDup = Array.from(
-      new Set(bitrateFilter.map((item) => item.name))
-    ).map((name) => {
-      return bitrateFilter.find((item) => item.name === name);
-    });
+    let noDup = Array.from(new Set(bitrateFilter.map((item) => item.name))).map(
+      (name) => {
+        return bitrateFilter.find((item) => item.name === name);
+      }
+    );
 
     if (noDup.length > 0) {
       setStations(noDup);
@@ -125,6 +125,7 @@ const Radio = (props) => {
     setDashboardLoading(false);
 
     setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
+
   }, [props.genre, props.quality, stationFilter]);
 
   const [stationUrl, setStationUrl] = useState("");
@@ -142,6 +143,30 @@ const Radio = (props) => {
   const sendImage = (favicon) => {
     setCurrentIcon(favicon);
   };
+
+  const [mobile, setMobile] = useState(false);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    if (window.innerWidth < 680) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowSize]);
 
   return (
     <section className="infoContainer">
@@ -167,7 +192,7 @@ const Radio = (props) => {
         </div>
       </nav>
       <div className="radioView">
-        <div className="dashboard">
+        <div className={mobile ? "dashboardMobile" : "dashboard"}>
           <Dashboard
             landingView={props.landingView}
             genreName={props.genre}
@@ -182,6 +207,7 @@ const Radio = (props) => {
             badSearch={badSearch}
             latitude={setCurrentLat}
             longitude={setCurrentLong}
+            mobile={mobile}
           />
         </div>
         {loading ? (

@@ -392,6 +392,10 @@
     bottom: 12.5px;
     z-index: 4;
   }
+  @include mobile {
+    bottom: 95px;
+    right: 15px;
+  }
   .scrollToTop {
     height: 50px;
     width: 50px;

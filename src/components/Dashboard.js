@@ -8,6 +8,7 @@ import defaultImage from "../assets/radio.png";
 const Dashboard = (props) => {
   const [showInfo, setShowInfo] = useState(false);
   const [popularView, setPopularView] = useState(true);
+  const [showMobile, setShowMobile] = useState(false);
 
   const infoButton = () => {
     setShowInfo(!showInfo);
@@ -15,6 +16,10 @@ const Dashboard = (props) => {
 
   const layoutView = () => {
     setPopularView(!popularView);
+  };
+
+  const mobileMenu = () => {
+    setShowMobile(!showMobile);
   };
 
   const playPopular = (event) => {
@@ -54,65 +59,266 @@ const Dashboard = (props) => {
   };
 
   return (
-    <div className="dashboardContainer">
-      <div className="dashboardLogo">
-        <Link onClick={props.landingView} to="/">
-          <h2>tr-1.fm</h2>
-        </Link>
-      </div>
-      <div className="middleDashboard">
-        {popularView ? (
-          <div className="popularView">
-            {!props.dashboardLoading ? (
-              props.badSearch ? null : (
-                <h2 id="popularTitle">
-                  top <span id="popularSearchTerm">{props.genreName} </span>
-                  stations
-                </h2>
-              )
-            ) : null}
-            {props.dashboardLoading ? <DashboardLoading /> : null}
-            {props.dashboardLoading
-              ? null
-              : props.popular.map((stations) => {
-                  return (
-                    <div
-                      className={
-                        props.stationUrl === stations.url_resolved
-                          ? "popularResultsPlaying"
-                          : "popularResults"
-                      }
-                      key={`${stations.changeuuid}`}
-                    >
-                      <img
-                        src={`${stations.favicon}`}
-                        alt={`${stations.name}`}
-                        onError={setDefaultSrc}
-                      />
-                      <div className="popularText">
-                        <p className="popularTextTitle">{`${stations.name
-                          .replace(/_/g, "")
-                          .replace(/-/g, " ")
-                          .replace(/  +/, " ")
-                          .replace(/\//g, "")}`}</p>
-                      </div>
-                      <div className="popularButtons">
-                        <button
+    <>
+      {props.mobile ? (
+        <div className="dashboardContainerMobile">
+          <div className="hamburgerMenu">
+            {showMobile ? (
+              <button className="hamburgerX" onClick={mobileMenu}>
+                <i className="fa-solid fa-caret-left"></i>
+              </button>
+            ) : (
+              <button className="hamburger" onClick={mobileMenu}>
+                <i className="fa-solid fa-bars"></i>
+              </button>
+            )}
+          </div>
+          {showMobile ? (
+            <div className="dashboardPopOut">
+              <div className="dashboardLogo">
+                <Link onClick={props.landingView} to="/">
+                  <h2>tr-1.fm</h2>
+                </Link>
+              </div>
+              <div className="middleDashboard">
+                {popularView ? (
+                  <div className="popularView">
+                    {!props.dashboardLoading ? (
+                      props.badSearch ? null : (
+                        <h2 id="popularTitle">
+                          top{" "}
+                          <span id="popularSearchTerm">{props.genreName} </span>
+                          stations
+                        </h2>
+                      )
+                    ) : null}
+                    {props.dashboardLoading ? <DashboardLoading /> : null}
+                    {props.dashboardLoading
+                      ? null
+                      : props.popular.map((stations) => {
+                          return (
+                            <div
+                              className={
+                                props.stationUrl === stations.url_resolved
+                                  ? "popularResultsPlaying"
+                                  : "popularResults"
+                              }
+                              key={`${stations.changeuuid}`}
+                            >
+                              <img
+                                src={`${stations.favicon}`}
+                                alt={`${stations.name}`}
+                                onError={setDefaultSrc}
+                              />
+                              <div className="popularText">
+                                <p className="popularTextTitle">{`${stations.name
+                                  .replace(/_/g, "")
+                                  .replace(/-/g, " ")
+                                  .replace(/  +/, " ")
+                                  .replace(/\//g, "")}`}</p>
+                              </div>
+                              <div className="popularButtons">
+                                <button
+                                  className={
+                                    props.stationUrl === stations.url_resolved
+                                      ? "popularButtonPlaying"
+                                      : "popularButton"
+                                  }
+                                  onClick={playPopular}
+                                  value={[
+                                    `${stations.url_resolved}`,
+                                    `${stations.name}`,
+                                    `${stations.favicon}`,
+                                    `${stations.geo_lat}`,
+                                    `${stations.geo_long}`,
+                                  ]}
+                                >
+                                  {props.stationUrl === stations.url_resolved
+                                    ? ""
+                                    : "▶"}
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                  </div>
+                ) : (
+                  <div className="favContainer">
+                    <h2>your favourited stations</h2>
+                    {props.favourites.map((favStation) => {
+                      return (
+                        <div
+                          className="favItems"
+                          key={`${favStation.favourite[0]}`}
+                        >
+                          <img
+                            src={`${favStation.favourite[3]}`}
+                            alt={`${favStation.favourite[1]}`}
+                            onError={setDefaultSrc}
+                          />
+                          <div className="favText">
+                            <p>{`${favStation.favourite[1]}`}</p>
+                          </div>
+                          <div className="favButtons">
+                            <button
+                              className={
+                                props.stationUrl === favStation.favourite[2]
+                                  ? "favButtonPlaying"
+                                  : "favButton"
+                              }
+                              onClick={playFav}
+                              value={[
+                                `${favStation.favourite[2]}`,
+                                `${favStation.favourite[1]}`,
+                                `${favStation.favourite[3]}`,
+                              ]}
+                            >
+                              {props.stationUrl === favStation.favourite[2]
+                                ? ""
+                                : "▶"}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+              <div
+                className={
+                  props.stationUrl === ""
+                    ? "infoContainerBottom"
+                    : "infoContainer"
+                }
+              >
+                <div className="infoButtons">
+                  <button className="dashLogin">login</button>
+                  <button onClick={infoButton}>
+                    <i className="fa-solid fa-circle-info"></i>
+                  </button>
+                  <button onClick={layoutView}>
+                    {popularView ? (
+                      <i className="fa-solid fa-star"></i>
+                    ) : (
+                      <i className="fa-solid fa-chart-simple"></i>
+                    )}
+                  </button>
+                </div>
+                {showInfo ? (
+                  <div className="instructions">
+                    <button className="infoButton" onClick={infoButton}>
+                      <i className="fa-solid fa-window-minimize"></i>
+                    </button>
+                    <p>
+                      Click on a marker to get more information on the station.
+                      If you like what you see hit play!
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <div className="dashboardContainer">
+          <div className="dashboardLogo">
+            <Link onClick={props.landingView} to="/">
+              <h2>tr-1.fm</h2>
+            </Link>
+          </div>
+          <div className="middleDashboard">
+            {popularView ? (
+              <div className="popularView">
+                {!props.dashboardLoading ? (
+                  props.badSearch ? null : (
+                    <h2 id="popularTitle">
+                      top <span id="popularSearchTerm">{props.genreName} </span>
+                      stations
+                    </h2>
+                  )
+                ) : null}
+                {props.dashboardLoading ? <DashboardLoading /> : null}
+                {props.dashboardLoading
+                  ? null
+                  : props.popular.map((stations) => {
+                      return (
+                        <div
                           className={
                             props.stationUrl === stations.url_resolved
-                              ? "popularButtonPlaying"
-                              : "popularButton"
+                              ? "popularResultsPlaying"
+                              : "popularResults"
                           }
-                          onClick={playPopular}
+                          key={`${stations.changeuuid}`}
+                        >
+                          <img
+                            src={`${stations.favicon}`}
+                            alt={`${stations.name}`}
+                            onError={setDefaultSrc}
+                          />
+                          <div className="popularText">
+                            <p className="popularTextTitle">{`${stations.name
+                              .replace(/_/g, "")
+                              .replace(/-/g, " ")
+                              .replace(/  +/, " ")
+                              .replace(/\//g, "")}`}</p>
+                          </div>
+                          <div className="popularButtons">
+                            <button
+                              className={
+                                props.stationUrl === stations.url_resolved
+                                  ? "popularButtonPlaying"
+                                  : "popularButton"
+                              }
+                              onClick={playPopular}
+                              value={[
+                                `${stations.url_resolved}`,
+                                `${stations.name}`,
+                                `${stations.favicon}`,
+                                `${stations.geo_lat}`,
+                                `${stations.geo_long}`,
+                              ]}
+                            >
+                              {props.stationUrl === stations.url_resolved
+                                ? ""
+                                : "▶"}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+              </div>
+            ) : (
+              <div className="favContainer">
+                <h2>your favourited stations</h2>
+                {props.favourites.map((favStation) => {
+                  return (
+                    <div
+                      className="favItems"
+                      key={`${favStation.favourite[0]}`}
+                    >
+                      <img
+                        src={`${favStation.favourite[3]}`}
+                        alt={`${favStation.favourite[1]}`}
+                        onError={setDefaultSrc}
+                      />
+                      <div className="favText">
+                        <p>{`${favStation.favourite[1]}`}</p>
+                      </div>
+                      <div className="favButtons">
+                        <button
+                          className={
+                            props.stationUrl === favStation.favourite[2]
+                              ? "favButtonPlaying"
+                              : "favButton"
+                          }
+                          onClick={playFav}
                           value={[
-                            `${stations.url_resolved}`,
-                            `${stations.name}`,
-                            `${stations.favicon}`,
-                            `${stations.geo_lat}`,
-                            `${stations.geo_long}`,
+                            `${favStation.favourite[2]}`,
+                            `${favStation.favourite[1]}`,
+                            `${favStation.favourite[3]}`,
                           ]}
                         >
-                          {props.stationUrl === stations.url_resolved
+                          {props.stationUrl === favStation.favourite[2]
                             ? ""
                             : "▶"}
                         </button>
@@ -120,75 +326,42 @@ const Dashboard = (props) => {
                     </div>
                   );
                 })}
-          </div>
-        ) : (
-          <div className="favContainer">
-            <h2>your favourited stations</h2>
-            {props.favourites.map((favStation) => {
-              return (
-                <div className="favItems" key={`${favStation.favourite[0]}`}>
-                  <img
-                    src={`${favStation.favourite[3]}`}
-                    alt={`${favStation.favourite[1]}`}
-                    onError={setDefaultSrc}
-                  />
-                  <div className="favText">
-                    <p>{`${favStation.favourite[1]}`}</p>
-                  </div>
-                  <div className="favButtons">
-                    <button
-                      className={
-                        props.stationUrl === favStation.favourite[2]
-                          ? "favButtonPlaying"
-                          : "favButton"
-                      }
-                      onClick={playFav}
-                      value={[
-                        `${favStation.favourite[2]}`,
-                        `${favStation.favourite[1]}`,
-                        `${favStation.favourite[3]}`,
-                      ]}
-                    >
-                      {props.stationUrl === favStation.favourite[2] ? "" : "▶"}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-      <div
-        className={
-          props.stationUrl === "" ? "infoContainerBottom" : "infoContainer"
-        }
-      >
-        <div className="infoButtons">
-          <button className="dashLogin">login</button>
-          <button onClick={infoButton}>
-            <i className="fa-solid fa-circle-info"></i>
-          </button>
-          <button onClick={layoutView}>
-            {popularView ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-solid fa-chart-simple"></i>
+              </div>
             )}
-          </button>
-        </div>
-        {showInfo ? (
-          <div className="instructions">
-            <button className="infoButton" onClick={infoButton}>
-              <i className="fa-solid fa-window-minimize"></i>
-            </button>
-            <p>
-              Click on a marker to get more information on the station. If you
-              like what you see hit play!
-            </p>
           </div>
-        ) : null}
-      </div>
-    </div>
+          <div
+            className={
+              props.stationUrl === "" ? "infoContainerBottom" : "infoContainer"
+            }
+          >
+            <div className="infoButtons">
+              <button className="dashLogin">login</button>
+              <button onClick={infoButton}>
+                <i className="fa-solid fa-circle-info"></i>
+              </button>
+              <button onClick={layoutView}>
+                {popularView ? (
+                  <i className="fa-solid fa-star"></i>
+                ) : (
+                  <i className="fa-solid fa-chart-simple"></i>
+                )}
+              </button>
+            </div>
+            {showInfo ? (
+              <div className="instructions">
+                <button className="infoButton" onClick={infoButton}>
+                  <i className="fa-solid fa-window-minimize"></i>
+                </button>
+                <p>
+                  Click on a marker to get more information on the station. If
+                  you like what you see hit play!
+                </p>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
