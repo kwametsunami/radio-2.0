@@ -335,17 +335,17 @@ const Dashboard = (props) => {
             }
           >
             <div className="infoButtons">
-              <button className="dashLogin">login</button>
+              {/* <button className="dashLogin">login</button> */}
               <button onClick={infoButton}>
                 <i className="fa-solid fa-circle-info"></i>
               </button>
-              <button onClick={layoutView}>
+              {/* <button onClick={layoutView}>
                 {popularView ? (
                   <i className="fa-solid fa-star"></i>
                 ) : (
                   <i className="fa-solid fa-chart-simple"></i>
                 )}
-              </button>
+              </button> */}
             </div>
             {showInfo ? (
               <div className="instructions">

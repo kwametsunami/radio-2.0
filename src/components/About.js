@@ -7,14 +7,14 @@ const About = () => {
         <Link to="/">
           <h2 className="aboutLogo">tr1-fm</h2>
         </Link>
-        <div className="aboutLogin">
+        {/* <div className="aboutLogin">
           <Link to="Signup">
             <button className="signUpAbout">register</button>
           </Link>
           <Link to="/Login">
             <button className="logInAbout">log in</button>
           </Link>
-        </div>
+        </div> */}
       </nav>
 
       <div className="aboutContent wrapper">

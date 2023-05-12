@@ -80,11 +80,11 @@ const Search = () => {
       {showLanding ? (
         <div className="landingInfo">
           <nav className="landingNav">
-            <Link to="/Login">
+            {/* <Link to="/Login">
               <button className="loginBtn" onClick={login}>
                 login
               </button>
-            </Link>
+            </Link> */}
             <Link to="/About">
               <button className="aboutBtn">about</button>
             </Link>
