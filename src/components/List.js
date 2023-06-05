@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import FadeIn from "react-fade-in";
 
 import defaultImage from "../assets/radio.png";
 
@@ -217,175 +218,177 @@ const List = (props) => {
           </div>
         </div>
       </div>
-      <div className="stationListContainer">
-        {filterTrue
-          ? filteredStations.map((stationDetails) => {
-              return (
-                <div
-                  className={
-                    playingName === stationDetails.name
-                      ? "stationInfoPlayingList"
-                      : "stationInfoList"
-                  }
-                  key={stationDetails.changeuuid}
-                >
-                  <div className="imageInfoContainer">
-                    <div className="imageList">
-                      <img
-                        src={stationDetails.favicon}
-                        alt={stationDetails.name}
-                        className="icon"
-                        onError={setDefaultSrc}
-                      />
-                    </div>
+      <FadeIn transitionDuration={1000} visible={true}>
+        <div className="stationListContainer">
+          {filterTrue
+            ? filteredStations.map((stationDetails) => {
+                return (
+                  <div
+                    className={
+                      playingName === stationDetails.name
+                        ? "stationInfoPlayingList"
+                        : "stationInfoList"
+                    }
+                    key={stationDetails.changeuuid}
+                  >
+                    <div className="imageInfoContainer">
+                      <div className="imageList">
+                        <img
+                          src={stationDetails.favicon}
+                          alt={stationDetails.name}
+                          className="icon"
+                          onError={setDefaultSrc}
+                        />
+                      </div>
 
-                    <div className="information">
-                      <p className="stationName">
-                        {stationDetails.name
-                          .replace(/_/g, "")
-                          .replace(/-/g, " ")
-                          .replace(/  +/, " ")
-                          .replace(/\//g, "")}
-                      </p>
-                      <p className="stationCountry">
-                        {stationDetails.state !== ""
-                          ? `${stationDetails.state}, `
-                          : null}{" "}
-                        {stationDetails.country ===
-                        "The United States Of America"
-                          ? "USA"
-                          : stationDetails.country}
-                      </p>
-                    </div>
+                      <div className="information">
+                        <p className="stationName">
+                          {stationDetails.name
+                            .replace(/_/g, "")
+                            .replace(/-/g, " ")
+                            .replace(/  +/, " ")
+                            .replace(/\//g, "")}
+                        </p>
+                        <p className="stationCountry">
+                          {stationDetails.state !== ""
+                            ? `${stationDetails.state}, `
+                            : null}{" "}
+                          {stationDetails.country ===
+                          "The United States Of America"
+                            ? "USA"
+                            : stationDetails.country}
+                        </p>
+                      </div>
 
-                    <div className="buttonContainer" value={stationDetails}>
-                      <button
-                        className={
-                          playingName === stationDetails.name ||
+                      <div className="buttonContainer" value={stationDetails}>
+                        <button
+                          className={
+                            playingName === stationDetails.name ||
+                            props.stationCheck
+                              ? "infoButtonPlaying"
+                              : "infoButton"
+                          }
+                          value={[
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.favicon}`,
+                          ]}
+                          onClick={radioSelect}
+                          id={stationDetails.name}
+                        >
+                          {playingName === stationDetails.name ||
                           props.stationCheck
-                            ? "infoButtonPlaying"
-                            : "infoButton"
-                        }
-                        value={[
-                          `${stationDetails.url_resolved}`,
-                          `${stationDetails.geo_lat}`,
-                          `${stationDetails.geo_long}`,
-                          `${stationDetails.favicon}`,
-                        ]}
-                        onClick={radioSelect}
-                        id={stationDetails.name}
-                      >
-                        {playingName === stationDetails.name ||
-                        props.stationCheck
-                          ? ""
-                          : "▶"}
-                      </button>
-                      <button
-                        className="favourite"
-                        onClick={favourite}
-                        value={[
-                          `${stationDetails.changeuuid}`,
-                          `${stationDetails.name}`,
-                          `${stationDetails.url_resolved}`,
-                          `${stationDetails.favicon}`,
-                          `${stationDetails.state}`,
-                          `${stationDetails.country}`,
-                        ]}
-                      >
-                        <i className="fa-solid fa-star"></i>
-                      </button>
+                            ? ""
+                            : "▶"}
+                        </button>
+                        <button
+                          className="favourite"
+                          onClick={favourite}
+                          value={[
+                            `${stationDetails.changeuuid}`,
+                            `${stationDetails.name}`,
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
+                            `${stationDetails.state}`,
+                            `${stationDetails.country}`,
+                          ]}
+                        >
+                          <i className="fa-solid fa-star"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          : props.stations.map((stationDetails) => {
-              return (
-                <div
-                  className={
-                    playingName === stationDetails.name
-                      ? "stationInfoPlayingList"
-                      : "stationInfoList"
-                  }
-                  key={stationDetails.changeuuid}
-                >
-                  <div className="imageInfoContainer">
-                    <div className="imageList">
-                      <img
-                        src={stationDetails.favicon}
-                        alt={stationDetails.name}
-                        className="icon"
-                        onError={setDefaultSrc}
-                      />
-                    </div>
+                );
+              })
+            : props.stations.map((stationDetails) => {
+                return (
+                  <div
+                    className={
+                      playingName === stationDetails.name
+                        ? "stationInfoPlayingList"
+                        : "stationInfoList"
+                    }
+                    key={stationDetails.changeuuid}
+                  >
+                    <div className="imageInfoContainer">
+                      <div className="imageList">
+                        <img
+                          src={stationDetails.favicon}
+                          alt={stationDetails.name}
+                          className="icon"
+                          onError={setDefaultSrc}
+                        />
+                      </div>
 
-                    <div className="information">
-                      <p className="stationName">
-                        {stationDetails.name
-                          .replace(/_/g, "")
-                          .replace(/-/g, " ")
-                          .replace(/  +/, " ")
-                          .replace(/\//g, "")}
-                      </p>
-                      <p className="stationCountry">
-                        {stationDetails.state !== ""
-                          ? `${stationDetails.state}, `
-                          : null}
-                        {stationDetails.country ===
-                        "The United States Of America"
-                          ? "USA"
-                          : stationDetails.country}
-                      </p>
-                    </div>
+                      <div className="information">
+                        <p className="stationName">
+                          {stationDetails.name
+                            .replace(/_/g, "")
+                            .replace(/-/g, " ")
+                            .replace(/  +/, " ")
+                            .replace(/\//g, "")}
+                        </p>
+                        <p className="stationCountry">
+                          {stationDetails.state !== ""
+                            ? `${stationDetails.state}, `
+                            : null}
+                          {stationDetails.country ===
+                          "The United States Of America"
+                            ? "USA"
+                            : stationDetails.country}
+                        </p>
+                      </div>
 
-                    <div className="buttonContainer" value={stationDetails}>
-                      <button
-                        className={
-                          playingName === stationDetails.name ||
+                      <div className="buttonContainer" value={stationDetails}>
+                        <button
+                          className={
+                            playingName === stationDetails.name ||
+                            props.stationCheck
+                              ? "infoButtonPlaying"
+                              : "infoButton"
+                          }
+                          value={[
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.favicon}`,
+                          ]}
+                          onClick={radioSelect}
+                          id={stationDetails.name}
+                        >
+                          {playingName === stationDetails.name ||
                           props.stationCheck
-                            ? "infoButtonPlaying"
-                            : "infoButton"
-                        }
-                        value={[
-                          `${stationDetails.url_resolved}`,
-                          `${stationDetails.geo_lat}`,
-                          `${stationDetails.geo_long}`,
-                          `${stationDetails.favicon}`,
-                        ]}
-                        onClick={radioSelect}
-                        id={stationDetails.name}
-                      >
-                        {playingName === stationDetails.name ||
-                        props.stationCheck
-                          ? ""
-                          : "▶"}
-                      </button>
-                      <button
-                        className="favourite"
-                        onClick={favourite}
-                        value={[
-                          `${stationDetails.changeuuid}`,
-                          `${stationDetails.name}`,
-                          `${stationDetails.url_resolved}`,
-                          `${stationDetails.favicon}`,
-                          `${stationDetails.state}`,
-                          `${stationDetails.country}`,
-                        ]}
-                      >
-                        <i className="fa-solid fa-star"></i>
-                      </button>
+                            ? ""
+                            : "▶"}
+                        </button>
+                        <button
+                          className="favourite"
+                          onClick={favourite}
+                          value={[
+                            `${stationDetails.changeuuid}`,
+                            `${stationDetails.name}`,
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
+                            `${stationDetails.state}`,
+                            `${stationDetails.country}`,
+                          ]}
+                        >
+                          <i className="fa-solid fa-star"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-      </div>
+                );
+              })}
+        </div>
+      </FadeIn>
       {isVisible && (
         <div className="returnBtn">
           <button className="scrollToTop" onClick={scrollToTop}>
             <i className="fa-solid fa-circle-arrow-up"></i>
           </button>
-          <p id="topText">return to top</p>
+          {/* <p id="topText">return to top</p> */}
         </div>
       )}
     </section>
