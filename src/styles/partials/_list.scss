@@ -404,6 +404,7 @@
     background-color: $ash;
     color: $white;
     font-size: 16px;
+    transition: 0.3s;
     cursor: pointer;
     @include tablet {
       height: 35px;
@@ -411,6 +412,7 @@
     }
     &:hover {
       opacity: 0.8;
+      transform: scale(1.1);
     }
     &:hover + #topText {
       display: block;
