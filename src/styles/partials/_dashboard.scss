@@ -249,10 +249,14 @@
     .favContainer {
       padding: 5px;
       overflow: hidden;
+      transform: translateY(-10px);
       h2 {
-        text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-          0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-        font-size: 1.75rem;
+        color: $white;
+        font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
+        padding: 0 0 15px;
+        #favouriteTitle {
+          font-family: $bold;
+        }
       }
       p {
         color: $black;
@@ -261,24 +265,35 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2px;
+        padding: 5px;
         &:hover {
           background: $grey;
           border-radius: 5px;
         }
-        .favText {
-          width: 60%;
-          word-wrap: break-word;
-          p {
-            margin: 0;
-            color: $black;
-            font-size: 1.5rem;
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+          @include smallDesktop {
+            width: 20px;
+            height: 20px;
           }
         }
-        img {
-          height: 35px;
-          width: 35px;
-          border-radius: 5px;
+        .favText {
+          padding: 0 4px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          line-clamp: 3;
+          -webkit-box-orient: vertical;
+          p {
+            margin: 0;
+            font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+            color: $white;
+          }
+        }
+        &:hover .favText {
+          color: $black;
         }
         .favButtons {
           display: flex;
@@ -290,20 +305,53 @@
             height: 35px;
             margin: 2px 5px;
             color: $red;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
           }
-          .favButtonPlaying {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            background-color: $white;
-            font-family: "Poppins", sans-serif;
-            background-image: url("../../assets/soundBars.gif");
-            background-size: 100px;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: inline-block;
-            margin: 2px 5px;
+        }
+      }
+      .favItemsPlaying {
+        background: $yellow;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px;
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+          @include smallDesktop {
+            width: 20px;
+            height: 20px;
+          }
+        }
+        .favText {
+          padding: 4px;
+          p {
+            margin: 0;
+            font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+            color: $black;
+          }
+        }
+        .favButtonPlaying {
+          width: 35px;
+          height: 35px;
+          border: 2px solid #1e2021;
+          border-radius: 50px;
+          background-color: $white;
+          font-family: "Poppins", sans-serif;
+          background-image: url("../../assets/soundBars.gif");
+          background-size: 100px;
+          background-repeat: no-repeat;
+          background-position: center;
+          display: inline-block;
+          margin: 2px 5px;
+          @include smallDesktop {
+            width: 20px;
+            height: 20px;
           }
         }
       }
@@ -510,11 +558,18 @@
             }
           }
           .popularText {
-            padding: 4px;
-            p {
-              margin: 0;
-              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-              color: $black;
+            .popularTextTitle {
+              padding: 0 4px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              line-clamp: 3;
+              -webkit-box-orient: vertical;
+              p {
+                margin: 0;
+                font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+                color: $black;
+              }
             }
           }
           .popularButtons {
@@ -569,11 +624,16 @@
             }
           }
           .popularText {
-            padding: 4px;
+            padding: 0 4px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
             p {
               margin: 0;
               font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-              color: $white;
+              color: $black;
             }
           }
           &:hover .popularTextTitle {
@@ -628,53 +688,6 @@
             @include smallDesktop {
               width: 20px;
               height: 20px;
-            }
-          }
-          .popularText {
-            padding: 4px;
-            p {
-              margin: 0;
-              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-              color: $white;
-            }
-          }
-          &:hover .popularTextTitle {
-            color: $black;
-          }
-          .popularButtons {
-            .popularButton {
-              border: 2px solid $black;
-              background: $white;
-              border-radius: 50px;
-              width: 35px;
-              height: 35px;
-              margin: 2px 5px;
-              color: $red;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-              }
-            }
-            .popularButtonPlaying {
-              width: 35px;
-              height: 35px;
-              border: 2px solid #1e2021;
-              border-radius: 50px;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 100px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              margin: 2px 5px;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-              }
-            }
-            button {
-              background: transparent;
             }
           }
         }

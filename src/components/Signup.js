@@ -15,25 +15,25 @@ const Signup = () => {
 
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser)
+  //   });
+  // }, []);
 
-  const register = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      console.log(user)
-      setHasRegistered(true);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const register = async () => {
+  //   try {
+  //     const user = await createUserWithEmailAndPassword(
+  //       auth,
+  //       registerEmail,
+  //       registerPassword
+  //     );
+  //     console.log(user)
+  //     setHasRegistered(true);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <section className="signUp">
@@ -44,27 +44,29 @@ const Signup = () => {
       </nav>
       <div className="signUpContainer">
         <h2>sign up</h2>
-          <input
-            type="email"
-            placeholder="email"
-            onChange={(event) => {
-              setRegisterEmail(event.target.value);
-            }}
-          />
-          <input
-            type="password"
-            placeholder="password"
-            onChange={(event) => {
-              setRegisterPassword(event.target.value);
-            }}
-          />
-          <p className="loginText">
-            Have an account? Log in
-            <Link to="/Login"> here</Link>
-          </p>
-          {/* <Link to="/" state={{ user }}> */}
-          <button className="signupButton" onClick={register}>continue</button>
-          {/* </Link> */}
+        <input
+          type="email"
+          placeholder="email"
+          onChange={(event) => {
+            setRegisterEmail(event.target.value);
+          }}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(event) => {
+            setRegisterPassword(event.target.value);
+          }}
+        />
+        <p className="loginText">
+          Have an account? Log in
+          <Link to="/Login"> here</Link>
+        </p>
+        {/* <Link to="/" state={{ user }}> */}
+        {/* <button className="signupButton" onClick={register}>
+          continue
+        </button> */}
+        {/* </Link> */}
       </div>
       <Footer></Footer>
     </section>

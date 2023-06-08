@@ -42,6 +42,7 @@ const Player = (props) => {
             />
             <img
               src={props.stationImage}
+              alt={`${props.stationName}`}
               onError={setDefaultSrc}
               className="playingIcon"
             />

@@ -125,7 +125,6 @@ const Radio = (props) => {
     setDashboardLoading(false);
 
     setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
-
   }, [props.genre, props.quality, stationFilter]);
 
   const [stationUrl, setStationUrl] = useState("");

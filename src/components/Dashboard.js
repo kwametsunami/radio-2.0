@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 
 import DashboardLoading from "./DashboardLoading";
 
@@ -9,6 +11,7 @@ const Dashboard = (props) => {
   const [showInfo, setShowInfo] = useState(false);
   const [popularView, setPopularView] = useState(true);
   const [showMobile, setShowMobile] = useState(false);
+  const [favStation, setFavStation] = useState([]);
 
   const infoButton = () => {
     setShowInfo(!showInfo);
@@ -48,11 +51,50 @@ const Dashboard = (props) => {
     props.sendImage(favStationArr[2]);
   };
 
-  const favArr = [];
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
 
-  favArr.push(props.favourites);
+    onValue(dbRef, (response) => {
+      // here we're creating a variable to store the new state we want to introduce to our app
+      const newState = [];
 
-  // console.log(favArr);
+      // here we store the response from our query to Firebase inside of a variable called data.
+      // .val() is a Firebase method that gets us the information we want
+      const data = response.val();
+      // data is an object, so we iterate through it using a for in loop to access each book name
+
+      for (let key in data) {
+        // pushing the values from the object into our newState array
+        newState.push({ key: key, data: data[key] });
+      }
+
+      const uniqueFav = [];
+      const searchedFav = [];
+
+      for (let i = 0; i < newState.length; i++) {
+        const favIdKey = newState[i];
+
+        if (!searchedFav[favIdKey.data]) {
+          searchedFav[favIdKey.data] = true;
+          uniqueFav.push(favIdKey);
+        }
+      }
+
+      setFavStation(uniqueFav);
+    });
+  }, []);
+
+  // this function takes an argument, which is the ID of the book we want to remove
+  const removeFav = (favId) => {
+    // here we create a reference to the database
+    // this time though, instead of pointing at the whole database, we make our dbRef point to the specific node of the book we want to remove
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `/${favId}`);
+
+    // using the Firebase method remove(), we remove the node specific to the book ID
+    remove(dbRef);
+  };
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
@@ -145,35 +187,32 @@ const Dashboard = (props) => {
                 ) : (
                   <div className="favContainer">
                     <h2>your favourited stations</h2>
-                    {props.favourites.map((favStation) => {
+                    {favStation.map((favStation) => {
                       return (
-                        <div
-                          className="favItems"
-                          key={`${favStation.favourite[0]}`}
-                        >
+                        <div className="favItems" key={`${favStation.key}`}>
                           <img
-                            src={`${favStation.favourite[3]}`}
-                            alt={`${favStation.favourite[1]}`}
+                            src={`${favStation.data[3]}`}
+                            alt={`${favStation.data[1]}`}
                             onError={setDefaultSrc}
                           />
                           <div className="favText">
-                            <p>{`${favStation.favourite[1]}`}</p>
+                            <p>{`${favStation.data[1]}`}</p>
                           </div>
                           <div className="favButtons">
                             <button
                               className={
-                                props.stationUrl === favStation.favourite[2]
+                                props.stationUrl === favStation.data[2]
                                   ? "favButtonPlaying"
                                   : "favButton"
                               }
                               onClick={playFav}
                               value={[
-                                `${favStation.favourite[2]}`,
-                                `${favStation.favourite[1]}`,
-                                `${favStation.favourite[3]}`,
+                                `${favStation.data[2]}`,
+                                `${favStation.data[1]}`,
+                                `${favStation.data[3]}`,
                               ]}
                             >
-                              {props.stationUrl === favStation.favourite[2]
+                              {props.stationUrl === favStation.data[2]
                                 ? ""
                                 : "▶"}
                             </button>
@@ -289,38 +328,51 @@ const Dashboard = (props) => {
               </div>
             ) : (
               <div className="favContainer">
-                <h2>your favourited stations</h2>
-                {props.favourites.map((favStation) => {
+                <h2 className="favTitleTotal">
+                  your
+                  <span id="favouriteTitle">
+                    {" "}
+                    <br />
+                    favourites
+                  </span>
+                </h2>
+                {favStation.map((favStation) => {
                   return (
                     <div
-                      className="favItems"
-                      key={`${favStation.favourite[0]}`}
+                      className={
+                        props.stationUrl === favStation.data[1]
+                          ? "favItemsPlaying"
+                          : "favItems"
+                      }
+                      key={`${favStation.key}`}
                     >
                       <img
-                        src={`${favStation.favourite[3]}`}
-                        alt={`${favStation.favourite[1]}`}
+                        src={`${favStation.data[2]}`}
+                        alt={`${favStation.data[5]}`}
                         onError={setDefaultSrc}
                       />
                       <div className="favText">
-                        <p>{`${favStation.favourite[1]}`}</p>
+                        <p className="favTextTitle">{`${favStation.data[5]
+                          .replace(/_/g, "")
+                          .replace(/-/g, " ")
+                          .replace(/  +/, " ")
+                          .replace(/\//g, "")}`}</p>
                       </div>
                       <div className="favButtons">
                         <button
                           className={
-                            props.stationUrl === favStation.favourite[2]
+                            props.stationUrl === favStation.data[1]
                               ? "favButtonPlaying"
                               : "favButton"
                           }
                           onClick={playFav}
                           value={[
-                            `${favStation.favourite[2]}`,
-                            `${favStation.favourite[1]}`,
-                            `${favStation.favourite[3]}`,
+                            `${favStation.data[1]}`,
+                            `${favStation.data[5]}`,
+                            `${favStation.data[2]}`,
                           ]}
                         >
-                          {props.stationUrl === favStation.favourite[2]
-                            ? ""
-                            : "▶"}
+                          {props.stationUrl === favStation.data[1] ? "" : "▶"}
                         </button>
                       </div>
                     </div>
@@ -339,13 +391,13 @@ const Dashboard = (props) => {
               <button onClick={infoButton}>
                 <i className="fa-solid fa-circle-info"></i>
               </button>
-              {/* <button onClick={layoutView}>
+              <button onClick={layoutView}>
                 {popularView ? (
                   <i className="fa-solid fa-star"></i>
                 ) : (
                   <i className="fa-solid fa-chart-simple"></i>
                 )}
-              </button> */}
+              </button>
             </div>
             {showInfo ? (
               <div className="instructions">

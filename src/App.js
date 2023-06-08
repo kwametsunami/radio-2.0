@@ -1,6 +1,5 @@
-import "../src/styles/styles.scss"
-import { Route, Routes } from "react-router-dom"
-
+import "../src/styles/styles.scss";
+import { Route, Routes } from "react-router-dom";
 
 import Search from "./components/Search";
 import About from "./components/About";
@@ -9,9 +8,9 @@ import Signup from "./components/Signup";
 import NotFound from "./components/NotFound";
 
 import SignUpTest from "./components/SignUpTest";
+import ApiTest from "./components/ApiTest";
 
 const App = () => {
-
   return (
     <div className="App">
       <Routes>
@@ -21,9 +20,10 @@ const App = () => {
         <Route path="/About" element={<About />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/Test" element={<SignUpTest />} />
+        <Route path="/ApiTest" element={<ApiTest />} />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

@@ -3,6 +3,9 @@ import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+
 import { useEffect, useState } from "react";
 
 import defaultImage from "../assets/radio.png";
@@ -31,6 +34,8 @@ const Map = (props) => {
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+
+  const [favStation, setFavStation] = useState([]);
 
   const [savedArr, setSavedArr] = useState([]);
 
@@ -90,7 +95,37 @@ const Map = (props) => {
 
     props.setCurrentLat(selectedStationArr[1]);
     props.setCurrentLong(selectedStationArr[2]);
+
+    console.log(`the current station is: ${selectedStationArr[0]}`);
   };
+
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+
+    onValue(dbRef, (response) => {
+      // here we're creating a variable to store the new state we want to introduce to our app
+      const newState = [];
+
+      // here we store the response from our query to Firebase inside of a variable called data.
+      // .val() is a Firebase method that gets us the information we want
+      const data = response.val();
+      // data is an object, so we iterate through it using a for in loop to access each book name
+
+      for (let key in data) {
+        // inside the loop, we push each book name to an array we already created inside the onValue() function called newState
+        newState.push(data[key]);
+      }
+
+      // then, we call setBooks in order to update our component's state using the local array newState
+      setFavStation(newState);
+
+      for (let key in data) {
+        // pushing the values from the object into our newState array
+        newState.push({ key: key, name: data[key] });
+      }
+    });
+  }, []);
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
@@ -164,16 +199,15 @@ const Map = (props) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    favouritedStations.push(...stationFavArr);
+    console.log(stationFav);
+    console.log(stationFavArr);
 
-    setSavedArr((favouritedStations) => [favouritedStations, stationFavArr]);
+    // create a reference to our database
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
 
-    console.log(savedArr);
-
-    props.setFavStationInfo([
-      ...favouritedStations,
-      { favourite: stationFavArr },
-    ]);
+    // push the value of the `userInput` state to the database
+    push(dbRef, stationFavArr);
   };
 
   return (
@@ -307,11 +341,11 @@ const Map = (props) => {
                               onClick={favourite}
                               value={[
                                 `${stationDetails.changeuuid}`,
-                                `${stationDetails.name}`,
                                 `${stationDetails.url_resolved}`,
                                 `${stationDetails.favicon}`,
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,
+                                `${stationDetails.name}`,
                               ]}
                               id={stationDetails.id}
                             >
@@ -396,11 +430,11 @@ const Map = (props) => {
                               onClick={favourite}
                               value={[
                                 `${stationDetails.changeuuid}`,
-                                `${stationDetails.name}`,
                                 `${stationDetails.url_resolved}`,
                                 `${stationDetails.favicon}`,
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,
+                                `${stationDetails.name}`,
                               ]}
                               id={stationDetails.id}
                             >
