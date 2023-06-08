@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import FadeIn from "react-fade-in";
 
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+
 import defaultImage from "../assets/radio.png";
 
 const List = (props) => {
@@ -9,6 +12,8 @@ const List = (props) => {
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
+
+  const [favStation, setFavStation] = useState([]);
 
   useEffect(() => {
     for (let i = 0; i < props.stations.length; i++) {
@@ -51,6 +56,34 @@ const List = (props) => {
     props.latitude(selectedStationArr[1]);
     props.longitude(selectedStationArr[2]);
   };
+
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+
+    onValue(dbRef, (response) => {
+      // here we're creating a variable to store the new state we want to introduce to our app
+      const newState = [];
+
+      // here we store the response from our query to Firebase inside of a variable called data.
+      // .val() is a Firebase method that gets us the information we want
+      const data = response.val();
+      // data is an object, so we iterate through it using a for in loop to access each book name
+
+      for (let key in data) {
+        // inside the loop, we push each book name to an array we already created inside the onValue() function called newState
+        newState.push(data[key]);
+      }
+
+      // then, we call setBooks in order to update our component's state using the local array newState
+      setFavStation(newState);
+
+      for (let key in data) {
+        // pushing the values from the object into our newState array
+        newState.push({ key: key, name: data[key] });
+      }
+    });
+  }, []);
 
   const grabFilter = (event) => {
     const randomizer = (min = 0, max = props.stations.length) => {
@@ -119,16 +152,15 @@ const List = (props) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    const favouritedStations = [];
+    console.log(stationFav);
+    console.log(stationFavArr);
 
-    props.setFavStationInfo([
-      ...favouritedStations,
-      { favourite: stationFavArr },
-    ]);
+    // create a reference to our database
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
 
-    // if (event.currentTarget.id === stationFavArr[0]) {
-    //   event.currentTarget.disabled = true;
-    // }
+    // push the value of the `userInput` state to the database
+    push(dbRef, stationFavArr);
   };
 
   const [isVisible, setIsVisible] = useState(false);
@@ -287,11 +319,13 @@ const List = (props) => {
                           onClick={favourite}
                           value={[
                             `${stationDetails.changeuuid}`,
-                            `${stationDetails.name}`,
                             `${stationDetails.url_resolved}`,
                             `${stationDetails.favicon}`,
                             `${stationDetails.state}`,
                             `${stationDetails.country}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.name}`,
                           ]}
                         >
                           <i className="fa-solid fa-star"></i>
@@ -367,11 +401,13 @@ const List = (props) => {
                           onClick={favourite}
                           value={[
                             `${stationDetails.changeuuid}`,
-                            `${stationDetails.name}`,
                             `${stationDetails.url_resolved}`,
                             `${stationDetails.favicon}`,
                             `${stationDetails.state}`,
                             `${stationDetails.country}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.name}`,
                           ]}
                         >
                           <i className="fa-solid fa-star"></i>

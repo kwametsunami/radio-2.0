@@ -193,8 +193,6 @@ const Map = (props) => {
     }
   };
 
-  let favouritedStations = [];
-
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
