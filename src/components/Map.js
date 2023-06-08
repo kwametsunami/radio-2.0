@@ -434,6 +434,8 @@ const Map = (props) => {
                                 `${stationDetails.favicon}`,
                                 `${stationDetails.state}`,
                                 `${stationDetails.country}`,
+                                `${stationDetails.geo_lat}`,
+                                `${stationDetails.geo_long}`,
                                 `${stationDetails.name}`,
                               ]}
                               id={stationDetails.id}

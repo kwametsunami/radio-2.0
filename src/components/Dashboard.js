@@ -29,26 +29,28 @@ const Dashboard = (props) => {
     const popularStation = event.currentTarget.value;
     const popularStationArr = popularStation.split(",");
 
+    console.log(popularStationArr);
+
     props.sendToRadio(popularStationArr[0]);
-    props.sendToRadioName(popularStationArr[1]);
+    props.sendToRadioName(popularStationArr[4]);
+    props.sendImage(popularStationArr[1]);
 
-    if (popularStationArr === "") {
-      props.sendImage(defaultImage);
-    } else {
-      props.sendImage(popularStationArr[2]);
-    }
-
-    props.latitude(popularStationArr[3]);
-    props.longitude(popularStationArr[4]);
+    props.latitude(popularStationArr[2]);
+    props.longitude(popularStationArr[3]);
   };
 
   const playFav = (event) => {
     const favStation = event.currentTarget.value;
     const favStationArr = favStation.split(",");
 
-    props.sendToRadio(favStationArr[0]);
-    props.sendToRadioName(favStationArr[1]);
+    console.log(favStationArr);
+
+    props.sendToRadio(favStationArr[1]);
+    props.sendToRadioName(favStationArr[7]);
     props.sendImage(favStationArr[2]);
+
+    props.latitude(favStationArr[5]);
+    props.longitude(favStationArr[6]);
   };
 
   useEffect(() => {
@@ -80,6 +82,8 @@ const Dashboard = (props) => {
           uniqueFav.push(favIdKey);
         }
       }
+
+      console.log(uniqueFav);
 
       setFavStation(uniqueFav);
     });
@@ -169,10 +173,10 @@ const Dashboard = (props) => {
                                   onClick={playPopular}
                                   value={[
                                     `${stations.url_resolved}`,
-                                    `${stations.name}`,
                                     `${stations.favicon}`,
                                     `${stations.geo_lat}`,
                                     `${stations.geo_long}`,
+                                    `${stations.name}`,
                                   ]}
                                 >
                                   {props.stationUrl === stations.url_resolved
@@ -191,28 +195,38 @@ const Dashboard = (props) => {
                       return (
                         <div className="favItems" key={`${favStation.key}`}>
                           <img
-                            src={`${favStation.data[3]}`}
-                            alt={`${favStation.data[1]}`}
+                            src={`${favStation.data[2]}`}
+                            alt={`${favStation.data[7]}`}
                             onError={setDefaultSrc}
                           />
                           <div className="favText">
-                            <p>{`${favStation.data[1]}`}</p>
+                            <p>
+                              {`${favStation.data[7]
+                                .replace(/_/g, "")
+                                .replace(/-/g, " ")
+                                .replace(/  +/, " ")
+                                .replace(/\//g, "")}`}
+                            </p>
                           </div>
                           <div className="favButtons">
                             <button
                               className={
-                                props.stationUrl === favStation.data[2]
+                                props.stationUrl === favStation.data[1]
                                   ? "favButtonPlaying"
                                   : "favButton"
                               }
                               onClick={playFav}
                               value={[
-                                `${favStation.data[2]}`,
                                 `${favStation.data[1]}`,
+                                `${favStation.data[2]}`,
                                 `${favStation.data[3]}`,
+                                `${favStation.data[4]}`,
+                                `${favStation.data[5]}`,
+                                `${favStation.data[6]}`,
+                                `${favStation.data[7]}`,
                               ]}
                             >
-                              {props.stationUrl === favStation.data[2]
+                              {props.stationUrl === favStation.data[1]
                                 ? ""
                                 : "▶"}
                             </button>
@@ -311,10 +325,10 @@ const Dashboard = (props) => {
                               onClick={playPopular}
                               value={[
                                 `${stations.url_resolved}`,
-                                `${stations.name}`,
                                 `${stations.favicon}`,
                                 `${stations.geo_lat}`,
                                 `${stations.geo_long}`,
+                                `${stations.name}`,
                               ]}
                             >
                               {props.stationUrl === stations.url_resolved
@@ -348,11 +362,11 @@ const Dashboard = (props) => {
                     >
                       <img
                         src={`${favStation.data[2]}`}
-                        alt={`${favStation.data[5]}`}
+                        alt={`${favStation.data[7]}`}
                         onError={setDefaultSrc}
                       />
                       <div className="favText">
-                        <p className="favTextTitle">{`${favStation.data[5]
+                        <p className="favTextTitle">{`${favStation.data[7]
                           .replace(/_/g, "")
                           .replace(/-/g, " ")
                           .replace(/  +/, " ")
@@ -367,9 +381,14 @@ const Dashboard = (props) => {
                           }
                           onClick={playFav}
                           value={[
+                            `${favStation.data[0]}`,
                             `${favStation.data[1]}`,
-                            `${favStation.data[5]}`,
                             `${favStation.data[2]}`,
+                            `${favStation.data[3]}`,
+                            `${favStation.data[4]}`,
+                            `${favStation.data[5]}`,
+                            `${favStation.data[6]}`,
+                            `${favStation.data[7]}`,
                           ]}
                         >
                           {props.stationUrl === favStation.data[1] ? "" : "▶"}
