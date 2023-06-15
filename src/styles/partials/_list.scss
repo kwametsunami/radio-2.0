@@ -227,6 +227,33 @@
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
             }
           }
+          .added {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #1e2021;
+            border-radius: 50px;
+            margin: 2px 5px;
+            background-color: $brightYellow;
+            cursor: default;
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              font-size: 0.7rem;
+            }
+            i {
+              color: $yellow;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
+          }
         }
       }
     }
@@ -298,15 +325,14 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          // @include mobileLarge {
-          //   flex-direction: column;
-          // }
           .favourite {
             width: 45px;
             height: 45px;
             border: 2px solid #1e2021;
             border-radius: 50px;
             margin: 2px 5px;
+            background-color: $white;
+            cursor: default;
             @include smallDesktop {
               width: 30px;
               height: 30px;
@@ -314,14 +340,41 @@
             @include tablet {
               width: 25px;
               height: 25px;
-              font-size: 0.7rem;
             }
             @include mobileLarge {
               width: 20px;
               height: 20px;
+              font-size: 0.7rem;
             }
             i {
               color: $brightYellow;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
+          }
+          .added {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #1e2021;
+            border-radius: 50px;
+            margin: 2px 5px;
+            background-color: $brightYellow;
+            cursor: default;
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              font-size: 0.7rem;
+            }
+            i {
+              color: $yellow;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
             }

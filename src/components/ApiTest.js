@@ -30,9 +30,6 @@ const ApiTest = () => {
         // pushing the values from the object into our newState array
         newState.push({ key: key, name: data[key] });
       }
-
-      console.log(newState);
-      console.log(books);
     });
   }, []);
 

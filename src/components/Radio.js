@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+
 import Loading from "./Loading";
 import Dashboard from "./Dashboard";
 import Map from "./Map";
@@ -42,9 +45,12 @@ const Radio = (props) => {
   const [loading, setLoading] = useState(true);
   const [dashboardLoading, setDashboardLoading] = useState(true);
   const [favStationInfo, setFavStationInfo] = useState([]);
+  const [favKeys, setFavKeys] = useState([]);
   const [popular, setPopular] = useState([]);
   const [currentLat, setCurrentLat] = useState("");
   const [currentLong, setCurrentLong] = useState("");
+  const [recentStations, setRecentStations] = useState([]);
+  const [sendToRecent, setSendToRecent] = useState([]);
 
   const switchView = () => {
     setListView(!listView);
@@ -143,6 +149,54 @@ const Radio = (props) => {
     setCurrentIcon(favicon);
   };
 
+  const setKeys = (keyArray) => {
+    setFavKeys(keyArray);
+  };
+
+  const setFavs = (fav) => {
+    setFavStationInfo(fav);
+  };
+
+  const addToRecent = (station) => {
+    let matchFound = false;
+
+    if (recentStations.length > 0) {
+      for (let i = 0; i < recentStations.length; i++) {
+        if (recentStations[i][0] === station[0]) {
+          matchFound = true;
+          break;
+        }
+      }
+    }
+
+    if (matchFound) {
+      const newArr = recentStations.filter((item) => item !== station);
+      setRecentStations(newArr);
+    } else {
+      const updatedStations = recentStations.concat([station]);
+
+      if (updatedStations.length > 7) {
+        updatedStations.splice(0, updatedStations.length - 7);
+      }
+
+      setRecentStations(updatedStations);
+    }
+  };
+
+  useEffect(() => {
+    const keyToCheck = sendToRecent[0];
+
+    // // if (recentStations.length > 1) {
+    // for (let i = 0; i >= recentStations.length; i++) {
+    //   if (recentStations[i].includes(keyToCheck)) {
+    //     console.log("match");
+    //   } else {
+    //     console.log("no match");
+    //   }
+    // }
+    // }
+  }, [recentStations]);
+
   const [mobile, setMobile] = useState(false);
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
@@ -167,6 +221,59 @@ const Radio = (props) => {
     };
   }, [windowSize]);
 
+  const [testArr, setTestArr] = useState([]);
+  const [testKeys, setTestKeys] = useState([]);
+
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+
+    onValue(dbRef, (response) => {
+      const newState = [];
+
+      const data = response.val();
+
+      for (let key in data) {
+        newState.push({ key: key, data: data[key] });
+      }
+
+      const uniqueFav = [];
+      const searchedFav = [];
+
+      for (let i = 0; i < newState.length; i++) {
+        const favIdKey = newState[i];
+
+        if (!searchedFav[favIdKey.data]) {
+          searchedFav[favIdKey.data] = true;
+          uniqueFav.push(favIdKey);
+        }
+      }
+
+      setTestArr(uniqueFav);
+
+      const stationKeys = [];
+
+      for (let i = 0; i < uniqueFav.length; i++) {
+        stationKeys.push(uniqueFav[i].data[0]);
+      }
+
+      setTestKeys(stationKeys);
+    });
+  }, []);
+
+  useEffect(() => {
+    setKeys(testKeys);
+
+    setFavs(testArr);
+  }, [testKeys]);
+
+  const removeFav = (favId) => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database, `/${favId}`);
+
+    remove(dbRef);
+  };
+
   return (
     <section className="infoContainer">
       <nav className="searchNav">
@@ -182,6 +289,7 @@ const Radio = (props) => {
               onChange={props.onChange}
               value={props.value}
               onSubmit={props.onSubmit}
+              placeholder="search"
               required
             />
             <button className="searchButton">
@@ -196,7 +304,8 @@ const Radio = (props) => {
             landingView={props.landingView}
             genreName={props.genre}
             favourites={favStationInfo}
-            setFavourites={setFavStationInfo}
+            setFavs={setFavs}
+            setKeysFunc={setKeys}
             popular={popular}
             sendToRadio={sendToRadio}
             sendToRadioName={sendToRadioName}
@@ -207,6 +316,9 @@ const Radio = (props) => {
             latitude={setCurrentLat}
             longitude={setCurrentLong}
             mobile={mobile}
+            removeFav={removeFav}
+            addToRecent={addToRecent}
+            recentStations={recentStations}
           />
         </div>
         {loading ? (
@@ -248,12 +360,15 @@ const Radio = (props) => {
                       sendToRadioName={sendToRadioName}
                       sendImage={sendImage}
                       playingStation={playingStation}
+                      addToRecent={addToRecent}
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       mapView={switchView}
                       quality={props.quality}
                       selectedGenre={props.genre}
+                      favStationInfo={favStationInfo}
                       setFavStationInfo={setFavStationInfo}
+                      favKeys={favKeys}
                       latitude={setCurrentLat}
                       longitude={setCurrentLong}
                     />
@@ -266,12 +381,15 @@ const Radio = (props) => {
                       sendToRadioName={sendToRadioName}
                       sendImage={sendImage}
                       playingStation={playingStation}
+                      addToRecent={addToRecent}
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       listView={switchView}
                       quality={props.quality}
                       selectedGenre={props.genre}
+                      favStationInfo={favStationInfo}
                       setFavStationInfo={setFavStationInfo}
+                      favKeys={favKeys}
                       currentLat={currentLat}
                       currentLong={currentLong}
                       setCurrentLat={setCurrentLat}

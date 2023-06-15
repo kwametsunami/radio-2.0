@@ -506,7 +506,7 @@ input {
 .aboutNav .aboutLogo {
   transition: 0.9s;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-family: "Karla Bold";
 }
 .aboutNav .aboutLogo:hover {
   color: #EDD05F;
@@ -554,7 +554,7 @@ input {
 .aboutContent .aboutTitle {
   font-size: 5rem;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-family: "Karla Bold";
 }
 .aboutContent p {
   color: #f7f5ea;
@@ -1063,14 +1063,22 @@ input {
 .dashboardContainer .middleDashboard .popularView .popularResults:hover .popularTextTitle {
   color: #1a1a1c;
 }
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons {
+  display: flex;
+}
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
-  border: 2px solid #1a1a1c;
-  background: #f7f5ea;
-  border-radius: 50px;
-  width: 35px;
-  height: 35px;
-  margin: 2px 5px;
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
   color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton i {
+  font-size: 1rem;
 }
 @media (max-width: 1130px) {
   .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButton {
@@ -1078,19 +1086,32 @@ input {
     height: 20px;
   }
 }
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .addFav {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
+  color: #EDD05F;
+  background-color: #f7f5ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .addFav i {
+  font-size: 1rem;
+}
 .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
-  width: 35px;
-  height: 35px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
   background-color: #f7f5ea;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
-  background-size: 100px;
+  background-size: 75px;
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
-  margin: 2px 5px;
 }
 @media (max-width: 1130px) {
   .dashboardContainer .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
@@ -1104,10 +1125,15 @@ input {
 .dashboardContainer .middleDashboard .favContainer {
   padding: 5px;
   overflow: hidden;
+  transform: translateY(-10px);
 }
 .dashboardContainer .middleDashboard .favContainer h2 {
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-  font-size: 1.75rem;
+  color: #f7f5ea;
+  font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
+  padding: 0 0 15px;
+}
+.dashboardContainer .middleDashboard .favContainer h2 #favouriteTitle {
+  font-family: "Karla Bold";
 }
 .dashboardContainer .middleDashboard .favContainer p {
   color: #1a1a1c;
@@ -1116,51 +1142,140 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2px;
+  padding: 5px;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems:hover {
   background: #C4C2C2;
   border-radius: 5px;
 }
+.dashboardContainer .middleDashboard .favContainer .favItems img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .favContainer .favItems img {
+    width: 20px;
+    height: 20px;
+  }
+}
 .dashboardContainer .middleDashboard .favContainer .favItems .favText {
-  width: 60%;
-  word-wrap: break-word;
+  padding: 0 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favText p {
   margin: 0;
-  color: #1a1a1c;
-  font-size: 1.5rem;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+  color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .favContainer .favItems img {
-  height: 35px;
-  width: 35px;
-  border-radius: 5px;
+.dashboardContainer .middleDashboard .favContainer .favItems:hover .favText {
+  color: #1a1a1c;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favButtons {
   display: flex;
 }
 .dashboardContainer .middleDashboard .favContainer .favItems .favButtons .favButton {
-  border: 2px solid #1a1a1c;
-  background: #f7f5ea;
-  border-radius: 50px;
-  width: 35px;
-  height: 35px;
-  margin: 2px 5px;
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
   color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dashboardContainer .middleDashboard .favContainer .favItems .favButtons .favButtonPlaying {
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons .favButton i {
+  font-size: 1rem;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .favContainer .favItems .favButtons .favButton {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons .removeFav {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
+  color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainer .middleDashboard .favContainer .favItems .favButtons .removeFav i {
+  font-size: 1rem;
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #EDD05F;
+  border-radius: 5px;
+  padding: 5px;
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying img {
   width: 35px;
   height: 35px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .favContainer .favItemsPlaying img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favText {
+  padding: 0 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favText p {
+  margin: 0;
+  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+  color: #1a1a1c;
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favButtons {
+  display: flex;
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favButtons .favButtonPlaying {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
   background-color: #f7f5ea;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
-  background-size: 100px;
+  background-size: 75px;
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
-  margin: 2px 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favButtons .favButtonPlaying {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favButtons .removeFav {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
+  color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainer .middleDashboard .favContainer .favItemsPlaying .favButtons .removeFav i {
+  font-size: 1rem;
 }
 .dashboardContainer .infoContainer {
   display: flex;
@@ -1367,42 +1482,34 @@ input {
     height: 20px;
   }
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText {
-  padding: 4px;
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText .popularTextTitle {
+  padding: 0 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText p {
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText .popularTextTitle p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #1a1a1c;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
-  border: 2px solid #1a1a1c;
-  background: #f7f5ea;
-  border-radius: 50px;
-  width: 35px;
-  height: 35px;
-  margin: 2px 5px;
-  color: #D32631;
-}
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButton {
-    width: 20px;
-    height: 20px;
-  }
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons {
+  display: flex;
 }
 .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
-  width: 35px;
-  height: 35px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
   background-color: #f7f5ea;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
-  background-size: 100px;
+  background-size: 75px;
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
-  margin: 2px 5px;
 }
 @media (max-width: 1130px) {
   .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
@@ -1410,140 +1517,98 @@ input {
     height: 20px;
   }
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons button {
-  background: transparent;
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .addFav {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
+  color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults {
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .addFav i {
+  font-size: 1rem;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2px;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText {
-  padding: 4px;
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularText {
+  padding: 0 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText p {
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularText p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-  color: #f7f5ea;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults:hover .popularTextTitle {
   color: #1a1a1c;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
-  border: 2px solid #1a1a1c;
-  background: #f7f5ea;
-  border-radius: 50px;
-  width: 35px;
-  height: 35px;
-  margin: 2px 5px;
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults:hover .popularTextTitle {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .popluarButton {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0.5px solid #1a1a1c;
   color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .popluarButton i {
+  font-size: 1rem;
 }
 @media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .popluarButton {
     width: 20px;
     height: 20px;
-    font-size: 0.7rem;
   }
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
-  width: 35px;
-  height: 35px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
-  background-color: #f7f5ea;
-  font-family: "Poppins", sans-serif;
-  background-image: url("../../assets/soundBars.gif");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: inline-block;
-  margin: 2px 5px;
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .addFav {
+  width: 10px;
+  padding: 7px 10px;
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #1a1a1c;
+  color: #D32631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
-    width: 20px;
-    height: 20px;
-    background-size: 50px;
-  }
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .addFav i {
+  font-size: 1rem;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons button {
-  background: transparent;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults:hover {
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults:hover {
   background: #C4C2C2;
   border-radius: 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults img {
+  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
     width: 20px;
     height: 20px;
   }
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText {
-  padding: 4px;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularText p {
-  margin: 0;
-  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-  color: #f7f5ea;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults:hover .popularTextTitle {
-  color: #1a1a1c;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
-  border: 2px solid #1a1a1c;
-  background: #f7f5ea;
-  border-radius: 50px;
-  width: 35px;
-  height: 35px;
-  margin: 2px 5px;
-  color: #D32631;
-}
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButton {
-    width: 20px;
-    height: 20px;
-  }
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
-  width: 35px;
-  height: 35px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
-  background-color: #f7f5ea;
-  font-family: "Poppins", sans-serif;
-  background-image: url("../../assets/soundBars.gif");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: inline-block;
-  margin: 2px 5px;
-}
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons .popularButtonPlaying {
-    width: 20px;
-    height: 20px;
-  }
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResults .popularButtons button {
-  background: transparent;
 }
 .dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer {
   padding: 5px;
@@ -1579,32 +1644,6 @@ input {
   height: 35px;
   width: 35px;
   border-radius: 5px;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favButtons {
-  display: flex;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favButtons .favButton {
-  border: 2px solid #1a1a1c;
-  background: #f7f5ea;
-  border-radius: 50px;
-  width: 35px;
-  height: 35px;
-  margin: 2px 5px;
-  color: #D32631;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favButtons .favButtonPlaying {
-  width: 35px;
-  height: 35px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
-  background-color: #f7f5ea;
-  font-family: "Poppins", sans-serif;
-  background-image: url("../../assets/soundBars.gif");
-  background-size: 100px;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: inline-block;
-  margin: 2px 5px;
 }
 .dashboardContainerMobile .dashboardPopOut .infoContainer {
   display: flex;
@@ -1885,7 +1924,7 @@ input {
 }
 .mapFilters .topControls .selectDropdown select {
   padding: 10px 10px;
-  font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
+  font-size: clamp(0.625rem, 0.5455rem + 0.3977vw, 1.5rem);
   color: #1a1a1c;
   background-color: #f7f5ea;
   border: 2px solid #1a1a1c;
@@ -2396,8 +2435,8 @@ input {
 
 .returnBtn {
   position: fixed;
-  bottom: 110px;
-  right: 35px;
+  bottom: 85px;
+  right: 50px;
   transition: opacity 0.6s ease-in-out;
 }
 @media (max-width: 950px) {
@@ -2425,6 +2464,7 @@ input {
   background-color: #3a3a3c;
   color: #f7f5ea;
   font-size: 16px;
+  transition: 0.3s;
   cursor: pointer;
 }
 @media (max-width: 950px) {
@@ -2435,6 +2475,7 @@ input {
 }
 .returnBtn .scrollToTop:hover {
   opacity: 0.8;
+  transform: scale(1.1);
 }
 .returnBtn .scrollToTop:hover + #topText {
   display: block;
@@ -2547,6 +2588,8 @@ input {
   background: #f7f5ea;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 @media (max-width: 1130px) {
   .radioInfo .playingImgContainer {
@@ -2564,11 +2607,27 @@ input {
     background: #D32631;
   }
 }
-.radioInfo img {
+.radioInfo .playingImgContainer .playingBlur {
+  position: absolute;
+  left: -50%;
+  align-self: center;
+  z-index: 1;
+  height: auto;
+  height: 300px;
+  width: 300px;
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+}
+.radioInfo .playingImgContainer .playingIcon {
+  z-index: 2;
   width: 100%;
   height: auto;
-  max-height: 200px;
+  max-height: 175px;
+  max-width: 175px;
   overflow-x: hidden;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 .radioInfo .radioInfoTitleContainer {
   width: 100%;

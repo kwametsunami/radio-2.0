@@ -5,7 +5,7 @@ html {
   font-family: $font;
   font-size: 62.5%;
   scrollbar-width: thin;
-  scrollbar-color: red transparent;
+  scrollbar-color: $grey transparent;
   background: $red;
   &::-webkit-scrollbar {
     width: 10px;

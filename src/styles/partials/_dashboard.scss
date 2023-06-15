@@ -50,6 +50,158 @@
   .middleDashboard {
     overflow: hidden;
     max-height: 500px;
+    .recentContainer {
+      h2 {
+        color: $white;
+        font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
+        padding: 0 0 15px;
+        #recentTitle {
+          font-family: $bold;
+        }
+      }
+      p {
+        color: $black;
+      }
+      .recentContainerContainer {
+        padding: 5px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column-reverse;
+        max-height: 400px;
+        overflow-y: none;
+        .recentItems {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px;
+          &:hover {
+            background: $grey;
+            border-radius: 5px;
+          }
+          img {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .recentItemsText {
+            padding: 0 4px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            p {
+              margin: 0;
+              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+              color: $white;
+            }
+          }
+          &:hover .favText {
+            color: $black;
+          }
+          .recentItemsButton {
+            display: flex;
+            .recentButton {
+              width: 10px;
+              padding: 7px 10px;
+              border-radius: 5px 0 0 5px;
+              border-right: 0.5px solid $black;
+              color: $red;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              i {
+                font-size: 1rem;
+              }
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+              }
+            }
+            .recentAddFav {
+              width: 10px;
+              padding: 7px 10px;
+              border-radius: 0 5px 5px 0;
+              border-left: 0.5px solid $black;
+              color: $yellow;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              i {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+        .recentItemsPlaying {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: $yellow;
+          border-radius: 5px;
+          padding: 5px;
+          img {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .recentItemsText {
+            padding: 0 4px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            p {
+              margin: 0;
+              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
+              color: $black;
+            }
+          }
+          .recentItemsButton {
+            display: flex;
+            .recentButtonPlaying {
+              width: 10px;
+              padding: 7px 10px;
+              border-radius: 5px 0 0 5px;
+              border-right: 0.5px solid $black;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 75px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
+              @include smallDesktop {
+                width: 20px;
+                height: 20px;
+              }
+            }
+            .recentAddFav {
+              width: 10px;
+              padding: 7px 10px;
+              border-radius: 0 5px 5px 0;
+              border-left: 0.5px solid $black;
+              color: $yellow;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              i {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
     .popularView {
       padding: 5px;
       #popularTitle {
@@ -85,39 +237,36 @@
           }
         }
         .popularButtons {
-          .popularButton {
-            border: 2px solid $black;
-            background: $white;
-            border-radius: 50px;
-            width: 35px;
-            height: 35px;
-            margin: 2px 5px;
-            color: $red;
-            @include smallDesktop {
-              width: 20px;
-              height: 20px;
-            }
-          }
+          display: flex;
           .popularButtonPlaying {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
             background-color: $white;
             font-family: "Poppins", sans-serif;
             background-image: url("../../assets/soundBars.gif");
-            background-size: 100px;
+            background-size: 75px;
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            margin: 2px 5px;
             @include smallDesktop {
               width: 20px;
               height: 20px;
             }
           }
-          button {
-            background: transparent;
+          .addFav {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 0 5px 5px 0;
+            border-left: 0.5px solid $black;
+            color: $yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
+            }
           }
         }
       }
@@ -162,18 +311,17 @@
             }
           }
           .popularButtonPlaying {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
             background-color: $white;
             font-family: "Poppins", sans-serif;
             background-image: url("../../assets/soundBars.gif");
-            background-size: 100px;
+            background-size: 75px;
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            margin: 2px 5px;
             @include smallDesktop {
               width: 20px;
               height: 20px;
@@ -209,32 +357,51 @@
           color: $black;
         }
         .popularButtons {
+          display: flex;
           .popularButton {
-            border: 2px solid $black;
-            background: $white;
-            border-radius: 50px;
-            width: 35px;
-            height: 35px;
-            margin: 2px 5px;
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
             color: $red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            i {
+              font-size: 1rem;
+            }
             @include smallDesktop {
               width: 20px;
               height: 20px;
             }
           }
+          .addFav {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 0 5px 5px 0;
+            border-left: 0.5px solid $black;
+            color: $yellow;
+            background-color: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
+            }
+          }
           .popularButtonPlaying {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
             background-color: $white;
             font-family: "Poppins", sans-serif;
             background-image: url("../../assets/soundBars.gif");
-            background-size: 100px;
+            background-size: 75px;
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            margin: 2px 5px;
             @include smallDesktop {
               width: 20px;
               height: 20px;
@@ -249,7 +416,7 @@
     .favContainer {
       padding: 5px;
       overflow: hidden;
-      transform: translateY(-10px);
+      // transform: translateY(-10px);
       h2 {
         color: $white;
         font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
@@ -298,27 +465,44 @@
         .favButtons {
           display: flex;
           .favButton {
-            border: 2px solid $black;
-            background: $white;
-            border-radius: 50px;
-            width: 35px;
-            height: 35px;
-            margin: 2px 5px;
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
             color: $red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
+            }
             @include smallDesktop {
               width: 20px;
               height: 20px;
             }
           }
+          .removeFav {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 0 5px 5px 0;
+            border-left: 0.5px solid $black;
+            color: $red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
+            }
+          }
         }
       }
       .favItemsPlaying {
-        background: $yellow;
-        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2px;
+        background: $yellow;
+        border-radius: 5px;
+        padding: 5px;
         img {
           width: 35px;
           height: 35px;
@@ -329,29 +513,49 @@
           }
         }
         .favText {
-          padding: 4px;
+          padding: 0 4px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          line-clamp: 3;
+          -webkit-box-orient: vertical;
           p {
             margin: 0;
             font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
             color: $black;
           }
         }
-        .favButtonPlaying {
-          width: 35px;
-          height: 35px;
-          border: 2px solid #1e2021;
-          border-radius: 50px;
-          background-color: $white;
-          font-family: "Poppins", sans-serif;
-          background-image: url("../../assets/soundBars.gif");
-          background-size: 100px;
-          background-repeat: no-repeat;
-          background-position: center;
-          display: inline-block;
-          margin: 2px 5px;
-          @include smallDesktop {
-            width: 20px;
-            height: 20px;
+        .favButtons {
+          display: flex;
+          .favButtonPlaying {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
+            background-color: $white;
+            font-family: "Poppins", sans-serif;
+            background-image: url("../../assets/soundBars.gif");
+            background-size: 75px;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            @include smallDesktop {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .removeFav {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 0 5px 5px 0;
+            border-left: 0.5px solid $black;
+            color: $red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
+            }
           }
         }
       }
@@ -573,122 +777,113 @@
             }
           }
           .popularButtons {
-            .popularButton {
-              border: 2px solid $black;
-              background: $white;
-              border-radius: 50px;
-              width: 35px;
-              height: 35px;
-              margin: 2px 5px;
-              color: $red;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-              }
-            }
+            display: flex;
             .popularButtonPlaying {
-              width: 35px;
-              height: 35px;
-              border: 2px solid #1e2021;
-              border-radius: 50px;
+              width: 10px;
+              padding: 7px 10px;
+              border-radius: 5px 0 0 5px;
+              border-right: 0.5px solid $black;
               background-color: $white;
               font-family: "Poppins", sans-serif;
               background-image: url("../../assets/soundBars.gif");
-              background-size: 100px;
+              background-size: 75px;
               background-repeat: no-repeat;
               background-position: center;
               display: inline-block;
-              margin: 2px 5px;
               @include smallDesktop {
                 width: 20px;
                 height: 20px;
               }
             }
-            button {
-              background: transparent;
+            .addFav {
+              width: 10px;
+              padding: 7px 10px;
+              border-radius: 0 5px 5px 0;
+              border-left: 0.5px solid $black;
+              color: $red;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              i {
+                font-size: 1rem;
+              }
             }
           }
         }
-        .popularResults {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 2px;
-          img {
-            width: 35px;
-            height: 35px;
-            border-radius: 5px;
-            @include smallDesktop {
-              width: 20px;
-              height: 20px;
-            }
+      }
+      .popularResults {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px;
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+          @include smallDesktop {
+            width: 20px;
+            height: 20px;
           }
-          .popularText {
-            padding: 0 4px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
-            p {
-              margin: 0;
-              font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-              color: $black;
-            }
-          }
-          &:hover .popularTextTitle {
+        }
+        .popularText {
+          padding: 0 4px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          line-clamp: 3;
+          -webkit-box-orient: vertical;
+          p {
+            margin: 0;
+            font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
             color: $black;
           }
-          .popularButtons {
-            .popularButton {
-              border: 2px solid $black;
-              background: $white;
-              border-radius: 50px;
-              width: 35px;
-              height: 35px;
-              margin: 2px 5px;
-              color: $red;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-                font-size: 0.7rem;
-              }
+        }
+        &:hover .popularTextTitle {
+          color: $black;
+        }
+        .popularButtons {
+          .popluarButton {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 5px 0 0 5px;
+            border-right: 0.5px solid $black;
+            color: $red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
             }
-            .popularButtonPlaying {
-              width: 35px;
-              height: 35px;
-              border: 2px solid #1e2021;
-              border-radius: 50px;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 100px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              margin: 2px 5px;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-                background-size: 50px;
-              }
-            }
-            button {
-              background: transparent;
-            }
-          }
-          &:hover {
-            background: $grey;
-            border-radius: 5px;
-          }
-          img {
-            width: 35px;
-            height: 35px;
-            border-radius: 5px;
             @include smallDesktop {
               width: 20px;
               height: 20px;
             }
+          }
+          .addFav {
+            width: 10px;
+            padding: 7px 10px;
+            border-radius: 0 5px 5px 0;
+            border-left: 0.5px solid $black;
+            color: $red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1rem;
+            }
+          }
+        }
+        &:hover {
+          background: $grey;
+          border-radius: 5px;
+        }
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+          @include smallDesktop {
+            width: 20px;
+            height: 20px;
           }
         }
       }
@@ -725,32 +920,6 @@
             height: 35px;
             width: 35px;
             border-radius: 5px;
-          }
-          .favButtons {
-            display: flex;
-            .favButton {
-              border: 2px solid $black;
-              background: $white;
-              border-radius: 50px;
-              width: 35px;
-              height: 35px;
-              margin: 2px 5px;
-              color: $red;
-            }
-            .favButtonPlaying {
-              width: 35px;
-              height: 35px;
-              border: 2px solid #1e2021;
-              border-radius: 50px;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 100px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              margin: 2px 5px;
-            }
           }
         }
       }

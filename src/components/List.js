@@ -46,15 +46,17 @@ const List = (props) => {
     const selectedStation = event.currentTarget.value;
     const selectedStationArr = selectedStation.split(",");
 
-    props.sendToRadio(selectedStationArr[0]);
-    props.sendToRadioName(event.target.id);
-    props.sendImage(selectedStationArr[3]);
+    props.addToRecent(selectedStationArr);
 
-    setRadioUrl(event.target.value);
-    setPlayingName(event.target.id);
+    props.sendToRadio(selectedStationArr[1]);
+    props.sendToRadioName(selectedStationArr[5]);
+    props.sendImage(selectedStationArr[2]);
 
-    props.latitude(selectedStationArr[1]);
-    props.longitude(selectedStationArr[2]);
+    setRadioUrl(selectedStationArr[1]);
+    setPlayingName(selectedStationArr[5]);
+
+    props.latitude(selectedStationArr[3]);
+    props.longitude(selectedStationArr[4]);
   };
 
   useEffect(() => {
@@ -62,26 +64,15 @@ const List = (props) => {
     const dbRef = ref(database);
 
     onValue(dbRef, (response) => {
-      // here we're creating a variable to store the new state we want to introduce to our app
       const newState = [];
 
-      // here we store the response from our query to Firebase inside of a variable called data.
-      // .val() is a Firebase method that gets us the information we want
       const data = response.val();
-      // data is an object, so we iterate through it using a for in loop to access each book name
 
       for (let key in data) {
-        // inside the loop, we push each book name to an array we already created inside the onValue() function called newState
-        newState.push(data[key]);
-      }
-
-      // then, we call setBooks in order to update our component's state using the local array newState
-      setFavStation(newState);
-
-      for (let key in data) {
-        // pushing the values from the object into our newState array
         newState.push({ key: key, name: data[key] });
       }
+
+      setFavStation(newState);
     });
   }, []);
 
@@ -152,14 +143,9 @@ const List = (props) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
 
-    console.log(stationFav);
-    console.log(stationFavArr);
-
-    // create a reference to our database
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
-    // push the value of the `userInput` state to the database
     push(dbRef, stationFavArr);
   };
 
@@ -301,10 +287,12 @@ const List = (props) => {
                               : "infoButton"
                           }
                           value={[
+                            `${stationDetails.changeuuid}`,
                             `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
                             `${stationDetails.geo_lat}`,
                             `${stationDetails.geo_long}`,
-                            `${stationDetails.favicon}`,
+                            `${stationDetails.name}`,
                           ]}
                           onClick={radioSelect}
                           id={stationDetails.name}
@@ -314,22 +302,28 @@ const List = (props) => {
                             ? ""
                             : "▶"}
                         </button>
-                        <button
-                          className="favourite"
-                          onClick={favourite}
-                          value={[
-                            `${stationDetails.changeuuid}`,
-                            `${stationDetails.url_resolved}`,
-                            `${stationDetails.favicon}`,
-                            `${stationDetails.state}`,
-                            `${stationDetails.country}`,
-                            `${stationDetails.geo_lat}`,
-                            `${stationDetails.geo_long}`,
-                            `${stationDetails.name}`,
-                          ]}
-                        >
-                          <i className="fa-solid fa-star"></i>
-                        </button>
+                        {props.favKeys.includes(
+                          `${stationDetails.changeuuid}`
+                        ) ? (
+                          <button class="added">
+                            <i className="fa-solid fa-star alreadyAdded"></i>
+                          </button>
+                        ) : (
+                          <button
+                            className="favourite"
+                            onClick={favourite}
+                            value={[
+                              `${stationDetails.changeuuid}`,
+                              `${stationDetails.url_resolved}`,
+                              `${stationDetails.favicon}`,
+                              `${stationDetails.geo_lat}`,
+                              `${stationDetails.geo_long}`,
+                              `${stationDetails.name}`,
+                            ]}
+                          >
+                            <i className="fa-solid fa-star"></i>
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -383,10 +377,12 @@ const List = (props) => {
                               : "infoButton"
                           }
                           value={[
+                            `${stationDetails.changeuuid}`,
                             `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
                             `${stationDetails.geo_lat}`,
                             `${stationDetails.geo_long}`,
-                            `${stationDetails.favicon}`,
+                            `${stationDetails.name}`,
                           ]}
                           onClick={radioSelect}
                           id={stationDetails.name}
@@ -396,22 +392,28 @@ const List = (props) => {
                             ? ""
                             : "▶"}
                         </button>
-                        <button
-                          className="favourite"
-                          onClick={favourite}
-                          value={[
-                            `${stationDetails.changeuuid}`,
-                            `${stationDetails.url_resolved}`,
-                            `${stationDetails.favicon}`,
-                            `${stationDetails.state}`,
-                            `${stationDetails.country}`,
-                            `${stationDetails.geo_lat}`,
-                            `${stationDetails.geo_long}`,
-                            `${stationDetails.name}`,
-                          ]}
-                        >
-                          <i className="fa-solid fa-star"></i>
-                        </button>
+                        {props.favKeys.includes(
+                          `${stationDetails.changeuuid}`
+                        ) ? (
+                          <button class="added">
+                            <i className="fa-solid fa-star alreadyAdded"></i>
+                          </button>
+                        ) : (
+                          <button
+                            className="favourite"
+                            onClick={favourite}
+                            value={[
+                              `${stationDetails.changeuuid}`,
+                              `${stationDetails.url_resolved}`,
+                              `${stationDetails.favicon}`,
+                              `${stationDetails.geo_lat}`,
+                              `${stationDetails.geo_long}`,
+                              `${stationDetails.name}`,
+                            ]}
+                          >
+                            <i className="fa-solid fa-star"></i>
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -424,7 +426,6 @@ const List = (props) => {
           <button className="scrollToTop" onClick={scrollToTop}>
             <i className="fa-solid fa-circle-arrow-up"></i>
           </button>
-          {/* <p id="topText">return to top</p> */}
         </div>
       )}
     </section>
