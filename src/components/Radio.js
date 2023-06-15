@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+import { getDatabase, ref, onValue, remove } from "firebase/database";
 
 import Loading from "./Loading";
 import Dashboard from "./Dashboard";
@@ -50,7 +50,6 @@ const Radio = (props) => {
   const [currentLat, setCurrentLat] = useState("");
   const [currentLong, setCurrentLong] = useState("");
   const [recentStations, setRecentStations] = useState([]);
-  const [sendToRecent, setSendToRecent] = useState([]);
 
   const switchView = () => {
     setListView(!listView);
@@ -183,20 +182,6 @@ const Radio = (props) => {
     }
   };
 
-  useEffect(() => {
-    const keyToCheck = sendToRecent[0];
-
-    // // if (recentStations.length > 1) {
-    // for (let i = 0; i >= recentStations.length; i++) {
-    //   if (recentStations[i].includes(keyToCheck)) {
-    //     console.log("match");
-    //   } else {
-    //     console.log("no match");
-    //   }
-    // }
-    // }
-  }, [recentStations]);
-
   const [mobile, setMobile] = useState(false);
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
@@ -265,7 +250,7 @@ const Radio = (props) => {
     setKeys(testKeys);
 
     setFavs(testArr);
-  }, [testKeys]);
+  }, [testArr, testKeys]);
 
   const removeFav = (favId) => {
     const database = getDatabase(firebase);
@@ -306,6 +291,7 @@ const Radio = (props) => {
             favourites={favStationInfo}
             setFavs={setFavs}
             setKeysFunc={setKeys}
+            favKeys={favKeys}
             popular={popular}
             sendToRadio={sendToRadio}
             sendToRadioName={sendToRadioName}
@@ -317,6 +303,7 @@ const Radio = (props) => {
             longitude={setCurrentLong}
             mobile={mobile}
             removeFav={removeFav}
+            testArr={testArr}
             addToRecent={addToRecent}
             recentStations={recentStations}
           />

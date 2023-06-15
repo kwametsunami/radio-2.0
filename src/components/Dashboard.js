@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+import { getDatabase, ref, push } from "firebase/database";
 
 import DashboardLoading from "./DashboardLoading";
 
@@ -9,29 +9,27 @@ import defaultImage from "../assets/radio.png";
 
 const Dashboard = (props) => {
   const [showInfo, setShowInfo] = useState(false);
-  const [popularView, setPopularView] = useState(true);
+  const [popularView, setPopularView] = useState(1);
   const [recentView, setRecentView] = useState(false);
   const [showMobile, setShowMobile] = useState(false);
-
-  const [favStation, setFavStation] = useState([]);
-  const [keys, setKeys] = useState([]);
 
   const infoButton = () => {
     setShowInfo(!showInfo);
   };
 
   const favView = () => {
-    setPopularView(false);
+    setPopularView(2);
     setRecentView(false);
   };
 
   const chartView = () => {
-    setPopularView(true);
+    setPopularView(1);
     setRecentView(false);
   };
 
   const showRecent = () => {
     setRecentView(true);
+    setPopularView(0);
   };
 
   const mobileMenu = () => {
@@ -39,6 +37,8 @@ const Dashboard = (props) => {
   };
 
   const playStation = (event) => {
+    event.preventDefault();
+
     const dashboardStation = event.currentTarget.value;
     const dashboardStationArr = dashboardStation.split(",");
 
@@ -53,6 +53,8 @@ const Dashboard = (props) => {
   };
 
   const recentPlayStation = (event) => {
+    event.preventDefault();
+
     const dashboardStation = event.currentTarget.value;
     const dashboardStationArr = dashboardStation.split(",");
 
@@ -63,11 +65,6 @@ const Dashboard = (props) => {
     props.latitude(dashboardStationArr[3]);
     props.longitude(dashboardStationArr[4]);
   };
-
-  useEffect(() => {
-    props.setKeysFunc(keys);
-    props.setFavs(favStation);
-  }, [keys]);
 
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
@@ -83,6 +80,16 @@ const Dashboard = (props) => {
 
   const setDefaultSrc = (event) => {
     event.target.src = defaultImage;
+  };
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
   };
 
   return (
@@ -190,7 +197,7 @@ const Dashboard = (props) => {
                 ) : (
                   <div className="favContainer">
                     <h2>your favourited stations</h2>
-                    {favStation.map((favStation) => {
+                    {props.testArr.map((favStation) => {
                       return (
                         <div className="favItems" key={`${favStation.key}`}>
                           <img
@@ -293,7 +300,7 @@ const Dashboard = (props) => {
                             ? "recentItemsPlaying"
                             : "recentItems"
                         }
-                        key={recent.changeuuid}
+                        key={`${recent[0]}`}
                       >
                         <img
                           src={`${recent[2]}`}
@@ -332,27 +339,33 @@ const Dashboard = (props) => {
                               <i className="fa-solid fa-play"></i>
                             )}
                           </button>
-                          <button
-                            className="recentAddFav"
-                            onClick={favourite}
-                            value={[
-                              `${recent[0]}`,
-                              `${recent[1]}`,
-                              `${recent[2]}`,
-                              `${recent[3]}`,
-                              `${recent[4]}`,
-                              `${recent[5]}`,
-                            ]}
-                          >
-                            <i className="fa-solid fa-star"></i>
-                          </button>
+                          {props.favKeys.includes(`${recent[0]}`) ? (
+                            <button class="added">
+                              <i className="fa-solid fa-star alreadyAdded"></i>
+                            </button>
+                          ) : (
+                            <button
+                              className="recentAddFav"
+                              onClick={favourite}
+                              value={[
+                                `${recent[0]}`,
+                                `${recent[1]}`,
+                                `${recent[2]}`,
+                                `${recent[3]}`,
+                                `${recent[4]}`,
+                                `${recent[5]}`,
+                              ]}
+                            >
+                              <i className="fa-regular fa-star"></i>
+                            </button>
+                          )}
                         </div>
                       </div>
                     );
                   })}
                 </div>
               </div>
-            ) : popularView ? (
+            ) : popularView === 1 ? (
               <div className="popularView">
                 {!props.dashboardLoading ? (
                   props.badSearch ? null : (
@@ -363,71 +376,81 @@ const Dashboard = (props) => {
                   )
                 ) : null}
                 {props.dashboardLoading ? <DashboardLoading /> : null}
-                {props.dashboardLoading
-                  ? null
-                  : props.popular.map((stations) => {
-                      return (
-                        <div
-                          className={
-                            props.stationUrl === stations.url_resolved
-                              ? "popularResultsPlaying"
-                              : "popularResults"
-                          }
-                          key={`${stations.changeuuid}`}
-                        >
-                          <img
-                            src={`${stations.favicon}`}
-                            alt={`${stations.name}`}
-                            onError={setDefaultSrc}
-                          />
-                          <div className="popularText">
-                            <p className="popularTextTitle">{`${stations.name
-                              .replace(/_/g, "")
-                              .replace(/-/g, " ")
-                              .replace(/  +/, " ")
-                              .replace(/\//g, "")}`}</p>
-                          </div>
-                          <div className="popularButtons">
-                            <button
-                              className={
-                                props.stationUrl === stations.url_resolved
-                                  ? "popularButtonPlaying"
-                                  : "popularButton"
-                              }
-                              onClick={playStation}
-                              value={[
-                                `${stations.changeuuid}`,
-                                `${stations.url_resolved}`,
-                                `${stations.favicon}`,
-                                `${stations.geo_lat}`,
-                                `${stations.geo_long}`,
-                                `${stations.name}`,
-                              ]}
-                            >
-                              {props.stationUrl === stations.url_resolved ? (
-                                ""
+                <div className="popularContainerContainer">
+                  {props.dashboardLoading
+                    ? null
+                    : props.popular.map((stations) => {
+                        return (
+                          <div
+                            className={
+                              props.stationUrl === stations.url_resolved
+                                ? "popularResultsPlaying"
+                                : "popularResults"
+                            }
+                            key={`${stations.changeuuid}`}
+                          >
+                            <img
+                              src={`${stations.favicon}`}
+                              alt={`${stations.name}`}
+                              onError={setDefaultSrc}
+                            />
+                            <div className="popularText">
+                              <p className="popularTextTitle">{`${stations.name
+                                .replace(/_/g, "")
+                                .replace(/-/g, " ")
+                                .replace(/  +/, " ")
+                                .replace(/\//g, "")}`}</p>
+                            </div>
+                            <div className="popularButtons">
+                              <button
+                                className={
+                                  props.stationUrl === stations.url_resolved
+                                    ? "popularButtonPlaying"
+                                    : "popularButton"
+                                }
+                                onClick={playStation}
+                                value={[
+                                  `${stations.changeuuid}`,
+                                  `${stations.url_resolved}`,
+                                  `${stations.favicon}`,
+                                  `${stations.geo_lat}`,
+                                  `${stations.geo_long}`,
+                                  `${stations.name}`,
+                                ]}
+                              >
+                                {props.stationUrl === stations.url_resolved ? (
+                                  ""
+                                ) : (
+                                  <i className="fa-solid fa-play"></i>
+                                )}
+                              </button>
+                              {props.favKeys.includes(
+                                `${stations.changeuuid}`
+                              ) ? (
+                                <button class="added">
+                                  <i className="fa-solid fa-star alreadyAdded"></i>
+                                </button>
                               ) : (
-                                <i className="fa-solid fa-play"></i>
+                                <button
+                                  className="addFav"
+                                  onClick={favourite}
+                                  value={[
+                                    `${stations.changeuuid}`,
+                                    `${stations.url_resolved}`,
+                                    `${stations.favicon}`,
+                                    `${stations.geo_lat}`,
+                                    `${stations.geo_long}`,
+                                    `${stations.name}`,
+                                  ]}
+                                >
+                                  <i className="fa-regular fa-star"></i>
+                                </button>
                               )}
-                            </button>
-                            <button
-                              className="addFav"
-                              onClick={favourite}
-                              value={[
-                                `${stations.changeuuid}`,
-                                `${stations.url_resolved}`,
-                                `${stations.favicon}`,
-                                `${stations.geo_lat}`,
-                                `${stations.geo_long}`,
-                                `${stations.name}`,
-                              ]}
-                            >
-                              <i className="fa-solid fa-star"></i>
-                            </button>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                </div>
               </div>
             ) : (
               <div className="favContainer">
@@ -435,61 +458,71 @@ const Dashboard = (props) => {
                   your
                   <span id="favouriteTitle"> favourites</span>
                 </h2>
-                {props.testArr.map((favStation) => {
-                  return (
-                    <div
-                      className={
-                        props.stationUrl === favStation.data[1]
-                          ? "favItemsPlaying"
-                          : "favItems"
-                      }
-                      key={`${favStation.key}`}
-                    >
-                      <img
-                        src={`${favStation.data[2]}`}
-                        alt={`${favStation.data[5]}`}
-                        onError={setDefaultSrc}
-                      />
-                      <div className="favText">
-                        <p className="favTextTitle">{`${favStation.data[5]
-                          .replace(/_/g, "")
-                          .replace(/-/g, " ")
-                          .replace(/  +/, " ")
-                          .replace(/\//g, "")}`}</p>
-                      </div>
-                      <div className="favButtons">
-                        <button
+                <div
+                  className={`favContainerContainer ${
+                    isHovered ? "hovered" : ""
+                  }`}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="scrollableContent">
+                    {props.testArr.map((favStation) => {
+                      return (
+                        <div
                           className={
                             props.stationUrl === favStation.data[1]
-                              ? "favButtonPlaying"
-                              : "favButton"
+                              ? "favItemsPlaying"
+                              : "favItems"
                           }
-                          onClick={playStation}
-                          value={[
-                            `${favStation.data[0]}`,
-                            `${favStation.data[1]}`,
-                            `${favStation.data[2]}`,
-                            `${favStation.data[3]}`,
-                            `${favStation.data[4]}`,
-                            `${favStation.data[5]}`,
-                          ]}
+                          key={`${favStation.key}`}
                         >
-                          {props.stationUrl === favStation.data[1] ? (
-                            ""
-                          ) : (
-                            <i className="fa-solid fa-play"></i>
-                          )}
-                        </button>
-                        <button
-                          className="removeFav"
-                          onClick={() => props.removeFav(favStation.key)}
-                        >
-                          <i className="fa-solid fa-xmark"></i>
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+                          <img
+                            src={`${favStation.data[2]}`}
+                            alt={`${favStation.data[5]}`}
+                            onError={setDefaultSrc}
+                          />
+                          <div className="favText">
+                            <p className="favTextTitle">{`${favStation.data[5]
+                              .replace(/_/g, "")
+                              .replace(/-/g, " ")
+                              .replace(/  +/, " ")
+                              .replace(/\//g, "")}`}</p>
+                          </div>
+                          <div className="favButtons">
+                            <button
+                              className={
+                                props.stationUrl === favStation.data[1]
+                                  ? "favButtonPlaying"
+                                  : "favButton"
+                              }
+                              onClick={playStation}
+                              value={[
+                                `${favStation.data[0]}`,
+                                `${favStation.data[1]}`,
+                                `${favStation.data[2]}`,
+                                `${favStation.data[3]}`,
+                                `${favStation.data[4]}`,
+                                `${favStation.data[5]}`,
+                              ]}
+                            >
+                              {props.stationUrl === favStation.data[1] ? (
+                                ""
+                              ) : (
+                                <i className="fa-solid fa-play"></i>
+                              )}
+                            </button>
+                            <button
+                              className="removeFav"
+                              onClick={() => props.removeFav(favStation.key)}
+                            >
+                              <i className="fa-solid fa-xmark"></i>
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -500,14 +533,32 @@ const Dashboard = (props) => {
           >
             <div className="infoButtons">
               {/* <button className="dashLogin">login</button> */}
-              <button onClick={chartView}>
-                <i className="fa-solid fa-chart-simple"></i>
+              <button
+                onClick={chartView}
+                id={popularView === 1 ? "selectedPopularBtn" : ""}
+              >
+                <i
+                  className="fa-solid fa-chart-simple"
+                  id={popularView === 1 ? "selectedPopular" : ""}
+                ></i>
               </button>
-              <button onClick={showRecent}>
-                <i className="fa-solid fa-clock-rotate-left"></i>
+              <button
+                onClick={showRecent}
+                id={recentView ? "selectedRecentBtn" : ""}
+              >
+                <i
+                  className="fa-solid fa-clock-rotate-left"
+                  id={recentView ? "selectedRecent" : ""}
+                ></i>
               </button>
-              <button onClick={favView}>
-                <i className="fa-solid fa-star"></i>
+              <button
+                onClick={favView}
+                id={popularView === 2 ? "selectedFavsBtn" : ""}
+              >
+                <i
+                  className="fa-solid fa-star"
+                  id={popularView === 2 ? "selectedFavs" : ""}
+                ></i>
               </button>
               <button onClick={infoButton}>
                 <i className="fa-solid fa-circle-info"></i>
