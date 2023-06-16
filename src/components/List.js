@@ -197,6 +197,16 @@ const List = (props) => {
     }
   };
 
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  const handleMouseEnter = (index) => {
+    setHoveredItem(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItem(null);
+  };
+
   return (
     <section className="stationList" ref={pageRef}>
       <div className="listFilters">
@@ -239,7 +249,7 @@ const List = (props) => {
       <FadeIn transitionDuration={1000} visible={true}>
         <div className="stationListContainer">
           {filterTrue
-            ? filteredStations.map((stationDetails) => {
+            ? filteredStations.map((stationDetails, index) => {
                 return (
                   <div
                     className={
@@ -247,9 +257,15 @@ const List = (props) => {
                         ? "stationInfoPlayingList"
                         : "stationInfoList"
                     }
-                    key={stationDetails.changeuuid}
                   >
-                    <div className="imageInfoContainer">
+                    <div
+                      className="imageInfoContainer"
+                      onMouseEnter={() =>
+                        handleMouseEnter(stationDetails.changeuuid)
+                      }
+                      onMouseLeave={handleMouseLeave}
+                      key={stationDetails.changeuuid}
+                    >
                       <div className="imageList">
                         <img
                           src={stationDetails.favicon}
@@ -321,7 +337,7 @@ const List = (props) => {
                               `${stationDetails.name}`,
                             ]}
                           >
-                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
                           </button>
                         )}
                       </div>
@@ -337,16 +353,62 @@ const List = (props) => {
                         ? "stationInfoPlayingList"
                         : "stationInfoList"
                     }
-                    key={stationDetails.changeuuid}
                   >
-                    <div className="imageInfoContainer">
+                    <div
+                      className="imageInfoContainer"
+                      onMouseEnter={() =>
+                        handleMouseEnter(stationDetails.changeuuid)
+                      }
+                      onMouseLeave={handleMouseLeave}
+                      key={stationDetails.changeuuid}
+                    >
+                      {hoveredItem === stationDetails.changeuuid ? (
+                        <button
+                          className="playButtonDiv"
+                          value={[
+                            `${stationDetails.changeuuid}`,
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.name}`,
+                          ]}
+                          onClick={radioSelect}
+                        ></button>
+                      ) : null}
                       <div className="imageList">
-                        <img
-                          src={stationDetails.favicon}
-                          alt={stationDetails.name}
-                          className="icon"
-                          onError={setDefaultSrc}
-                        />
+                        {playingName === stationDetails.name ? (
+                          <button className="playingBars"></button>
+                        ) : (
+                          <img
+                            src={stationDetails.favicon}
+                            alt={stationDetails.name}
+                            className={`icon ${
+                              hoveredItem === stationDetails.changeuuid
+                                ? "blurred"
+                                : ""
+                            }`}
+                            onError={setDefaultSrc}
+                          />
+                        )}
+                        {hoveredItem === stationDetails.changeuuid &&
+                        playingName !== stationDetails.name ? (
+                          <button
+                            className="hoverPlay"
+                            value={[
+                              `${stationDetails.changeuuid}`,
+                              `${stationDetails.url_resolved}`,
+                              `${stationDetails.favicon}`,
+                              `${stationDetails.geo_lat}`,
+                              `${stationDetails.geo_long}`,
+                              `${stationDetails.name}`,
+                            ]}
+                            onClick={radioSelect}
+                            id={stationDetails.name}
+                          >
+                            <i className="fa-solid fa-play"></i>
+                          </button>
+                        ) : null}
                       </div>
 
                       <div className="information">
@@ -369,7 +431,7 @@ const List = (props) => {
                       </div>
 
                       <div className="buttonContainer" value={stationDetails}>
-                        <button
+                        {/* <button
                           className={
                             playingName === stationDetails.name ||
                             props.stationCheck
@@ -391,7 +453,7 @@ const List = (props) => {
                           props.stationCheck
                             ? ""
                             : "▶"}
-                        </button>
+                        </button> */}
                         {props.favKeys.includes(
                           `${stationDetails.changeuuid}`
                         ) ? (
@@ -411,7 +473,7 @@ const List = (props) => {
                               `${stationDetails.name}`,
                             ]}
                           >
-                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
                           </button>
                         )}
                       </div>

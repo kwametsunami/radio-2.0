@@ -99,10 +99,11 @@
     // }
     .stationInfoList {
       display: flex;
+      position: relative;
       justify-content: center;
       width: calc((80% / 2) - 30px);
       max-height: 150px;
-      margin: 10px;
+      margin: 12.5px;
       border: 2.5px solid $black;
       border-radius: 20px;
       background-color: #ebe7e7;
@@ -111,6 +112,26 @@
       }
       @include mobileLarge {
         width: calc((92.5% / 2) - 25px);
+      }
+      &:hover {
+        background-color: $grey;
+        .imageInfoContainer {
+          .buttonContainer {
+            .favourite {
+              i {
+                color: $brightYellow;
+              }
+            }
+          }
+        }
+      }
+      .playButtonDiv {
+        background: transparent;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
       }
       .imageInfoContainer {
         display: flex;
@@ -146,6 +167,7 @@
           display: flex;
           align-content: center;
           justify-content: center;
+          position: relative;
           .icon {
             margin: auto 0;
             width: 70px;
@@ -163,6 +185,31 @@
               height: auto;
               max-height: 35px;
               font-size: 0.7rem;
+            }
+          }
+          .blurred {
+            filter: blur(3px);
+            -webkit-filter: blur(3px);
+          }
+          .hoverPlay {
+            position: absolute;
+            margin: 0 auto;
+            align-self: center;
+            width: 50px;
+            height: 50px;
+            border: none;
+            padding: 5px;
+            background: transparent;
+            i {
+              color: $red;
+              font-size: 2rem;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
+            &:hover {
+              i {
+                color: $selectedRed;
+              }
             }
           }
         }
@@ -201,12 +248,15 @@
           .favourite {
             width: 45px;
             height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
             margin: 2px 5px;
-            background-color: $white;
+            border: none;
+            background-color: transparent;
+            z-index: 1;
             &:hover {
-              transform: scale(1.05);
+              transform: scale(1.25);
+              i {
+                color: $brightYellow;
+              }
             }
             @include smallDesktop {
               width: 30px;
@@ -222,18 +272,17 @@
               font-size: 0.7rem;
             }
             i {
-              color: $brightYellow;
-              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              color: $darkYellow;
+              font-size: 2rem;
             }
           }
           .added {
             width: 45px;
             height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
+            border: none;
             margin: 2px 5px;
-            background-color: $brightYellow;
+            background-color: transparent;
+            z-index: 1;
             cursor: default;
             @include smallDesktop {
               width: 30px;
@@ -249,7 +298,8 @@
               font-size: 0.7rem;
             }
             i {
-              color: $yellow;
+              font-size: 2rem;
+              animation: rotateOnce 0.65s linear;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
             }
@@ -259,9 +309,10 @@
     }
     .stationInfoPlayingList {
       display: flex;
+      position: relative;
       justify-content: center;
       width: calc((80% / 2) - 30px);
-      margin: 10px;
+      margin: 12.5px;
       max-height: 150px;
       border: 2.5px solid $black;
       border-radius: 20px;
@@ -271,6 +322,15 @@
       }
       @include mobileLarge {
         width: calc((92.5% / 2) - 25px);
+      }
+      .playButtonDiv {
+        background: transparent;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        cursor: default;
       }
       .imageInfoContainer {
         display: flex;
@@ -302,6 +362,7 @@
           display: flex;
           align-content: center;
           justify-content: center;
+          position: relative;
           .icon {
             margin: auto 0;
             width: 70px;
@@ -318,76 +379,21 @@
               width: 35px;
               height: auto;
               max-height: 35px;
-            }
-          }
-        }
-        .buttonContainer {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          .favourite {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            margin: 2px 5px;
-            background-color: $white;
-            cursor: default;
-            @include smallDesktop {
-              width: 30px;
-              height: 30px;
-            }
-            @include tablet {
-              width: 25px;
-              height: 25px;
-            }
-            @include mobileLarge {
-              width: 20px;
-              height: 20px;
               font-size: 0.7rem;
             }
-            i {
-              color: $brightYellow;
-              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-            }
           }
-          .added {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            margin: 2px 5px;
-            background-color: $brightYellow;
-            cursor: default;
-            @include smallDesktop {
-              width: 30px;
-              height: 30px;
-            }
-            @include tablet {
-              width: 25px;
-              height: 25px;
-            }
-            @include mobileLarge {
-              width: 20px;
-              height: 20px;
-              font-size: 0.7rem;
-            }
-            i {
-              color: $yellow;
-              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-            }
+          .blurred {
+            filter: blur(3px);
+            -webkit-filter: blur(3px);
           }
-          .infoButtonPlaying {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
+          .playingBars {
+            width: 70px;
+            height: 70px;
+            border: none;
+            border-radius: 10px;
             background-color: $white;
-            font-family: "Poppins", sans-serif;
             background-image: url("../../assets/soundBars.gif");
-            background-size: 100px;
+            background-size: 150px;
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
@@ -405,6 +411,89 @@
               width: 20px;
               height: 20px;
               background-size: 45px;
+            }
+          }
+          .hoverPlay {
+            position: absolute;
+            margin: 0 auto;
+            align-self: center;
+            width: 50px;
+            height: 50px;
+            border: none;
+            padding: 5px;
+            background: transparent;
+            i {
+              color: $red;
+              font-size: 2rem;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            }
+            &:hover {
+              i {
+                color: $selectedRed;
+              }
+            }
+          }
+        }
+        .buttonContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .favourite {
+            width: 45px;
+            height: 45px;
+            border: none;
+            margin: 2px 5px;
+            background-color: transparent;
+            cursor: pointer;
+            z-index: 1;
+            &:hover {
+              transform: scale(1.25);
+            }
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              font-size: 0.7rem;
+            }
+            i {
+              color: $brightYellow;
+              font-size: 2rem;
+            }
+          }
+          .added {
+            width: 45px;
+            height: 45px;
+            border: none;
+            margin: 2px 5px;
+            background-color: transparent;
+            cursor: default;
+            @include smallDesktop {
+              width: 30px;
+              height: 30px;
+            }
+            @include tablet {
+              width: 25px;
+              height: 25px;
+            }
+            @include mobileLarge {
+              width: 20px;
+              height: 20px;
+              font-size: 0.7rem;
+            }
+            i {
+              font-size: 2rem;
+              color: $darkYellow;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              animation: rotateOnce 0.65s linear;
             }
           }
         }
@@ -487,5 +576,62 @@
     text-align: center;
     font-size: 1.5rem;
     display: none;
+  }
+}
+
+/////// animations
+///
+///
+///
+///
+// text-shadow: 0px 0.5px 0 #000, 0px 0px 0 #000, 0px 0px 0 #000,
+//   0px -0px 0 #000;
+
+@keyframes favourite {
+  0% {
+    transform: rotate(0deg) translate(0deg) scale(1);
+    color: $darkYellow;
+  }
+  45% {
+    transform: rotate(180deg) translate(360deg);
+  }
+  65% {
+    transform: rotate(360deg) translate(900deg) scale(1.05);
+  }
+  80% {
+    transform: rotate(540deg) translate(1080deg);
+  }
+  100% {
+    transform: rotate(720deg) translate(1280deg) scale(1);
+    color: $yellow;
+    text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+      -0.5px -0.5px 0 #000;
+  }
+}
+
+@keyframes test {
+  0% {
+    transform: translate(0deg);
+  }
+
+  100% {
+    transform: translate(360deg);
+  }
+}
+
+@keyframes rotateOnce {
+  0% {
+    transform: rotate(0deg) scale(1);
+    color: $yellow;
+  }
+  60% {
+    transform: rotate(270deg) scale(1.25);
+    color: $brightYellow;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    color: $darkYellow;
+    text-shadow: -0.5px 0.5px 0 $white, 0.5px 0.5px 0 $white,
+      0.5px -0.5px 0 $white, -0.5px -0.5px 0 $white;
   }
 }
