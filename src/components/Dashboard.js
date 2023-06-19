@@ -574,32 +574,42 @@ const Dashboard = (props) => {
               <button
                 onClick={chartView}
                 id={popularView === 1 ? "selectedPopularBtn" : ""}
+                className="popular"
               >
                 <i
-                  className="fa-solid fa-chart-simple"
+                  className="fa-solid fa-fire popularBtn"
                   id={popularView === 1 ? "selectedPopular" : ""}
                 ></i>
               </button>
               <button
                 onClick={showRecent}
                 id={recentView ? "selectedRecentBtn" : ""}
+                className="recent"
               >
                 <i
-                  className="fa-solid fa-clock-rotate-left"
+                  className="fa-solid fa-clock-rotate-left recentBtn"
                   id={recentView ? "selectedRecent" : ""}
                 ></i>
               </button>
               <button
                 onClick={favView}
                 id={popularView === 2 ? "selectedFavsBtn" : ""}
+                className="fav"
               >
                 <i
-                  className="fa-solid fa-star"
+                  className="fa-solid fa-star favsBtn"
                   id={popularView === 2 ? "selectedFavs" : ""}
                 ></i>
               </button>
-              <button onClick={infoButton}>
-                <i className="fa-solid fa-circle-info"></i>
+              <button
+                onClick={infoButton}
+                id={showInfo ? "selectedInfoBtn" : ""}
+                className="info"
+              >
+                <i
+                  className="fa-solid fa-circle-info infoBtn"
+                  id={showInfo ? "selectedInfo" : ""}
+                ></i>
               </button>
             </div>
             {showInfo ? (

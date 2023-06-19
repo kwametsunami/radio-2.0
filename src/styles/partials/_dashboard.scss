@@ -861,27 +861,74 @@
         border: none;
         border-bottom: 2px solid transparent;
         color: $white;
-        &:hover {
-          border: none;
-          border-bottom: 2px solid $white;
-          transition: 0.3s;
-        }
         #selectedPopular {
-          color: $blue;
+          color: $orange;
           transition: 0.35s;
+          -webkit-text-stroke-width: 0.7px;
+          -webkit-text-stroke-color: $black;
         }
         #selectedRecent {
           color: $ash;
           transition: 0.35s;
+          -webkit-text-stroke-width: 0.2px;
+          -webkit-text-stroke-color: $black;
         }
         #selectedFavs {
           color: $yellow;
           transition: 0.35s;
+          -webkit-text-stroke-width: 0.7px;
+          -webkit-text-stroke-color: $ash;
+        }
+        #selectedInfo {
+          color: $blue;
+          transition: 0.35s;
+          -webkit-text-stroke-width: 0.2px;
+          -webkit-text-stroke-color: $black;
+        }
+      }
+      .popular {
+        -webkit-text-stroke-width: 0.7px;
+        -webkit-text-stroke-color: $black;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $orange;
+          transition: 0.3s;
+          color: $orange;
+        }
+      }
+      .recent {
+        -webkit-text-stroke-width: 0.35px;
+        -webkit-text-stroke-color: $black;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $ash;
+          transition: 0.3s;
+          color: $ash;
+        }
+      }
+      .fav {
+        -webkit-text-stroke-width: 0.7px;
+        -webkit-text-stroke-color: $ash;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $yellow;
+          transition: 0.3s;
+          color: $yellow;
+        }
+      }
+      .info {
+        -webkit-text-stroke-width: 0.2px;
+        -webkit-text-stroke-color: $black;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $blue;
+          transition: 0.3s;
+          color: $blue;
         }
       }
       #selectedPopularBtn {
         border: none;
-        border-bottom: 2px solid $blue;
+        border-bottom: 2px solid $orange;
       }
       #selectedRecentBtn {
         border: none;
@@ -890,6 +937,10 @@
       #selectedFavsBtn {
         border: none;
         border-bottom: 2px solid $yellow;
+      }
+      #selectedInfoBtn {
+        border: none;
+        border-bottom: 2px solid $blue;
       }
     }
     .instructions {
@@ -916,7 +967,7 @@
       }
       p {
         color: $black;
-        padding: 5px;
+        padding: 6px;
         margin: 0;
         font-size: 1.35rem;
         animation: textFade 0.3s linear;
@@ -982,7 +1033,7 @@
       }
       p {
         color: $black;
-        padding: 5px;
+        padding: 10px;
         font-size: clamp(0.75rem, 0.7045rem + 0.2273vw, 1.25rem);
       }
     }
