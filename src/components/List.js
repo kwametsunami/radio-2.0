@@ -48,6 +48,7 @@ const List = (props) => {
 
     props.addToRecent(selectedStationArr);
 
+    props.storeKeys(selectedStationArr[0]);
     props.sendToRadio(selectedStationArr[1]);
     props.sendToRadioName(selectedStationArr[5]);
     props.sendImage(selectedStationArr[2]);

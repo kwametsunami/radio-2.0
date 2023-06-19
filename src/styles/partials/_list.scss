@@ -260,7 +260,7 @@
             &:hover {
               transform: scale(1.25);
               i {
-                color: $darkYellow;
+                color: $white;
               }
             }
             @include smallDesktop {
@@ -339,7 +339,7 @@
                 -webkit-text-stroke-color: $black;
                 &:hover {
                   transform: scale(1.15);
-                  color: $brightYellow;
+                  color: $white;
                   transition: 0.2s;
                 }
               }

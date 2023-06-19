@@ -17,6 +17,36 @@
     @include mobile {
       margin-left: 320px;
     }
+    .playerFav {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 8px;
+      margin-right: 100px;
+      .playerFavBtn {
+        background: transparent;
+        border: none;
+        .added {
+          font-size: 2.5rem;
+          color: $brightYellow;
+          animation: rotateOnce 0.65s linear;
+          -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: $black;
+          cursor: default;
+        }
+        .notAdded {
+          font-size: 2.5rem;
+          color: $red;
+          -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: $black;
+          &:hover {
+            color: $white;
+            transform: scale(1.25);
+            transition: 0.3s;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -144,5 +174,22 @@
         width: 145px;
       }
     }
+  }
+}
+
+@keyframes rotateOnce {
+  0% {
+    transform: rotate(0deg) scale(1);
+    color: $yellow;
+  }
+  60% {
+    transform: rotate(270deg) scale(1.25);
+    color: $brightYellow;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    color: $darkYellow;
+    text-shadow: -0.5px 0.5px 0 $white, 0.5px 0.5px 0 $white,
+      0.5px -0.5px 0 $white, -0.5px -0.5px 0 $white;
   }
 }

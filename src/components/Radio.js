@@ -49,6 +49,7 @@ const Radio = (props) => {
   const [popular, setPopular] = useState([]);
   const [currentLat, setCurrentLat] = useState("");
   const [currentLong, setCurrentLong] = useState("");
+  const [currentKey, setCurrentKey] = useState("");
   const [recentStations, setRecentStations] = useState([]);
 
   const switchView = () => {
@@ -154,6 +155,10 @@ const Radio = (props) => {
 
   const setFavs = (fav) => {
     setFavStationInfo(fav);
+  };
+
+  const storeKeys = (key) => {
+    setCurrentKey(key);
   };
 
   const addToRecent = (station) => {
@@ -306,6 +311,7 @@ const Radio = (props) => {
             testArr={testArr}
             addToRecent={addToRecent}
             recentStations={recentStations}
+            storeKeys={storeKeys}
           />
         </div>
         {loading ? (
@@ -358,6 +364,7 @@ const Radio = (props) => {
                       favKeys={favKeys}
                       latitude={setCurrentLat}
                       longitude={setCurrentLong}
+                      storeKeys={storeKeys}
                     />
                   </div>
                 ) : (
@@ -381,6 +388,7 @@ const Radio = (props) => {
                       currentLong={currentLong}
                       setCurrentLat={setCurrentLat}
                       setCurrentLong={setCurrentLong}
+                      storeKeys={storeKeys}
                       stationFilter={stationFilter}
                     />
                   </div>
@@ -393,9 +401,13 @@ const Radio = (props) => {
 
       {stationUrl ? (
         <Player
+          stationKey={currentKey}
           audioSource={stationUrl}
-          stationName={playingStation}
           stationImage={currentIcon}
+          latitude={currentLat}
+          longitude={currentLong}
+          stationName={playingStation}
+          favKeys={favKeys}
         />
       ) : null}
     </section>

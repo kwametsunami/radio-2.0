@@ -44,6 +44,7 @@ const Dashboard = (props) => {
     const dashboardStation = event.currentTarget.value;
     const dashboardStationArr = dashboardStation.split(",");
 
+    props.storeKeys(dashboardStationArr[0]);
     props.sendToRadio(dashboardStationArr[1]);
     props.sendToRadioName(dashboardStationArr[5]);
     props.sendImage(dashboardStationArr[2]);
@@ -60,6 +61,7 @@ const Dashboard = (props) => {
     const dashboardStation = event.currentTarget.value;
     const dashboardStationArr = dashboardStation.split(",");
 
+    props.storeKeys(dashboardStationArr[0]);
     props.sendToRadio(dashboardStationArr[1]);
     props.sendToRadioName(dashboardStationArr[5]);
     props.sendImage(dashboardStationArr[2]);
@@ -86,12 +88,10 @@ const Dashboard = (props) => {
 
   const handleMouseEnter = (index) => {
     setHoveredItem(index);
-    console.log("entered");
   };
 
   const handleMouseLeave = () => {
     setHoveredItem(null);
-    console.log("left");
   };
 
   return (

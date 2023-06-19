@@ -1,15 +1,24 @@
 @use "variables" as *;
 
 @font-face {
-  font-family: "Karla";
+  font-family: "Jost";
   font-weight: normal;
-  src: url("../../fonts/Karla/static/Karla-Regular.ttf");
+  // src: url("../../fonts/Karla/static/Karla-Regular.ttf");
+  src: url("../../fonts/Jost/static/Jost-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Karla Bold";
+  font-family: "Jost Bold";
   font-weight: bold;
-  src: url("../../fonts/Karla/static/Karla-Bold.ttf");
+  // src: url("../../fonts/Karla/static/Karla-Bold.ttf");
+  src: url("../../fonts/Jost/static/Jost-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Jost Italic";
+  font-weight: bold;
+  // src: url("../../fonts/Karla/static/Karla-Bold.ttf");
+  src: url("../../fonts/Jost/static/Jost-SemiBoldItalic.ttf");
 }
 
 h1,
