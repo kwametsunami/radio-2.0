@@ -27,12 +27,19 @@
 .leaflet-popup-close-button {
   transform: scale(1.5);
   padding: 0 7px 0 0;
+  &:hover {
+    transform: scale(1.75);
+  }
 }
 
 .leaflet-control-zoom {
   @include tablet {
     display: none;
   }
+}
+
+.leaflet-popup-content-wrapper {
+  background: $white;
 }
 
 .mapFilters {
@@ -181,22 +188,29 @@
         .infoButton {
           width: 45px;
           height: 45px;
-          border: 2px solid $black;
-          border-radius: 50px;
+          border-radius: 5px 0 0 5px;
+          border-right: 0.5px solid $black;
           color: #d64b4b;
-          background-color: transparent;
+          background-color: $white;
           align-self: center;
-          margin: 2px 5px;
+          font-size: 1.5rem;
           &:hover {
-            transform: scale(1.05);
+            i {
+              transform: scale(1.25);
+              transition: 0.2s;
+            }
+          }
+          i {
+            text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+              0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
           }
         }
         .infoButtonPlaying {
           width: 45px;
           height: 45px;
-          border: 2px solid #1e2021;
-          border-radius: 50px;
-          background-color: transparent;
+          border-radius: 5px 0 0 5px;
+          border-right: 0.5px solid $black;
+          background-color: $white;
           font-family: "Poppins", sans-serif;
           background-image: url("../../assets/soundBars.gif");
           background-size: 100px;
@@ -204,17 +218,20 @@
           background-position: center;
           display: inline-block;
           align-self: center;
-          margin: 2px 5px;
+          cursor: default;
         }
         .favourite {
           width: 45px;
           height: 45px;
-          border: 2px solid #1e2021;
-          border-radius: 50px;
-          margin: 2px 5px;
+          border-radius: 0 5px 5px 0;
+          border-left: 0.5px solid $black;
           background-color: $white;
+          font-size: 1.5rem;
           &:hover {
-            transform: scale(1.05);
+            i {
+              transform: scale(1.25);
+              transition: 0.2s;
+            }
           }
           @include smallDesktop {
             width: 30px;
@@ -230,18 +247,17 @@
             font-size: 0.7rem;
           }
           i {
-            color: $brightYellow;
-            text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-              0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            color: $yellow;
+            font-size: 1.5rem;
           }
         }
         .added {
           width: 45px;
           height: 45px;
-          border: 2px solid #1e2021;
-          border-radius: 50px;
-          margin: 2px 5px;
-          background-color: $brightYellow;
+          border-radius: 0 5px 5px 0;
+          border-left: 0.5px solid $black;
+          background-color: $white;
+          font-size: 1.5rem;
           cursor: default;
           @include smallDesktop {
             width: 30px;
@@ -260,6 +276,7 @@
             color: $yellow;
             text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
               0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+            animation: rotateOnce 0.65s linear 1;
           }
         }
       }
@@ -267,6 +284,21 @@
   }
 }
 
-#filter {
-  border: 2px solid black;
+////////animations
+
+@keyframes rotateOnce {
+  0% {
+    transform: rotate(0deg) scale(1);
+    color: $yellow;
+  }
+  60% {
+    transform: rotate(270deg) scale(1.25);
+    color: $brightYellow;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    color: $darkYellow;
+    text-shadow: -0.5px 0.5px 0 $white, 0.5px 0.5px 0 $white,
+      0.5px -0.5px 0 $white, -0.5px -0.5px 0 $white;
+  }
 }

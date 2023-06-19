@@ -95,8 +95,6 @@
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 55px;
-    // .fadeList {
-    // }
     .stationInfoList {
       display: flex;
       position: relative;
@@ -107,6 +105,7 @@
       border: 2.5px solid $black;
       border-radius: 20px;
       background-color: #ebe7e7;
+      transition: 0.2s;
       @include tablet {
         width: calc((85% / 2) - 25px);
       }
@@ -119,7 +118,9 @@
           .buttonContainer {
             .favourite {
               i {
-                color: $brightYellow;
+                color: transparent;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: $black;
               }
             }
           }
@@ -145,6 +146,9 @@
         }
         .information {
           width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           @include tablet {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -155,6 +159,8 @@
           }
           .stationCountry {
             text-transform: capitalize;
+            margin: 0;
+            padding-bottom: 10px;
           }
           p {
             font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
@@ -208,7 +214,8 @@
             }
             &:hover {
               i {
-                color: $selectedRed;
+                transform: scale(1.15);
+                transition: 0.2s;
               }
             }
           }
@@ -217,9 +224,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          // @include mobileLarge {
-          //   flex-direction: column;
-          // }
           .infoButton {
             width: 45px;
             height: 45px;
@@ -252,10 +256,11 @@
             border: none;
             background-color: transparent;
             z-index: 1;
+            transition: 0.2s;
             &:hover {
               transform: scale(1.25);
               i {
-                color: $brightYellow;
+                color: $darkYellow;
               }
             }
             @include smallDesktop {
@@ -272,7 +277,7 @@
               font-size: 0.7rem;
             }
             i {
-              color: $darkYellow;
+              color: transparent;
               font-size: 2rem;
             }
           }
@@ -299,7 +304,7 @@
             }
             i {
               font-size: 2rem;
-              animation: rotateOnce 0.65s linear;
+              animation: rotateOnce 0.65s linear 1;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
             }
@@ -316,12 +321,31 @@
       max-height: 150px;
       border: 2.5px solid $black;
       border-radius: 20px;
-      background-color: $yellow;
+      background-color: $playingYellow;
       @include tablet {
         width: calc((85% / 2) - 25px);
       }
       @include mobileLarge {
         width: calc((92.5% / 2) - 25px);
+      }
+      &:hover {
+        .imageInfoContainer {
+          .buttonContainer {
+            .favourite {
+              i {
+                font-size: 2rem;
+                color: $grey;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: $black;
+                &:hover {
+                  transform: scale(1.15);
+                  color: $brightYellow;
+                  transition: 0.2s;
+                }
+              }
+            }
+          }
+        }
       }
       .playButtonDiv {
         background: transparent;
@@ -387,8 +411,8 @@
             -webkit-filter: blur(3px);
           }
           .playingBars {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border: none;
             border-radius: 10px;
             background-color: $white;
@@ -397,7 +421,7 @@
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            margin: 2px 5px;
+            margin: auto;
             @include smallDesktop {
               width: 30px;
               height: 30px;
@@ -413,27 +437,6 @@
               background-size: 45px;
             }
           }
-          .hoverPlay {
-            position: absolute;
-            margin: 0 auto;
-            align-self: center;
-            width: 50px;
-            height: 50px;
-            border: none;
-            padding: 5px;
-            background: transparent;
-            i {
-              color: $red;
-              font-size: 2rem;
-              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-            }
-            &:hover {
-              i {
-                color: $selectedRed;
-              }
-            }
-          }
         }
         .buttonContainer {
           display: flex;
@@ -447,9 +450,6 @@
             background-color: transparent;
             cursor: pointer;
             z-index: 1;
-            &:hover {
-              transform: scale(1.25);
-            }
             @include smallDesktop {
               width: 30px;
               height: 30px;
@@ -464,8 +464,7 @@
               font-size: 0.7rem;
             }
             i {
-              color: $brightYellow;
-              font-size: 2rem;
+              color: transparent;
             }
           }
           .added {
@@ -606,16 +605,6 @@
     color: $yellow;
     text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
       -0.5px -0.5px 0 #000;
-  }
-}
-
-@keyframes test {
-  0% {
-    transform: translate(0deg);
-  }
-
-  100% {
-    transform: translate(360deg);
   }
 }
 

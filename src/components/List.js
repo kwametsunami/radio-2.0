@@ -139,6 +139,8 @@ const List = (props) => {
     }
   };
 
+  const [animate, setAnimate] = useState("");
+
   const favourite = (event) => {
     const stationFav = event.currentTarget.value;
     const stationFavArr = stationFav.split(",");
@@ -147,6 +149,8 @@ const List = (props) => {
     const dbRef = ref(database);
 
     push(dbRef, stationFavArr);
+
+    setAnimate("animate");
   };
 
   const [isVisible, setIsVisible] = useState(false);
@@ -337,7 +341,7 @@ const List = (props) => {
                               `${stationDetails.name}`,
                             ]}
                           >
-                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
                           </button>
                         )}
                       </div>
@@ -431,33 +435,10 @@ const List = (props) => {
                       </div>
 
                       <div className="buttonContainer" value={stationDetails}>
-                        {/* <button
-                          className={
-                            playingName === stationDetails.name ||
-                            props.stationCheck
-                              ? "infoButtonPlaying"
-                              : "infoButton"
-                          }
-                          value={[
-                            `${stationDetails.changeuuid}`,
-                            `${stationDetails.url_resolved}`,
-                            `${stationDetails.favicon}`,
-                            `${stationDetails.geo_lat}`,
-                            `${stationDetails.geo_long}`,
-                            `${stationDetails.name}`,
-                          ]}
-                          onClick={radioSelect}
-                          id={stationDetails.name}
-                        >
-                          {playingName === stationDetails.name ||
-                          props.stationCheck
-                            ? ""
-                            : "▶"}
-                        </button> */}
                         {props.favKeys.includes(
                           `${stationDetails.changeuuid}`
                         ) ? (
-                          <button class="added">
+                          <button class={`added`}>
                             <i className="fa-solid fa-star alreadyAdded"></i>
                           </button>
                         ) : (
@@ -473,7 +454,7 @@ const List = (props) => {
                               `${stationDetails.name}`,
                             ]}
                           >
-                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
                           </button>
                         )}
                       </div>

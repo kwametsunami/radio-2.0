@@ -52,6 +52,7 @@
     max-height: 500px;
     .recentContainer {
       h2 {
+        cursor: default;
         color: $white;
         font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
         padding: 0 0 15px;
@@ -74,9 +75,34 @@
           align-items: center;
           justify-content: space-between;
           padding: 5px;
+          position: relative;
           &:hover {
             background: $grey;
             border-radius: 5px;
+            transition: 0.1s;
+            .recentItemsButton {
+              .recentAddFav {
+                i {
+                  color: transparent;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                  &:hover {
+                    transform: scale(1.15);
+                    color: $brightYellow;
+                    transition: 0.2s;
+                  }
+                }
+              }
+            }
+          }
+          .playButtonDivRecent {
+            background: transparent;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: pointer;
           }
           img {
             width: 35px;
@@ -85,6 +111,27 @@
             @include smallDesktop {
               width: 20px;
               height: 20px;
+            }
+          }
+          .blurred {
+            filter: blur(2.5px);
+            -webkit-filter: blur(2.5px);
+            transition: 0.3s;
+          }
+          .hoverPlayDash {
+            position: absolute;
+            top: 17.5px;
+            left: 17.5px;
+            cursor: pointer;
+            i {
+              color: $red;
+              font-size: 1.5rem;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              transition: 0.2s;
+              &:hover {
+                transform: scale(1.15);
+              }
             }
           }
           .recentItemsText {
@@ -105,48 +152,43 @@
           }
           .recentItemsButton {
             display: flex;
-            .recentButton {
-              width: 10px;
-              padding: 7px 10px;
-              border-radius: 5px 0 0 5px;
-              border-right: 0.5px solid $black;
-              color: $red;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              i {
-                font-size: 1rem;
-              }
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-              }
-            }
             .recentAddFav {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              color: $yellow;
+              border: none;
+              background: transparent;
               display: flex;
               justify-content: center;
               align-items: center;
+              z-index: 1;
               i {
-                font-size: 1rem;
+                font-size: 1.5rem;
+                color: transparent;
+                &:hover {
+                  transform: scale(1.15);
+                  color: $brightYellow;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                  transition: 0.2s;
+                }
               }
             }
             .added {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              background-color: $white;
+              border: none;
+              background: transparent;
               display: flex;
               justify-content: center;
               align-items: center;
+              z-index: 1;
+              cursor: default;
               i {
-                font-size: 1rem;
-                color: $darkYellow;
+                font-size: 1.5rem;
+                color: $yellow;
+                animation: rotateOnce 0.65s linear;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: $black;
               }
             }
           }
@@ -158,6 +200,45 @@
           background: $yellow;
           border-radius: 5px;
           padding: 5px;
+          position: relative;
+          &:hover {
+            .recentItemsButton {
+              .recentAddFav {
+                i {
+                  color: $grey;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                  &:hover {
+                    transform: scale(1.15);
+                    color: $brightYellow;
+                    transition: 0.2s;
+                  }
+                }
+              }
+            }
+          }
+          .playingBarsRecent {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 5px;
+            background-color: $white;
+            font-family: "Poppins", sans-serif;
+            background-image: url("../../assets/soundBars.gif");
+            background-size: 75px;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+          }
+          .playButtonDivRecent {
+            background: transparent;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: default;
+          }
           img {
             width: 35px;
             height: 35px;
@@ -182,48 +263,36 @@
           }
           .recentItemsButton {
             display: flex;
-            .recentButtonPlaying {
-              width: 10px;
-              padding: 7px 10px;
-              border-radius: 5px 0 0 5px;
-              border-right: 0.5px solid $black;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 75px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-              }
-            }
             .recentAddFav {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              color: $yellow;
+              background: transparent;
+              border: none;
               display: flex;
               justify-content: center;
               align-items: center;
+              z-index: 2;
               i {
-                font-size: 1rem;
+                font-size: 1.5rem;
+                color: transparent;
               }
             }
             .added {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              background-color: $white;
+              border: none;
+              background: transparent;
               display: flex;
               justify-content: center;
               align-items: center;
+              cursor: default;
+              z-index: 1;
               i {
-                font-size: 1rem;
-                color: $darkYellow;
+                font-size: 1.5rem;
+                color: $yellow;
+                animation: rotateOnce 0.65s linear;
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: $black;
               }
             }
           }
@@ -235,6 +304,7 @@
         color: $white;
         font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
         padding: 0 0 15px;
+        cursor: default;
         #popularSearchTerm {
           font-family: $bold;
         }
@@ -246,9 +316,19 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: $yellow;
+          background: $playingYellow;
           border-radius: 5px;
           padding: 5px;
+          position: relative;
+          .playButtonDivPopular {
+            background: transparent;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: default;
+          }
           img {
             width: 35px;
             height: 35px;
@@ -257,6 +337,19 @@
               width: 20px;
               height: 20px;
             }
+          }
+          .playingBarsPopular {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 5px;
+            background-color: $white;
+            font-family: "Poppins", sans-serif;
+            background-image: url("../../assets/soundBars.gif");
+            background-size: 75px;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
           }
           .popularText {
             padding: 4px;
@@ -266,50 +359,55 @@
               color: $black;
             }
           }
-          .popularButtons {
-            display: flex;
-            .popularButtonPlaying {
-              width: 10px;
-              padding: 7px 10px;
-              border-radius: 5px 0 0 5px;
-              border-right: 0.5px solid $black;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 75px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
+          &:hover {
+            border-radius: 5px;
+            transition: 0.1s;
+            .popularButtons {
+              .addFav {
+                i {
+                  color: $grey;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                  &:hover {
+                    transform: scale(1.15);
+                    color: $brightYellow;
+                    transition: 0.2s;
+                  }
+                }
               }
             }
+          }
+          .popularButtons {
+            display: flex;
             .addFav {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              color: $darkYellow;
+              border: none;
+              background: transparent;
+              color: transparent;
               display: flex;
               justify-content: center;
               align-items: center;
+              z-index: 1;
               i {
-                font-size: 1rem;
+                font-size: 1.5rem;
+                color: transparent;
               }
             }
             .added {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              background-color: $white;
+              background-color: transparent;
+              border: none;
               display: flex;
               justify-content: center;
               align-items: center;
               i {
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: $yellow;
+                animation: rotateOnce 0.65s linear;
+                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
               }
             }
           }
@@ -319,6 +417,16 @@
           align-items: center;
           justify-content: space-between;
           padding: 5px;
+          position: relative;
+          .playButtonDivPopular {
+            background: transparent;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            cursor: pointer;
+          }
           img {
             width: 35px;
             height: 35px;
@@ -326,6 +434,27 @@
             @include smallDesktop {
               width: 20px;
               height: 20px;
+            }
+          }
+          .blurred {
+            filter: blur(2.5px);
+            -webkit-filter: blur(2.5px);
+            transition: 0.3s;
+          }
+          .hoverPlayDash {
+            position: absolute;
+            top: 17.5px;
+            left: 17.5px;
+            cursor: pointer;
+            i {
+              color: $red;
+              font-size: 1.5rem;
+              text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              transition: 0.2s;
+              &:hover {
+                transform: scale(1.15);
+              }
             }
           }
           .popularText {
@@ -354,31 +483,20 @@
                 font-size: 0.7rem;
               }
             }
-            .popularButtonPlaying {
-              width: 10px;
-              padding: 7px 10px;
-              border-radius: 5px 0 0 5px;
-              border-right: 0.5px solid $black;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 75px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-                background-size: 50px;
-              }
-            }
-            button {
-              background: transparent;
-            }
           }
           &:hover {
             background: $grey;
             border-radius: 5px;
+            transition: 0.1s;
+            .popularButtons {
+              .addFav {
+                i {
+                  color: transparent;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                }
+              }
+            }
           }
           img {
             width: 35px;
@@ -402,68 +520,44 @@
           }
           .popularButtons {
             display: flex;
-            .popularButton {
-              width: 10px;
-              padding: 7px 10px;
-              border-radius: 5px 0 0 5px;
-              border-right: 0.5px solid $black;
-              color: $red;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              margin: 0;
-              i {
-                font-size: 1rem;
-              }
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
-              }
-            }
             .addFav {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
+              border: none;
               color: $yellow;
-              background-color: $white;
+              background-color: transparent;
               display: flex;
               justify-content: center;
               align-items: center;
+              z-index: 1;
+              &:hover {
+                transition: 0.3s;
+                transform: scale(1.25);
+              }
               i {
-                font-size: 1rem;
-                color: $yellow;
+                font-size: 1.5rem;
+                color: transparent;
+                &:hover {
+                  color: $brightYellow;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                }
               }
             }
             .added {
               width: 10px;
               padding: 7px 10px;
-              border-radius: 0 5px 5px 0;
-              border-left: 0.5px solid $black;
-              background-color: $white;
+              border: none;
+              background-color: transparent;
               display: flex;
               justify-content: center;
               align-items: center;
               i {
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: $yellow;
-              }
-            }
-            .popularButtonPlaying {
-              width: 10px;
-              padding: 7px 10px;
-              border-radius: 5px 0 0 5px;
-              border-right: 0.5px solid $black;
-              background-color: $white;
-              font-family: "Poppins", sans-serif;
-              background-image: url("../../assets/soundBars.gif");
-              background-size: 75px;
-              background-repeat: no-repeat;
-              background-position: center;
-              display: inline-block;
-              @include smallDesktop {
-                width: 20px;
-                height: 20px;
+                animation: rotateOnce 0.65s linear;
+                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
               }
             }
             button {
@@ -478,6 +572,7 @@
         color: $white;
         font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
         padding: 0 0 15px;
+        cursor: default;
         #favouriteTitle {
           font-family: $bold;
         }
@@ -559,9 +654,26 @@
             align-items: center;
             justify-content: space-between;
             padding: 5px;
+            position: relative;
             &:hover {
               background: $grey;
               border-radius: 5px;
+              .favButtons {
+                .removeFav {
+                  i {
+                    color: $black;
+                  }
+                }
+              }
+            }
+            .playButtonDivFav {
+              background: transparent;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              border: none;
+              cursor: pointer;
             }
             img {
               width: 35px;
@@ -570,6 +682,27 @@
               @include smallDesktop {
                 width: 20px;
                 height: 20px;
+              }
+            }
+            .blurred {
+              filter: blur(2.5px);
+              -webkit-filter: blur(2.5px);
+              transition: 0.3s;
+            }
+            .hoverPlayDash {
+              position: absolute;
+              top: 17.5px;
+              left: 17.5px;
+              cursor: pointer;
+              i {
+                color: $red;
+                font-size: 1.5rem;
+                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+                transition: 0.2s;
+                &:hover {
+                  transform: scale(1.15);
+                }
               }
             }
             .favText {
@@ -585,39 +718,35 @@
                 color: $white;
               }
             }
-            &:hover .favText {
+            &:hover .favText p {
               color: $black;
             }
             .favButtons {
               display: flex;
-              .favButton {
-                width: 10px;
-                padding: 7px 10px;
-                border-radius: 5px 0 0 5px;
-                border-right: 0.5px solid $black;
-                color: $red;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                i {
-                  font-size: 1rem;
-                }
-                @include smallDesktop {
-                  width: 20px;
-                  height: 20px;
-                }
-              }
               .removeFav {
                 width: 10px;
                 padding: 7px 10px;
-                border-radius: 0 5px 5px 0;
-                border-left: 0.5px solid $black;
-                color: $red;
+                border: none;
+                background: transparent;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                z-index: 1;
                 i {
-                  font-size: 1rem;
+                  font-size: 1.5rem;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                  transition: 0.1s;
+                }
+                .trash {
+                  color: $ash;
+                  -webkit-text-stroke-width: 0.2px;
+                  &:hover {
+                    transform: scale(1.25);
+                  }
+                }
+                .faved {
+                  color: $yellow;
                 }
               }
             }
@@ -629,6 +758,16 @@
             background: $yellow;
             border-radius: 5px;
             padding: 5px;
+            cursor: default;
+            .playButtonDivFav {
+              background: transparent;
+              position: absolute;
+              top: 0;
+              width: 50%;
+              height: 50%;
+              border: none;
+              cursor: default;
+            }
             img {
               width: 35px;
               height: 35px;
@@ -637,6 +776,19 @@
                 width: 20px;
                 height: 20px;
               }
+            }
+            .playingBarsFav {
+              width: 35px;
+              height: 35px;
+              border: none;
+              border-radius: 5px;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 75px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
             }
             .favText {
               padding: 0 4px;
@@ -653,34 +805,32 @@
             }
             .favButtons {
               display: flex;
-              .favButtonPlaying {
-                width: 10px;
-                padding: 7px 10px;
-                border-radius: 5px 0 0 5px;
-                border-right: 0.5px solid $black;
-                background-color: $white;
-                font-family: "Poppins", sans-serif;
-                background-image: url("../../assets/soundBars.gif");
-                background-size: 75px;
-                background-repeat: no-repeat;
-                background-position: center;
-                display: inline-block;
-                @include smallDesktop {
-                  width: 20px;
-                  height: 20px;
-                }
-              }
               .removeFav {
                 width: 10px;
                 padding: 7px 10px;
-                border-radius: 0 5px 5px 0;
-                border-left: 0.5px solid $black;
-                color: $red;
+                border: none;
+                background: transparent;
+                color: $white;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                z-index: 1;
                 i {
-                  font-size: 1rem;
+                  font-size: 1.5rem;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                  transition: 0.1s;
+                }
+                .trash {
+                  color: $ash;
+                  -webkit-text-stroke-width: 0.2px;
+                  &:hover {
+                    transform: scale(1.25);
+                  }
+                }
+                .faved {
+                  color: $yellow;
+                  cursor: default;
                 }
               }
             }
@@ -705,7 +855,7 @@
       justify-content: space-between;
       width: 100%;
       button {
-        width: calc(100% / 3);
+        width: calc(100% / 4);
         font-size: 1.7rem;
         background: transparent;
         border: none;
@@ -714,20 +864,24 @@
         &:hover {
           border: none;
           border-bottom: 2px solid $white;
+          transition: 0.3s;
         }
         #selectedPopular {
-          color: $lightRed;
+          color: $blue;
+          transition: 0.35s;
         }
         #selectedRecent {
           color: $ash;
+          transition: 0.35s;
         }
         #selectedFavs {
           color: $yellow;
+          transition: 0.35s;
         }
       }
       #selectedPopularBtn {
         border: none;
-        border-bottom: 2px solid $lightRed;
+        border-bottom: 2px solid $blue;
       }
       #selectedRecentBtn {
         border: none;
@@ -740,13 +894,16 @@
     }
     .instructions {
       position: fixed;
-      bottom: 290px;
       width: 200px;
-      height: 150px;
       background: $white;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       border: 2px solid $black;
+      animation: 0.2s linear forwards instructions;
+      transition: 0.9s;
+      padding: 10px;
       .infoButton {
         position: absolute;
         top: 1%;
@@ -760,7 +917,9 @@
       p {
         color: $black;
         padding: 5px;
-        font-size: 1.5rem;
+        margin: 0;
+        font-size: 1.35rem;
+        animation: textFade 0.3s linear;
       }
     }
   }
@@ -1219,5 +1378,47 @@
   100% {
     opacity: 1;
     left: 45px;
+  }
+}
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotateOnce {
+  0% {
+    transform: rotate(0deg) scale(1);
+    color: $yellow;
+  }
+  60% {
+    transform: rotate(270deg) scale(1.25);
+    color: $brightYellow;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    color: $darkYellow;
+    text-shadow: -0.5px 0.5px 0 $white, 0.5px 0.5px 0 $white,
+      0.5px -0.5px 0 $white, -0.5px -0.5px 0 $white;
+  }
+}
+
+@keyframes instructions {
+  from {
+    bottom: 280px;
+    height: 35px;
+    opacity: 0;
+  }
+  to {
+    bottom: 295px;
+    height: 365px;
+    opacity: 1;
   }
 }

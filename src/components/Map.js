@@ -270,7 +270,13 @@ const Map = (props) => {
                       ]}
                       id="filter"
                     >
-                      <Popup>
+                      <Popup
+                        className={
+                          playingName === stationDetails.name
+                            ? "playingPopup"
+                            : "popup"
+                        }
+                      >
                         <div className="stationDetails">
                           <img
                             className="icon"
@@ -376,7 +382,13 @@ const Map = (props) => {
                         `${stationDetails.geo_long}`,
                       ]}
                     >
-                      <Popup>
+                      <Popup
+                        className={
+                          playingName === stationDetails.name
+                            ? "playingPopup"
+                            : "popup"
+                        }
+                      >
                         <div className="stationDetails">
                           <img
                             className="icon"
@@ -426,14 +438,14 @@ const Map = (props) => {
                               key={stationDetails.favicon}
                             >
                               {playingName === stationDetails.name ||
-                              props.stationCheck
-                                ? ""
-                                : "▶"}
+                              props.stationCheck ? null : (
+                                <i className="fa-solid fa-play"></i>
+                              )}
                             </button>
                             {props.favKeys.includes(
                               `${stationDetails.changeuuid}`
                             ) ? (
-                              <button class="added">
+                              <button class={`added`}>
                                 <i className="fa-solid fa-star alreadyAdded"></i>
                               </button>
                             ) : (
@@ -449,7 +461,7 @@ const Map = (props) => {
                                   `${stationDetails.name}`,
                                 ]}
                               >
-                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-regular fa-star"></i>
                               </button>
                             )}
                           </div>
