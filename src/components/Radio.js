@@ -307,6 +307,8 @@ const Radio = (props) => {
             latitude={setCurrentLat}
             longitude={setCurrentLong}
             mobile={mobile}
+            currentKey={currentKey}
+            playingStation={playingStation}
             removeFav={removeFav}
             testArr={testArr}
             addToRecent={addToRecent}

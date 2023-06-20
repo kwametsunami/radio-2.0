@@ -16,18 +16,18 @@ const List = (props) => {
   const [favStation, setFavStation] = useState([]);
 
   useEffect(() => {
-    for (let i = 0; i < props.stations.length; i++) {
-      if (props.stations[i].url_resolved === radioUrl) {
-        let imageGrab = props.stations[i].favicon;
+    // for (let i = 0; i < props.stations.length; i++) {
+    //   if (props.stations[i].url_resolved === radioUrl) {
+    //     let imageGrab = props.stations[i].favicon;
 
-        if (imageGrab === "") {
-          props.sendImage(defaultImage);
-        } else {
-          props.sendImage(imageGrab);
-        }
-        props.sendImage(imageGrab);
-      }
-    }
+    //     if (imageGrab === "") {
+    //       props.sendImage(defaultImage);
+    //     } else {
+    //       props.sendImage(imageGrab);
+    //     }
+    //     props.sendImage(imageGrab);
+    //   }
+    // }
 
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);

@@ -296,12 +296,16 @@ const Dashboard = (props) => {
                   <span id="recentTitle">recently </span>played
                 </h2>
                 <div className="recentContainerContainer">
-                  <FadeIn transitionDuration={500} visible={true}>
+                  <FadeIn
+                    transitionDuration={500}
+                    visible={true}
+                    className="recentFade"
+                  >
                     {props.recentStations.map((recent) => {
                       return (
                         <div
                           className={
-                            props.stationUrl === recent[1]
+                            props.currentKey === recent[0]
                               ? "recentItemsPlaying"
                               : "recentItems"
                           }
@@ -323,7 +327,7 @@ const Dashboard = (props) => {
                               ]}
                             ></button>
                           ) : null}
-                          {props.stationUrl === recent[1] ? (
+                          {props.currentKey === recent[0] ? (
                             <div className="playingBarsRecent"></div>
                           ) : (
                             <img
@@ -397,7 +401,7 @@ const Dashboard = (props) => {
                           return (
                             <div
                               className={
-                                props.stationUrl === stations.url_resolved
+                                props.currentKey === stations.changeuuid
                                   ? "popularResultsPlaying"
                                   : "popularResults"
                               }
@@ -421,7 +425,7 @@ const Dashboard = (props) => {
                                   className="playButtonDivPopular"
                                 ></button>
                               ) : null}
-                              {props.stationUrl === stations.url_resolved ? (
+                              {props.currentKey === stations.changeuuid ? (
                                 <div className="playingBarsPopular"></div>
                               ) : (
                                 <img
@@ -492,7 +496,7 @@ const Dashboard = (props) => {
                         return (
                           <div
                             className={
-                              props.stationUrl === favStation.data[1]
+                              props.currentKey === favStation.data[0]
                                 ? "favItemsPlaying"
                                 : "favItems"
                             }
@@ -516,7 +520,7 @@ const Dashboard = (props) => {
                                 ]}
                               ></button>
                             ) : null}
-                            {props.stationUrl === favStation.data[1] ? (
+                            {props.currentKey === favStation.data[0] ? (
                               <div className="playingBarsFav"></div>
                             ) : (
                               <img
