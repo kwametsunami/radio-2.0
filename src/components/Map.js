@@ -43,17 +43,6 @@ const Map = (props) => {
   const [favStation, setFavStation] = useState([]);
 
   useEffect(() => {
-    // for (let i = 0; i < props.stations.length; i++) {
-    //   if (props.stations[i].url_resolved === radioUrl) {
-    //     let imageGrab = props.stations[i].favicon;
-    //     if (imageGrab === "") {
-    //       props.sendImage(defaultImage);
-    //     } else {
-    //       props.sendImage(imageGrab);
-    //     }
-    //   }
-    // }
-
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
     }
@@ -111,7 +100,10 @@ const Map = (props) => {
       const data = response.val();
 
       for (let key in data) {
-        newState.push({ key: key, name: data[key] });
+        newState.push({
+          key: key,
+          ...data[key],
+        });
       }
 
       setFavStation(newState);
@@ -184,14 +176,30 @@ const Map = (props) => {
     }
   };
 
-  const favourite = (event) => {
-    const stationFav = event.currentTarget.value;
-    const stationFavArr = stationFav.split(",");
+  const favourite = (event, userId) => {
+    const pushToDatabase = (event, userId) => {
+      const stationFav = event.currentTarget.value;
+      const stationFavArr = stationFav.split(",");
 
-    const database = getDatabase(firebase);
-    const dbRef = ref(database);
+      const stationFavObj = {
+        stationData: {
+          id: stationFavArr[0],
+          url: stationFavArr[1],
+          icon: stationFavArr[2],
+          latitude: stationFavArr[3],
+          longitude: stationFavArr[4],
+          stationName: stationFavArr[5],
+        },
+        userId: userId,
+      };
 
-    push(dbRef, stationFavArr);
+      const database = getDatabase(firebase);
+      const dbRef = ref(database);
+
+      push(dbRef, stationFavObj);
+    };
+
+    pushToDatabase(event, props.userDetails.user.uid);
   };
 
   return (

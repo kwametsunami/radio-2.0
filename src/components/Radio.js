@@ -52,9 +52,15 @@ const Radio = (props) => {
   const [currentKey, setCurrentKey] = useState("");
   const [recentStations, setRecentStations] = useState([]);
 
+  const [userDetails, setUserDetails] = useState(props.loggedInUser);
+
   const switchView = () => {
     setListView(!listView);
   };
+
+  console.log(props.loggedInUser);
+
+  console.log(userDetails);
 
   useEffect(() => {
     setStationFilter(props.genre);
@@ -91,46 +97,52 @@ const Radio = (props) => {
 
     setDashboardLoading(true);
 
-    let noDup = Array.from(new Set(bitrateFilter.map((item) => item.name))).map(
-      (name) => {
+    setTimeout(() => {
+      let noDup = Array.from(
+        new Set(bitrateFilter.map((item) => item.name))
+      ).map((name) => {
         return bitrateFilter.find((item) => item.name === name);
+      });
+
+      if (noDup.length > 0) {
+        setStations(noDup);
+        setBadSearch(false);
+        setLoading(false);
+        setBadResponse(false);
       }
-    );
 
-    if (noDup.length > 0) {
-      setStations(noDup);
-      setBadSearch(false);
-      setLoading(false);
-      setBadResponse(false);
-      setDashboardLoading(false);
-    }
+      if (noDup.length === 0) {
+        setLoading(false);
+        setBadSearch(true);
+        randomGenre();
+        setDashboardLoading(false);
+      }
 
-    if (noDup.length === 0) {
-      setLoading(false);
-      setBadSearch(true);
-      randomGenre();
-      setDashboardLoading(false);
-    }
+      const sort_by = (field, reverse, primer) => {
+        const key = primer
+          ? function (x) {
+              return primer(x[field]);
+            }
+          : function (x) {
+              return x[field];
+            };
 
-    const sort_by = (field, reverse, primer) => {
-      const key = primer
-        ? function (x) {
-            return primer(x[field]);
-          }
-        : function (x) {
-            return x[field];
-          };
+        reverse = !reverse ? 1 : -1;
 
-      reverse = !reverse ? 1 : -1;
-
-      return function (a, b) {
-        return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
+        return function (a, b) {
+          return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
+        };
       };
-    };
-    let dataArray = noDup.slice(0, 5);
-    setDashboardLoading(false);
 
-    setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
+      setTimeout(() => {
+        let dataArray = noDup.slice(0, 8);
+        setDashboardLoading(false);
+
+        console.log(dataArray);
+
+        setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
+      }, 650);
+    }, 500);
   }, [props.genre, props.quality, stationFilter]);
 
   const [stationUrl, setStationUrl] = useState("");
@@ -177,14 +189,28 @@ const Radio = (props) => {
       const newArr = recentStations.filter((item) => item !== station);
       setRecentStations(newArr);
     } else {
-      const updatedStations = recentStations.concat([station]);
-
-      if (updatedStations.length > 7) {
-        updatedStations.splice(0, updatedStations.length - 7);
-      }
+      const updatedStations = [station, ...recentStations.slice(0, 7)]; // Prepend the new station and keep the first 7 stations
 
       setRecentStations(updatedStations);
     }
+
+    // if (matchFound) {
+    //   const newArr = recentStations.filter((item) => item !== station);
+    //   setRecentStations(newArr);
+    // } else {
+    //   // const updatedStations = recentStations.concat([station]);
+    //   const updatedStations = [station, ...recentStations];
+
+    //   if (updatedStations.length > 8) {
+    //     updatedStations.splice(0, updatedStations.length - 8);
+    //   }
+
+    //   // updatedStations.reverse();
+
+    //   console.log(updatedStations);
+
+    //   setRecentStations(updatedStations);
+    // }
   };
 
   const [mobile, setMobile] = useState(false);
@@ -224,27 +250,36 @@ const Radio = (props) => {
       const data = response.val();
 
       for (let key in data) {
-        newState.push({ key: key, data: data[key] });
+        newState.push({
+          key: key,
+          ...data[key],
+        });
       }
 
       const uniqueFav = [];
-      const searchedFav = [];
+      const searchedFav = {};
 
       for (let i = 0; i < newState.length; i++) {
         const favIdKey = newState[i];
 
-        if (!searchedFav[favIdKey.data]) {
-          searchedFav[favIdKey.data] = true;
+        if (!searchedFav[favIdKey.key]) {
+          searchedFav[favIdKey.key] = true;
           uniqueFav.push(favIdKey);
         }
       }
 
-      setTestArr(uniqueFav);
+      const filteredFav = uniqueFav.filter(
+        (item) => item.userId === userDetails.user.uid
+      );
+
+      setTestArr(filteredFav);
 
       const stationKeys = [];
 
-      for (let i = 0; i < uniqueFav.length; i++) {
-        stationKeys.push(uniqueFav[i].data[0]);
+      console.log(filteredFav);
+
+      for (let i = 0; i < filteredFav.length; i++) {
+        stationKeys.push(filteredFav[i].stationData.id);
       }
 
       setTestKeys(stationKeys);
@@ -313,7 +348,9 @@ const Radio = (props) => {
             testArr={testArr}
             addToRecent={addToRecent}
             recentStations={recentStations}
+            setRecentStations={setRecentStations}
             storeKeys={storeKeys}
+            userDetails={userDetails}
           />
         </div>
         {loading ? (
@@ -367,6 +404,7 @@ const Radio = (props) => {
                       latitude={setCurrentLat}
                       longitude={setCurrentLong}
                       storeKeys={storeKeys}
+                      userDetails={userDetails}
                     />
                   </div>
                 ) : (
@@ -392,6 +430,7 @@ const Radio = (props) => {
                       setCurrentLong={setCurrentLong}
                       storeKeys={storeKeys}
                       stationFilter={stationFilter}
+                      userDetails={userDetails}
                     />
                   </div>
                 )}
@@ -410,6 +449,7 @@ const Radio = (props) => {
           longitude={currentLong}
           stationName={playingStation}
           favKeys={favKeys}
+          userDetails={userDetails}
         />
       ) : null}
     </section>

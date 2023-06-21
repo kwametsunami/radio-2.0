@@ -30,3 +30,47 @@
       props.addToRecent(dashboardStationArr);
       console.log("added");
     }
+
+// useEffect(() => {
+// const database = getDatabase(firebase);
+// const dbRef = ref(database);
+
+// onValue(dbRef, (response) => {
+// const newState = [];
+
+// const data = response.val();
+
+// for (let key in data) {
+// newState.push({
+// key: key,
+// data: data[key],
+// });
+// }
+
+// const uniqueFav = [];
+// const searchedFav = [];
+
+// for (let i = 0; i < newState.length; i++) {
+// const favIdKey = newState[i];
+
+// if (!searchedFav[favIdKey.data]) {
+// searchedFav[favIdKey.data] = true;
+// uniqueFav.push(favIdKey);
+// }
+// }
+// setTestArr(uniqueFav);
+
+// const stationKeys = [];
+
+// for (let i = 0; i < uniqueFav.length; i++) {
+// stationKeys.push(uniqueFav[i].data[0]);
+// }
+
+// setTestKeys(stationKeys);
+// });
+// }, []);
+
+                                  .replace(/_/g, "")
+                                  .replace(/-/g, " ")
+                                  .replace(/  +/, " ")
+                                  .replace(/\//g, "")

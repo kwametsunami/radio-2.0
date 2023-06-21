@@ -104,6 +104,7 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    animation: fade 0.5s linear;
     @include smallDesktop {
       width: 150px;
       height: 150px;
@@ -191,5 +192,14 @@
     color: $darkYellow;
     text-shadow: -0.5px 0.5px 0 $white, 0.5px 0.5px 0 $white,
       0.5px -0.5px 0 $white, -0.5px -0.5px 0 $white;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

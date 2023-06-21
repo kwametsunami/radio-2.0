@@ -70,7 +70,10 @@ const List = (props) => {
       const data = response.val();
 
       for (let key in data) {
-        newState.push({ key: key, name: data[key] });
+        newState.push({
+          key: key,
+          ...data[key],
+        });
       }
 
       setFavStation(newState);
@@ -140,18 +143,30 @@ const List = (props) => {
     }
   };
 
-  const [animate, setAnimate] = useState("");
+  const favourite = (event, userId) => {
+    const pushToDatabase = (event, userId) => {
+      const stationFav = event.currentTarget.value;
+      const stationFavArr = stationFav.split(",");
 
-  const favourite = (event) => {
-    const stationFav = event.currentTarget.value;
-    const stationFavArr = stationFav.split(",");
+      const stationFavObj = {
+        stationData: {
+          id: stationFavArr[0],
+          url: stationFavArr[1],
+          icon: stationFavArr[2],
+          latitude: stationFavArr[3],
+          longitude: stationFavArr[4],
+          stationName: stationFavArr[5],
+        },
+        userId: userId,
+      };
 
-    const database = getDatabase(firebase);
-    const dbRef = ref(database);
+      const database = getDatabase(firebase);
+      const dbRef = ref(database);
 
-    push(dbRef, stationFavArr);
+      push(dbRef, stationFavObj);
+    };
 
-    setAnimate("animate");
+    pushToDatabase(event, props.userDetails.user.uid);
   };
 
   const [isVisible, setIsVisible] = useState(false);

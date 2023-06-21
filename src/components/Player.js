@@ -32,18 +32,30 @@ const Player = (props) => {
     setFormattedTitle(format);
   }, [props.stationName]);
 
-  const favourite = (event) => {
-    event.preventDefault();
+  const favourite = (event, userId) => {
+    const pushToDatabase = (event, userId) => {
+      const playerStation = event.currentTarget.value;
+      const playerStationArr = playerStation.split(",");
 
-    const playerStation = event.currentTarget.value;
-    const playerStationArr = playerStation.split(",");
+      const stationFavObj = {
+        stationData: {
+          id: playerStationArr[0],
+          url: playerStationArr[1],
+          icon: playerStationArr[2],
+          latitude: playerStationArr[3],
+          longitude: playerStationArr[4],
+          stationName: playerStationArr[5],
+        },
+        userId: userId,
+      };
 
-    console.log(playerStationArr);
+      const database = getDatabase(firebase);
+      const dbRef = ref(database);
 
-    const database = getDatabase(firebase);
-    const dbRef = ref(database);
+      push(dbRef, stationFavObj);
+    };
 
-    push(dbRef, playerStationArr);
+    pushToDatabase(event, props.userDetails.user.uid);
   };
 
   return (

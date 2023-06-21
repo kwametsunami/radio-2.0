@@ -7,17 +7,17 @@
 @use "./partials/landing";
 @use "./partials/about";
 @use "./partials/login";
-@use "./partials/signUp";
 @use "./partials/radio";
 @use "./partials/dashboard";
 @use "./partials/loading";
+@use "./partials/loginLoading";
+@use "./partials/signedUp";
 @use "./partials/map";
 @use "./partials/list";
 @use "./partials/player";
 @use "./partials/footer";
 @use "./partials/notFound";
 @use "./partials/mixins" as *;
-
 
 .audio-visualizer {
   display: flex;
@@ -32,4 +32,3 @@
   background-color: #fff;
   margin-right: 3px;
 }
-

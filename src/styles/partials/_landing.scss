@@ -25,6 +25,7 @@
       border: none;
       &:hover {
         color: $yellow;
+        transition: 0.3s;
       }
     }
     .aboutBtn {
@@ -37,6 +38,7 @@
       border: none;
       &:hover {
         color: $yellow;
+        transition: 0.3s;
       }
     }
   }
@@ -101,7 +103,8 @@
         .searchInner {
           display: flex;
           text-align: center;
-          input, input::placeholder {
+          input,
+          input::placeholder {
             font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
           }
           .searchButton {

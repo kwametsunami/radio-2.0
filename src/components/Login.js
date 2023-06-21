@@ -1,30 +1,206 @@
-import { Link } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebase";
+import { useEffect, useState } from "react";
 
-import Footer from "./Footer";
+import LoginLoading from "./LoginLoading";
+
+import FadeIn from "react-fade-in/lib/FadeIn";
+import SignedUp from "./SignedUp";
 
 const Login = (props) => {
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [registerError, setRegisterError] = useState(false);
+
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const [user, setUser] = useState({});
+
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+
+  const login = async (event) => {
+    event.preventDefault();
+
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
+      setLoginError(false);
+      setLoginSuccess(true);
+      props.setUser(user);
+      props.setHideFooter(true);
+      setTimeout(() => {
+        props.landingView();
+        props.setIsLoggedIn(true);
+        props.setHideFooter(false);
+      }, 1200);
+    } catch (error) {
+      setLoginError(true);
+      setLoginPassword("");
+    }
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
+
+  const register = async (event) => {
+    event.preventDefault();
+
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      console.log(user);
+      props.setUser(user);
+      setRegisterError(false);
+      setRegisterSuccess(true);
+      setTimeout(() => {
+        props.landingView();
+        props.setIsLoggedIn(true);
+        props.setHideFooter(false);
+      }, 1200);
+    } catch (error) {
+      setRegisterError(true);
+      setRegisterEmail("");
+      setRegisterPassword("");
+    }
+  };
+
+  const [loginForm, setLoginForm] = useState(true);
+
+  const switchForms = (event) => {
+    event.preventDefault();
+
+    setLoginForm(!loginForm);
+  };
 
   return (
     <section className="login">
-      <nav className="loginNav">
-          <Link to="/">
-            <h1 className="title">tr-1.fm</h1>
-          </Link>
-      </nav>
-      <div className="loginContainer">
-        <h2>sign into your account</h2>
-        <form className="loginForm" action="">
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
-          <p className="signUpText">
-            Not registered? Sign up
-            <Link to="/signup"> here</Link>
-          </p>
+      {registerSuccess ? (
+        <SignedUp />
+      ) : loginSuccess ? (
+        <LoginLoading />
+      ) : (
+        <div className="loginSectionContainer">
+          <nav className="loginNav">
+            <button className="returnToSearch" onClick={props.landingView}>
+              <h1 className="title">tr-1.fm</h1>
+            </button>
+          </nav>
+          {loginForm ? (
+            <FadeIn className="loginFadeIn">
+              <div className="loginContainer">
+                <h2>log into your account</h2>
+                <form className="loginForm" onSubmit={login}>
+                  <input
+                    type="email"
+                    placeholder="email"
+                    onChange={(event) => {
+                      setLoginEmail(event.target.value);
+                    }}
+                    className={loginError ? "loginError" : null}
+                    required
+                  />
+                  <input
+                    type="password"
+                    placeholder="password"
+                    onChange={(event) => {
+                      setLoginPassword(event.target.value);
+                    }}
+                    value={loginPassword}
+                    className={loginError ? "loginError" : null}
+                    required
+                  />
+                  {loginError ? (
+                    <p id="loginError">
+                      Hmmm looks like your email or password is incorrect.{" "}
+                      <br /> Please try again.
+                    </p>
+                  ) : null}
+                  <p className="signUpText">
+                    Not registered? Sign up{" "}
+                    <button
+                      className="signUpButton"
+                      onClick={switchForms}
+                      type="button"
+                    >
+                      here
+                    </button>
+                  </p>
 
-          <button className="loginButton">login</button>
-        </form>
-      </div>
-      <Footer />
+                  <button className="loginButton" type="submit" onClick={login}>
+                    login
+                  </button>
+                </form>
+                {user ? (
+                  <p>
+                    You are logged in as {user.email} and your id is ${user.uid}
+                  </p>
+                ) : null}
+              </div>
+            </FadeIn>
+          ) : (
+            <div className="signUpContainer">
+              <h2>register a new account</h2>
+              <form className="registerForm" onSubmit={register}>
+                <input
+                  type="email"
+                  placeholder="email"
+                  onChange={(event) => {
+                    setRegisterEmail(event.target.value);
+                  }}
+                  className={registerError ? "registerErrorForm" : ""}
+                  required
+                />
+                <input
+                  type="password"
+                  placeholder="password"
+                  onChange={(event) => {
+                    setRegisterPassword(event.target.value);
+                  }}
+                  className={registerError ? "registerErrorForm" : ""}
+                  required
+                />
+                {registerError ? (
+                  <p id="registerError">
+                    Hmmm looks like that email is already in use. <br /> Please
+                    try logging in or signing up with another email.
+                  </p>
+                ) : null}
+                <p className="loginText">
+                  Already have an account? Log in{" "}
+                  <button
+                    className="backToLoginButton"
+                    onClick={switchForms}
+                    type="button"
+                  >
+                    here
+                  </button>
+                </p>
+                <button className="signUpButton" type="submit">
+                  register
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 };

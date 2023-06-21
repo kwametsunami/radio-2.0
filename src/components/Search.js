@@ -3,23 +3,55 @@ import { Link } from "react-router-dom";
 import Radio from "./Radio";
 import Footer from "./Footer";
 
+import Login from "./Login";
+
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+
 const genre = require("../data/genreData.json");
 
-const Search = () => {
+const Search = (props) => {
   const [value, setValue] = useState("");
   const [search, setSearch] = useState("");
   const [bitrate, setBitrate] = useState(32);
-  const [loginModal, setLoginModal] = useState(false);
-  const [closeModal, setCloseModal] = useState(true);
 
   const [display, setDisplay] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
+  const [hideFooter, setHideFooter] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const wrapperRef = useRef(null);
 
-  const login = () => {
-    setLoginModal(!loginModal);
-    setCloseModal(!closeModal);
+  const { anonKey } = props;
+
+  const anonymous = {
+    user: { email: "anon@tr1.fm", uid: props.anonKey },
+  };
+
+  const [user, setUser] = useState(anonymous);
+
+  useEffect(() => {
+    sessionStorage.setItem("userData", JSON.stringify(user));
+
+    // if (!isLoggedIn) {
+    //   setUser(anonymous);
+    // }
+  }, [user]);
+
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+
+  // console.log(userData);
+
+  const login = async () => {
+    setShowLanding(false);
+    setShowLogin(true);
+    await signOut(auth);
+  };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+    setUser(anonymous);
   };
 
   const currentTime = new Date().getHours();
@@ -43,6 +75,8 @@ const Search = () => {
     setSearch(value);
     setDisplay(false);
     setShowLanding(false);
+    setShowLogin(false);
+    setHideFooter(true);
     setValue("");
   };
 
@@ -80,11 +114,18 @@ const Search = () => {
       {showLanding ? (
         <div className="landingInfo">
           <nav className="landingNav">
-            {/* <Link to="/Login">
+            {isLoggedIn ? (
+              <div>
+                <p>logged in as: {user.user.email}</p>
+                <button className="logoutBtn" onClick={logout}>
+                  logout
+                </button>
+              </div>
+            ) : (
               <button className="loginBtn" onClick={login}>
                 login
               </button>
-            </Link> */}
+            )}
             <Link to="/About">
               <button className="aboutBtn">about</button>
             </Link>
@@ -97,7 +138,9 @@ const Search = () => {
             <form className="searchForm" autoComplete="off" onSubmit={onSubmit}>
               <div className="searchContainer">
                 <div className="checkBox">
-                  <label htmlFor="checkbox">show only high quality stations</label>
+                  <label htmlFor="checkbox">
+                    show only high quality stations
+                  </label>
                   <input
                     type="checkbox"
                     className="hqCheckbox"
@@ -159,8 +202,14 @@ const Search = () => {
               </div>
             </form>
           </div>
-          <Footer />
         </div>
+      ) : showLogin ? (
+        <Login
+          landingView={landingView}
+          setHideFooter={setHideFooter}
+          setIsLoggedIn={setIsLoggedIn}
+          setUser={setUser}
+        />
       ) : null}
       {search ? (
         <Radio
@@ -172,8 +221,10 @@ const Search = () => {
           onSearch={onSearch}
           onChange={onChange}
           onSubmit={onSubmit}
+          loggedInUser={user}
         />
       ) : null}
+      {!showLanding && hideFooter ? null : <Footer />}
     </section>
   );
 };

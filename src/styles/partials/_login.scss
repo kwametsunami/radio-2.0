@@ -1,80 +1,173 @@
 @use "./variables" as *;
 
 .login {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .loginNav {
-    display: flex;
-    align-items: center;
-    .title {
-      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
-        -0.5px -0.5px 0 #000;
-      color: $white;
-      transition: 0.9s;
-      cursor: pointer;
-      &:hover {
-        color: $yellow;
-      }
-    }
-  }
-  .loginContainer {
-    width: 35%;
-    text-align: center;
+  .loginSectionContainer {
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    .loginForm {
+    .loginNav {
+      display: flex;
+      align-items: center;
+      .returnToSearch {
+        background: transparent;
+        border: none;
+        .title {
+          color: $white;
+          transition: 0.9s;
+          cursor: pointer;
+          &:hover {
+            color: $yellow;
+          }
+        }
+      }
+    }
+    .loginFadeIn {
+      width: 35%;
+      .loginContainer {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .loginForm {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          input {
+            width: 100%;
+            border: 2px solid $black;
+            border-radius: 5px;
+            margin: 5px 0;
+            font-size: 2rem;
+          }
+          .loginError {
+            border: 2px solid $darkYellow;
+          }
+          .signUpText {
+            color: $white;
+            .signUpButton {
+              background: transparent;
+              border: none;
+              color: $white;
+              font-size: 1.5rem;
+              margin: 0;
+              border-bottom: 2px solid transparent;
+              &:hover {
+                color: $yellow;
+                transition: 0.3s;
+                border-bottom: 2px solid $yellow;
+              }
+            }
+          }
+          #loginError {
+            color: $yellow;
+          }
+          .loginButton {
+            margin: 0 5px;
+            width: 150px;
+            font-size: 2rem;
+            padding: 10px 10px;
+            border-radius: 5px;
+            background: transparent;
+            color: $black;
+            background: $yellow;
+            border: 2px solid $black;
+            &:hover {
+              background: $darkYellow;
+              color: $black;
+              border: 2px solid $black;
+              transition: 0.3s;
+            }
+          }
+        }
+        h2 {
+          margin: 2px 0 10px;
+          color: $white;
+          cursor: default;
+        }
+      }
+    }
+    .signUpContainer {
+      width: 35%;
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 70%;
-      input {
-        width: 100%;
-        border: 2px solid $black;
-        border-radius: 5px;
-        margin: 5px 0;
-        font-size: 2rem;
-      }
-      p {
+      animation: formSlide 0.3s linear;
+      h2 {
         color: $white;
-        a {
+        margin: 2px 0 10px;
+        cursor: default;
+      }
+      .registerForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%;
+        input {
+          width: 100%;
+          border: 2px solid $black;
+          border-radius: 5px;
+          margin: 5px 0;
+          font-size: 2rem;
+        }
+        .registerErrorForm {
+          border: 2px solid $darkYellow;
+        }
+        .loginText {
+          color: $white;
+          .backToLoginButton {
+            background: transparent;
+            border: none;
+            color: $white;
+            font-size: 1.5rem;
+            margin: 0;
+            border-bottom: 2px solid transparent;
+            &:hover {
+              color: $yellow;
+              transition: 0.3s;
+              border-bottom: 2px solid $yellow;
+            }
+          }
+        }
+        #registerError {
           color: $yellow;
         }
-      }
-      .loginButton {
-        margin: 0 5px;
-        width: 150px;
-        font-size: 2rem;
-        padding: 10px 10px;
-        border-radius: 5px;
-        background: transparent;
-        color: $black;
-        background: $yellow;
-        border: 2px solid $black;
-        &:hover {
-          background: $white;
+        .signUpButton {
+          margin: 0 5px;
+          width: 150px;
+          font-size: 2rem;
+          padding: 10px 10px;
+          border-radius: 5px;
+          background: transparent;
           color: $black;
+          background: $yellow;
           border: 2px solid $black;
+          &:hover {
+            background: $darkYellow;
+            color: $black;
+            border: 2px solid $black;
+            transition: 0.3s;
+          }
         }
       }
-    }
-    h2 {
-      margin: 2px 0 10px;
-      color: $white;
-      text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
-        -0.5px -0.5px 0 #000;
-      cursor: default;
     }
   }
 }
 
-.google {
-  button {
-    width: 50px;
-    padding: 50px;
+// animation
+
+@keyframes formSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-65px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
