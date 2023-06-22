@@ -371,6 +371,11 @@ const Dashboard = (props) => {
               </Link>
             </FadeIn>
           </div>
+          <div className="emailDashboard">
+            {props.userDetails.user.email !== "anon@tr1.fm" ? (
+              <p id="dashboardUser">{props.userDetails.user.email}</p>
+            ) : null}
+          </div>
           <div className="middleDashboard">
             {recentView ? (
               <div className="recentContainer">
@@ -694,7 +699,6 @@ const Dashboard = (props) => {
             }
           >
             <div className="infoButtons">
-              {/* <button className="dashLogin">login</button> */}
               <button
                 onClick={chartView}
                 id={popularView === 1 ? "selectedPopularBtn" : ""}
@@ -734,6 +738,9 @@ const Dashboard = (props) => {
                   className="fa-solid fa-circle-info infoBtn"
                   id={showInfo ? "selectedInfo" : ""}
                 ></i>
+              </button>
+              <button className="dashLogin">
+                <i class="fa-solid fa-user"></i>
               </button>
             </div>
             {showInfo ? (

@@ -38,6 +38,9 @@ geoFilter.forEach((station) => {
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
   const [stationFilter, setStationFilter] = useState(props.genre);
+  const [filterAmount, setFilterAmount] = useState("");
+  const [filteredArray, setFilteredArray] = useState([]);
+
   const [listView, setListView] = useState(false);
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
@@ -63,6 +66,9 @@ const Radio = (props) => {
   console.log(userDetails);
 
   useEffect(() => {
+    console.log(filterAmount);
+    console.log(filteredArray);
+
     setStationFilter(props.genre);
 
     let newFilter = [];
@@ -109,6 +115,7 @@ const Radio = (props) => {
         setBadSearch(false);
         setLoading(false);
         setBadResponse(false);
+        setFilterAmount("");
       }
 
       if (noDup.length === 0) {
@@ -116,6 +123,7 @@ const Radio = (props) => {
         setBadSearch(true);
         randomGenre();
         setDashboardLoading(false);
+        setFilterAmount("");
       }
 
       const sort_by = (field, reverse, primer) => {
@@ -137,8 +145,6 @@ const Radio = (props) => {
       setTimeout(() => {
         let dataArray = noDup.slice(0, 8);
         setDashboardLoading(false);
-
-        console.log(dataArray);
 
         setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
       }, 650);
@@ -193,24 +199,6 @@ const Radio = (props) => {
 
       setRecentStations(updatedStations);
     }
-
-    // if (matchFound) {
-    //   const newArr = recentStations.filter((item) => item !== station);
-    //   setRecentStations(newArr);
-    // } else {
-    //   // const updatedStations = recentStations.concat([station]);
-    //   const updatedStations = [station, ...recentStations];
-
-    //   if (updatedStations.length > 8) {
-    //     updatedStations.splice(0, updatedStations.length - 8);
-    //   }
-
-    //   // updatedStations.reverse();
-
-    //   console.log(updatedStations);
-
-    //   setRecentStations(updatedStations);
-    // }
   };
 
   const [mobile, setMobile] = useState(false);
@@ -271,6 +259,9 @@ const Radio = (props) => {
       const filteredFav = uniqueFav.filter(
         (item) => item.userId === userDetails.user.uid
       );
+
+      // Reverse the array in-place
+      filteredFav.reverse();
 
       setTestArr(filteredFav);
 
@@ -395,6 +386,7 @@ const Radio = (props) => {
                       sendImage={sendImage}
                       playingStation={playingStation}
                       addToRecent={addToRecent}
+                      stationKey={setCurrentKey}
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       mapView={switchView}
@@ -407,6 +399,10 @@ const Radio = (props) => {
                       longitude={setCurrentLong}
                       storeKeys={storeKeys}
                       userDetails={userDetails}
+                      filterAmount={filterAmount}
+                      setFilterAmount={setFilterAmount}
+                      filteredArray={filteredArray}
+                      setFilteredArray={setFilteredArray}
                     />
                   </div>
                 ) : (
@@ -418,6 +414,7 @@ const Radio = (props) => {
                       sendImage={sendImage}
                       playingStation={playingStation}
                       addToRecent={addToRecent}
+                      stationKey={setCurrentKey}
                       stationUrl={stationUrl}
                       badResponse={badResponse}
                       listView={switchView}
@@ -433,6 +430,10 @@ const Radio = (props) => {
                       storeKeys={storeKeys}
                       stationFilter={stationFilter}
                       userDetails={userDetails}
+                      filterAmount={filterAmount}
+                      setFilterAmount={setFilterAmount}
+                      filteredArray={filteredArray}
+                      setFilteredArray={setFilteredArray}
                     />
                   </div>
                 )}

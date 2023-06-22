@@ -47,6 +47,12 @@
       }
     }
   }
+  .emailDashboard {
+    #dashboardUser {
+      margin: 0;
+      transform: translateY(-95%);
+    }
+  }
   .middleDashboard {
     overflow: hidden;
     max-height: 700px;

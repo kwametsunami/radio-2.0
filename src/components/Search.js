@@ -84,6 +84,7 @@ const Search = (props) => {
     setDisplay(false);
     setShowLanding(false);
     setShowLogin(false);
+    setAnimateBack(false);
     setHideFooter(true);
     setValue("");
   };

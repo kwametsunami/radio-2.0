@@ -16,19 +16,6 @@ const List = (props) => {
   const [favStation, setFavStation] = useState([]);
 
   useEffect(() => {
-    // for (let i = 0; i < props.stations.length; i++) {
-    //   if (props.stations[i].url_resolved === radioUrl) {
-    //     let imageGrab = props.stations[i].favicon;
-
-    //     if (imageGrab === "") {
-    //       props.sendImage(defaultImage);
-    //     } else {
-    //       props.sendImage(imageGrab);
-    //     }
-    //     props.sendImage(imageGrab);
-    //   }
-    // }
-
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
     }
@@ -39,6 +26,17 @@ const List = (props) => {
     props.sendToRadio,
     props.playingStation,
   ]);
+
+  useEffect(() => {
+    setFilterTrue(false);
+  }, [props.stations]);
+
+  useEffect(() => {
+    if (props.filterAmount !== "") {
+      setFilterTrue(true);
+      setFilteredStations(props.filteredArray);
+    }
+  }, [props.filterAmount]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -85,12 +83,19 @@ const List = (props) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
       let limit = base + parseInt(event.target.value);
 
+      if (props.filteredArray >= 10) {
+        setFilteredStations(props.filteredArray);
+        setFilterTrue(true);
+      }
+
       if (event.target.value > props.stations.length) {
         let bottom = 0;
         let top = props.stations.length;
 
         setFilteredStations(props.stations.slice(bottom, parseInt(top)));
         setFilterTrue(true);
+        props.setFilterAmount(event.target.value);
+        props.setFilteredArray(props.stations.slice(bottom, parseInt(top)));
       } else if (limit > props.stations.length) {
         let diff = limit - props.stations.length;
         let newBase = base - diff;
@@ -98,9 +103,13 @@ const List = (props) => {
 
         setFilteredStations(props.stations.slice(newBase, newLimit));
         setFilterTrue(true);
+        props.setFilterAmount(event.target.value);
+        props.setFilteredArray(props.stations.slice(newBase, newLimit));
       } else {
         setFilterTrue(true);
         setFilteredStations(props.stations.slice(base, limit));
+        props.setFilterAmount(event.target.value);
+        props.setFilteredArray(props.stations.slice(base, limit));
       }
     };
 
@@ -121,6 +130,7 @@ const List = (props) => {
 
       setRadioUrl(surpriseStation.url_resolved);
 
+      props.stationKey(surpriseStation.changeuuid);
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
       props.sendImage(surpriseStation.favicon);
@@ -135,6 +145,7 @@ const List = (props) => {
 
       setRadioUrl(surpriseStation.url_resolved);
 
+      props.stationKey(surpriseStation.changeuuid);
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
       props.sendImage(surpriseStation.favicon);
@@ -269,7 +280,7 @@ const List = (props) => {
       <FadeIn transitionDuration={1000} visible={true}>
         <div className="stationListContainer">
           {filterTrue
-            ? filteredStations.map((stationDetails, index) => {
+            ? filteredStations.map((stationDetails) => {
                 return (
                   <div
                     className={
@@ -286,13 +297,53 @@ const List = (props) => {
                       onMouseLeave={handleMouseLeave}
                       key={stationDetails.changeuuid}
                     >
+                      {hoveredItem === stationDetails.changeuuid ? (
+                        <button
+                          className="playButtonDiv"
+                          value={[
+                            `${stationDetails.changeuuid}`,
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.name}`,
+                          ]}
+                          onClick={radioSelect}
+                        ></button>
+                      ) : null}
                       <div className="imageList">
-                        <img
-                          src={stationDetails.favicon}
-                          alt={stationDetails.name}
-                          className="icon"
-                          onError={setDefaultSrc}
-                        />
+                        {playingName === stationDetails.name ? (
+                          <button className="playingBars"></button>
+                        ) : (
+                          <img
+                            src={stationDetails.favicon}
+                            alt={stationDetails.name}
+                            className={`icon ${
+                              hoveredItem === stationDetails.changeuuid
+                                ? "blurred"
+                                : ""
+                            }`}
+                            onError={setDefaultSrc}
+                          />
+                        )}
+                        {hoveredItem === stationDetails.changeuuid &&
+                        playingName !== stationDetails.name ? (
+                          <button
+                            className="hoverPlay"
+                            value={[
+                              `${stationDetails.changeuuid}`,
+                              `${stationDetails.url_resolved}`,
+                              `${stationDetails.favicon}`,
+                              `${stationDetails.geo_lat}`,
+                              `${stationDetails.geo_long}`,
+                              `${stationDetails.name}`,
+                            ]}
+                            onClick={radioSelect}
+                            id={stationDetails.name}
+                          >
+                            <i className="fa-solid fa-play"></i>
+                          </button>
+                        ) : null}
                       </div>
 
                       <div className="information">
@@ -306,7 +357,7 @@ const List = (props) => {
                         <p className="stationCountry">
                           {stationDetails.state !== ""
                             ? `${stationDetails.state}, `
-                            : null}{" "}
+                            : null}
                           {stationDetails.country ===
                           "The United States Of America"
                             ? "USA"
@@ -315,33 +366,10 @@ const List = (props) => {
                       </div>
 
                       <div className="buttonContainer" value={stationDetails}>
-                        <button
-                          className={
-                            playingName === stationDetails.name ||
-                            props.stationCheck
-                              ? "infoButtonPlaying"
-                              : "infoButton"
-                          }
-                          value={[
-                            `${stationDetails.changeuuid}`,
-                            `${stationDetails.url_resolved}`,
-                            `${stationDetails.favicon}`,
-                            `${stationDetails.geo_lat}`,
-                            `${stationDetails.geo_long}`,
-                            `${stationDetails.name}`,
-                          ]}
-                          onClick={radioSelect}
-                          id={stationDetails.name}
-                        >
-                          {playingName === stationDetails.name ||
-                          props.stationCheck
-                            ? ""
-                            : "▶"}
-                        </button>
                         {props.favKeys.includes(
                           `${stationDetails.changeuuid}`
                         ) ? (
-                          <button class="added">
+                          <button class={`added`}>
                             <i className="fa-solid fa-star alreadyAdded"></i>
                           </button>
                         ) : (

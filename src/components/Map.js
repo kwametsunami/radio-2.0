@@ -62,10 +62,16 @@ const Map = (props) => {
   ]);
 
   useEffect(() => {
-    if (props.stations.length !== filteredStations) {
-      setFilterTrue(false);
-    }
+    setFilterTrue(false);
   }, [props.stations]);
+
+  useEffect(() => {
+    if (props.filterAmount !== "") {
+      setFilterTrue(true);
+      setFilteredStations(props.filteredArray);
+      console.log(props.filteredArray);
+    }
+  }, [props.filterAmount]);
 
   const radioSelect = (event) => {
     event.preventDefault();
@@ -119,11 +125,18 @@ const Map = (props) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
       let limit = base + parseInt(event.target.value);
 
+      if (props.filteredArray >= 10) {
+        setFilteredStations(props.filteredArray);
+        setFilterTrue(true);
+      }
+
       if (event.target.value > props.stations.length) {
         let bottom = 0;
         let top = props.stations.length;
         setFilteredStations(props.stations.slice(bottom, parseInt(top)));
         setFilterTrue(true);
+        props.setFilterAmount(event.target.value);
+        props.setFilteredArray(props.stations.slice(bottom, parseInt(top)));
       } else if (limit > props.stations.length) {
         let diff = limit - props.stations.length;
         let newBase = base - diff;
@@ -131,9 +144,13 @@ const Map = (props) => {
 
         setFilteredStations(props.stations.slice(newBase, newLimit));
         setFilterTrue(true);
+        props.setFilterAmount(event.target.value);
+        props.setFilteredArray(props.stations.slice(newBase, newLimit));
       } else {
         setFilterTrue(true);
         setFilteredStations(props.stations.slice(base, limit));
+        props.setFilterAmount(event.target.value);
+        props.setFilteredArray(props.stations.slice(base, limit));
       }
     };
 
@@ -242,7 +259,7 @@ const Map = (props) => {
       </div>
       <div className="actualMap">
         <MapContainer
-          center={[30.0, 20.0]}
+          center={[22, 12.5]}
           zoom={2.5}
           scrollWheelZoom={true}
           maxZoom={30}
@@ -275,7 +292,6 @@ const Map = (props) => {
                         `${stationDetails.geo_lat}`,
                         `${stationDetails.geo_long}`,
                       ]}
-                      id="filter"
                     >
                       <Popup
                         className={
@@ -311,11 +327,7 @@ const Map = (props) => {
                           </div>
                           <div
                             className="buttonContainer"
-                            value={[
-                              stationDetails.name,
-                              stationDetails.url,
-                              stationDetails.favicon,
-                            ]}
+                            value={stationDetails}
                           >
                             <button
                               className={
@@ -337,14 +349,14 @@ const Map = (props) => {
                               key={stationDetails.favicon}
                             >
                               {playingName === stationDetails.name ||
-                              props.stationCheck
-                                ? ""
-                                : "▶"}
+                              props.stationCheck ? null : (
+                                <i className="fa-solid fa-play"></i>
+                              )}
                             </button>
                             {props.favKeys.includes(
                               `${stationDetails.changeuuid}`
                             ) ? (
-                              <button class="added">
+                              <button class={`added`}>
                                 <i className="fa-solid fa-star alreadyAdded"></i>
                               </button>
                             ) : (
@@ -360,7 +372,7 @@ const Map = (props) => {
                                   `${stationDetails.name}`,
                                 ]}
                               >
-                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-regular fa-star"></i>
                               </button>
                             )}
                           </div>
