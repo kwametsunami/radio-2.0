@@ -117,6 +117,13 @@ const Dashboard = (props) => {
     event.target.src = defaultImage;
   };
 
+  const goToLogin = (event) => {
+    event.preventDefault();
+
+    props.showLogin(true);
+    props.search("");
+  };
+
   const [hoveredItem, setHoveredItem] = useState(null);
 
   const handleMouseEnter = (index) => {
@@ -588,13 +595,18 @@ const Dashboard = (props) => {
                             You are currently not signed in. Favourites will not
                             be saved after this session.
                           </p>
-                          <button class="notSignedInBtn">login</button>
+                          <button class="notSignedInBtn" onClick={goToLogin}>
+                            login
+                          </button>
                         </div>
                       ) : null}
                     </div>
                   ) : (
-                    <div className="scrollableContent">
-                      <FadeIn transitionDuration={700}>
+                    <div className="favContent">
+                      <FadeIn
+                        transitionDuration={700}
+                        className={`scrollableContent`}
+                      >
                         {props.testArr.map((favStation) => {
                           return (
                             <div

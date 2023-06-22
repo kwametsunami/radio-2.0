@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import About from "./About";
+import Login from "./Login";
 import Radio from "./Radio";
 import Footer from "./Footer";
-
-import Login from "./Login";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
@@ -17,6 +17,8 @@ const Search = (props) => {
 
   const [display, setDisplay] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
+  const [aboutModal, setAboutModal] = useState(false);
+  const [animateBack, setAnimateBack] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [hideFooter, setHideFooter] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,16 +34,15 @@ const Search = (props) => {
   const [user, setUser] = useState(anonymous);
 
   useEffect(() => {
-    sessionStorage.setItem("userData", JSON.stringify(user));
+    const storedData = localStorage.getItem("userData");
+    if (storedData) {
+      setUser(JSON.parse(storedData));
+    }
+  }, []);
 
-    // if (!isLoggedIn) {
-    //   setUser(anonymous);
-    // }
+  useEffect(() => {
+    localStorage.setItem("userData", JSON.stringify(user));
   }, [user]);
-
-  const userData = JSON.parse(sessionStorage.getItem("userData"));
-
-  // console.log(userData);
 
   const login = async () => {
     setShowLanding(false);
@@ -51,7 +52,14 @@ const Search = (props) => {
 
   const logout = () => {
     setIsLoggedIn(false);
+    localStorage.clear();
     setUser(anonymous);
+  };
+
+  const aboutPopUp = (event) => {
+    event.preventDefault();
+    setAboutModal(true);
+    setAnimateBack(false);
   };
 
   const currentTime = new Date().getHours();
@@ -113,24 +121,43 @@ const Search = (props) => {
     <section className="landing">
       {showLanding ? (
         <div className="landingInfo">
-          <nav className="landingNav">
-            {isLoggedIn ? (
-              <div>
-                <p>logged in as: {user.user.email}</p>
-                <button className="logoutBtn" onClick={logout}>
-                  logout
-                </button>
+          {aboutModal ? null : (
+            <nav className="landingNav" id={aboutModal ? "vanish " : ""}>
+              <div className="navItems">
+                {user.user.email !== "anon@tr1.fm" ? (
+                  <div className="userName">
+                    <i className="fa-solid fa-user"></i>
+                    <p>{user.user.email}</p>
+                  </div>
+                ) : null}
+                <div className="navButtons">
+                  <button className="aboutBtn" onClick={aboutPopUp}>
+                    about
+                  </button>
+                  {user.user.email !== "anon@tr1.fm" ? (
+                    <button className="logoutBtn" onClick={logout}>
+                      logout
+                    </button>
+                  ) : (
+                    <button className="loginBtn" onClick={login}>
+                      login
+                    </button>
+                  )}
+                </div>
               </div>
-            ) : (
-              <button className="loginBtn" onClick={login}>
-                login
-              </button>
-            )}
-            <Link to="/About">
-              <button className="aboutBtn">about</button>
-            </Link>
-          </nav>
-          <div className="centerContent">
+            </nav>
+          )}
+          {aboutModal ? (
+            <About
+              aboutPopUp={aboutPopUp}
+              aboutModal={setAboutModal}
+              animateBack={setAnimateBack}
+            />
+          ) : null}
+          <div
+            className={`centerContent ${animateBack ? "contentBack" : ""}`}
+            id={aboutModal ? "backgroundBlur" : ""}
+          >
             <div className="centerText">
               <h1 className="title">tr-1.fm</h1>
               <h2 className="greeting">{`${greeting}`}</h2>
@@ -217,6 +244,9 @@ const Search = (props) => {
           quality={bitrate}
           setQuality={setBitrate}
           landingView={landingView}
+          setHideFooter={setHideFooter}
+          setShowLogin={setShowLogin}
+          search={setSearch}
           value={value}
           onSearch={onSearch}
           onChange={onChange}

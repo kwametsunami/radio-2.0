@@ -1,20 +1,22 @@
 @use "./variables" as *;
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    background: $red;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    .footerText {
-        p {
-            a {
-                color: $white;
-                &:hover {
-                    color: $yellow;
-                }
-            }
+  position: fixed;
+  bottom: 0;
+  background: $red;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  .footerText {
+    p {
+      a {
+        color: $white;
+        &:hover {
+          color: $yellow;
+          transition: 0.3s;
         }
+      }
     }
+  }
 }

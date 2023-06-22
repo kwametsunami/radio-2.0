@@ -327,6 +327,8 @@ const Radio = (props) => {
         <div className={mobile ? "dashboardMobile" : "dashboard"}>
           <Dashboard
             landingView={props.landingView}
+            showLogin={props.setShowLogin}
+            search={props.search}
             genreName={props.genre}
             favourites={favStationInfo}
             setFavs={setFavs}
