@@ -962,6 +962,31 @@ input {
   text-transform: capitalize;
   color: #edd05f;
 }
+.resultsContainer .savedToFavPopUp {
+  position: fixed;
+  bottom: 0%;
+  right: 50%;
+  margin-bottom: 100px;
+  transform: translate(50%, 50%);
+  z-index: 2;
+}
+.resultsContainer .savedToFavPopUp .popupContainer {
+  background: #3a3a3c;
+  border-radius: 10px;
+  opacity: 0;
+}
+.resultsContainer .savedToFavPopUp .popupContainer h3 {
+  font-size: 2rem;
+  padding: 20px;
+  color: #f7f5ea;
+}
+.resultsContainer .savedToFavPopUp .popupContainer #favTitle {
+  color: #edd05f;
+}
+.resultsContainer .savedToFavPopUp #savedPopup {
+  animation: 2s favFade linear;
+  z-index: 100;
+}
 
 .radioView {
   display: flex;
@@ -1021,6 +1046,28 @@ input {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes favFade {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(15px);
   }
 }
 .dashboard {
@@ -4128,18 +4175,4 @@ input {
 }
 .danceParty .danceBuddies img {
   width: 150px;
-}
-
-.audio-visualizer {
-  display: flex;
-  align-items: flex-end;
-  height: 100px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.audio-bar {
-  width: 2px;
-  background-color: #fff;
-  margin-right: 3px;
 }/*# sourceMappingURL=styles.css.map */

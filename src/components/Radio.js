@@ -273,8 +273,6 @@ const Radio = (props) => {
 
       const stationKeys = [];
 
-      console.log(filteredFav);
-
       for (let i = 0; i < filteredFav.length; i++) {
         stationKeys.push(filteredFav[i].stationData.id);
       }
@@ -311,6 +309,8 @@ const Radio = (props) => {
     props.logout();
     setUserDetails(props.anonymous);
   };
+
+  const [savedToFav, setSaveToFav] = useState("");
 
   return (
     <section className="infoContainer">
@@ -367,6 +367,7 @@ const Radio = (props) => {
             userDetails={userDetails}
             logout={logout}
             login={login}
+            setSaveToFav={setSaveToFav}
           />
         </div>
         {loading ? (
@@ -399,6 +400,17 @@ const Radio = (props) => {
               </div>
             ) : (
               <div className="results">
+                <div className="savedToFavPopUp">
+                  <div
+                    className="popupContainer"
+                    id={savedToFav ? "savedPopup" : ""}
+                  >
+                    <h3>
+                      <span id="favTitle">{savedToFav} </span>added to
+                      favourites
+                    </h3>
+                  </div>
+                </div>
                 {listView ? (
                   <div className="listViewContainer">
                     <List
@@ -427,6 +439,7 @@ const Radio = (props) => {
                       filteredArray={filteredArray}
                       setFilteredArray={setFilteredArray}
                       resultTextLoading={resultTextLoading}
+                      setSaveToFav={setSaveToFav}
                     />
                   </div>
                 ) : (
@@ -459,6 +472,7 @@ const Radio = (props) => {
                       filteredArray={filteredArray}
                       setFilteredArray={setFilteredArray}
                       resultTextLoading={resultTextLoading}
+                      setSaveToFav={setSaveToFav}
                     />
                   </div>
                 )}

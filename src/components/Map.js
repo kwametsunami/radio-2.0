@@ -71,7 +71,6 @@ const Map = (props) => {
     if (props.filterAmount !== "") {
       setFilterTrue(true);
       setFilteredStations(props.filteredArray);
-      console.log(props.filteredArray);
     }
   }, [props.filterAmount]);
 
@@ -190,16 +189,12 @@ const Map = (props) => {
       props.sendImage(surpriseStation.favicon);
       props.setCurrentLat(surpriseStation.geo_lat);
       props.setCurrentLong(surpriseStation.geo_long);
-
-      console.log(surpriseStation);
     } else {
       const randomizer = (min = 0, max = props.stations.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       };
 
       let surpriseStation = props.stations[randomizer()];
-
-      console.log(surpriseStation);
 
       let sendToRecent = [];
 
@@ -248,6 +243,12 @@ const Map = (props) => {
       const dbRef = ref(database);
 
       push(dbRef, stationFavObj);
+
+      props.setSaveToFav(stationFavArr[5]);
+
+      setTimeout(() => {
+        props.setSaveToFav("");
+      }, 2000);
     };
 
     pushToDatabase(event, props.userDetails.user.uid);

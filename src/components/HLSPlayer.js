@@ -44,6 +44,8 @@ const HLSPlayer = (props) => {
         width="100%"
         height="auto"
         volume={1}
+        onPlay={handlePlay}
+        onPause={handlePause}
         onError={setDefaultAlert}
       />
 

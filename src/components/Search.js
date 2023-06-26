@@ -42,6 +42,7 @@ const Search = (props) => {
 
   useEffect(() => {
     localStorage.setItem("userData", JSON.stringify(user));
+    console.log(user);
   }, [user]);
 
   const login = async () => {

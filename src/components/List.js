@@ -203,8 +203,13 @@ const List = (props) => {
       const database = getDatabase(firebase);
       const dbRef = ref(database);
 
-      console.log(stationFavObj);
       push(dbRef, stationFavObj);
+
+      props.setSaveToFav(stationFavArr[5]);
+
+      setTimeout(() => {
+        props.setSaveToFav("");
+      }, 2000);
     };
 
     pushToDatabase(event, props.userDetails.user.uid);

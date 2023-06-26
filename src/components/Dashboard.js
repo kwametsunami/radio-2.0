@@ -69,16 +69,23 @@ const Dashboard = (props) => {
   useEffect(() => {
     if (props.userDetails.user.email !== "anon@tr1.fm") {
       const moment = require("moment");
-      const timestamp = props.userDetails.user.metadata.createdAt;
-      const date = moment(parseInt(timestamp, 10));
-      const formattedDate = date.format("YYYY-MM-DD");
 
-      setUserDate(formattedDate);
+      if (typeof props.userDetails.user.createdAt === "undefined") {
+        const timestamp = props.userDetails.user.metadata.createdAt;
+        const date = moment(parseInt(timestamp, 10));
+        const formattedDate = date.format("YYYY-MM-DD");
+
+        setUserDate(formattedDate);
+      } else {
+        const timestamp = props.userDetails.user.createdAt;
+        const date = moment(parseInt(timestamp, 10));
+        const formattedDate = date.format("YYYY-MM-DD");
+
+        setUserDate(formattedDate);
+      }
     } else {
       setUserDate("");
     }
-
-    console.log(props.userDetails);
   }, [props.userDetails, props.logout]);
 
   const playStation = (event) => {
@@ -117,7 +124,6 @@ const Dashboard = (props) => {
     const pushToDatabase = (event, userId) => {
       const stationFav = event.currentTarget.value;
       const stationFavArr = stationFav.split(",");
-
       const stationFavObj = {
         stationData: {
           id: stationFavArr[0],
@@ -134,6 +140,12 @@ const Dashboard = (props) => {
       const dbRef = ref(database);
 
       push(dbRef, stationFavObj);
+
+      props.setSaveToFav(stationFavArr[5]);
+
+      setTimeout(() => {
+        props.setSaveToFav("");
+      }, 2000);
     };
 
     pushToDatabase(event, props.userDetails.user.uid);

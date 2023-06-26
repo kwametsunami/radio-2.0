@@ -100,6 +100,31 @@
       color: $yellow;
     }
   }
+  .savedToFavPopUp {
+    position: fixed;
+    bottom: 0%;
+    right: 50%;
+    margin-bottom: 100px;
+    transform: translate(50%, 50%);
+    z-index: 2;
+    .popupContainer {
+      background: $ash;
+      border-radius: 10px;
+      opacity: 0;
+      h3 {
+        font-size: 2rem;
+        padding: 20px;
+        color: $white;
+      }
+      #favTitle {
+        color: $yellow;
+      }
+    }
+    #savedPopup {
+      animation: 2s favFade linear;
+      z-index: 100;
+    }
+  }
 }
 
 .radioView {
@@ -162,5 +187,28 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes favFade {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(15px);
   }
 }
