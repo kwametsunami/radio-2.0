@@ -1,7 +1,6 @@
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signOut,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../firebase";
@@ -51,7 +50,6 @@ const Login = (props) => {
         props.setHideFooter(true);
         setTimeout(() => {
           props.landingView();
-          props.setIsLoggedIn(true);
           props.setHideFooter(false);
         }, 1200);
       }
@@ -91,7 +89,6 @@ const Login = (props) => {
         setRegisterSuccess(true);
         setTimeout(() => {
           props.landingView();
-          props.setIsLoggedIn(true);
           props.setHideFooter(false);
         }, 1200);
       }

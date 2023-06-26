@@ -6,7 +6,7 @@ import L from "leaflet";
 import PropagateLoader from "react-spinners/PropagateLoader";
 
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+import { getDatabase, ref, onValue, push } from "firebase/database";
 
 import { useEffect, useState } from "react";
 
@@ -41,8 +41,6 @@ const Map = (props) => {
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-
-  const [favStation, setFavStation] = useState([]);
 
   useEffect(() => {
     if (props.playingStation !== "") {
@@ -112,8 +110,6 @@ const Map = (props) => {
           ...data[key],
         });
       }
-
-      setFavStation(newState);
     });
   }, []);
 

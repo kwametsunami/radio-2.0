@@ -1,6 +1,3 @@
-import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css";
-
 import HLSPlayer from "./HLSPlayer";
 
 import firebase from "../firebase";
@@ -29,7 +26,7 @@ const Player = (props) => {
     setFormattedTitle(format);
 
     setStationUrl(props.audioSource);
-  }, [props.stationName]);
+  }, [props.stationName, props.audioSource]);
 
   const favourite = (event, userId) => {
     const pushToDatabase = (event, userId) => {
@@ -79,13 +76,6 @@ const Player = (props) => {
             <h3 className="radioInfoTitle">{formattedTitle}</h3>
           </div>
         </div>
-        {/* <AudioPlayer
-          autoPlay
-          layout="horizontal-reverse"
-          showJumpControls={false}
-          onError={setDefaultAlert}
-          src={props.audioSource}
-        /> */}
         <div className="playerContainer">
           <HLSPlayer stationUrl={stationUrl} />
         </div>

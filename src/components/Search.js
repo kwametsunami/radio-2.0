@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import About from "./About";
 import Login from "./Login";
 import Radio from "./Radio";
@@ -21,11 +20,8 @@ const Search = (props) => {
   const [animateBack, setAnimateBack] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [hideFooter, setHideFooter] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const wrapperRef = useRef(null);
-
-  const { anonKey } = props;
 
   const anonymous = {
     user: { email: "anon@tr1.fm", uid: props.anonKey },
@@ -52,7 +48,6 @@ const Search = (props) => {
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
     localStorage.clear();
     setUser(anonymous);
   };
@@ -237,7 +232,6 @@ const Search = (props) => {
         <Login
           landingView={landingView}
           setHideFooter={setHideFooter}
-          setIsLoggedIn={setIsLoggedIn}
           setUser={setUser}
         />
       ) : null}

@@ -279,7 +279,7 @@ const Radio = (props) => {
 
       setTestKeys(stationKeys);
     });
-  }, [props.loggedInUser]);
+  }, [props.loggedInUser, userDetails.user.uid]);
 
   useEffect(() => {
     setKeys(testKeys);

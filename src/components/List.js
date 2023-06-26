@@ -3,7 +3,7 @@ import FadeIn from "react-fade-in";
 import PropagateLoader from "react-spinners/PropagateLoader";
 
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
+import { getDatabase, ref, onValue, push } from "firebase/database";
 
 import defaultImage from "../assets/radio.png";
 
@@ -13,8 +13,6 @@ const List = (props) => {
 
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
-
-  const [favStation, setFavStation] = useState([]);
 
   useEffect(() => {
     if (props.playingStation !== "") {
@@ -74,8 +72,6 @@ const List = (props) => {
           ...data[key],
         });
       }
-
-      setFavStation(newState);
     });
   }, []);
 
