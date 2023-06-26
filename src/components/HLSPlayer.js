@@ -41,6 +41,7 @@ const HLSPlayer = (props) => {
         url={url}
         controls={false}
         playing={true}
+        playsInline
         width="100%"
         height="auto"
         volume={1}

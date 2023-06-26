@@ -1023,6 +1023,7 @@ input {
   align-items: center;
   border-radius: 70px;
   position: relative;
+  transform: scale(0.8);
 }
 .loginModal .loginModalContainer .closeModalButton {
   position: absolute;
