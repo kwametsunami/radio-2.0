@@ -40,6 +40,9 @@
           margin: 0;
         }
       }
+      #hideUser {
+        visibility: hidden;
+      }
       .navButtons {
         display: flex;
         justify-content: center;

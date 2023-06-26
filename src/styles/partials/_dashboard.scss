@@ -22,7 +22,6 @@
   width: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin-top: 100px;
   @include smallDesktop {
     width: 150px;
@@ -80,8 +79,32 @@
           padding: 10px 17.5px;
           color: $black;
           font-size: 1.5rem;
+          transition: 0.3s;
           &:hover {
             background: $darkYellow;
+          }
+        }
+      }
+      .anonymousContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .anonButtons {
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+          margin: 0 auto;
+          button {
+            background: $yellow;
+            border-radius: 5px;
+            padding: 10px 17.5px;
+            margin-top: 25px;
+            color: $black;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            &:hover {
+              background: $darkYellow;
+            }
           }
         }
       }
@@ -934,8 +957,14 @@
             }
           }
         }
+        #fullScroll {
+          height: 635px;
+        }
       }
     }
+  }
+  #fullMiddle {
+    max-height: 1000px;
   }
   .infoContainer {
     display: flex;
@@ -1172,6 +1201,9 @@
     }
   }
 }
+#fullDashContainer {
+  height: 1000px;
+}
 
 //////////////////////////////////////// mobile styling
 
@@ -1235,7 +1267,7 @@
     }
     .middleDashboard {
       overflow: hidden;
-      max-height: 500px;
+      height: 500px;
       .popularView {
         padding: 5px;
         #popularTitle {

@@ -337,6 +337,16 @@ const Map = (props) => {
                         `${stationDetails.geo_lat}`,
                         `${stationDetails.geo_long}`,
                       ]}
+                      zIndexOffset={
+                        latitude == stationDetails.geo_lat &&
+                        longitude == stationDetails.geo_long
+                          ? 500
+                          : props.favKeys.includes(
+                              `${stationDetails.changeuuid}`
+                            )
+                          ? 400
+                          : 100
+                      }
                     >
                       <Popup
                         className={
@@ -445,6 +455,16 @@ const Map = (props) => {
                         `${stationDetails.geo_lat}`,
                         `${stationDetails.geo_long}`,
                       ]}
+                      zIndexOffset={
+                        latitude == stationDetails.geo_lat &&
+                        longitude == stationDetails.geo_long
+                          ? 500
+                          : props.favKeys.includes(
+                              `${stationDetails.changeuuid}`
+                            )
+                          ? 400
+                          : 100
+                      }
                     >
                       <Popup
                         className={

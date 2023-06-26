@@ -203,6 +203,7 @@ const List = (props) => {
       const database = getDatabase(firebase);
       const dbRef = ref(database);
 
+      console.log(stationFavObj);
       push(dbRef, stationFavObj);
     };
 

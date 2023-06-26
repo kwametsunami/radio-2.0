@@ -35,19 +35,28 @@ const Login = (props) => {
         loginEmail,
         loginPassword
       );
-      console.log(user);
-      setLoginError(false);
-      setLoginSuccess(true);
-      props.setUser(user);
-      props.setHideFooter(true);
-      setTimeout(() => {
-        props.landingView();
-        props.setIsLoggedIn(true);
-        props.setHideFooter(false);
-      }, 1200);
+      if (props.fromRadio) {
+        props.setUser(user);
+        props.setUserDetails(user);
+        setLoginError(false);
+        props.closeModal();
+        console.log("login success from radio");
+      } else {
+        console.log(user);
+        setLoginError(false);
+        setLoginSuccess(true);
+        props.setUser(user);
+        props.setHideFooter(true);
+        setTimeout(() => {
+          props.landingView();
+          props.setIsLoggedIn(true);
+          props.setHideFooter(false);
+        }, 1200);
+      }
     } catch (error) {
       setLoginError(true);
       setLoginPassword("");
+      console.log(error);
     }
   };
 
