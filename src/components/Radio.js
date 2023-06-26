@@ -5,6 +5,7 @@ import firebase from "../firebase";
 import { getDatabase, ref, onValue, remove } from "firebase/database";
 
 import Loading from "./Loading";
+import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Map from "./Map";
 import List from "./List";
@@ -63,20 +64,6 @@ const Radio = (props) => {
   };
 
   useEffect(() => {
-    const timestamp = userDetails.user.createdAt * 1000;
-
-    const date = new Date(timestamp);
-
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    const formattedDate = `${year}-${month < 10 ? "0" + month : month}-${
-      day < 10 ? "0" + day : day
-    }`;
-
-    console.log(formattedDate);
-
     setStationFilter(props.genre);
 
     let newFilter = [];
@@ -160,7 +147,13 @@ const Radio = (props) => {
         setPopular(dataArray.sort(sort_by("votes", true, parseInt)));
       }, 650);
     }, 500);
-  }, [props.genre, props.quality, stationFilter]);
+
+    let storedData = localStorage.getItem("recentStations");
+
+    if (storedData) {
+      setRecentStations(JSON.parse(storedData));
+    }
+  }, [props.genre, props.quality, stationFilter, props.loggedInUser]);
 
   const [stationUrl, setStationUrl] = useState("");
   const [playingStation, setPlayingStation] = useState("");
@@ -209,6 +202,8 @@ const Radio = (props) => {
       const updatedStations = [station, ...recentStations.slice(0, 7)];
 
       setRecentStations(updatedStations);
+
+      localStorage.setItem("recentStations", JSON.stringify(recentStations));
     }
   };
 
@@ -286,13 +281,13 @@ const Radio = (props) => {
 
       setTestKeys(stationKeys);
     });
-  }, []);
+  }, [props.loggedInUser]);
 
   useEffect(() => {
     setKeys(testKeys);
 
     setFavs(testArr);
-  }, [testArr, testKeys]);
+  }, [testArr, testKeys, props.loggedInUser]);
 
   const removeFav = (favId) => {
     const database = getDatabase(firebase);
@@ -301,9 +296,25 @@ const Radio = (props) => {
     remove(dbRef);
   };
 
+  const [loginModal, setLoginModal] = useState(false);
+  const [fromRadio, setFromRadio] = useState(true);
+
+  const login = () => {
+    setLoginModal(true);
+  };
+
+  const closeModal = () => {
+    setLoginModal(false);
+  };
+
+  const logout = () => {
+    props.logout();
+    setUserDetails(props.anonymous);
+  };
+
   return (
     <section className="infoContainer">
-      <nav className="searchNav">
+      <nav className="searchNav" id={loginModal ? "blurredContainer" : ""}>
         <div className="searchNavContents">
           <form
             className="infoForm"
@@ -325,11 +336,10 @@ const Radio = (props) => {
           </form>
         </div>
       </nav>
-      <div className="radioView">
+      <div className="radioView" id={loginModal ? "blurredContainer" : ""}>
         <div className={mobile ? "dashboardMobile" : "dashboard"}>
           <Dashboard
             landingView={props.landingView}
-            showLogin={props.setShowLogin}
             search={props.search}
             genreName={props.genre}
             favourites={favStationInfo}
@@ -355,6 +365,8 @@ const Radio = (props) => {
             setRecentStations={setRecentStations}
             storeKeys={storeKeys}
             userDetails={userDetails}
+            logout={logout}
+            login={login}
           />
         </div>
         {loading ? (
@@ -455,7 +467,22 @@ const Radio = (props) => {
           </div>
         )}
       </div>
-
+      {loginModal ? (
+        <div className="loginModal">
+          <div className="loginModalContainer">
+            <button className="closeModalButton" onClick={closeModal}>
+              <i className="fa-solid fa-xmark closeModal"></i>
+            </button>
+            <Login
+              fromRadio={fromRadio}
+              setFromRadio={setFromRadio}
+              closeModal={closeModal}
+              setUser={props.setUser}
+              setUserDetails={setUserDetails}
+            />
+          </div>
+        </div>
+      ) : null}
       {stationUrl ? (
         <Player
           stationKey={currentKey}

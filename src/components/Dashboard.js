@@ -26,7 +26,13 @@ const Dashboard = (props) => {
       : setRecentPrompt(false);
 
     props.testArr.length === 0 ? setFavPrompt(true) : setFavPrompt(false);
-  }, [props.recentStations, props.testArr]);
+  }, [
+    props.recentStations,
+    props.testArr,
+    props.logout,
+    props.userDetails,
+    userDate,
+  ]);
 
   const infoButton = () => {
     setShowInfo(!showInfo);
@@ -58,10 +64,12 @@ const Dashboard = (props) => {
     setRecentView(false);
     setPopularView(0);
     setUserPage(true);
+  };
 
+  useEffect(() => {
     if (props.userDetails.user.email !== "anon@tr1.fm") {
       const moment = require("moment");
-      const timestamp = props.userDetails.user.createdAt;
+      const timestamp = props.userDetails.user.metadata.createdAt;
       const date = moment(parseInt(timestamp, 10));
       const formattedDate = date.format("YYYY-MM-DD");
 
@@ -69,7 +77,7 @@ const Dashboard = (props) => {
     } else {
       setUserDate("");
     }
-  };
+  }, [props.userDetails, props.logout]);
 
   const playStation = (event) => {
     event.preventDefault();
@@ -141,9 +149,13 @@ const Dashboard = (props) => {
 
   const goToLogin = (event) => {
     event.preventDefault();
+    // props.search("");
+    props.login();
+  };
 
-    props.showLogin(true);
-    props.search("");
+  const logout = () => {
+    props.logout();
+    setUserDate("");
   };
 
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -385,7 +397,10 @@ const Dashboard = (props) => {
           ) : null}
         </div>
       ) : (
-        <div className="dashboardContainer">
+        <div
+          className="dashboardContainer"
+          id={props.stationUrl === "" ? "fullDashContainer" : ""}
+        >
           <div className="dashboardLogo">
             <FadeIn transitionDuration={300}>
               <Link onClick={props.landingView} to="/">
@@ -398,7 +413,10 @@ const Dashboard = (props) => {
               <p id="dashboardUser">{props.userDetails.user.email}</p>
             ) : null}
           </div>
-          <div className="middleDashboard">
+          <div
+            className="middleDashboard"
+            id={props.stationUrl === "" ? "fullMiddle" : ""}
+          >
             {userPage ? (
               <div className="userContainer">
                 <h2 id="userContainerTitle">dashboard</h2>
@@ -410,10 +428,19 @@ const Dashboard = (props) => {
                         <span id="userDate">{userDate}</span>
                       </p>
                     </div>
-                    <button className="userSignOut">logout</button>
+                    <button className="userSignOut" onClick={logout}>
+                      logout
+                    </button>
                   </div>
                 ) : (
-                  <div className="anonymousContent"></div>
+                  <div className="anonymousContent">
+                    <p>Things are more fun with an account!</p>
+                    <div className="anonButtons">
+                      <button className="logInDashboard" onClick={goToLogin}>
+                        login
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
             ) : recentView ? (
@@ -510,7 +537,7 @@ const Dashboard = (props) => {
                           </div>
                         );
                       })}
-                      {!recentPrompt ? (
+                      {!recentPrompt && props.stationUrl !== "" ? (
                         <button className="clearRecent" onClick={clearRecent}>
                           clear list
                         </button>
@@ -646,7 +673,10 @@ const Dashboard = (props) => {
                       ) : null}
                     </div>
                   ) : (
-                    <div className="favContent">
+                    <div
+                      className="favContent"
+                      id={props.stationUrl === "" ? "fullScroll" : ""}
+                    >
                       <FadeIn
                         transitionDuration={700}
                         className={`scrollableContent`}

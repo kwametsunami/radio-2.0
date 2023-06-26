@@ -125,12 +125,13 @@ const Search = (props) => {
           {aboutModal ? null : (
             <nav className="landingNav" id={aboutModal ? "vanish " : ""}>
               <div className="navItems">
-                {user.user.email !== "anon@tr1.fm" ? (
-                  <div className="userName">
-                    <i className="fa-solid fa-user"></i>
-                    <p>{user.user.email}</p>
-                  </div>
-                ) : null}
+                <div
+                  className="userName"
+                  id={user.user.email !== "anon@tr1.fm" ? "" : "hideUser"}
+                >
+                  <i className="fa-solid fa-user"></i>
+                  <p>{user.user.email}</p>
+                </div>
                 <div className="navButtons">
                   <button className="aboutBtn" onClick={aboutPopUp}>
                     about
@@ -252,7 +253,10 @@ const Search = (props) => {
           onSearch={onSearch}
           onChange={onChange}
           onSubmit={onSubmit}
+          setUser={setUser}
+          anonymous={anonymous}
           loggedInUser={user}
+          logout={logout}
         />
       ) : null}
       {!showLanding && hideFooter ? null : <Footer />}
