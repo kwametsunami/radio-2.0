@@ -39,8 +39,10 @@ const Login = (props) => {
         props.setUser(user);
         props.setUserDetails(user);
         setLoginError(false);
-        props.closeModal();
-        console.log("login success from radio");
+        setLoginSuccess(true);
+        setTimeout(() => {
+          props.closeModal();
+        }, 1000);
       } else {
         console.log(user);
         setLoginError(false);
@@ -75,15 +77,24 @@ const Login = (props) => {
         registerEmail,
         registerPassword
       );
-      console.log(user);
-      props.setUser(user);
-      setRegisterError(false);
-      setRegisterSuccess(true);
-      setTimeout(() => {
-        props.landingView();
-        props.setIsLoggedIn(true);
-        props.setHideFooter(false);
-      }, 1200);
+      if (props.fromRadio) {
+        props.setUser(user);
+        props.setUserDetails(user);
+        setRegisterError(false);
+        setRegisterSuccess(true);
+        setTimeout(() => {
+          props.closeModal();
+        }, 1000);
+      } else {
+        props.setUser(user);
+        setRegisterError(false);
+        setRegisterSuccess(true);
+        setTimeout(() => {
+          props.landingView();
+          props.setIsLoggedIn(true);
+          props.setHideFooter(false);
+        }, 1200);
+      }
     } catch (error) {
       setRegisterError(true);
       setRegisterEmail("");
@@ -115,7 +126,9 @@ const Login = (props) => {
           {loginForm ? (
             <FadeIn className="loginFadeIn">
               <div className="loginContainer">
-                <h2>log into your account</h2>
+                <h2>
+                  <span id="highlight">log in </span>to your account
+                </h2>
                 <form className="loginForm" onSubmit={login}>
                   <input
                     type="email"
@@ -157,16 +170,13 @@ const Login = (props) => {
                     login
                   </button>
                 </form>
-                {user ? (
-                  <p>
-                    You are logged in as {user.email} and your id is ${user.uid}
-                  </p>
-                ) : null}
               </div>
             </FadeIn>
           ) : (
             <div className="signUpContainer">
-              <h2>register a new account</h2>
+              <h2>
+                <span id="highlight">register</span> a new account
+              </h2>
               <form className="registerForm" onSubmit={register}>
                 <input
                   type="email"

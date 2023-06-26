@@ -845,6 +845,9 @@ input {
   border: 2px solid #1a1a1c;
   transition: 0.3s;
 }
+.login #highlight {
+  color: #edd05f;
+}
 
 @keyframes formSlide {
   0% {
@@ -988,7 +991,7 @@ input {
 .loginModal .loginModalContainer {
   width: 54vw;
   height: 65vh;
-  background: rgba(211, 38, 49, 0.9254901961);
+  background: #d32631;
   display: flex;
   flex-direction: column;
   justify-content: center;
