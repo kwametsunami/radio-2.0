@@ -14,9 +14,11 @@
 @use "./partials/signedUp";
 @use "./partials/map";
 @use "./partials/list";
+@use "./partials/hlsplayer";
 @use "./partials/player";
 @use "./partials/footer";
 @use "./partials/notFound";
+@use "./partials/apiTest";
 @use "./partials/mixins" as *;
 
 .audio-visualizer {

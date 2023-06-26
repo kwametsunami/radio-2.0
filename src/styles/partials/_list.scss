@@ -12,6 +12,9 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    .textLoading {
+      margin: 55px 0 25px;
+    }
     .returned {
       font-size: clamp(1.25rem, 1.0909rem + 0.7955vw, 3rem);
       color: $eggshell;

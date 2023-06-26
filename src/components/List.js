@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import FadeIn from "react-fade-in";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 import firebase from "../firebase";
 import { getDatabase, ref, onValue, push, remove } from "firebase/database";
@@ -128,6 +129,21 @@ const List = (props) => {
 
       let surpriseStation = filteredStations[randomizer()];
 
+      let sendToRecent = [];
+
+      sendToRecent.push(
+        surpriseStation.changeuuid,
+        surpriseStation.url_resolved,
+        surpriseStation.favicon,
+        surpriseStation.geo_lat,
+        surpriseStation.geo_long,
+        surpriseStation.name
+      );
+
+      props.addToRecent(sendToRecent);
+
+      props.addToRecent(surpriseStation);
+
       setRadioUrl(surpriseStation.url_resolved);
 
       props.stationKey(surpriseStation.changeuuid);
@@ -142,6 +158,19 @@ const List = (props) => {
       };
 
       let surpriseStation = props.stations[randomizer()];
+
+      let sendToRecent = [];
+
+      sendToRecent.push(
+        surpriseStation.changeuuid,
+        surpriseStation.url_resolved,
+        surpriseStation.favicon,
+        surpriseStation.geo_lat,
+        surpriseStation.geo_long,
+        surpriseStation.name
+      );
+
+      props.addToRecent(sendToRecent);
 
       setRadioUrl(surpriseStation.url_resolved);
 
@@ -241,15 +270,26 @@ const List = (props) => {
   return (
     <section className="stationList" ref={pageRef}>
       <div className="listFilters">
-        <h3 className="returned">
-          returned{" "}
-          <span id="amountReturned">
-            {filterTrue ? filteredStations.length : props.stations.length}
-          </span>{" "}
-          {props.quality === 96 ? "high quality " : null}
-          stations matching{" "}
-          <span id="listSearchTerm">{props.selectedGenre}</span>
-        </h3>
+        {props.resultTextLoading ? (
+          <PropagateLoader
+            color={"#f7f5ea"}
+            height={80}
+            width={25}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            className="textLoading"
+          />
+        ) : (
+          <h3 className="returned">
+            returned{" "}
+            <span id="amountReturned">
+              {filterTrue ? filteredStations.length : props.stations.length}
+            </span>{" "}
+            {props.quality === 96 ? "high quality " : null}
+            stations matching{" "}
+            <span id="listSearchTerm">{props.selectedGenre}</span>
+          </h3>
+        )}
         <div className="topControls">
           <div className="filterButtonContainer">
             <button className="randomStation" onClick={randomStation}>

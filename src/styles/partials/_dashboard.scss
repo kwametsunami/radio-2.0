@@ -56,6 +56,36 @@
   .middleDashboard {
     overflow: hidden;
     max-height: 700px;
+    .userContainer {
+      #userContainerTitle {
+        color: $white;
+        font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
+        padding: 0 0 15px;
+      }
+      .userContent {
+        .creationDate {
+          p {
+            color: $white;
+            font-size: 2rem;
+            #userDate {
+              font-size: 2.75rem;
+              line-height: 2.45;
+            }
+          }
+        }
+        .userSignOut {
+          background: $yellow;
+          border-radius: 5px;
+          margin-top: 35px;
+          padding: 10px 17.5px;
+          color: $black;
+          font-size: 1.5rem;
+          &:hover {
+            background: $darkYellow;
+          }
+        }
+      }
+    }
     .recentContainer {
       h2 {
         cursor: default;
@@ -621,71 +651,6 @@
         color: $black;
       }
       .favContainerContainer {
-        // padding: 5px;
-        // max-height: 550px;
-        // overflow: auto;
-        // display: flex;
-        // position: relative;
-        // scrollbar-width: none; /* Hide the scrollbar for Firefox */
-        // -ms-overflow-style: none; /* Hide the scrollbar for IE and Edge */
-        // &::-webkit-scrollbar {
-        //   // display: none; // Hide the default scrollbar
-        //   width: 5px;
-        // }
-
-        // &.hovered::-webkit-scrollbar {
-        //   display: flex; // Show the custom scrollbar during hover
-        //   position: absolute;
-        //   top: 0;
-        //   right: 0;
-        //   width: 5px;
-        //   z-index: 5;
-        // }
-
-        // &::-webkit-scrollbar-thumb {
-        //   background-color: rgba(
-        //     0,
-        //     0,
-        //     0,
-        //     0.5
-        //   ); // Adjust the thumb color as desired
-        //   border-radius: 4px; // Adjust the thumb border radius as desired
-        // }
-
-        // &::-webkit-scrollbar-thumb:hover {
-        //   background-color: rgba(
-        //     0,
-        //     0,
-        //     0,
-        //     0.8
-        //   ); // Adjust the thumb color on hover as desired
-        // }
-
-        // &::-webkit-scrollbar-track {
-        //   background-color: transparent; // Adjust the track color as desired
-        // }
-
-        // &::-webkit-scrollbar-track:hover {
-        //   background-color: rgba(
-        //     0,
-        //     0,
-        //     0,
-        //     0.1
-        //   ); // Adjust the track color on hover as desired
-        // }
-
-        // &::-webkit-scrollbar-track:active {
-        //   background-color: rgba(
-        //     0,
-        //     0,
-        //     0,
-        //     0.2
-        //   ); // Adjust the track color when active as desired
-        // }
-
-        // &::-webkit-scrollbar-corner {
-        //   background-color: transparent; // Adjust the corner color as desired
-        // }
         .favPrompt {
           padding: 17.5px;
           p {
@@ -988,12 +953,18 @@
       justify-content: space-between;
       width: 100%;
       button {
-        width: calc(100% / 4);
+        width: calc(100% / 5);
         font-size: 1.7rem;
         background: transparent;
         border: none;
         border-bottom: 2px solid transparent;
         color: $white;
+        #selectedUser {
+          color: $green;
+          transition: 0.35s;
+          -webkit-text-stroke-width: 0.7px;
+          -webkit-text-stroke-color: $black;
+        }
         #selectedPopular {
           color: $orange;
           transition: 0.35s;
@@ -1017,6 +988,16 @@
           transition: 0.35s;
           -webkit-text-stroke-width: 0.2px;
           -webkit-text-stroke-color: $black;
+        }
+      }
+      .dashLogin {
+        -webkit-text-stroke-width: 0.7px;
+        -webkit-text-stroke-color: $black;
+        &:hover {
+          border: none;
+          border-bottom: 2px solid $green;
+          transition: 0.3s;
+          color: $orange;
         }
       }
       .popular {
@@ -1057,6 +1038,14 @@
           border-bottom: 2px solid $blue;
           transition: 0.3s;
           color: $blue;
+        }
+      }
+      #selectedUserBtn {
+        border: none;
+        border-bottom: 2px solid $green;
+        i {
+          transform: rotate(0deg);
+          animation: favBounce 0.45s linear;
         }
       }
       #selectedPopularBtn {

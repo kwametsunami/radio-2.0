@@ -47,40 +47,43 @@
         }
       }
     }
+    .playerContainer {
+      z-index: 1;
+    }
   }
 }
 
-.rhap_container {
-  box-shadow: none !important;
-  background-color: $red !important;
-}
-.rhap_button-clear {
-  color: $white !important;
-}
-.rhap_volume-indicator {
-  background: $white !important;
-}
-.rhap_current-time {
-  display: none;
-}
-.rhap_progress-section {
-  display: none !important;
-}
+// .rhap_container {
+//   box-shadow: none !important;
+//   background-color: $red !important;
+// }
+// .rhap_button-clear {
+//   color: $white !important;
+// }
+// .rhap_volume-indicator {
+//   background: $white !important;
+// }
+// .rhap_current-time {
+//   display: none;
+// }
+// .rhap_progress-section {
+//   display: none !important;
+// }
 
-.rhap_additional-controls {
-  display: none !important;
-}
+// .rhap_additional-controls {
+//   display: none !important;
+// }
 
-.rhap_volume-controls {
-  justify-content: flex-start !important;
-  @include mobile {
-    display: none !important;
-  }
-}
+// .rhap_volume-controls {
+//   justify-content: flex-start !important;
+//   @include mobile {
+//     display: none !important;
+//   }
+// }
 
-.rhap_repeat-button {
-  display: none;
-}
+// .rhap_repeat-button {
+//   display: none;
+// }
 
 .radioInfo {
   position: absolute;

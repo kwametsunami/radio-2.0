@@ -13,6 +13,8 @@ const Dashboard = (props) => {
   const [showInfo, setShowInfo] = useState(false);
   const [popularView, setPopularView] = useState(1);
   const [recentView, setRecentView] = useState(false);
+  const [userPage, setUserPage] = useState(false);
+  const [userDate, setUserDate] = useState("");
   const [showMobile, setShowMobile] = useState(false);
 
   const [favPrompt, setFavPrompt] = useState(false);
@@ -31,22 +33,42 @@ const Dashboard = (props) => {
   };
 
   const favView = () => {
+    setUserPage(false);
     setPopularView(2);
     setRecentView(false);
   };
 
   const chartView = () => {
+    setUserPage(false);
     setPopularView(1);
     setRecentView(false);
   };
 
   const showRecent = () => {
+    setUserPage(false);
     setRecentView(true);
     setPopularView(0);
   };
 
   const mobileMenu = () => {
     setShowMobile(!showMobile);
+  };
+
+  const userView = () => {
+    setRecentView(false);
+    setPopularView(0);
+    setUserPage(true);
+
+    if (props.userDetails.user.email !== "anon@tr1.fm") {
+      const moment = require("moment");
+      const timestamp = props.userDetails.user.createdAt;
+      const date = moment(parseInt(timestamp, 10));
+      const formattedDate = date.format("YYYY-MM-DD");
+
+      setUserDate(formattedDate);
+    } else {
+      setUserDate("");
+    }
   };
 
   const playStation = (event) => {
@@ -377,7 +399,24 @@ const Dashboard = (props) => {
             ) : null}
           </div>
           <div className="middleDashboard">
-            {recentView ? (
+            {userPage ? (
+              <div className="userContainer">
+                <h2 id="userContainerTitle">dashboard</h2>
+                {userDate !== "" ? (
+                  <div className="userContent">
+                    <div className="creationDate">
+                      <p>
+                        member since <br />
+                        <span id="userDate">{userDate}</span>
+                      </p>
+                    </div>
+                    <button className="userSignOut">logout</button>
+                  </div>
+                ) : (
+                  <div className="anonymousContent"></div>
+                )}
+              </div>
+            ) : recentView ? (
               <div className="recentContainer">
                 <h2>
                   <span id="recentTitle">recently </span>played
@@ -700,6 +739,16 @@ const Dashboard = (props) => {
           >
             <div className="infoButtons">
               <button
+                className="dashLogin"
+                onClick={userView}
+                id={userPage ? "selectedUserBtn" : ""}
+              >
+                <i
+                  className="fa-solid fa-user"
+                  id={userPage ? "selectedUser" : ""}
+                ></i>
+              </button>
+              <button
                 onClick={chartView}
                 id={popularView === 1 ? "selectedPopularBtn" : ""}
                 className="popular"
@@ -738,9 +787,6 @@ const Dashboard = (props) => {
                   className="fa-solid fa-circle-info infoBtn"
                   id={showInfo ? "selectedInfo" : ""}
                 ></i>
-              </button>
-              <button className="dashLogin">
-                <i class="fa-solid fa-user"></i>
               </button>
             </div>
             {showInfo ? (

@@ -38,6 +38,7 @@ geoFilter.forEach((station) => {
 const Radio = (props) => {
   const [stations, setStations] = useState([]);
   const [stationFilter, setStationFilter] = useState(props.genre);
+  const [resultTextLoading, setResultTextLoading] = useState(false);
   const [filterAmount, setFilterAmount] = useState("");
   const [filteredArray, setFilteredArray] = useState([]);
 
@@ -61,13 +62,20 @@ const Radio = (props) => {
     setListView(!listView);
   };
 
-  console.log(props.loggedInUser);
-
-  console.log(userDetails);
-
   useEffect(() => {
-    console.log(filterAmount);
-    console.log(filteredArray);
+    const timestamp = userDetails.user.createdAt * 1000;
+
+    const date = new Date(timestamp);
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const formattedDate = `${year}-${month < 10 ? "0" + month : month}-${
+      day < 10 ? "0" + day : day
+    }`;
+
+    console.log(formattedDate);
 
     setStationFilter(props.genre);
 
@@ -102,6 +110,7 @@ const Radio = (props) => {
     randomGenre();
 
     setDashboardLoading(true);
+    setResultTextLoading(true);
 
     setTimeout(() => {
       let noDup = Array.from(
@@ -115,6 +124,7 @@ const Radio = (props) => {
         setBadSearch(false);
         setLoading(false);
         setBadResponse(false);
+        setResultTextLoading(false);
         setFilterAmount("");
       }
 
@@ -123,6 +133,7 @@ const Radio = (props) => {
         setBadSearch(true);
         randomGenre();
         setDashboardLoading(false);
+        setResultTextLoading(false);
         setFilterAmount("");
       }
 
@@ -195,7 +206,7 @@ const Radio = (props) => {
       const newArr = recentStations.filter((item) => item !== station);
       setRecentStations(newArr);
     } else {
-      const updatedStations = [station, ...recentStations.slice(0, 7)]; // Prepend the new station and keep the first 7 stations
+      const updatedStations = [station, ...recentStations.slice(0, 7)];
 
       setRecentStations(updatedStations);
     }
@@ -403,6 +414,7 @@ const Radio = (props) => {
                       setFilterAmount={setFilterAmount}
                       filteredArray={filteredArray}
                       setFilteredArray={setFilteredArray}
+                      resultTextLoading={resultTextLoading}
                     />
                   </div>
                 ) : (
@@ -434,6 +446,7 @@ const Radio = (props) => {
                       setFilterAmount={setFilterAmount}
                       filteredArray={filteredArray}
                       setFilteredArray={setFilteredArray}
+                      resultTextLoading={resultTextLoading}
                     />
                   </div>
                 )}

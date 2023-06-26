@@ -1,6 +1,8 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
+import HLSPlayer from "./HLSPlayer";
+
 import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
 
@@ -8,18 +10,13 @@ import defaultImage from "../assets/radio.png";
 
 import { useState, useEffect } from "react";
 
-const setDefaultAlert = () => {
-  alert(
-    "Sorry, this station is offline or unavailable in your region. Please select another stream."
-  );
-};
-
 const setDefaultSrc = (event) => {
   event.target.src = defaultImage;
 };
 
 const Player = (props) => {
   const [formattedTitle, setFormattedTitle] = useState("");
+  const [stationUrl, setStationUrl] = useState("");
 
   useEffect(() => {
     let ogTitle = props.stationName;
@@ -30,6 +27,8 @@ const Player = (props) => {
       .replace(/\//g, "");
 
     setFormattedTitle(format);
+
+    setStationUrl(props.audioSource);
   }, [props.stationName]);
 
   const favourite = (event, userId) => {
@@ -80,13 +79,16 @@ const Player = (props) => {
             <h3 className="radioInfoTitle">{formattedTitle}</h3>
           </div>
         </div>
-        <AudioPlayer
+        {/* <AudioPlayer
           autoPlay
           layout="horizontal-reverse"
           showJumpControls={false}
           onError={setDefaultAlert}
           src={props.audioSource}
-        />
+        /> */}
+        <div className="playerContainer">
+          <HLSPlayer stationUrl={stationUrl} />
+        </div>
         <div className="playerFav">
           <button
             className="playerFavBtn"

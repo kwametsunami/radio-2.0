@@ -3,6 +3,8 @@ import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
+import PropagateLoader from "react-spinners/PropagateLoader";
+
 import firebase from "../firebase";
 import { getDatabase, ref, onValue, push, remove } from "firebase/database";
 
@@ -165,15 +167,31 @@ const Map = (props) => {
 
       let surpriseStation = filteredStations[randomizer()];
 
+      let sendToRecent = [];
+
+      sendToRecent.push(
+        surpriseStation.changeuuid,
+        surpriseStation.url_resolved,
+        surpriseStation.favicon,
+        surpriseStation.geo_lat,
+        surpriseStation.geo_long,
+        surpriseStation.name
+      );
+
+      props.addToRecent(sendToRecent);
+
       setRadioUrl(surpriseStation.url_resolved);
       setLatitude(surpriseStation.geo_lat);
       setLongitude(surpriseStation.geo_long);
 
+      props.stationKey(surpriseStation.changeuuid);
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
       props.sendImage(surpriseStation.favicon);
       props.setCurrentLat(surpriseStation.geo_lat);
       props.setCurrentLong(surpriseStation.geo_long);
+
+      console.log(surpriseStation);
     } else {
       const randomizer = (min = 0, max = props.stations.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -181,10 +199,26 @@ const Map = (props) => {
 
       let surpriseStation = props.stations[randomizer()];
 
+      console.log(surpriseStation);
+
+      let sendToRecent = [];
+
+      sendToRecent.push(
+        surpriseStation.changeuuid,
+        surpriseStation.url_resolved,
+        surpriseStation.favicon,
+        surpriseStation.geo_lat,
+        surpriseStation.geo_long,
+        surpriseStation.name
+      );
+
+      props.addToRecent(sendToRecent);
+
       setRadioUrl(surpriseStation.url_resolved);
       setLatitude(surpriseStation.geo_lat);
       setLongitude(surpriseStation.geo_long);
 
+      props.stationKey(surpriseStation.changeuuid);
       props.sendToRadio(surpriseStation.url_resolved);
       props.sendToRadioName(surpriseStation.name);
       props.sendImage(surpriseStation.favicon);
@@ -222,14 +256,25 @@ const Map = (props) => {
   return (
     <section className="resultContainer">
       <div className="mapFilters">
-        <h3 className="returned">
-          returned{" "}
-          <span id="amountReturnedMap">
-            {filterTrue ? filteredStations.length : props.stations.length}{" "}
-          </span>
-          {props.quality === 96 ? "high quality " : null}stations matching{" "}
-          <span id="searchTerm">{props.selectedGenre}</span>
-        </h3>
+        {props.resultTextLoading ? (
+          <PropagateLoader
+            color={"#1a1a1c"}
+            height={80}
+            width={25}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            className="textLoading"
+          />
+        ) : (
+          <h3 className="returned">
+            returned{" "}
+            <span id="amountReturnedMap">
+              {filterTrue ? filteredStations.length : props.stations.length}{" "}
+            </span>
+            {props.quality === 96 ? "high quality " : null}stations matching{" "}
+            <span id="searchTerm">{props.selectedGenre}</span>
+          </h3>
+        )}
         <div className="topControls">
           <div className="filterButtonContainer">
             <button className="randomStation" onClick={randomStation}>
