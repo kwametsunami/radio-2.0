@@ -42,6 +42,14 @@ const HLSPlayer = (props) => {
         controls={false}
         playing={true}
         playsInline={true}
+        config={{
+          file: {
+            attributes: {
+              playsinline: true,
+              "webkit-playsinline": true,
+            },
+          },
+        }}
         width="100%"
         height="auto"
         volume={1}
