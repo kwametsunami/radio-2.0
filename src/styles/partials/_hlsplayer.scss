@@ -9,8 +9,9 @@
     z-index: 1000;
     align-items: center;
     position: absolute;
-    top: 0;
+    top: -0.5%;
     left: 0;
+    margin-bottom: 5px;
     .playPause {
       margin: 10px;
       .playerButton {
@@ -27,15 +28,33 @@
             transition: 0.3s;
           }
         }
+        @include smallDesktop {
+          width: 40px;
+        }
         i {
           font-size: 2rem;
           color: $red;
           margin: 0 auto;
+          @include smallDesktop {
+            font-size: 1.5rem;
+          }
         }
       }
     }
     .volume {
-      width: 100px;
+      width: 125px;
+      display: flex;
+      align-items: center;
+    }
+    .mute {
+      background: transparent;
+      border: none;
+      padding: 5px;
+      margin-right: 5px;
+      i {
+        font-size: 2rem;
+        color: $white;
+      }
     }
     input[type="range"] {
       width: 100%;

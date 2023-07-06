@@ -241,9 +241,11 @@ const Map = (props) => {
       push(dbRef, stationFavObj);
 
       props.setSaveToFav(stationFavArr[5]);
+      props.setFavPopUp(true);
 
       setTimeout(() => {
         props.setSaveToFav("");
+        props.setFavPopUp(false);
       }, 2000);
     };
 
@@ -301,8 +303,8 @@ const Map = (props) => {
       </div>
       <div className="actualMap">
         <MapContainer
-          center={[22, 12.5]}
-          zoom={2.5}
+          center={props.mobile ? [45, -60] : [22, 12.5]}
+          zoom={props.mobile ? 0 : 2.5}
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}

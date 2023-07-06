@@ -6,6 +6,8 @@ const HLSPlayer = (props) => {
   const playerRef = useRef(null);
 
   const [playing, setPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volumeLevel, setVolumeLevel] = useState(1);
 
   const handlePlay = () => {
     if (playerRef.current) {
@@ -21,17 +23,32 @@ const HLSPlayer = (props) => {
     setPlaying(false);
   };
 
+  const handleToggleMute = () => {
+    setIsMuted(!isMuted);
+    setVolumeLevel(isMuted ? 1 : 0);
+  };
+
   const handleVolumeChange = (volume) => {
     if (playerRef.current) {
       playerRef.current.getInternalPlayer().volume = volume;
+      setVolumeLevel(volume);
+      if (volume > 0 && isMuted) {
+        setIsMuted(false);
+      }
     }
   };
 
-  const setDefaultAlert = () => {
-    alert(
-      "Sorry, this station is offline or unavailable in your region. Please select another stream."
-    );
-    setPlaying(false);
+  // const setDefaultAlert = () => {
+  //   alert(
+  //     "Sorry, this station is offline or unavailable in your region. Please select another stream."
+  //   );
+  // };
+
+  const handlePlayerError = () => {
+    if (playerRef.current) {
+      playerRef.current.getInternalPlayer().load(); // Retry loading the media
+      playerRef.current.getInternalPlayer().play(); // Start playing again
+    }
   };
 
   return (
@@ -41,12 +58,11 @@ const HLSPlayer = (props) => {
         url={url}
         controls={false}
         playing={true}
-        playsInline={true}
+        muted={isMuted}
         config={{
           file: {
             attributes: {
-              playsinline: true,
-              "webkit-playsinline": true,
+              playsInline: true,
             },
           },
         }}
@@ -55,7 +71,7 @@ const HLSPlayer = (props) => {
         volume={1}
         onPlay={handlePlay}
         onPause={handlePause}
-        onError={setDefaultAlert}
+        onError={handlePlayerError}
       />
 
       <div className="playerControls">
@@ -71,12 +87,23 @@ const HLSPlayer = (props) => {
           )}
         </div>
         <div className="volume">
+          <button className="mute" onClick={handleToggleMute}>
+            {isMuted ? (
+              <i className="fa-solid fa-volume-xmark"></i>
+            ) : volumeLevel === 0 ? (
+              <i className="fa-solid fa-volume-mute"></i>
+            ) : volumeLevel < 0.5 ? (
+              <i className="fa-solid fa-volume-low"></i>
+            ) : (
+              <i className="fa-solid fa-volume-high"></i>
+            )}
+          </button>
           <input
             type="range"
             min={0}
             max={1}
             step={0.1}
-            defaultValue={1}
+            defaultValue={volumeLevel}
             onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
           />
         </div>

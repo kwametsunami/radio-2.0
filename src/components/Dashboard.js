@@ -21,6 +21,14 @@ const Dashboard = (props) => {
   const [recentPrompt, setRecentPrompt] = useState(false);
 
   useEffect(() => {
+    if (props.mobile === false) {
+      setPopularView(1);
+    } else {
+      setPopularView(null);
+    }
+  }, []);
+
+  useEffect(() => {
     props.recentStations.length === 0
       ? setRecentPrompt(true)
       : setRecentPrompt(false);
@@ -34,14 +42,15 @@ const Dashboard = (props) => {
     userDate,
   ]);
 
-  const infoButton = () => {
-    setShowInfo(!showInfo);
+  const mobileMenu = () => {
+    setShowMobile(!showMobile);
+    setPopularView(null);
   };
 
-  const favView = () => {
-    setUserPage(false);
-    setPopularView(2);
+  const userView = () => {
     setRecentView(false);
+    setPopularView(0);
+    setUserPage(true);
   };
 
   const chartView = () => {
@@ -56,14 +65,18 @@ const Dashboard = (props) => {
     setPopularView(0);
   };
 
-  const mobileMenu = () => {
-    setShowMobile(!showMobile);
+  const favView = () => {
+    setUserPage(false);
+    setPopularView(2);
+    setRecentView(false);
   };
 
-  const userView = () => {
-    setRecentView(false);
-    setPopularView(0);
-    setUserPage(true);
+  const infoButton = () => {
+    setShowInfo(!showInfo);
+  };
+
+  const backMobile = () => {
+    setPopularView(null);
   };
 
   useEffect(() => {
@@ -142,9 +155,11 @@ const Dashboard = (props) => {
       push(dbRef, stationFavObj);
 
       props.setSaveToFav(stationFavArr[5]);
+      props.setFavPopUp(true);
 
       setTimeout(() => {
         props.setSaveToFav("");
+        props.setFavPopUp(false);
       }, 2000);
     };
 
@@ -204,12 +219,184 @@ const Dashboard = (props) => {
                   <h2>tr-1.fm</h2>
                 </Link>
               </div>
-              <div className="middleDashboard">
-                {recentView ? (
-                  <div>
-                    <h2>recent view</h2>
+              {popularView != null ? (
+                <div className="goBack">
+                  <button onClick={backMobile}>
+                    <i className="fa-solid fa-chevron-left"></i>
+                    <p>back</p>
+                  </button>
+                </div>
+              ) : null}
+
+              <FadeIn
+                transitionDuration={350}
+                className="mobileDashboardContainer"
+              >
+                {popularView === null ? (
+                  <div className="mobileDashButtons">
+                    <FadeIn transitionDuration={750}>
+                      <button onClick={userView} className="userButtonMobile">
+                        <i className="fa-solid fa-user"></i>
+                        <p className="buttonText">user</p>
+                      </button>
+                      <button onClick={chartView} className="chartButtonMobile">
+                        <i className="fa-solid fa-chart-simple"></i>
+                        <p className="buttonText">popular</p>
+                      </button>
+                      <button
+                        onClick={showRecent}
+                        className="recentButtonMobile"
+                      >
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <p className="buttonText">recently played</p>
+                      </button>
+                      <button onClick={favView} className="favButtonMobile">
+                        <i className="fa-solid fa-star"></i>
+                        <p className="buttonText">favourites</p>
+                      </button>
+                      <button onClick={infoButton} className="infoButtonMobile">
+                        <i className="fa-solid fa-circle-info"></i>
+                        <p className="buttonText">information</p>
+                      </button>
+                    </FadeIn>
                   </div>
-                ) : popularView ? (
+                ) : userPage ? (
+                  <div className="userContainer">
+                    <h2 id="userContainerTitle">dashboard</h2>
+                    {userDate !== "" ? (
+                      <div className="userContent">
+                        <div className="creationDate">
+                          <p>
+                            member since <br />
+                            <span id="userDate">{userDate}</span>
+                          </p>
+                        </div>
+                        <button className="userSignOut" onClick={logout}>
+                          logout
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="anonymousContent">
+                        <p>Things are more fun with an account!</p>
+                        <div className="anonButtons">
+                          <button
+                            className="logInDashboard"
+                            onClick={goToLogin}
+                          >
+                            login
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : recentView ? (
+                  <div className="recentContainer">
+                    <h2>
+                      <span id="recentTitle">recently </span>played
+                    </h2>
+                    <div className="recentContainerContainer">
+                      {recentPrompt ? (
+                        <p className="recentPrompt">
+                          It's pretty quiet here... starting listening to
+                          something!
+                        </p>
+                      ) : (
+                        <FadeIn
+                          transitionDuration={500}
+                          visible={true}
+                          className="recentFade"
+                        >
+                          {props.recentStations.map((recent) => {
+                            return (
+                              <div
+                                className={
+                                  props.currentKey === recent[0]
+                                    ? "recentItemsPlaying"
+                                    : "recentItems"
+                                }
+                                key={`${recent[0]}`}
+                                onMouseEnter={() => handleMouseEnter(recent[0])}
+                                onMouseLeave={handleMouseLeave}
+                              >
+                                {hoveredItem === recent[0] ? (
+                                  <button
+                                    className="playButtonDivRecent"
+                                    onClick={recentPlayStation}
+                                    value={[
+                                      `${recent[0]}`,
+                                      `${recent[1]}`,
+                                      `${recent[2]}`,
+                                      `${recent[3]}`,
+                                      `${recent[4]}`,
+                                      `${recent[5]}`,
+                                    ]}
+                                  ></button>
+                                ) : null}
+                                {props.currentKey === recent[0] ? (
+                                  <div className="playingBarsRecent"></div>
+                                ) : (
+                                  <img
+                                    src={`${recent[2]}`}
+                                    alt={`${recent[5]}`}
+                                    onError={setDefaultSrc}
+                                    className={
+                                      hoveredItem === recent[0] ? "blurred" : ""
+                                    }
+                                  />
+                                )}
+                                {hoveredItem === recent[0] &&
+                                props.stationUrl !== recent[1] ? (
+                                  <div className="hoverPlayDash">
+                                    <i className="fa-solid fa-play"></i>
+                                  </div>
+                                ) : null}
+                                <div className="recentItemsText">
+                                  <p className="recentTextTitle">
+                                    {`${recent[5]
+                                      .replace(/_/g, "")
+                                      .replace(/-/g, " ")
+                                      .replace(/  +/, " ")
+                                      .replace(/\//g, "")}`}
+                                  </p>
+                                </div>
+                                <div className="recentItemsButton">
+                                  {props.favKeys.includes(`${recent[0]}`) ? (
+                                    <button class="added">
+                                      <i className="fa-solid fa-star alreadyAdded"></i>
+                                    </button>
+                                  ) : (
+                                    <button
+                                      className="recentAddFav"
+                                      onClick={favourite}
+                                      value={[
+                                        `${recent[0]}`,
+                                        `${recent[1]}`,
+                                        `${recent[2]}`,
+                                        `${recent[3]}`,
+                                        `${recent[4]}`,
+                                        `${recent[5]}`,
+                                      ]}
+                                    >
+                                      <i className="fa-solid fa-star"></i>
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {!recentPrompt && props.stationUrl !== "" ? (
+                            <button
+                              className="clearRecent"
+                              onClick={clearRecent}
+                            >
+                              clear list
+                            </button>
+                          ) : null}
+                        </FadeIn>
+                      )}
+                    </div>
+                  </div>
+                ) : popularView === 1 ? (
                   <div className="popularView">
                     {!props.dashboardLoading ? (
                       props.badSearch ? null : (
@@ -221,68 +408,88 @@ const Dashboard = (props) => {
                       )
                     ) : null}
                     {props.dashboardLoading ? <DashboardLoading /> : null}
-                    {props.dashboardLoading
-                      ? null
-                      : props.popular.map((stations) => {
-                          return (
-                            <div
-                              className={
-                                props.stationUrl === stations.url_resolved
-                                  ? "popularResultsPlaying"
-                                  : "popularResults"
-                              }
-                              key={`${stations.changeuuid}`}
-                            >
-                              <img
-                                src={`${stations.favicon}`}
-                                alt={`${stations.name}`}
-                                onError={setDefaultSrc}
-                              />
-                              <div className="popularText">
-                                <p className="popularTextTitle">{`${stations.name
-                                  .replace(/_/g, "")
-                                  .replace(/-/g, " ")
-                                  .replace(/  +/, " ")
-                                  .replace(/\//g, "")}`}</p>
-                              </div>
-                              <div className="popularButtons">
-                                <button
+                    <div className="popularContainerContainer">
+                      <FadeIn transitionDuration={500}>
+                        {props.dashboardLoading
+                          ? null
+                          : props.popular.map((stations) => {
+                              return (
+                                <div
                                   className={
-                                    props.stationUrl === stations.url_resolved
-                                      ? "popularButtonPlaying"
-                                      : "popularButton"
+                                    props.currentKey === stations.changeuuid
+                                      ? "popularResultsPlaying"
+                                      : "popularResults"
                                   }
-                                  onClick={playStation}
-                                  value={[
-                                    `${stations.changeuuid}`,
-                                    `${stations.url_resolved}`,
-                                    `${stations.favicon}`,
-                                    `${stations.geo_lat}`,
-                                    `${stations.geo_long}`,
-                                    `${stations.name}`,
-                                  ]}
+                                  key={`${stations.changeuuid}`}
                                 >
-                                  {props.stationUrl === stations.url_resolved
-                                    ? ""
-                                    : "▶"}
-                                </button>
-                                <button
-                                  className="addFav"
-                                  value={[
-                                    `${stations.changeuuid}`,
-                                    `${stations.url_resolved}`,
-                                    `${stations.favicon}`,
-                                    `${stations.geo_lat}`,
-                                    `${stations.geo_long}`,
-                                    `${stations.name}`,
-                                  ]}
-                                >
-                                  <i className="fa-solid fa-star"></i>
-                                </button>
-                              </div>
-                            </div>
-                          );
-                        })}
+                                  <button
+                                    onClick={playStation}
+                                    value={[
+                                      `${stations.changeuuid}`,
+                                      `${stations.url_resolved}`,
+                                      `${stations.favicon}`,
+                                      `${stations.geo_lat}`,
+                                      `${stations.geo_long}`,
+                                      `${stations.name}`,
+                                    ]}
+                                    className="playButtonDivPopular"
+                                  ></button>
+                                  <div className="imageAndText">
+                                    {props.currentKey ===
+                                    stations.changeuuid ? (
+                                      <div className="playingBarsPopular"></div>
+                                    ) : (
+                                      <img
+                                        src={`${stations.favicon}`}
+                                        alt={`${stations.name}`}
+                                        onError={setDefaultSrc}
+                                      />
+                                    )}
+                                    {hoveredItem === stations.changeuuid &&
+                                    props.stationUrl !==
+                                      stations.url_resolved ? (
+                                      <div className="hoverPlayDash">
+                                        <i className="fa-solid fa-play"></i>
+                                      </div>
+                                    ) : null}
+                                    <div className="popularText">
+                                      <p className="popularTextTitle">{`${stations.name
+                                        .replace(/_/g, "")
+                                        .replace(/-/g, " ")
+                                        .replace(/  +/, " ")
+                                        .replace(/\//g, "")}`}</p>
+                                    </div>
+                                  </div>
+                                  <div className="popularButtons">
+                                    {props.favKeys.includes(
+                                      `${stations.changeuuid}`
+                                    ) ? (
+                                      <button class="added">
+                                        <i className="fa-solid fa-star alreadyAdded"></i>
+                                      </button>
+                                    ) : (
+                                      <button
+                                        className="addFav"
+                                        onClick={favourite}
+                                        value={[
+                                          `${stations.changeuuid}`,
+                                          `${stations.url_resolved}`,
+                                          `${stations.favicon}`,
+                                          `${stations.geo_lat}`,
+                                          `${stations.geo_long}`,
+                                          `${stations.name}`,
+                                        ]}
+                                      >
+                                        <i className="fa-solid fa-star"></i>
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                      </FadeIn>
+                    </div>
+                    ;
                   </div>
                 ) : (
                   <div className="favContainer">
@@ -290,90 +497,121 @@ const Dashboard = (props) => {
                       your
                       <span id="favouriteTitle"> favourites</span>
                     </h2>
-                    <div className={`favContainerContainer`}>
-                      <div className="scrollableContent">
-                        <FadeIn transitionDuration={700}>
-                          {props.testArr.map((favStation) => {
-                            return (
-                              <div
-                                className={
-                                  props.currentKey === favStation.stationData.id
-                                    ? "favItemsPlaying"
-                                    : "favItems"
-                                }
-                                key={`${favStation.key}`}
-                                onMouseEnter={() =>
-                                  handleMouseEnter(favStation.stationData.id)
-                                }
-                                onMouseLeave={handleMouseLeave}
+                    <div className="favContainerContainer">
+                      {favPrompt ? (
+                        <div className="favPrompt">
+                          <p>
+                            Your favourite stations will live here! Hit the star
+                            icon on the stations you'd like to come back to.
+                          </p>
+                          {props.userDetails.user.email === "anon@tr1.fm" ? (
+                            <div className="notSignedIn">
+                              <p id="notSignedIn">
+                                You are currently not signed in. Favourites will
+                                not be saved after this session.
+                              </p>
+                              <button
+                                class="notSignedInBtn"
+                                onClick={goToLogin}
                               >
-                                {hoveredItem === favStation.stationData.id ? (
-                                  <button
-                                    className="playButtonDivFav"
-                                    onClick={playStation}
-                                    value={[
-                                      `${favStation.stationData.id}`,
-                                      `${favStation.stationData.url}`,
-                                      `${favStation.stationData.icon}`,
-                                      `${favStation.stationData.latitude}`,
-                                      `${favStation.stationData.longitude}`,
-                                      `${favStation.stationData.stationName}`,
-                                    ]}
-                                  ></button>
-                                ) : null}
-                                {props.currentKey ===
-                                favStation.stationData.id ? (
-                                  <div className="playingBarsFav"></div>
-                                ) : (
-                                  <img
-                                    src={`${favStation.stationData.icon}`}
-                                    alt={`${favStation.stationData.statioName}`}
-                                    onError={setDefaultSrc}
-                                    className={
-                                      hoveredItem === favStation.stationData.id
-                                        ? "blurred"
-                                        : ""
-                                    }
-                                  />
-                                )}
-                                {hoveredItem === favStation.stationData.id &&
-                                props.stationUrl !==
-                                  favStation.stationData.url ? (
-                                  <div className="hoverPlayDash">
-                                    <i className="fa-solid fa-play"></i>
+                                login
+                              </button>
+                            </div>
+                          ) : null}
+                        </div>
+                      ) : (
+                        <div
+                          className="favContent"
+                          id={props.stationUrl === "" ? "fullScroll" : ""}
+                        >
+                          <FadeIn
+                            transitionDuration={700}
+                            className={`scrollableContent`}
+                          >
+                            {props.testArr.map((favStation) => {
+                              return (
+                                <div
+                                  className={
+                                    props.currentKey ===
+                                    favStation.stationData.id
+                                      ? "favItemsPlaying"
+                                      : "favItems"
+                                  }
+                                  key={`${favStation.key}`}
+                                  onMouseEnter={() =>
+                                    handleMouseEnter(favStation.stationData.id)
+                                  }
+                                  onMouseLeave={handleMouseLeave}
+                                >
+                                  {hoveredItem === favStation.stationData.id ? (
+                                    <button
+                                      className="playButtonDivFav"
+                                      onClick={playStation}
+                                      value={[
+                                        `${favStation.stationData.id}`,
+                                        `${favStation.stationData.url}`,
+                                        `${favStation.stationData.icon}`,
+                                        `${favStation.stationData.latitude}`,
+                                        `${favStation.stationData.longitude}`,
+                                        `${favStation.stationData.stationName}`,
+                                      ]}
+                                    ></button>
+                                  ) : null}
+                                  {props.currentKey ===
+                                  favStation.stationData.id ? (
+                                    <div className="playingBarsFav"></div>
+                                  ) : (
+                                    <img
+                                      src={`${favStation.stationData.icon}`}
+                                      alt={`${favStation.stationData.stationName}`}
+                                      onError={setDefaultSrc}
+                                      className={
+                                        hoveredItem ===
+                                        favStation.stationData.id
+                                          ? "blurred"
+                                          : ""
+                                      }
+                                    />
+                                  )}
+                                  {hoveredItem === favStation.stationData.id &&
+                                  props.stationUrl !==
+                                    favStation.stationData.url ? (
+                                    <div className="hoverPlayDash">
+                                      <i className="fa-solid fa-play"></i>
+                                    </div>
+                                  ) : null}
+                                  <div className="favText">
+                                    <p className="favTextTitle">{`${favStation.stationData.stationName
+                                      .replace(/_/g, "")
+                                      .replace(/-/g, " ")
+                                      .replace(/  +/, " ")
+                                      .replace(/\//g, "")}`}</p>
                                   </div>
-                                ) : null}
-                                <div className="favText">
-                                  <p className="favTextTitle">{`${favStation.stationData.stationName
-                                    .replace(/_/g, "")
-                                    .replace(/-/g, " ")
-                                    .replace(/  +/, " ")
-                                    .replace(/\//g, "")}`}</p>
+                                  <div className="favButtons">
+                                    <button
+                                      className="removeFav"
+                                      onClick={() =>
+                                        props.removeFav(favStation.key)
+                                      }
+                                    >
+                                      {hoveredItem ===
+                                      favStation.stationData.id ? (
+                                        <i class="fa-solid fa-trash-can trash"></i>
+                                      ) : (
+                                        <i className="fa-solid fa-star faved"></i>
+                                      )}
+                                    </button>
+                                  </div>
                                 </div>
-                                <div className="favButtons">
-                                  <button
-                                    className="removeFav"
-                                    onClick={() =>
-                                      props.removeFav(favStation.key)
-                                    }
-                                  >
-                                    {hoveredItem ===
-                                    favStation.stationData.id ? (
-                                      <i class="fa-solid fa-trash-can trash"></i>
-                                    ) : (
-                                      <i className="fa-solid fa-star faved"></i>
-                                    )}
-                                  </button>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </FadeIn>
-                      </div>
+                              );
+                            })}
+                          </FadeIn>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
-              </div>
+              </FadeIn>
               <div
                 className={
                   props.stationUrl === ""
@@ -381,20 +619,6 @@ const Dashboard = (props) => {
                     : "infoContainer"
                 }
               >
-                <div className="infoButtons">
-                  <button onClick={chartView}>
-                    <i className="fa-solid fa-chart-simple"></i>
-                  </button>
-                  <button onClick={showRecent}>
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                  </button>
-                  <button onClick={favView}>
-                    <i className="fa-solid fa-star"></i>
-                  </button>
-                  <button onClick={infoButton}>
-                    <i className="fa-solid fa-circle-info"></i>
-                  </button>
-                </div>
                 {showInfo ? (
                   <div className="instructions">
                     <button className="infoButton" onClick={infoButton}>

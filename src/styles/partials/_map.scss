@@ -69,6 +69,9 @@
     margin-left: 0px;
     left: 200px;
   }
+  @include mobileLarge {
+    visibility: hidden;
+  }
   .textLoading {
     margin: 20px 0 25px;
   }
@@ -153,8 +156,9 @@
 .actualMap {
   display: flex;
   justify-content: flex-end;
-  .testingMap {
-    color: $yellow;
+  @include mobileLarge {
+    height: 100%;
+    width: 100vw;
   }
   .leaflet-popup-content {
     margin: 15px 20px;

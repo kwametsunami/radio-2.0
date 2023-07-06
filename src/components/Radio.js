@@ -311,6 +311,7 @@ const Radio = (props) => {
   };
 
   const [savedToFav, setSaveToFav] = useState("");
+  const [favPopUp, setFavPopUp] = useState(false);
 
   return (
     <section className="infoContainer">
@@ -368,6 +369,7 @@ const Radio = (props) => {
             logout={logout}
             login={login}
             setSaveToFav={setSaveToFav}
+            setFavPopUp={setFavPopUp}
           />
         </div>
         {loading ? (
@@ -400,17 +402,19 @@ const Radio = (props) => {
               </div>
             ) : (
               <div className="results">
-                <div className="savedToFavPopUp">
-                  <div
-                    className="popupContainer"
-                    id={savedToFav ? "savedPopup" : ""}
-                  >
-                    <h3>
-                      <span id="favTitle">{savedToFav} </span>added to
-                      favourites
-                    </h3>
+                {favPopUp ? (
+                  <div className="savedToFavPopUp">
+                    <div
+                      className="popupContainer"
+                      id={savedToFav ? "savedPopup" : ""}
+                    >
+                      <h3>
+                        <span id="favTitle">{savedToFav} </span>added to
+                        favourites
+                      </h3>
+                    </div>
                   </div>
-                </div>
+                ) : null}
                 {listView ? (
                   <div className="listViewContainer">
                     <List
@@ -440,6 +444,7 @@ const Radio = (props) => {
                       setFilteredArray={setFilteredArray}
                       resultTextLoading={resultTextLoading}
                       setSaveToFav={setSaveToFav}
+                      setFavPopUp={setFavPopUp}
                     />
                   </div>
                 ) : (
@@ -473,6 +478,8 @@ const Radio = (props) => {
                       setFilteredArray={setFilteredArray}
                       resultTextLoading={resultTextLoading}
                       setSaveToFav={setSaveToFav}
+                      setFavPopUp={setFavPopUp}
+                      mobile={mobile}
                     />
                   </div>
                 )}
@@ -507,6 +514,8 @@ const Radio = (props) => {
           stationName={playingStation}
           favKeys={favKeys}
           userDetails={userDetails}
+          setSaveToFav={setSaveToFav}
+          setFavPopUp={setFavPopUp}
         />
       ) : null}
     </section>

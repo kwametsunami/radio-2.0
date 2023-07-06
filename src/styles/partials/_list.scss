@@ -142,11 +142,6 @@
         justify-content: space-between;
         width: 100%;
         padding: 5px;
-        @include mobileLarge {
-          flex-direction: column;
-          text-align: center;
-          align-items: center;
-        }
         .information {
           width: 50%;
           display: flex;
@@ -214,6 +209,12 @@
               font-size: 2rem;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1rem;
+              }
             }
             &:hover {
               i {
@@ -282,6 +283,12 @@
             i {
               color: transparent;
               font-size: 2rem;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1rem;
+              }
             }
           }
           .added {
@@ -310,6 +317,12 @@
               animation: rotateOnce 0.65s linear 1;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1rem;
+              }
             }
           }
         }
@@ -364,16 +377,12 @@
         justify-content: space-between;
         width: 100%;
         padding: 5px;
-        @include mobileLarge {
-          flex-direction: column;
-          text-align: center;
-          align-items: center;
-        }
         .information {
           width: 50%;
           @include tablet {
             overflow: hidden;
             text-overflow: ellipsis;
+            width: 100%;
           }
           .stationName {
             font-family: $bold;
@@ -424,20 +433,21 @@
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            margin: auto;
+            // margin: auto;
+            padding: 5px;
+            margin: 0 auto;
+            align-self: center;
             @include smallDesktop {
-              width: 30px;
-              height: 30px;
+              width: 50px;
+              height: 50px;
+              max-height: 50px;
+              background-size: 100px;
             }
             @include tablet {
-              width: 25px;
-              height: 25px;
-              background-size: 60px;
-            }
-            @include mobileLarge {
-              width: 20px;
-              height: 20px;
-              background-size: 45px;
+              width: 35px;
+              height: 35px;
+              max-height: 35px;
+              background-size: 65px;
             }
           }
         }
@@ -488,7 +498,6 @@
             @include mobileLarge {
               width: 20px;
               height: 20px;
-              font-size: 0.7rem;
             }
             i {
               font-size: 2rem;
@@ -496,6 +505,12 @@
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
               animation: rotateOnce 0.65s linear;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1rem;
+              }
             }
           }
         }
@@ -586,8 +601,6 @@
 ///
 ///
 ///
-// text-shadow: 0px 0.5px 0 #000, 0px 0px 0 #000, 0px 0px 0 #000,
-//   0px -0px 0 #000;
 
 @keyframes favourite {
   0% {

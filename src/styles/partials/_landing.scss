@@ -60,6 +60,15 @@
             color: $yellow;
             transition: 0.3s;
           }
+          @include mobileLarge {
+            width: 45px;
+          }
+          @include mobile {
+            width: 30px;
+          }
+          @include small {
+            width: 25px;
+          }
         }
         .logoutBtn {
           margin: 0 5px;
@@ -73,6 +82,15 @@
             color: $yellow;
             transition: 0.3s;
           }
+          @include mobileLarge {
+            width: 45px;
+          }
+          @include mobile {
+            width: 30px;
+          }
+          @include small {
+            width: 25px;
+          }
         }
         .aboutBtn {
           margin: 0 5px;
@@ -85,6 +103,15 @@
           &:hover {
             color: $yellow;
             transition: 0.3s;
+          }
+          @include mobileLarge {
+            width: 45px;
+          }
+          @include mobile {
+            width: 30px;
+          }
+          @include small {
+            width: 25px;
           }
         }
       }

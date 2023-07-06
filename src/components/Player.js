@@ -49,6 +49,14 @@ const Player = (props) => {
       const dbRef = ref(database);
 
       push(dbRef, stationFavObj);
+
+      props.setSaveToFav(playerStationArr[5]);
+      props.setFavPopUp(true);
+
+      setTimeout(() => {
+        props.setSaveToFav("");
+        props.setFavPopUp(false);
+      }, 2000);
     };
 
     pushToDatabase(event, props.userDetails.user.uid);

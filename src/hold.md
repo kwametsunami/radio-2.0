@@ -1,76 +1,116 @@
-                        <button
-                          className="favourite"
-                          onClick={favourite}
-                          value={[
-                            `${stationDetails.changeuuid}`,
-                            `${stationDetails.url_resolved}`,
-                            `${stationDetails.favicon}`,
-                            `${stationDetails.geo_lat}`,
-                            `${stationDetails.geo_long}`,
-                            `${stationDetails.name}`,
-                          ]}
-                        >
+import React, { useRef, useState } from "react";
+import ReactPlayer from "react-player";
 
+const HLSPlayer = (props) => {
+const url = props.stationUrl;
+const playerRef = useRef(null);
 
+const [playing, setPlaying] = useState(true);
+const [isMuted, setIsMuted] = useState(false);
+const [volumeLevel, setVolumeLevel] = useState(1);
 
-    if (props.recentStations.length > 0) {
-      for (let i = 0; i < props.recentStations.length; i++) {
-        if (props.recentStations[i][0] !== dashboardStationArr[0]) {
-          props.addToRecent(dashboardStationArr);
-          console.log("for loop added");
-        } else {
-          const newArr = props.recentStations[i].filter(
-            (item) => item !== dashboardStationArr
-          );
+const handlePlay = () => {
+if (playerRef.current) {
+playerRef.current.getInternalPlayer().play();
+}
+setPlaying(true);
+};
 
-          props.setSendToRecent(newArr);
-        }
-      }
-    } else {
-      props.addToRecent(dashboardStationArr);
-      console.log("added");
-    }
+const handlePause = () => {
+if (playerRef.current) {
+playerRef.current.getInternalPlayer().pause();
+}
+setPlaying(false);
+};
 
-// useEffect(() => {
-// const database = getDatabase(firebase);
-// const dbRef = ref(database);
+const handleToggleMute = () => {
+setIsMuted(!isMuted);
+setVolumeLevel(isMuted ? 1 : 0);
+};
 
-// onValue(dbRef, (response) => {
-// const newState = [];
+const handleVolumeChange = (volume) => {
+if (playerRef.current) {
+playerRef.current.getInternalPlayer().volume = volume;
+setVolumeLevel(volume);
+if (volume > 0 && isMuted) {
+setIsMuted(false);
+}
+}
+};
 
-// const data = response.val();
+// const setDefaultAlert = () => {
+// alert(
+// "Sorry, this station is offline or unavailable in your region. Please select another stream."
+// );
+// };
 
-// for (let key in data) {
-// newState.push({
-// key: key,
-// data: data[key],
-// });
-// }
+const handlePlayerError = () => {
+if (playerRef.current) {
+playerRef.current.getInternalPlayer().load(); // Retry loading the media
+playerRef.current.getInternalPlayer().play(); // Start playing again
+}
+};
 
-// const uniqueFav = [];
-// const searchedFav = [];
+return (
+<div className="hlsplayer">
+<ReactPlayer
+ref={playerRef}
+url={url}
+controls={false}
+playing={true}
+muted={isMuted}
+config={{
+          file: {
+            attributes: {
+              playsInline: true,
+            },
+          },
+        }}
+width="100%"
+height="auto"
+volume={1}
+onPlay={handlePlay}
+onPause={handlePause}
+onError={handlePlayerError}
+/>
 
-// for (let i = 0; i < newState.length; i++) {
-// const favIdKey = newState[i];
+      <div className="playerControls">
+        <div className="playPause">
+          {playing ? (
+            <button className="playerButton pause" onClick={handlePause}>
+              <i className="fa-solid fa-pause"></i>
+            </button>
+          ) : (
+            <button className="playerButton play" onClick={handlePlay}>
+              <i className="fa-solid fa-play"></i>
+            </button>
+          )}
+        </div>
+        <div className="volume">
+          <button className="mute" onClick={handleToggleMute}>
+            {isMuted ? (
+              <i className="fa-solid fa-volume-xmark"></i>
+            ) : volumeLevel === 0 ? (
+              <i className="fa-solid fa-volume-mute"></i>
+            ) : volumeLevel < 0.5 ? (
+              <i className="fa-solid fa-volume-low"></i>
+            ) : (
+              <i className="fa-solid fa-volume-high"></i>
+            )}
+          </button>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.1}
+            defaultValue={volumeLevel}
+            onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+          />
+        </div>
+      </div>
+    </div>
 
-// if (!searchedFav[favIdKey.data]) {
-// searchedFav[favIdKey.data] = true;
-// uniqueFav.push(favIdKey);
-// }
-// }
-// setTestArr(uniqueFav);
+);
+};
 
-// const stationKeys = [];
-
-// for (let i = 0; i < uniqueFav.length; i++) {
-// stationKeys.push(uniqueFav[i].data[0]);
-// }
-
-// setTestKeys(stationKeys);
-// });
-// }, []);
-
-                                  .replace(/_/g, "")
-                                  .replace(/-/g, " ")
-                                  .replace(/  +/, " ")
-                                  .replace(/\//g, "")
+export default HLSPlayer;

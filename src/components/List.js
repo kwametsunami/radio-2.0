@@ -202,9 +202,11 @@ const List = (props) => {
       push(dbRef, stationFavObj);
 
       props.setSaveToFav(stationFavArr[5]);
+      props.setFavPopUp(true);
 
       setTimeout(() => {
         props.setSaveToFav("");
+        props.setFavPopUp(false);
       }, 2000);
     };
 
