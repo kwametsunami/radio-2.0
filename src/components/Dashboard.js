@@ -445,13 +445,6 @@ const Dashboard = (props) => {
                                         onError={setDefaultSrc}
                                       />
                                     )}
-                                    {hoveredItem === stations.changeuuid &&
-                                    props.stationUrl !==
-                                      stations.url_resolved ? (
-                                      <div className="hoverPlayDash">
-                                        <i className="fa-solid fa-play"></i>
-                                      </div>
-                                    ) : null}
                                     <div className="popularText">
                                       <p className="popularTextTitle">{`${stations.name
                                         .replace(/_/g, "")

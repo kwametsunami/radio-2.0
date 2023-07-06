@@ -63,6 +63,7 @@
 }
 
 .resultsContainer {
+  overflow: hidden;
   .badResponse {
     height: 100vh;
     width: calc(100vw - 350px);

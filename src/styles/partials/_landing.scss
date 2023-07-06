@@ -5,10 +5,12 @@
   height: 100vh;
   width: 100vw;
   display: flex;
+  overflow: hidden;
   .landingInfo {
     height: 100%;
     width: 100%;
     margin: 0 auto;
+    overflow: hidden;
   }
   .landingNav {
     display: flex;
@@ -16,6 +18,9 @@
     justify-content: flex-end;
     margin: 10px 50px 0 50px;
     padding-top: 10px;
+    @include mobileLarge {
+      margin: 5px 20px 0 20px;
+    }
     .navItems {
       display: flex;
       justify-content: space-between;
@@ -128,6 +133,9 @@
     .centerText {
       margin: 100px 0 0;
       text-align: center;
+      @include mobileLarge {
+        margin: 115px 0 0;
+      }
       .title {
         color: $white;
         font-family: $bold;
