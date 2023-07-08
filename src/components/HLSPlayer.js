@@ -38,18 +38,18 @@ const HLSPlayer = (props) => {
     }
   };
 
-  // const setDefaultAlert = () => {
-  //   alert(
-  //     "Sorry, this station is offline or unavailable in your region. Please select another stream."
-  //   );
-  // };
-
-  const handlePlayerError = () => {
-    if (playerRef.current) {
-      playerRef.current.getInternalPlayer().load(); // Retry loading the media
-      playerRef.current.getInternalPlayer().play(); // Start playing again
-    }
+  const setDefaultAlert = () => {
+    alert(
+      "Sorry, this station is offline or unavailable in your region. Please select another stream."
+    );
   };
+
+  // const handlePlayerError = () => {
+  //   if (playerRef.current) {
+  //     playerRef.current.getInternalPlayer().load(); // Retry loading the media
+  //     playerRef.current.getInternalPlayer().play(); // Start playing again
+  //   }
+  // };
 
   return (
     <div className="hlsplayer">
@@ -71,7 +71,7 @@ const HLSPlayer = (props) => {
         volume={1}
         onPlay={handlePlay}
         onPause={handlePause}
-        onError={handlePlayerError}
+        onError={setDefaultAlert}
       />
 
       <div className="playerControls">

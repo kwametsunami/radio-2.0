@@ -1334,143 +1334,131 @@
     opacity: 0;
     animation: 0.2s linear forwards fade;
   }
-  .hamburgerX {
-    font-size: 3.75rem;
-    position: absolute;
-    top: 0;
-    right: 2%;
-    z-index: 5;
-    background: transparent;
-    border: none;
-    color: $black;
-    margin: 0;
-    padding: 12.5px;
-    opacity: 0;
-    animation: 0.2s linear forwards openMobile;
-  }
+
   .dashboardPopOut {
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
     background: $red;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     z-index: 4;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     border-right: 1px solid $ash;
     animation: 0.15s dashboardSlide linear;
-    .dashboardLogo {
-      position: fixed;
-      left: 0;
-      top: 0;
-      margin: 25px 0 0;
-      padding-left: 25px;
-      a {
-        h2 {
-          transition: 0.9s;
-          color: $white;
-          font-family: $bold;
-          font-size: 3rem;
-          &:hover {
-            color: $yellow;
-          }
-        }
-      }
-    }
-    .goBack {
-      position: absolute;
-      top: 4%;
-      left: 0;
-      margin-left: 20px;
-      button {
-        background: transparent;
-        border: none;
-        color: $black;
-        display: flex;
-        align-items: center;
-        transition: 0.3s;
-        i {
-          font-size: 2rem;
-          padding: 0;
-          color: $white;
-        }
-        p {
-          font-size: 2rem;
-          padding: 10px;
-          color: $white;
-        }
-      }
-    }
-    .mobileDashButtons {
+    .dashboardControls {
+      height: 10%;
+      padding: 15px;
+      margin: 10px 0 10px;
       display: flex;
-      flex-direction: column;
-      padding: 20px 10px 5px;
-      button {
-        height: 80px;
-        margin: 20px 0;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        background-color: transparent;
-        border: none;
-        .buttonText {
-          color: $white;
-          font-size: 3rem;
-          padding: 15px;
-        }
-        i {
-          font-size: 3rem;
-          padding: 15px;
-          color: $white;
-        }
-      }
-    }
-    .userContainer {
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      height: 75vh;
-      h2 {
-        font-size: 3rem;
-        color: $white;
-      }
-      .userContent {
+      justify-content: space-between;
+      .dashboardLogo {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 15px;
-        .creationDate {
-          p {
+        a {
+          h2 {
+            transition: 0.9s;
             color: $white;
-            font-size: 1.5rem;
-            text-align: center;
+            font-family: $bold;
+            font-size: 3rem;
+            &:hover {
+              color: $yellow;
+            }
           }
         }
-        .userSignOut {
-          background: $yellow;
-          border-radius: 5px;
-          padding: 10px 17.5px;
-          margin-top: 10px;
-          color: $black;
-          font-size: 1.5rem;
-          transition: 0.3s;
+        .goBack {
+          button {
+            background: transparent;
+            border: none;
+            color: $black;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+            i {
+              font-size: 1.6rem;
+              padding: 0;
+              color: $white;
+            }
+            p {
+              font-size: 1.6rem;
+              margin: 0;
+              color: $white;
+              padding-left: 5px;
+            }
+          }
+        }
+        #hidden {
+          visibility: hidden;
         }
       }
-      .anonymousContent {
+      .dashboardClose {
+        .hamburgerX {
+          font-size: 3.75rem;
+          z-index: 5;
+          background: transparent;
+          border: none;
+          color: $black;
+          margin: 0;
+          // padding: 12.5px;
+          opacity: 0;
+          animation: 0.2s linear forwards openMobile;
+        }
+      }
+    }
+    .mobileDashboardContainer {
+      height: 90%;
+      overflow-y: scroll;
+      .mobileDashButtons {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 10px 5px;
+        button {
+          height: 80px;
+          margin: 20px 0;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          background-color: transparent;
+          border: none;
+          .buttonText {
+            color: $white;
+            font-size: 3rem;
+            padding: 15px;
+          }
+          i {
+            font-size: 3rem;
+            padding: 15px;
+            color: $white;
+          }
+        }
+      }
+      .userContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        margin-top: 15px;
-        p {
+        height: 65vh;
+        h2 {
+          font-size: 3rem;
           color: $white;
-          font-size: 1.5rem;
         }
-        .anonButtons {
-          .logInDashboard {
+        .userContent {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-top: 15px;
+          .creationDate {
+            p {
+              color: $white;
+              font-size: 1.5rem;
+              text-align: center;
+            }
+          }
+          .userSignOut {
             background: $yellow;
             border-radius: 5px;
             padding: 10px 17.5px;
@@ -1480,183 +1468,207 @@
             transition: 0.3s;
           }
         }
-      }
-    }
-    .popularView {
-      height: 75vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      #popularTitle {
-        color: $white;
-        font-size: 3rem;
-      }
-      .popularContainerContainer {
-        padding: 5px;
-        width: 100%;
-        .popularResultsPlaying {
+        .anonymousContent {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          padding: 20px 5px;
-          margin: 20px 0;
-          position: relative;
-          height: 60px;
-          .imageAndText {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            img {
-              width: 50px;
-              height: 50px;
+          justify-content: center;
+          margin-top: 15px;
+          p {
+            color: $white;
+            font-size: 1.5rem;
+          }
+          .anonButtons {
+            .logInDashboard {
+              background: $yellow;
               border-radius: 5px;
-            }
-            .blurred {
-              filter: blur(2.5px);
-              -webkit-filter: blur(2.5px);
+              padding: 10px 17.5px;
+              margin-top: 10px;
+              color: $black;
+              font-size: 1.5rem;
               transition: 0.3s;
-            }
-            .hoverPlayDash {
-              position: absolute;
-              top: 17.5px;
-              left: 17.5px;
-              cursor: pointer;
-              i {
-                color: $red;
-                font-size: 1.5rem;
-                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-                transition: 0.2s;
-              }
-            }
-            .popularText {
-              padding: 0 5px 0 25px;
-              overflow: hidden;
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              p {
-                margin: 0;
-                font-size: 2rem;
-                color: $yellow;
-              }
-            }
-          }
-          .playButtonDivPopular {
-            background: transparent;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            cursor: pointer;
-          }
-          .popularButtons {
-            .popularButton {
-              border: 2px solid $black;
-              background: $white;
-              border-radius: 50px;
-              width: 35px;
-              height: 35px;
-              margin: 2px 5px;
-              color: $red;
-            }
-          }
-          img {
-            width: 60px;
-            height: 60px;
-            border-radius: 5px;
-          }
-          .playingBarsPopular {
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 5px;
-            background-color: $white;
-            font-family: "Poppins", sans-serif;
-            background-image: url("../../assets/soundBars.gif");
-            background-size: 75px;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: inline-block;
-          }
-          .popularButtons {
-            display: flex;
-            .addFav {
-              width: 10px;
-              padding: 7px 10px;
-              border: none;
-              color: $yellow;
-              background-color: transparent;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              z-index: 1;
-              i {
-                font-size: 1.5rem;
-                color: $white;
-                -webkit-text-stroke-width: 1px;
-                -webkit-text-stroke-color: $black;
-              }
-            }
-            .added {
-              width: 10px;
-              padding: 7px 10px;
-              border: none;
-              background-color: transparent;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              i {
-                font-size: 1.5rem;
-                color: $yellow;
-                animation: rotateOnce 0.65s linear;
-                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-              }
-            }
-            button {
-              background: transparent;
             }
           }
         }
-        .popularResults {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 20px 5px;
-          margin: 20px 0;
-          position: relative;
-          height: 60px;
-          .imageAndText {
-            width: 100%;
+      }
+      .popularView {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+        #popularTitle {
+          color: $white;
+          font-size: 3rem;
+        }
+        .popularContainerContainer {
+          padding: 5px;
+          width: 100%;
+          .popularResultsPlaying {
             display: flex;
             align-items: center;
-            img {
-              width: 50px;
-              height: 50px;
-              border-radius: 5px;
-            }
-            .blurred {
-              filter: blur(2.5px);
-              -webkit-filter: blur(2.5px);
-              transition: 0.3s;
-            }
-            .hoverPlayDash {
-              position: absolute;
-              top: 17.5px;
-              left: 17.5px;
-              cursor: pointer;
-              i {
-                color: $red;
-                font-size: 1.5rem;
-                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-                transition: 0.2s;
+            justify-content: space-between;
+            padding: 20px 5px;
+            margin: 20px 0;
+            position: relative;
+            height: 60px;
+            .imageAndText {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              img {
+                width: 50px;
+                height: 50px;
+                border-radius: 5px;
+              }
+              .popularText {
+                padding: 0 5px 0 25px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                p {
+                  margin: 0;
+                  font-size: 2rem;
+                  color: $yellow;
+                }
               }
             }
+            .playButtonDivPopular {
+              background: transparent;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              border: none;
+              cursor: pointer;
+            }
+            .popularButtons {
+              .popularButton {
+                border: 2px solid $black;
+                background: $white;
+                border-radius: 50px;
+                width: 35px;
+                height: 35px;
+                margin: 2px 5px;
+                color: $red;
+              }
+            }
+            img {
+              width: 60px;
+              height: 60px;
+              border-radius: 5px;
+            }
+            .playingBarsPopular {
+              width: 50px;
+              height: 50px;
+              border: none;
+              border-radius: 5px;
+              background-color: $white;
+              font-family: "Poppins", sans-serif;
+              background-image: url("../../assets/soundBars.gif");
+              background-size: 75px;
+              background-repeat: no-repeat;
+              background-position: center;
+              display: inline-block;
+            }
+            .popularButtons {
+              display: flex;
+              .addFav {
+                width: 10px;
+                padding: 7px 10px;
+                border: none;
+                color: $yellow;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                i {
+                  font-size: 1.5rem;
+                  color: $white;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                }
+              }
+              .added {
+                width: 10px;
+                padding: 7px 10px;
+                border: none;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                i {
+                  font-size: 1.5rem;
+                  color: $yellow;
+                  animation: rotateOnce 0.65s linear;
+                  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                    0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+                }
+              }
+              button {
+                background: transparent;
+              }
+            }
+          }
+          .popularResults {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 5px;
+            margin: 20px 0;
+            position: relative;
+            height: 60px;
+            .imageAndText {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              img {
+                width: 50px;
+                height: 50px;
+                border-radius: 5px;
+              }
+              .popularText {
+                padding: 0 5px 0 25px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                p {
+                  margin: 0;
+                  font-size: 2rem;
+                  color: $white;
+                }
+              }
+            }
+            .playButtonDivPopular {
+              background: transparent;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              border: none;
+              cursor: pointer;
+            }
+            .popularButtons {
+              .popularButton {
+                border: 2px solid $black;
+                background: $white;
+                border-radius: 50px;
+                width: 35px;
+                height: 35px;
+                margin: 2px 5px;
+                color: $red;
+              }
+            }
+            img {
+              width: 60px;
+              height: 60px;
+              border-radius: 5px;
+            }
             .popularText {
-              padding: 0 5px 0 25px;
+              padding: 0 4px;
               overflow: hidden;
               display: -webkit-box;
               -webkit-line-clamp: 3;
@@ -1667,81 +1679,264 @@
                 color: $white;
               }
             }
-          }
-          .playButtonDivPopular {
-            background: transparent;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            cursor: pointer;
-          }
-          .popularButtons {
-            .popularButton {
-              border: 2px solid $black;
-              background: $white;
-              border-radius: 50px;
-              width: 35px;
-              height: 35px;
-              margin: 2px 5px;
-              color: $red;
-            }
-          }
-          img {
-            width: 60px;
-            height: 60px;
-            border-radius: 5px;
-          }
-          .popularText {
-            padding: 0 4px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            p {
-              margin: 0;
-              font-size: 2rem;
-              color: $white;
-            }
-          }
-          .popularButtons {
-            display: flex;
-            .addFav {
-              width: 10px;
-              padding: 7px 10px;
-              border: none;
-              color: $yellow;
-              background-color: transparent;
+            .popularButtons {
               display: flex;
-              justify-content: center;
-              align-items: center;
-              z-index: 1;
-              i {
-                font-size: 1.5rem;
-                color: $white;
-                -webkit-text-stroke-width: 1px;
-                -webkit-text-stroke-color: $black;
-              }
-            }
-            .added {
-              width: 10px;
-              padding: 7px 10px;
-              border: none;
-              background-color: transparent;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              i {
-                font-size: 1.5rem;
+              .addFav {
+                width: 10px;
+                padding: 7px 10px;
+                border: none;
                 color: $yellow;
-                animation: rotateOnce 0.65s linear;
-                text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-                  0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                i {
+                  font-size: 1.5rem;
+                  color: $white;
+                  -webkit-text-stroke-width: 1px;
+                  -webkit-text-stroke-color: $black;
+                }
+              }
+              .added {
+                width: 10px;
+                padding: 7px 10px;
+                border: none;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                i {
+                  font-size: 1.5rem;
+                  color: $yellow;
+                  animation: rotateOnce 0.65s linear;
+                  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                    0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+                }
+              }
+              button {
+                background: transparent;
               }
             }
-            button {
-              background: transparent;
+          }
+        }
+      }
+      .recentContainer {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+        .recentContainerTop {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          h2 {
+            cursor: default;
+            color: $white;
+            font-size: 3rem;
+            #recentTitle {
+              font-family: $bold;
+            }
+          }
+          .clearRecent {
+            background: $yellow;
+            color: $black;
+            border-radius: 5px;
+            padding: 7px 15px;
+            margin: 15px 0 0;
+            font-size: 2rem;
+          }
+        }
+        .recentContainerContainer {
+          position: relative;
+          padding: 5px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .recentPrompt {
+            padding: 20px 10px;
+            color: $white;
+            font-size: 2rem;
+            text-align: center;
+          }
+          .recentFade {
+            padding: 5px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            overflow-y: none;
+            position: relative;
+            .recentItems {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 20px 5px;
+              margin: 20px 0;
+              position: relative;
+              height: 60px;
+              .playButtonDivRecent {
+                background: transparent;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                cursor: pointer;
+              }
+              .imageAndText {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                img {
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 5px;
+                }
+                .recentItemsText {
+                  padding: 0 5px 0 25px;
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  p {
+                    margin: 0;
+                    font-size: 2rem;
+                    color: $white;
+                  }
+                }
+              }
+              .recentItemsButton {
+                display: flex;
+                .recentAddFav {
+                  width: 10px;
+                  padding: 7px 10px;
+                  border: none;
+                  color: $yellow;
+                  background-color: transparent;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  z-index: 1;
+                  i {
+                    font-size: 1.5rem;
+                    color: $white;
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: $black;
+                  }
+                }
+                .added {
+                  width: 10px;
+                  padding: 7px 10px;
+                  border: none;
+                  background-color: transparent;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  i {
+                    font-size: 1.5rem;
+                    color: $yellow;
+                    animation: rotateOnce 0.65s linear;
+                    text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
+                      0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+                  }
+                }
+              }
+            }
+            .recentItemsPlaying {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 20px 5px;
+              margin: 20px 0;
+              position: relative;
+              height: 60px;
+              .imageAndText {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                .playingBarsRecent {
+                  width: 50px;
+                  height: 50px;
+                  border: none;
+                  border-radius: 5px;
+                  background-color: $white;
+                  font-family: "Poppins", sans-serif;
+                  background-image: url("../../assets/soundBars.gif");
+                  background-size: 75px;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  display: inline-block;
+                }
+                .recentItemsText {
+                  padding: 0 5px 0 25px;
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  p {
+                    margin: 0;
+                    font-size: 2rem;
+                    color: $yellow;
+                  }
+                }
+              }
+              .playButtonDivRecent {
+                background: transparent;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                cursor: default;
+              }
+              img {
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+                @include smallDesktop {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+              .recentItemsButton {
+                display: flex;
+                .recentAddFav {
+                  width: 10px;
+                  padding: 7px 10px;
+                  background: transparent;
+                  border: none;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  z-index: 2;
+                  i {
+                    font-size: 1.5rem;
+                    color: transparent;
+                  }
+                }
+                .added {
+                  width: 10px;
+                  padding: 7px 10px;
+                  border: none;
+                  background: transparent;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  cursor: default;
+                  z-index: 1;
+                  i {
+                    font-size: 1.5rem;
+                    color: $yellow;
+                    animation: rotateOnce 0.65s linear;
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: $black;
+                  }
+                }
+              }
             }
           }
         }

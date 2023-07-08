@@ -2453,57 +2453,43 @@ input {
   opacity: 0;
   animation: 0.2s linear forwards fade;
 }
-.dashboardContainerMobile .hamburgerX {
-  font-size: 3.75rem;
-  position: absolute;
-  top: 0;
-  right: 2%;
-  z-index: 5;
-  background: transparent;
-  border: none;
-  color: #1a1a1c;
-  margin: 0;
-  padding: 12.5px;
-  opacity: 0;
-  animation: 0.2s linear forwards openMobile;
-}
 .dashboardContainerMobile .dashboardPopOut {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
   background: #d32631;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   z-index: 4;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   border-right: 1px solid #3a3a3c;
   animation: 0.15s dashboardSlide linear;
 }
-.dashboardContainerMobile .dashboardPopOut .dashboardLogo {
-  position: fixed;
-  left: 0;
-  top: 0;
-  margin: 25px 0 0;
-  padding-left: 25px;
+.dashboardContainerMobile .dashboardPopOut .dashboardControls {
+  height: 10%;
+  padding: 15px;
+  margin: 10px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.dashboardContainerMobile .dashboardPopOut .dashboardLogo a h2 {
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo {
+  display: flex;
+  flex-direction: column;
+}
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo a h2 {
   transition: 0.9s;
   color: #f7f5ea;
   font-family: "Jost Bold";
   font-size: 3rem;
 }
-.dashboardContainerMobile .dashboardPopOut .dashboardLogo a h2:hover {
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo a h2:hover {
   color: #edd05f;
 }
-.dashboardContainerMobile .dashboardPopOut .goBack {
-  position: absolute;
-  top: 4%;
-  left: 0;
-  margin-left: 20px;
-}
-.dashboardContainerMobile .dashboardPopOut .goBack button {
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo .goBack button {
   background: transparent;
   border: none;
   color: #1a1a1c;
@@ -2511,22 +2497,40 @@ input {
   align-items: center;
   transition: 0.3s;
 }
-.dashboardContainerMobile .dashboardPopOut .goBack button i {
-  font-size: 2rem;
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo .goBack button i {
+  font-size: 1.6rem;
   padding: 0;
   color: #f7f5ea;
 }
-.dashboardContainerMobile .dashboardPopOut .goBack button p {
-  font-size: 2rem;
-  padding: 10px;
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo .goBack button p {
+  font-size: 1.6rem;
+  margin: 0;
   color: #f7f5ea;
+  padding-left: 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .mobileDashButtons {
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo #hidden {
+  visibility: hidden;
+}
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardClose .hamburgerX {
+  font-size: 3.75rem;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  color: #1a1a1c;
+  margin: 0;
+  opacity: 0;
+  animation: 0.2s linear forwards openMobile;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer {
+  height: 90%;
+  overflow-y: scroll;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .mobileDashButtons {
   display: flex;
   flex-direction: column;
   padding: 20px 10px 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .mobileDashButtons button {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .mobileDashButtons button {
   height: 80px;
   margin: 20px 0;
   display: flex;
@@ -2535,39 +2539,39 @@ input {
   background-color: transparent;
   border: none;
 }
-.dashboardContainerMobile .dashboardPopOut .mobileDashButtons button .buttonText {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .mobileDashButtons button .buttonText {
   color: #f7f5ea;
   font-size: 3rem;
   padding: 15px;
 }
-.dashboardContainerMobile .dashboardPopOut .mobileDashButtons button i {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .mobileDashButtons button i {
   font-size: 3rem;
   padding: 15px;
   color: #f7f5ea;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 75vh;
+  height: 65vh;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer h2 {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer h2 {
   font-size: 3rem;
   color: #f7f5ea;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer .userContent {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .userContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 15px;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer .userContent .creationDate p {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .userContent .creationDate p {
   color: #f7f5ea;
   font-size: 1.5rem;
   text-align: center;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer .userContent .userSignOut {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .userContent .userSignOut {
   background: #edd05f;
   border-radius: 5px;
   padding: 10px 17.5px;
@@ -2576,18 +2580,18 @@ input {
   font-size: 1.5rem;
   transition: 0.3s;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer .anonymousContent {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .anonymousContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 15px;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer .anonymousContent p {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .anonymousContent p {
   color: #f7f5ea;
   font-size: 1.5rem;
 }
-.dashboardContainerMobile .dashboardPopOut .userContainer .anonymousContent .anonButtons .logInDashboard {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .anonymousContent .anonButtons .logInDashboard {
   background: #edd05f;
   border-radius: 5px;
   padding: 10px 17.5px;
@@ -2596,21 +2600,22 @@ input {
   font-size: 1.5rem;
   transition: 0.3s;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView {
-  height: 75vh;
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView #popularTitle {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView #popularTitle {
   color: #f7f5ea;
   font-size: 3rem;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer {
   padding: 5px;
   width: 100%;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2619,46 +2624,29 @@ input {
   position: relative;
   height: 60px;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .imageAndText {
   width: 100%;
   display: flex;
   align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText img {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .imageAndText img {
   width: 50px;
   height: 50px;
   border-radius: 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .blurred {
-  filter: blur(2.5px);
-  -webkit-filter: blur(2.5px);
-  transition: 0.3s;
-}
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .hoverPlayDash {
-  position: absolute;
-  top: 17.5px;
-  left: 17.5px;
-  cursor: pointer;
-}
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .hoverPlayDash i {
-  color: #d32631;
-  font-size: 1.5rem;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-  transition: 0.2s;
-}
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .popularText {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .popularText {
   padding: 0 5px 0 25px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .popularText p {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .imageAndText .popularText p {
   margin: 0;
   font-size: 2rem;
   color: #edd05f;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .playButtonDivPopular {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .playButtonDivPopular {
   background: transparent;
   position: absolute;
   top: 0;
@@ -2667,7 +2655,7 @@ input {
   border: none;
   cursor: pointer;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .popularButton {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .popularButton {
   border: 2px solid #1a1a1c;
   background: #f7f5ea;
   border-radius: 50px;
@@ -2676,12 +2664,12 @@ input {
   margin: 2px 5px;
   color: #d32631;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying img {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying img {
   width: 60px;
   height: 60px;
   border-radius: 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .playingBarsPopular {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .playingBarsPopular {
   width: 50px;
   height: 50px;
   border: none;
@@ -2694,10 +2682,10 @@ input {
   background-position: center;
   display: inline-block;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons {
   display: flex;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .addFav {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .addFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -2708,13 +2696,13 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .addFav i {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .addFav i {
   font-size: 1.5rem;
   color: #f7f5ea;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .added {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .added {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -2723,16 +2711,16 @@ input {
   justify-content: center;
   align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .added i {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .added i {
   font-size: 1.5rem;
   color: #edd05f;
   animation: rotateOnce 0.65s linear;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResultsPlaying .popularButtons button {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResultsPlaying .popularButtons button {
   background: transparent;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2741,46 +2729,29 @@ input {
   position: relative;
   height: 60px;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .imageAndText {
   width: 100%;
   display: flex;
   align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText img {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .imageAndText img {
   width: 50px;
   height: 50px;
   border-radius: 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText .blurred {
-  filter: blur(2.5px);
-  -webkit-filter: blur(2.5px);
-  transition: 0.3s;
-}
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText .hoverPlayDash {
-  position: absolute;
-  top: 17.5px;
-  left: 17.5px;
-  cursor: pointer;
-}
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText .hoverPlayDash i {
-  color: #d32631;
-  font-size: 1.5rem;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-  transition: 0.2s;
-}
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText .popularText {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .imageAndText .popularText {
   padding: 0 5px 0 25px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .imageAndText .popularText p {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .imageAndText .popularText p {
   margin: 0;
   font-size: 2rem;
   color: #f7f5ea;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .playButtonDivPopular {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .playButtonDivPopular {
   background: transparent;
   position: absolute;
   top: 0;
@@ -2789,7 +2760,7 @@ input {
   border: none;
   cursor: pointer;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons .popularButton {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons .popularButton {
   border: 2px solid #1a1a1c;
   background: #f7f5ea;
   border-radius: 50px;
@@ -2798,27 +2769,27 @@ input {
   margin: 2px 5px;
   color: #d32631;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults img {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults img {
   width: 60px;
   height: 60px;
   border-radius: 5px;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularText {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularText p {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularText p {
   margin: 0;
   font-size: 2rem;
   color: #f7f5ea;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons {
   display: flex;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons .addFav {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons .addFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -2829,13 +2800,13 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons .addFav i {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons .addFav i {
   font-size: 1.5rem;
   color: #f7f5ea;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons .added {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons .added {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -2844,14 +2815,235 @@ input {
   justify-content: center;
   align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons .added i {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons .added i {
   font-size: 1.5rem;
   color: #edd05f;
   animation: rotateOnce 0.65s linear;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
-.dashboardContainerMobile .dashboardPopOut .popularView .popularContainerContainer .popularResults .popularButtons button {
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView .popularContainerContainer .popularResults .popularButtons button {
   background: transparent;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerTop h2 {
+  cursor: default;
+  color: #f7f5ea;
+  font-size: 3rem;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerTop h2 #recentTitle {
+  font-family: "Jost Bold";
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerTop .clearRecent {
+  background: #edd05f;
+  color: #1a1a1c;
+  border-radius: 5px;
+  padding: 7px 15px;
+  margin: 15px 0 0;
+  font-size: 2rem;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer {
+  position: relative;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentPrompt {
+  padding: 20px 10px;
+  color: #f7f5ea;
+  font-size: 2rem;
+  text-align: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade {
+  padding: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow-y: none;
+  position: relative;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .playButtonDivRecent {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .imageAndText img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .imageAndText .recentItemsText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .imageAndText .recentItemsText p {
+  margin: 0;
+  font-size: 2rem;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton {
+  display: flex;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .recentAddFav {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  color: #edd05f;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .recentAddFav i {
+  font-size: 1.5rem;
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .added {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .added i {
+  font-size: 1.5rem;
+  color: #edd05f;
+  animation: rotateOnce 0.65s linear;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .imageAndText .playingBarsRecent {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .imageAndText .recentItemsText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .imageAndText .recentItemsText p {
+  margin: 0;
+  font-size: 2rem;
+  color: #edd05f;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .playButtonDivRecent {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: default;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton {
+  display: flex;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .recentAddFav {
+  width: 10px;
+  padding: 7px 10px;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .recentAddFav i {
+  font-size: 1.5rem;
+  color: transparent;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .added {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  z-index: 1;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .added i {
+  font-size: 1.5rem;
+  color: #edd05f;
+  animation: rotateOnce 0.65s linear;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
 }
 
 @keyframes openMobile {

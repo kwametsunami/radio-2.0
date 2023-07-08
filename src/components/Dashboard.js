@@ -73,6 +73,12 @@ const Dashboard = (props) => {
 
   const infoButton = () => {
     setShowInfo(!showInfo);
+
+    if (props.mobile) {
+      setRecentView(false);
+      setUserPage(false);
+      setPopularView(3);
+    }
   };
 
   const backMobile = () => {
@@ -201,32 +207,36 @@ const Dashboard = (props) => {
     <>
       {props.mobile ? (
         <div className="dashboardContainerMobile">
-          <div className="hamburgerMenu">
-            {showMobile ? (
-              <button className="hamburgerX" onClick={mobileMenu}>
-                <i className="fa-solid fa-caret-left"></i>
-              </button>
-            ) : (
+          {showMobile ? null : (
+            <div className="hamburgerMenu">
               <button className="hamburger" onClick={mobileMenu}>
                 <i className="fa-solid fa-bars"></i>
               </button>
-            )}
-          </div>
+            </div>
+          )}
           {showMobile ? (
             <div className="dashboardPopOut">
-              <div className="dashboardLogo">
-                <Link onClick={props.landingView} to="/">
-                  <h2>tr-1.fm</h2>
-                </Link>
-              </div>
-              {popularView != null ? (
-                <div className="goBack">
-                  <button onClick={backMobile}>
-                    <i className="fa-solid fa-chevron-left"></i>
-                    <p>back</p>
+              <div className="dashboardControls">
+                <div className="dashboardLogo">
+                  <Link onClick={props.landingView} to="/">
+                    <h2>tr-1.fm</h2>
+                  </Link>
+                  <div
+                    className="goBack"
+                    id={popularView != null ? "" : "hidden"}
+                  >
+                    <button onClick={backMobile}>
+                      <i className="fa-solid fa-chevron-left"></i>
+                      <p>back</p>
+                    </button>
+                  </div>
+                </div>
+                <div className="dashboardClose">
+                  <button className="hamburgerX" onClick={mobileMenu}>
+                    <i className="fa-solid fa-caret-left"></i>
                   </button>
                 </div>
-              ) : null}
+              </div>
 
               <FadeIn
                 transitionDuration={350}
@@ -291,9 +301,16 @@ const Dashboard = (props) => {
                   </div>
                 ) : recentView ? (
                   <div className="recentContainer">
-                    <h2>
-                      <span id="recentTitle">recently </span>played
-                    </h2>
+                    <div className="recentContainerTop">
+                      <h2>
+                        <span id="recentTitle">recently </span>played
+                      </h2>
+                      {!recentPrompt && props.stationUrl !== "" ? (
+                        <button className="clearRecent" onClick={clearRecent}>
+                          clear list
+                        </button>
+                      ) : null}
+                    </div>
                     <div className="recentContainerContainer">
                       {recentPrompt ? (
                         <p className="recentPrompt">
@@ -315,49 +332,43 @@ const Dashboard = (props) => {
                                     : "recentItems"
                                 }
                                 key={`${recent[0]}`}
-                                onMouseEnter={() => handleMouseEnter(recent[0])}
-                                onMouseLeave={handleMouseLeave}
                               >
-                                {hoveredItem === recent[0] ? (
-                                  <button
-                                    className="playButtonDivRecent"
-                                    onClick={recentPlayStation}
-                                    value={[
-                                      `${recent[0]}`,
-                                      `${recent[1]}`,
-                                      `${recent[2]}`,
-                                      `${recent[3]}`,
-                                      `${recent[4]}`,
-                                      `${recent[5]}`,
-                                    ]}
-                                  ></button>
-                                ) : null}
-                                {props.currentKey === recent[0] ? (
-                                  <div className="playingBarsRecent"></div>
-                                ) : (
-                                  <img
-                                    src={`${recent[2]}`}
-                                    alt={`${recent[5]}`}
-                                    onError={setDefaultSrc}
-                                    className={
-                                      hoveredItem === recent[0] ? "blurred" : ""
-                                    }
-                                  />
-                                )}
-                                {hoveredItem === recent[0] &&
-                                props.stationUrl !== recent[1] ? (
-                                  <div className="hoverPlayDash">
-                                    <i className="fa-solid fa-play"></i>
+                                <button
+                                  className="playButtonDivRecent"
+                                  onClick={recentPlayStation}
+                                  value={[
+                                    `${recent[0]}`,
+                                    `${recent[1]}`,
+                                    `${recent[2]}`,
+                                    `${recent[3]}`,
+                                    `${recent[4]}`,
+                                    `${recent[5]}`,
+                                  ]}
+                                ></button>
+                                <div className="imageAndText">
+                                  {props.currentKey === recent[0] ? (
+                                    <div className="playingBarsRecent"></div>
+                                  ) : (
+                                    <img
+                                      src={`${recent[2]}`}
+                                      alt={`${recent[5]}`}
+                                      onError={setDefaultSrc}
+                                      className={
+                                        hoveredItem === recent[0]
+                                          ? "blurred"
+                                          : ""
+                                      }
+                                    />
+                                  )}
+                                  <div className="recentItemsText">
+                                    <p className="recentTextTitle">
+                                      {`${recent[5]
+                                        .replace(/_/g, "")
+                                        .replace(/-/g, " ")
+                                        .replace(/  +/, " ")
+                                        .replace(/\//g, "")}`}
+                                    </p>
                                   </div>
-                                ) : null}
-                                <div className="recentItemsText">
-                                  <p className="recentTextTitle">
-                                    {`${recent[5]
-                                      .replace(/_/g, "")
-                                      .replace(/-/g, " ")
-                                      .replace(/  +/, " ")
-                                      .replace(/\//g, "")}`}
-                                  </p>
                                 </div>
                                 <div className="recentItemsButton">
                                   {props.favKeys.includes(`${recent[0]}`) ? (
@@ -384,14 +395,6 @@ const Dashboard = (props) => {
                               </div>
                             );
                           })}
-                          {!recentPrompt && props.stationUrl !== "" ? (
-                            <button
-                              className="clearRecent"
-                              onClick={clearRecent}
-                            >
-                              clear list
-                            </button>
-                          ) : null}
                         </FadeIn>
                       )}
                     </div>
