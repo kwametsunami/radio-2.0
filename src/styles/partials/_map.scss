@@ -71,6 +71,11 @@
   }
   @include mobileLarge {
     visibility: hidden;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    width: 100vw;
   }
   .textLoading {
     margin: 20px 0 25px;
@@ -87,6 +92,13 @@
     #searchTerm {
       color: $black;
       font-family: $bold;
+    }
+    @include mobileLarge {
+      visibility: visible;
+      margin: 0 auto;
+      width: 200px;
+      word-wrap: break-word;
+      font-size: 2rem;
     }
   }
   .topControls {

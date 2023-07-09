@@ -65,7 +65,10 @@ const Radio = (props) => {
     setListView(!listView);
 
     if (mobile) {
-      closeOptions();
+      setMobileOptions(false);
+      setMobileSearch(false);
+      setMobileFilter(false);
+      setRandomMobile(false);
     }
   };
 
@@ -159,6 +162,12 @@ const Radio = (props) => {
     if (storedData) {
       setRecentStations(JSON.parse(storedData));
     }
+
+    if (mobile) {
+      setMobileOptions(false);
+    }
+
+    setFilterEvent(null);
   }, [props.genre, props.quality, stationFilter, props.loggedInUser]);
 
   const [stationUrl, setStationUrl] = useState("");
@@ -221,6 +230,9 @@ const Radio = (props) => {
   const [mobileOptions, setMobileOptions] = useState(false);
   const [showCaret, setShowCaret] = useState(true);
   const [mobileSearch, setMobileSearch] = useState(false);
+  const [randomMobile, setRandomMobile] = useState(false);
+  const [mobileFilter, setMobileFilter] = useState(false);
+  const [filterEvent, setFilterEvent] = useState({});
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -247,10 +259,35 @@ const Radio = (props) => {
   const closeOptions = () => {
     setMobileOptions(false);
     setMobileSearch(false);
+    setMobileFilter(false);
+
+    if (randomMobile) {
+      setTimeout(() => {
+        setRandomMobile(false);
+      }, 500);
+    }
   };
 
   const mobileSearchClick = () => {
     setMobileSearch(true);
+  };
+
+  const randomClick = () => {
+    setRandomMobile(true);
+    console.log(randomMobile);
+    closeOptions();
+  };
+
+  const filterClick = (event) => {
+    event.preventDefault();
+    setFilterEvent(event);
+
+    closeOptions();
+  };
+
+  const mobileFilterClick = (event) => {
+    event.preventDefault();
+    setMobileFilter(!mobileFilter);
   };
 
   const [testArr, setTestArr] = useState([]);
@@ -338,7 +375,7 @@ const Radio = (props) => {
       {mobile && showCaret ? (
         <div className="filterAndControls">
           <button className="openFilter" onClick={openOptions}>
-            <i class="fa-solid fa-caret-down"></i>
+            <i className="fa-solid fa-caret-down"></i>
           </button>
           {mobileOptions ? (
             <div className="filterPopOut">
@@ -347,12 +384,6 @@ const Radio = (props) => {
                   <Link onClick={props.landingView} to="/">
                     <h2>tr-1.fm</h2>
                   </Link>
-                  <div className="goBack">
-                    <button>
-                      <i className="fa-solid fa-chevron-left"></i>
-                      <p>back</p>
-                    </button>
-                  </div>
                 </div>
                 <div className="filterClose">
                   <button className="hamburgerX" onClick={closeOptions}>
@@ -389,7 +420,7 @@ const Radio = (props) => {
                       className="searchButton"
                       onClick={mobileSearchClick}
                     >
-                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <i className="fa-solid fa-magnifying-glass"></i>
                       <p className="buttonText">search</p>
                     </button>
                   )}
@@ -403,14 +434,35 @@ const Radio = (props) => {
                       {listView ? "map" : "list"} view
                     </p>
                   </button>
-                  <button className="randomStation">
+                  <button className="randomStation" onClick={randomClick}>
                     <i className="fa-solid fa-shuffle"></i>
                     <p className="buttonText">random station</p>
                   </button>
-                  <button className="filterButton">
+                  <button className="filterButton" onClick={mobileFilterClick}>
                     <i className="fa-solid fa-filter"></i>
-                    <p className="buttonText">filter results</p>
+                    <p className="buttonText">limit results</p>
                   </button>
+                  {mobileFilter ? (
+                    <div className="buttonValues">
+                      <FadeIn>
+                        <button onClick={filterClick} value={10}>
+                          10
+                        </button>
+                        <button onClick={filterClick} value={25}>
+                          25
+                        </button>
+                        <button onClick={filterClick} value={50}>
+                          50
+                        </button>
+                        <button onClick={filterClick} value={100}>
+                          100
+                        </button>
+                        <button onClick={filterClick} value={300}>
+                          all
+                        </button>
+                      </FadeIn>
+                    </div>
+                  ) : null}
                 </div>
               </FadeIn>
             </div>
@@ -551,6 +603,9 @@ const Radio = (props) => {
                       resultTextLoading={resultTextLoading}
                       setSaveToFav={setSaveToFav}
                       setFavPopUp={setFavPopUp}
+                      mobile={mobile}
+                      randomMobile={randomMobile}
+                      filterEvent={filterEvent}
                     />
                   </div>
                 ) : (
@@ -586,6 +641,8 @@ const Radio = (props) => {
                       setSaveToFav={setSaveToFav}
                       setFavPopUp={setFavPopUp}
                       mobile={mobile}
+                      randomMobile={randomMobile}
+                      filterEvent={filterEvent}
                     />
                   </div>
                 )}

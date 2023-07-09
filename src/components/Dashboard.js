@@ -242,7 +242,25 @@ const Dashboard = (props) => {
                 transitionDuration={350}
                 className="mobileDashboardContainer"
               >
-                {popularView === null ? (
+                {popularView === 5 ? (
+                  <div className="instructionsMobile">
+                    <p>
+                      Discover the world through radio! In map mode, click on a
+                      marker to get more information on a station -- from there,
+                      hit play to start listening! If you like what you're
+                      hearing hit the star to save it!
+                    </p>
+                    <p>
+                      On the dashboard, you can view the top 5 stations from
+                      your search, check out your recently played, and manage
+                      your favourites.
+                    </p>
+                    <p>
+                      Don't know what to listen to? Hit shuffle and we'll give
+                      you a random station within your search!
+                    </p>
+                  </div>
+                ) : popularView === null ? (
                   <div className="mobileDashButtons">
                     <FadeIn transitionDuration={750}>
                       <button onClick={userView} className="userButtonMobile">
@@ -592,23 +610,9 @@ const Dashboard = (props) => {
                   </div>
                 )}
               </FadeIn>
-              <div
-                className={
-                  props.stationUrl === ""
-                    ? "infoContainerBottom"
-                    : "infoContainer"
-                }
-              >
-                {showInfo ? (
-                  <div className="instructions">
-                    <button className="infoButton" onClick={infoButton}>
-                      <i className="fa-solid fa-window-minimize"></i>
-                    </button>
-                    <p>
-                      Click on a marker to get more information on the station.
-                      If you like what you see hit play!
-                    </p>
-                  </div>
+              <div className="userLoggedIn">
+                {props.userDetails.user.email !== "anon@tr1.fm" ? (
+                  <p id="dashboardUser">{props.userDetails.user.email}</p>
                 ) : null}
               </div>
             </div>

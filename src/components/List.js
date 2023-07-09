@@ -179,6 +179,18 @@ const List = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (props.randomMobile) {
+      randomStation();
+    }
+  }, [props.randomMobile]);
+
+  useEffect(() => {
+    if (props.filterEvent) {
+      grabFilter(props.filterEvent);
+    }
+  }, [props.filterEvent]);
+
   const favourite = (event, userId) => {
     const pushToDatabase = (event, userId) => {
       const stationFav = event.currentTarget.value;

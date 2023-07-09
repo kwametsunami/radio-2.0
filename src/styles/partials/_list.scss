@@ -12,6 +12,14 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    @include mobileLarge {
+      visibility: hidden;
+      display: flex;
+      justify-content: center;
+      left: 0;
+      width: 100vw;
+      margin-top: 20px;
+    }
     .textLoading {
       margin: 55px 0 25px;
     }
@@ -19,6 +27,11 @@
       font-size: clamp(1.25rem, 1.0909rem + 0.7955vw, 3rem);
       color: $eggshell;
       @include mobileLarge {
+        visibility: visible;
+        margin: 0 auto;
+        width: 200px;
+        word-wrap: break-word;
+        font-size: 2rem;
         text-align: center;
       }
       #amountReturned,

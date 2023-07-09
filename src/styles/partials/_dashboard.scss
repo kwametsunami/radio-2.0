@@ -1435,6 +1435,19 @@
           }
         }
       }
+      .instructionsMobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 65vh;
+        padding: 20px;
+        p {
+          font-size: 2rem;
+          color: $white;
+          text-align: center;
+        }
+      }
       .userContainer {
         display: flex;
         flex-direction: column;
@@ -1453,7 +1466,7 @@
           .creationDate {
             p {
               color: $white;
-              font-size: 1.5rem;
+              font-size: 2.5rem;
               text-align: center;
             }
           }
@@ -2134,6 +2147,13 @@
             }
           }
         }
+      }
+    }
+    .userLoggedIn {
+      p {
+        color: $white;
+        font-size: 2rem;
+        padding-left: 20px;
       }
     }
   }

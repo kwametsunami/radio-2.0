@@ -1034,7 +1034,7 @@ input {
 .filterAndControls .openFilter {
   background: transparent;
   border: none;
-  margin: 10px 20px 0 0;
+  margin: 5px 20px 0 0;
 }
 .filterAndControls .openFilter i {
   color: #1a1a1c;
@@ -1051,8 +1051,9 @@ input {
   z-index: 4;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   border-left: 1px solid #3a3a3c;
+  animation: 0.15s dashboardSlide linear;
 }
 .filterAndControls .filterPopOut .filterTop {
   height: 10%;
@@ -1074,28 +1075,6 @@ input {
 }
 .filterAndControls .filterPopOut .filterTop .filterLogo a h2:hover {
   color: #edd05f;
-}
-.filterAndControls .filterPopOut .filterTop .filterLogo .goBack button {
-  background: transparent;
-  border: none;
-  color: #1a1a1c;
-  display: flex;
-  align-items: center;
-  transition: 0.3s;
-}
-.filterAndControls .filterPopOut .filterTop .filterLogo .goBack button i {
-  font-size: 2rem;
-  padding: 0;
-  color: #f7f5ea;
-}
-.filterAndControls .filterPopOut .filterTop .filterLogo .goBack button p {
-  font-size: 2rem;
-  margin: 0;
-  color: #f7f5ea;
-  padding-left: 5px;
-}
-.filterAndControls .filterPopOut .filterTop .filterLogo #hidden {
-  visibility: hidden;
 }
 .filterAndControls .filterPopOut .filterTop .filterClose .hamburgerX {
   font-size: 3.75rem;
@@ -1147,18 +1126,32 @@ input {
   border-bottom: 2px solid #f7f5ea;
   border-radius: 0px;
   width: 70%;
+  color: #f7f5ea;
+  font-size: 2rem;
 }
 .filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form input::-moz-placeholder {
-  color: #f7f5ea;
+  color: transparent;
   margin: 0;
   padding: 0;
   font-size: 2rem;
 }
 .filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form input::placeholder {
-  color: #f7f5ea;
+  color: transparent;
   margin: 0;
   padding: 0;
   font-size: 2rem;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons .buttonValues {
+  align-self: flex-start;
+  margin-left: 50px;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons .buttonValues button {
+  height: 20px;
+  font-size: 2.5rem;
+  color: #f7f5ea;
+  text-align: center;
+  margin: 25px auto;
+  padding-bottom: 10px;
 }
 
 .searchNav {
@@ -1408,6 +1401,14 @@ input {
   100% {
     opacity: 0;
     transform: translateY(15px);
+  }
+}
+@keyframes dashboardSlide {
+  0% {
+    right: -450px;
+  }
+  100% {
+    right: 0px;
   }
 }
 .dashboard {
@@ -2784,6 +2785,19 @@ input {
   padding: 15px;
   color: #f7f5ea;
 }
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .instructionsMobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+  padding: 20px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .instructionsMobile p {
+  font-size: 2rem;
+  color: #f7f5ea;
+  text-align: center;
+}
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer {
   display: flex;
   flex-direction: column;
@@ -2803,7 +2817,7 @@ input {
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .userContent .creationDate p {
   color: #f7f5ea;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   text-align: center;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .userContent .userSignOut {
@@ -3469,6 +3483,11 @@ input {
   color: #f7f5ea;
   -webkit-text-stroke-width: 0.2px;
 }
+.dashboardContainerMobile .dashboardPopOut .userLoggedIn p {
+  color: #f7f5ea;
+  font-size: 2rem;
+  padding-left: 20px;
+}
 
 @keyframes openMobile {
   0% {
@@ -3856,6 +3875,11 @@ h2 {
 @media (max-width: 680px) {
   .mapFilters {
     visibility: hidden;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    width: 100vw;
   }
 }
 .mapFilters .textLoading {
@@ -3874,6 +3898,15 @@ h2 {
 .mapFilters .returned #searchTerm {
   color: #1a1a1c;
   font-family: "Jost Bold";
+}
+@media (max-width: 680px) {
+  .mapFilters .returned {
+    visibility: visible;
+    margin: 0 auto;
+    width: 200px;
+    word-wrap: break-word;
+    font-size: 2rem;
+  }
 }
 .mapFilters .topControls {
   display: flex;
@@ -4118,6 +4151,16 @@ h2 {
   align-items: center;
   margin-top: 50px;
 }
+@media (max-width: 680px) {
+  .stationList .listFilters {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    width: 100vw;
+    margin-top: 20px;
+  }
+}
 .stationList .listFilters .textLoading {
   margin: 55px 0 25px;
 }
@@ -4127,6 +4170,11 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .listFilters .returned {
+    visibility: visible;
+    margin: 0 auto;
+    width: 200px;
+    word-wrap: break-word;
+    font-size: 2rem;
     text-align: center;
   }
 }

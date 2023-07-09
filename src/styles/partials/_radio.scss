@@ -13,7 +13,7 @@
   .openFilter {
     background: transparent;
     border: none;
-    margin: 10px 20px 0 0;
+    margin: 5px 20px 0 0;
     i {
       color: $black;
       font-size: 4.5rem;
@@ -30,8 +30,9 @@
     z-index: 4;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     border-left: 1px solid $ash;
+    animation: 0.15s dashboardSlide linear;
     .filterTop {
       height: 10%;
       padding: 15px;
@@ -52,30 +53,6 @@
               color: $yellow;
             }
           }
-        }
-        .goBack {
-          button {
-            background: transparent;
-            border: none;
-            color: $black;
-            display: flex;
-            align-items: center;
-            transition: 0.3s;
-            i {
-              font-size: 2rem;
-              padding: 0;
-              color: $white;
-            }
-            p {
-              font-size: 2rem;
-              margin: 0;
-              color: $white;
-              padding-left: 5px;
-            }
-          }
-        }
-        #hidden {
-          visibility: hidden;
         }
       }
       .filterClose {
@@ -128,12 +105,26 @@
             border-bottom: 2px solid $white;
             border-radius: 0px;
             width: 70%;
+            color: $white;
+            font-size: 2rem;
             &::placeholder {
-              color: $white;
+              color: transparent;
               margin: 0;
               padding: 0;
               font-size: 2rem;
             }
+          }
+        }
+        .buttonValues {
+          align-self: flex-start;
+          margin-left: 50px;
+          button {
+            height: 20px;
+            font-size: 2.5rem;
+            color: $white;
+            text-align: center;
+            margin: 25px auto;
+            padding-bottom: 10px;
           }
         }
       }
@@ -372,5 +363,16 @@
   100% {
     opacity: 0;
     transform: translateY(15px);
+  }
+}
+
+@keyframes dashboardSlide {
+  0% {
+    right: -450px;
+  }
+  99% {
+  }
+  100% {
+    right: 0px;
   }
 }
