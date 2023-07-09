@@ -244,26 +244,15 @@
           height: 45px;
           border-radius: 0 5px 5px 0;
           border-left: 0.5px solid $black;
+          color: #d64b4b;
           background-color: $white;
+          align-self: center;
           font-size: 1.5rem;
           &:hover {
             i {
               transform: scale(1.25);
               transition: 0.2s;
             }
-          }
-          @include smallDesktop {
-            width: 30px;
-            height: 30px;
-          }
-          @include tablet {
-            width: 25px;
-            height: 25px;
-          }
-          @include mobileLarge {
-            width: 20px;
-            height: 20px;
-            font-size: 0.7rem;
           }
           i {
             color: $yellow;

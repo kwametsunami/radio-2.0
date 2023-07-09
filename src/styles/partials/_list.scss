@@ -126,7 +126,12 @@
         width: calc((85% / 2) - 25px);
       }
       @include mobileLarge {
-        width: calc((92.5% / 2) - 25px);
+        width: 100%;
+        height: 100px;
+        margin: 5px 10px;
+        background: transparent;
+        border: none;
+        border-radius: 0px;
       }
       &:hover {
         background-color: $grey;
@@ -137,9 +142,16 @@
                 color: transparent;
                 -webkit-text-stroke-width: 1px;
                 -webkit-text-stroke-color: $black;
+                @include tablet {
+                  color: $white;
+                  -webkit-text-stroke-width: 0px;
+                }
               }
             }
           }
+        }
+        @include tablet {
+          background-color: transparent;
         }
       }
       .playButtonDiv {
@@ -176,6 +188,10 @@
           p {
             font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
             color: $black;
+            @include mobileLarge {
+              color: $white;
+              font-size: 1rem;
+            }
           }
         }
         .imageList {
@@ -202,6 +218,11 @@
               height: auto;
               max-height: 35px;
               font-size: 0.7rem;
+            }
+            @include mobileLarge {
+              width: 75px;
+              height: 75px;
+              max-height: 75px;
             }
           }
           .blurred {
@@ -300,7 +321,8 @@
                 font-size: 1.5rem;
               }
               @include mobileLarge {
-                font-size: 1rem;
+                font-size: 1.5rem;
+                color: $white;
               }
             }
           }
@@ -334,7 +356,7 @@
                 font-size: 1.5rem;
               }
               @include mobileLarge {
-                font-size: 1rem;
+                font-size: 1.5rem;
               }
             }
           }
@@ -355,7 +377,12 @@
         width: calc((85% / 2) - 25px);
       }
       @include mobileLarge {
-        width: calc((92.5% / 2) - 25px);
+        width: 100%;
+        height: 100px;
+        margin: 5px 10px;
+        background: transparent;
+        border: none;
+        border-radius: 0px;
       }
       &:hover {
         .imageInfoContainer {
@@ -403,6 +430,10 @@
           p {
             font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
             color: $black;
+            @include mobileLarge {
+              font-size: 1.5rem;
+              color: $yellow;
+            }
           }
         }
         .imageList {
@@ -429,6 +460,11 @@
               height: auto;
               max-height: 35px;
               font-size: 0.7rem;
+            }
+            @include mobileLarge {
+              width: 75px;
+              height: 75px;
+              max-height: 75px;
             }
           }
           .blurred {
@@ -462,6 +498,11 @@
               max-height: 35px;
               background-size: 65px;
             }
+            @include mobileLarge {
+              width: 75px;
+              height: 75px;
+              max-height: 75px;
+            }
           }
         }
         .buttonContainer {
@@ -491,6 +532,10 @@
             }
             i {
               color: transparent;
+              @include mobileLarge {
+                font-size: 1.5rem;
+                color: $white;
+              }
             }
           }
           .added {
@@ -522,7 +567,7 @@
                 font-size: 1.5rem;
               }
               @include mobileLarge {
-                font-size: 1rem;
+                font-size: 1.5rem;
               }
             }
           }

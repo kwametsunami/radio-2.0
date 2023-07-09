@@ -4059,31 +4059,14 @@ h2 {
   height: 45px;
   border-radius: 0 5px 5px 0;
   border-left: 0.5px solid #1a1a1c;
+  color: #d64b4b;
   background-color: #f7f5ea;
+  align-self: center;
   font-size: 1.5rem;
 }
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite:hover i {
   transform: scale(1.25);
   transition: 0.2s;
-}
-@media (max-width: 1130px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (max-width: 950px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
-    width: 25px;
-    height: 25px;
-  }
-}
-@media (max-width: 680px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
-  }
 }
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite i {
   color: #edd05f;
@@ -4281,7 +4264,12 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoList {
-    width: calc(46.25% - 25px);
+    width: 100%;
+    height: 100px;
+    margin: 5px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
   }
 }
 .stationList .stationListContainer .stationInfoList:hover {
@@ -4291,6 +4279,17 @@ h2 {
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList:hover .imageInfoContainer .buttonContainer .favourite i {
+    color: #f7f5ea;
+    -webkit-text-stroke-width: 0px;
+  }
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList:hover {
+    background-color: transparent;
+  }
 }
 .stationList .stationListContainer .stationInfoList .playButtonDiv {
   background: transparent;
@@ -4331,6 +4330,12 @@ h2 {
   font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .information p {
+    color: #f7f5ea;
+    font-size: 1rem;
+  }
+}
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
   width: 25%;
   margin: 0 15px;
@@ -4360,6 +4365,13 @@ h2 {
     height: auto;
     max-height: 35px;
     font-size: 0.7rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
+    width: 75px;
+    height: 75px;
+    max-height: 75px;
   }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .blurred {
@@ -4476,7 +4488,8 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite i {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    color: #f7f5ea;
   }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added {
@@ -4519,7 +4532,7 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added i {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }
 .stationList .stationListContainer .stationInfoPlayingList {
@@ -4540,7 +4553,12 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList {
-    width: calc(46.25% - 25px);
+    width: 100%;
+    height: 100px;
+    margin: 5px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
   }
 }
 .stationList .stationListContainer .stationInfoPlayingList:hover .imageInfoContainer .buttonContainer .favourite i {
@@ -4586,6 +4604,12 @@ h2 {
   font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
+    font-size: 1.5rem;
+    color: #edd05f;
+  }
+}
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
   width: 25%;
   margin: 0 15px;
@@ -4615,6 +4639,13 @@ h2 {
     height: auto;
     max-height: 35px;
     font-size: 0.7rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+    width: 75px;
+    height: 75px;
+    max-height: 75px;
   }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .blurred {
@@ -4652,6 +4683,13 @@ h2 {
     background-size: 65px;
   }
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
+    width: 75px;
+    height: 75px;
+    max-height: 75px;
+  }
+}
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer {
   display: flex;
   justify-content: center;
@@ -4687,6 +4725,12 @@ h2 {
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
   color: transparent;
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
+    font-size: 1.5rem;
+    color: #f7f5ea;
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added {
   width: 45px;
@@ -4727,7 +4771,7 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added i {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }
 
