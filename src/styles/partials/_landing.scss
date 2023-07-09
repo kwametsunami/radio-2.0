@@ -67,6 +67,8 @@
           }
           @include mobileLarge {
             width: 45px;
+            font-size: 2rem;
+            margin: 0 20px;
           }
           @include mobile {
             width: 30px;
@@ -89,6 +91,8 @@
           }
           @include mobileLarge {
             width: 45px;
+            font-size: 2rem;
+            margin: 0 20px;
           }
           @include mobile {
             width: 30px;
@@ -111,6 +115,8 @@
           }
           @include mobileLarge {
             width: 45px;
+            font-size: 2rem;
+            margin: 0 20px;
           }
           @include mobile {
             width: 30px;
@@ -144,11 +150,17 @@
         &:hover {
           color: $yellow;
         }
+        @include mobile {
+          font-size: 10rem;
+        }
       }
       .greeting {
         margin: 2px 0 10px;
         color: $white;
         cursor: default;
+        @include mobileLarge {
+          font-size: 2rem;
+        }
       }
     }
     .searchForm {
@@ -175,6 +187,9 @@
           label {
             font-size: clamp(0.75rem, 0.6136rem + 0.6818vw, 2.25rem);
             color: $white;
+            @include mobileLarge {
+              font-size: 1.2rem;
+            }
           }
           input {
             margin: 2px 5px 0;
@@ -184,6 +199,10 @@
             @include mobileLarge {
               width: 9px;
               height: 9px;
+            }
+            @include mobile {
+              width: 11px;
+              height: 11px;
             }
           }
         }

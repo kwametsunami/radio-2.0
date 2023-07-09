@@ -458,6 +458,8 @@ input {
 @media (max-width: 680px) {
   .landing .landingNav .navItems .navButtons .loginBtn {
     width: 45px;
+    font-size: 2rem;
+    margin: 0 20px;
   }
 }
 @media (max-width: 450px) {
@@ -486,6 +488,8 @@ input {
 @media (max-width: 680px) {
   .landing .landingNav .navItems .navButtons .logoutBtn {
     width: 45px;
+    font-size: 2rem;
+    margin: 0 20px;
   }
 }
 @media (max-width: 450px) {
@@ -514,6 +518,8 @@ input {
 @media (max-width: 680px) {
   .landing .landingNav .navItems .navButtons .aboutBtn {
     width: 45px;
+    font-size: 2rem;
+    margin: 0 20px;
   }
 }
 @media (max-width: 450px) {
@@ -553,10 +559,20 @@ input {
 .landing .centerContent .centerText .title:hover {
   color: #edd05f;
 }
+@media (max-width: 450px) {
+  .landing .centerContent .centerText .title {
+    font-size: 10rem;
+  }
+}
 .landing .centerContent .centerText .greeting {
   margin: 2px 0 10px;
   color: #f7f5ea;
   cursor: default;
+}
+@media (max-width: 680px) {
+  .landing .centerContent .centerText .greeting {
+    font-size: 2rem;
+  }
 }
 .landing .centerContent .searchForm {
   display: flex;
@@ -592,6 +608,11 @@ input {
   font-size: clamp(0.75rem, 0.6136rem + 0.6818vw, 2.25rem);
   color: #f7f5ea;
 }
+@media (max-width: 680px) {
+  .landing .centerContent .searchForm .searchContainer .checkBox label {
+    font-size: 1.2rem;
+  }
+}
 .landing .centerContent .searchForm .searchContainer .checkBox input {
   margin: 2px 5px 0;
   width: 12.5px;
@@ -602,6 +623,12 @@ input {
   .landing .centerContent .searchForm .searchContainer .checkBox input {
     width: 9px;
     height: 9px;
+  }
+}
+@media (max-width: 450px) {
+  .landing .centerContent .searchForm .searchContainer .checkBox input {
+    width: 11px;
+    height: 11px;
   }
 }
 .landing .centerContent .searchForm .searchContainer .searchInner {
@@ -699,6 +726,11 @@ input {
   transform: scale(0.95);
   animation: modalOpen 0.5s forwards 0.5s;
 }
+@media (max-width: 680px) {
+  .about .aboutContainer {
+    width: 80vw;
+  }
+}
 .about .aboutContainer .aboutContent {
   text-align: center;
   display: flex;
@@ -706,6 +738,11 @@ input {
   align-items: center;
   padding: 65px;
   margin-top: 35px;
+}
+@media (max-width: 680px) {
+  .about .aboutContainer .aboutContent {
+    padding: 20px;
+  }
 }
 .about .aboutContainer .aboutContent .aboutTitle {
   font-size: 5rem;
@@ -790,8 +827,18 @@ input {
 .login .loginSectionContainer .loginNav .returnToSearch .title:hover {
   color: #edd05f;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginNav .returnToSearch .title {
+    font-size: 9rem;
+  }
+}
 .login .loginSectionContainer .loginFadeIn {
   width: 35%;
+}
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginFadeIn {
+    width: 100%;
+  }
 }
 .login .loginSectionContainer .loginFadeIn .loginContainer {
   width: 100%;
@@ -819,6 +866,11 @@ input {
 .login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText {
   color: #f7f5ea;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText {
+    font-size: 2rem;
+  }
+}
 .login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText .signUpButton {
   background: transparent;
   border: none;
@@ -826,6 +878,12 @@ input {
   font-size: 1.5rem;
   margin: 0;
   border-bottom: 2px solid transparent;
+}
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText .signUpButton {
+    font-size: 2rem;
+    color: #edd05f;
+  }
 }
 .login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText .signUpButton:hover {
   color: #edd05f;
@@ -857,6 +915,11 @@ input {
   color: #f7f5ea;
   cursor: default;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginFadeIn .loginContainer h2 {
+    font-size: 3rem;
+  }
+}
 .login .loginSectionContainer .signUpContainer {
   width: 35%;
   text-align: center;
@@ -865,10 +928,20 @@ input {
   align-items: center;
   animation: formSlide 0.3s linear;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer {
+    width: 100%;
+  }
+}
 .login .loginSectionContainer .signUpContainer h2 {
   color: #f7f5ea;
   margin: 2px 0 10px;
   cursor: default;
+}
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer h2 {
+    font-size: 3rem;
+  }
 }
 .login .loginSectionContainer .signUpContainer .registerForm {
   display: flex;
@@ -889,6 +962,11 @@ input {
 .login .loginSectionContainer .signUpContainer .registerForm .loginText {
   color: #f7f5ea;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer .registerForm .loginText {
+    font-size: 2rem;
+  }
+}
 .login .loginSectionContainer .signUpContainer .registerForm .loginText .backToLoginButton {
   background: transparent;
   border: none;
@@ -896,6 +974,12 @@ input {
   font-size: 1.5rem;
   margin: 0;
   border-bottom: 2px solid transparent;
+}
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer .registerForm .loginText .backToLoginButton {
+    font-size: 2rem;
+    color: #edd05f;
+  }
 }
 .login .loginSectionContainer .signUpContainer .registerForm .loginText .backToLoginButton:hover {
   color: #edd05f;
@@ -939,6 +1023,142 @@ input {
 #blurredContainer {
   filter: blur(7px);
   -webkit-filter: blur(7px);
+}
+
+.filterAndControls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+}
+.filterAndControls .openFilter {
+  background: transparent;
+  border: none;
+  margin: 10px 20px 0 0;
+}
+.filterAndControls .openFilter i {
+  color: #1a1a1c;
+  font-size: 4.5rem;
+}
+.filterAndControls .filterPopOut {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #d32631;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-left: 1px solid #3a3a3c;
+}
+.filterAndControls .filterPopOut .filterTop {
+  height: 10%;
+  padding: 15px;
+  margin: 10px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo {
+  display: flex;
+  flex-direction: column;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo a h2 {
+  transition: 0.9s;
+  color: #f7f5ea;
+  font-family: "Jost Bold";
+  font-size: 4rem;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo a h2:hover {
+  color: #edd05f;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo .goBack button {
+  background: transparent;
+  border: none;
+  color: #1a1a1c;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo .goBack button i {
+  font-size: 2rem;
+  padding: 0;
+  color: #f7f5ea;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo .goBack button p {
+  font-size: 2rem;
+  margin: 0;
+  color: #f7f5ea;
+  padding-left: 5px;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo #hidden {
+  visibility: hidden;
+}
+.filterAndControls .filterPopOut .filterTop .filterClose .hamburgerX {
+  font-size: 3.75rem;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  color: #f7f5ea;
+  margin: 0;
+  opacity: 0;
+  animation: 0.2s linear forwards openMobile;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer {
+  height: 90%;
+  overflow-y: scroll;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 5px;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons button {
+  height: 80px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent;
+  border: none;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons button .buttonText {
+  color: #f7f5ea;
+  font-size: 3rem;
+  padding: 15px;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons button i {
+  font-size: 3rem;
+  padding: 15px;
+  color: #f7f5ea;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form {
+  height: 80px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #f7f5ea;
+  border-radius: 0px;
+  width: 70%;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form input::-moz-placeholder {
+  color: #f7f5ea;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form input::placeholder {
+  color: #f7f5ea;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
 }
 
 .searchNav {
@@ -1129,17 +1349,32 @@ input {
   position: relative;
   transform: scale(0.8);
 }
+@media (max-width: 680px) {
+  .loginModal .loginModalContainer {
+    width: 100%;
+  }
+}
 .loginModal .loginModalContainer .closeModalButton {
   position: absolute;
   top: 0;
-  right: 0;
+  align-self: flex-end;
   margin: 25px 65px 0 0;
   background: transparent;
   border: none;
 }
+@media (max-width: 680px) {
+  .loginModal .loginModalContainer .closeModalButton {
+    margin: -15px 25px 0 0;
+  }
+}
 .loginModal .loginModalContainer .closeModal {
   font-size: 3rem;
   color: #f7f5ea;
+}
+@media (max-width: 680px) {
+  .loginModal .loginModalContainer .closeModal {
+    font-size: 4rem;
+  }
 }
 
 @keyframes showUp {
@@ -2484,7 +2719,7 @@ input {
   transition: 0.9s;
   color: #f7f5ea;
   font-family: "Jost Bold";
-  font-size: 3rem;
+  font-size: 4rem;
 }
 .dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo a h2:hover {
   color: #edd05f;
@@ -2498,12 +2733,12 @@ input {
   transition: 0.3s;
 }
 .dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo .goBack button i {
-  font-size: 1.6rem;
+  font-size: 2rem;
   padding: 0;
   color: #f7f5ea;
 }
 .dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo .goBack button p {
-  font-size: 1.6rem;
+  font-size: 2rem;
   margin: 0;
   color: #f7f5ea;
   padding-left: 5px;
@@ -2516,7 +2751,7 @@ input {
   z-index: 5;
   background: transparent;
   border: none;
-  color: #1a1a1c;
+  color: #f7f5ea;
   margin: 0;
   opacity: 0;
   animation: 0.2s linear forwards openMobile;
@@ -2577,7 +2812,7 @@ input {
   padding: 10px 17.5px;
   margin-top: 10px;
   color: #1a1a1c;
-  font-size: 1.5rem;
+  font-size: 2rem;
   transition: 0.3s;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .userContainer .anonymousContent {
@@ -2597,7 +2832,7 @@ input {
   padding: 10px 17.5px;
   margin-top: 10px;
   color: #1a1a1c;
-  font-size: 1.5rem;
+  font-size: 2rem;
   transition: 0.3s;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .popularView {
@@ -2873,7 +3108,6 @@ input {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow-y: none;
   position: relative;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems {
@@ -3044,6 +3278,196 @@ input {
   animation: rotateOnce 0.65s linear;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer h2 {
+  cursor: default;
+  color: #f7f5ea;
+  font-size: 3rem;
+  cursor: default;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer h2 #favouriteTitle {
+  font-family: "Jost Bold";
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer p {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer {
+  position: relative;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favPrompt {
+  padding: 20px 10px;
+  text-align: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favPrompt p {
+  color: #f7f5ea;
+  font-size: 2rem;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favPrompt .notSignedIn {
+  width: 75%;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favPrompt .notSignedIn #notSignedIn {
+  color: #edd05f;
+  font-size: 2rem;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favPrompt .notSignedIn .notSignedInBtn {
+  background: #dcc155;
+  color: #1a1a1c;
+  padding: 10px 17.5px;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent {
+  padding: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems,
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .playButtonDivFav {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .imageAndText img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .imageAndText .favText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .imageAndText .favText p {
+  margin: 0;
+  font-size: 2rem;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons {
+  display: flex;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav i {
+  font-size: 1.5rem;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+  transition: 0.1s;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav .trash {
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 0.2px;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .playButtonDivFav {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 50%;
+  border: none;
+  cursor: default;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .imageAndText .playingBarsFav {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .imageAndText .favText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .imageAndText .favText p {
+  margin: 0;
+  font-size: 2rem;
+  color: #edd05f;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons {
+  display: flex;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  color: #f7f5ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav i {
+  font-size: 1.5rem;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+  transition: 0.1s;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav .trash {
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 0.2px;
 }
 
 @keyframes openMobile {
@@ -4693,6 +5117,11 @@ h2 {
 .footer .footerText p a:hover {
   color: #edd05f;
   transition: 0.3s;
+}
+@media (max-width: 450px) {
+  .footer .footerText p {
+    font-size: 1.2rem;
+  }
 }
 
 .danceParty {

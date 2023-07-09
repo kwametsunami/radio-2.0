@@ -5,6 +5,141 @@
   filter: blur(7px);
   -webkit-filter: blur(7px);
 }
+.filterAndControls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  .openFilter {
+    background: transparent;
+    border: none;
+    margin: 10px 20px 0 0;
+    i {
+      color: $black;
+      font-size: 4.5rem;
+    }
+  }
+  .filterPopOut {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: $red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-left: 1px solid $ash;
+    .filterTop {
+      height: 10%;
+      padding: 15px;
+      margin: 10px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .filterLogo {
+        display: flex;
+        flex-direction: column;
+        a {
+          h2 {
+            transition: 0.9s;
+            color: $white;
+            font-family: $bold;
+            font-size: 4rem;
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+        .goBack {
+          button {
+            background: transparent;
+            border: none;
+            color: $black;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+            i {
+              font-size: 2rem;
+              padding: 0;
+              color: $white;
+            }
+            p {
+              font-size: 2rem;
+              margin: 0;
+              color: $white;
+              padding-left: 5px;
+            }
+          }
+        }
+        #hidden {
+          visibility: hidden;
+        }
+      }
+      .filterClose {
+        .hamburgerX {
+          font-size: 3.75rem;
+          z-index: 5;
+          background: transparent;
+          border: none;
+          color: $white;
+          margin: 0;
+          opacity: 0;
+          animation: 0.2s linear forwards openMobile;
+        }
+      }
+    }
+    .mobileFilterContainer {
+      height: 90%;
+      overflow-y: scroll;
+      .filterButtons {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 10px 5px;
+        button {
+          height: 80px;
+          margin: 20px 0;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          background-color: transparent;
+          border: none;
+          .buttonText {
+            color: $white;
+            font-size: 3rem;
+            padding: 15px;
+          }
+          i {
+            font-size: 3rem;
+            padding: 15px;
+            color: $white;
+          }
+        }
+        form {
+          height: 80px;
+          margin: 20px 0;
+          display: flex;
+          align-items: center;
+          input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid $white;
+            border-radius: 0px;
+            width: 70%;
+            &::placeholder {
+              color: $white;
+              margin: 0;
+              padding: 0;
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 .searchNav {
   position: fixed;
   top: 0;
@@ -179,17 +314,26 @@
     border-radius: 70px;
     position: relative;
     transform: scale(0.8);
+    @include mobileLarge {
+      width: 100%;
+    }
     .closeModalButton {
       position: absolute;
       top: 0;
-      right: 0;
+      align-self: flex-end;
       margin: 25px 65px 0 0;
       background: transparent;
       border: none;
+      @include mobileLarge {
+        margin: -15px 25px 0 0;
+      }
     }
     .closeModal {
       font-size: 3rem;
       color: $white;
+      @include mobileLarge {
+        font-size: 4rem;
+      }
     }
   }
 }

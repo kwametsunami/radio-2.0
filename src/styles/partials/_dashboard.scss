@@ -1364,7 +1364,7 @@
             transition: 0.9s;
             color: $white;
             font-family: $bold;
-            font-size: 3rem;
+            font-size: 4rem;
             &:hover {
               color: $yellow;
             }
@@ -1379,12 +1379,12 @@
             align-items: center;
             transition: 0.3s;
             i {
-              font-size: 1.6rem;
+              font-size: 2rem;
               padding: 0;
               color: $white;
             }
             p {
-              font-size: 1.6rem;
+              font-size: 2rem;
               margin: 0;
               color: $white;
               padding-left: 5px;
@@ -1401,9 +1401,8 @@
           z-index: 5;
           background: transparent;
           border: none;
-          color: $black;
+          color: $white;
           margin: 0;
-          // padding: 12.5px;
           opacity: 0;
           animation: 0.2s linear forwards openMobile;
         }
@@ -1464,7 +1463,7 @@
             padding: 10px 17.5px;
             margin-top: 10px;
             color: $black;
-            font-size: 1.5rem;
+            font-size: 2rem;
             transition: 0.3s;
           }
         }
@@ -1485,7 +1484,7 @@
               padding: 10px 17.5px;
               margin-top: 10px;
               color: $black;
-              font-size: 1.5rem;
+              font-size: 2rem;
               transition: 0.3s;
             }
           }
@@ -1768,7 +1767,6 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            overflow-y: none;
             position: relative;
             .recentItems {
               display: flex;
@@ -1934,6 +1932,202 @@
                     animation: rotateOnce 0.65s linear;
                     -webkit-text-stroke-width: 1px;
                     -webkit-text-stroke-color: $black;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .favContainer {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+        h2 {
+          cursor: default;
+          color: $white;
+          font-size: 3rem;
+          cursor: default;
+          #favouriteTitle {
+            font-family: $bold;
+          }
+        }
+        p {
+          color: $black;
+        }
+        .favContainerContainer {
+          position: relative;
+          padding: 5px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .favPrompt {
+            padding: 20px 10px;
+            text-align: center;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            p {
+              color: $white;
+              font-size: 2rem;
+            }
+            .notSignedIn {
+              width: 75%;
+              #notSignedIn {
+                color: $yellow;
+                font-size: 2rem;
+              }
+              .notSignedInBtn {
+                background: $darkYellow;
+                color: $black;
+                padding: 10px 17.5px;
+                border-radius: 5px;
+                font-size: 2rem;
+              }
+            }
+          }
+          .favContent {
+            padding: 5px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            .scrollableContent {
+              .favItems,
+              .favItemsPlaying {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px 5px;
+                margin: 20px 0;
+                position: relative;
+                height: 60px;
+              }
+              .favItems {
+                .playButtonDivFav {
+                  background: transparent;
+                  position: absolute;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  border: none;
+                  cursor: pointer;
+                }
+                .imageAndText {
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 5px;
+                  }
+                  .favText {
+                    padding: 0 5px 0 25px;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    p {
+                      margin: 0;
+                      font-size: 2rem;
+                      color: $white;
+                    }
+                  }
+                }
+                .favButtons {
+                  display: flex;
+                  .removeFav {
+                    width: 10px;
+                    padding: 7px 10px;
+                    border: none;
+                    background: transparent;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1;
+                    i {
+                      font-size: 1.5rem;
+                      -webkit-text-stroke-width: 1px;
+                      -webkit-text-stroke-color: $black;
+                      transition: 0.1s;
+                    }
+                    .trash {
+                      color: $white;
+                      -webkit-text-stroke-width: 0.2px;
+                    }
+                  }
+                }
+              }
+              .favItemsPlaying {
+                .playButtonDivFav {
+                  background: transparent;
+                  position: absolute;
+                  top: 0;
+                  width: 50%;
+                  height: 50%;
+                  border: none;
+                  cursor: default;
+                }
+                .imageAndText {
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  .playingBarsFav {
+                    width: 50px;
+                    height: 50px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: $white;
+                    font-family: "Poppins", sans-serif;
+                    background-image: url("../../assets/soundBars.gif");
+                    background-size: 75px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    display: inline-block;
+                  }
+                  .favText {
+                    padding: 0 5px 0 25px;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    p {
+                      margin: 0;
+                      font-size: 2rem;
+                      color: $yellow;
+                    }
+                  }
+                }
+                .favButtons {
+                  display: flex;
+                  .removeFav {
+                    width: 10px;
+                    padding: 7px 10px;
+                    border: none;
+                    background: transparent;
+                    color: $white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1;
+                    i {
+                      font-size: 1.5rem;
+                      -webkit-text-stroke-width: 1px;
+                      -webkit-text-stroke-color: $black;
+                      transition: 0.1s;
+                    }
+                    .trash {
+                      color: $white;
+                      -webkit-text-stroke-width: 0.2px;
+                    }
                   }
                 }
               }

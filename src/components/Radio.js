@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import firebase from "../firebase";
 import { getDatabase, ref, onValue, remove } from "firebase/database";
 
+import FadeIn from "react-fade-in/lib/FadeIn";
+
 import Loading from "./Loading";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
@@ -61,6 +63,10 @@ const Radio = (props) => {
 
   const switchView = () => {
     setListView(!listView);
+
+    if (mobile) {
+      closeOptions();
+    }
   };
 
   useEffect(() => {
@@ -212,6 +218,9 @@ const Radio = (props) => {
     window.innerWidth,
     window.innerHeight,
   ]);
+  const [mobileOptions, setMobileOptions] = useState(false);
+  const [showCaret, setShowCaret] = useState(true);
+  const [mobileSearch, setMobileSearch] = useState(false);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -230,6 +239,19 @@ const Radio = (props) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, [windowSize]);
+
+  const openOptions = () => {
+    setMobileOptions(true);
+  };
+
+  const closeOptions = () => {
+    setMobileOptions(false);
+    setMobileSearch(false);
+  };
+
+  const mobileSearchClick = () => {
+    setMobileSearch(true);
+  };
 
   const [testArr, setTestArr] = useState([]);
   const [testKeys, setTestKeys] = useState([]);
@@ -265,8 +287,6 @@ const Radio = (props) => {
       const filteredFav = uniqueFav.filter(
         (item) => item.userId === userDetails.user.uid
       );
-
-      // Reverse the array in-place
       filteredFav.reverse();
 
       setTestArr(filteredFav);
@@ -315,28 +335,111 @@ const Radio = (props) => {
 
   return (
     <section className="infoContainer">
-      <nav className="searchNav" id={loginModal ? "blurredContainer" : ""}>
-        <div className="searchNavContents">
-          <form
-            className="infoForm"
-            autoComplete="off"
-            onSubmit={props.onSubmit}
-          >
-            <input
-              className="infoSearch"
-              type="text"
-              onChange={props.onChange}
-              value={props.value}
-              onSubmit={props.onSubmit}
-              placeholder="search"
-              required
-            />
-            <button className="searchButton">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form>
+      {mobile && showCaret ? (
+        <div className="filterAndControls">
+          <button className="openFilter" onClick={openOptions}>
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+          {mobileOptions ? (
+            <div className="filterPopOut">
+              <div className="filterTop">
+                <div className="filterLogo">
+                  <Link onClick={props.landingView} to="/">
+                    <h2>tr-1.fm</h2>
+                  </Link>
+                  <div className="goBack">
+                    <button>
+                      <i className="fa-solid fa-chevron-left"></i>
+                      <p>back</p>
+                    </button>
+                  </div>
+                </div>
+                <div className="filterClose">
+                  <button className="hamburgerX" onClick={closeOptions}>
+                    <i className="fa-solid fa-caret-left"></i>
+                  </button>
+                </div>
+              </div>
+              <FadeIn
+                transitionDuration={350}
+                className="mobileFilterContainer"
+              >
+                <div className="filterButtons">
+                  {mobileSearch ? (
+                    <form
+                      className="infoForm"
+                      autoComplete="off"
+                      onSubmit={props.onSubmit}
+                    >
+                      <button className="searchButton">
+                        <i className="fa-solid fa-magnifying-glass"></i>
+                      </button>
+                      <input
+                        className="infoSearch"
+                        type="text"
+                        onChange={props.onChange}
+                        value={props.value}
+                        onSubmit={props.onSubmit}
+                        placeholder="search"
+                        required
+                      />
+                    </form>
+                  ) : (
+                    <button
+                      className="searchButton"
+                      onClick={mobileSearchClick}
+                    >
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <p className="buttonText">search</p>
+                    </button>
+                  )}
+                  <button className="viewSwitch" onClick={switchView}>
+                    {listView ? (
+                      <i className="fa-solid fa-earth-americas"></i>
+                    ) : (
+                      <i className="fa-solid fa-list"></i>
+                    )}
+                    <p className="buttonText">
+                      {listView ? "map" : "list"} view
+                    </p>
+                  </button>
+                  <button className="randomStation">
+                    <i className="fa-solid fa-shuffle"></i>
+                    <p className="buttonText">random station</p>
+                  </button>
+                  <button className="filterButton">
+                    <i className="fa-solid fa-filter"></i>
+                    <p className="buttonText">filter results</p>
+                  </button>
+                </div>
+              </FadeIn>
+            </div>
+          ) : null}
         </div>
-      </nav>
+      ) : (
+        <nav className="searchNav" id={loginModal ? "blurredContainer" : ""}>
+          <div className="searchNavContents">
+            <form
+              className="infoForm"
+              autoComplete="off"
+              onSubmit={props.onSubmit}
+            >
+              <input
+                className="infoSearch"
+                type="text"
+                onChange={props.onChange}
+                value={props.value}
+                onSubmit={props.onSubmit}
+                placeholder="search"
+                required
+              />
+              <button className="searchButton">
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+          </div>
+        </nav>
+      )}
       <div className="radioView" id={loginModal ? "blurredContainer" : ""}>
         <div className={mobile ? "dashboardMobile" : "dashboard"}>
           <Dashboard
@@ -370,6 +473,9 @@ const Radio = (props) => {
             login={login}
             setSaveToFav={setSaveToFav}
             setFavPopUp={setFavPopUp}
+            mobileOptions={mobileOptions}
+            showCaret={showCaret}
+            setShowCaret={setShowCaret}
           />
         </div>
         {loading ? (

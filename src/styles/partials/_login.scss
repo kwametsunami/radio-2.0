@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 
 .login {
   .loginSectionContainer {
@@ -21,11 +22,17 @@
           &:hover {
             color: $yellow;
           }
+          @include mobileLarge {
+            font-size: 9rem;
+          }
         }
       }
     }
     .loginFadeIn {
       width: 35%;
+      @include mobileLarge {
+        width: 100%;
+      }
       .loginContainer {
         width: 100%;
         text-align: center;
@@ -49,6 +56,9 @@
           }
           .signUpText {
             color: $white;
+            @include mobileLarge {
+              font-size: 2rem;
+            }
             .signUpButton {
               background: transparent;
               border: none;
@@ -56,6 +66,10 @@
               font-size: 1.5rem;
               margin: 0;
               border-bottom: 2px solid transparent;
+              @include mobileLarge {
+                font-size: 2rem;
+                color: $yellow;
+              }
               &:hover {
                 color: $yellow;
                 transition: 0.3s;
@@ -88,6 +102,9 @@
           margin: 2px 0 10px;
           color: $white;
           cursor: default;
+          @include mobileLarge {
+            font-size: 3rem;
+          }
         }
       }
     }
@@ -98,10 +115,16 @@
       flex-direction: column;
       align-items: center;
       animation: formSlide 0.3s linear;
+      @include mobileLarge {
+        width: 100%;
+      }
       h2 {
         color: $white;
         margin: 2px 0 10px;
         cursor: default;
+        @include mobileLarge {
+          font-size: 3rem;
+        }
       }
       .registerForm {
         display: flex;
@@ -120,6 +143,9 @@
         }
         .loginText {
           color: $white;
+          @include mobileLarge {
+            font-size: 2rem;
+          }
           .backToLoginButton {
             background: transparent;
             border: none;
@@ -127,6 +153,10 @@
             font-size: 1.5rem;
             margin: 0;
             border-bottom: 2px solid transparent;
+            @include mobileLarge {
+              font-size: 2rem;
+              color: $yellow;
+            }
             &:hover {
               color: $yellow;
               transition: 0.3s;

@@ -45,6 +45,7 @@ const Dashboard = (props) => {
   const mobileMenu = () => {
     setShowMobile(!showMobile);
     setPopularView(null);
+    props.setShowCaret(!props.showCaret);
   };
 
   const userView = () => {
@@ -77,7 +78,7 @@ const Dashboard = (props) => {
     if (props.mobile) {
       setRecentView(false);
       setUserPage(false);
-      setPopularView(3);
+      setPopularView(5);
     }
   };
 
@@ -184,7 +185,6 @@ const Dashboard = (props) => {
 
   const goToLogin = (event) => {
     event.preventDefault();
-    // props.search("");
     props.login();
   };
 
@@ -207,7 +207,7 @@ const Dashboard = (props) => {
     <>
       {props.mobile ? (
         <div className="dashboardContainerMobile">
-          {showMobile ? null : (
+          {showMobile || props.mobileOptions ? null : (
             <div className="hamburgerMenu">
               <button className="hamburger" onClick={mobileMenu}>
                 <i className="fa-solid fa-bars"></i>
@@ -534,54 +534,43 @@ const Dashboard = (props) => {
                                       : "favItems"
                                   }
                                   key={`${favStation.key}`}
-                                  onMouseEnter={() =>
-                                    handleMouseEnter(favStation.stationData.id)
-                                  }
-                                  onMouseLeave={handleMouseLeave}
                                 >
-                                  {hoveredItem === favStation.stationData.id ? (
-                                    <button
-                                      className="playButtonDivFav"
-                                      onClick={playStation}
-                                      value={[
-                                        `${favStation.stationData.id}`,
-                                        `${favStation.stationData.url}`,
-                                        `${favStation.stationData.icon}`,
-                                        `${favStation.stationData.latitude}`,
-                                        `${favStation.stationData.longitude}`,
-                                        `${favStation.stationData.stationName}`,
-                                      ]}
-                                    ></button>
-                                  ) : null}
-                                  {props.currentKey ===
-                                  favStation.stationData.id ? (
-                                    <div className="playingBarsFav"></div>
-                                  ) : (
-                                    <img
-                                      src={`${favStation.stationData.icon}`}
-                                      alt={`${favStation.stationData.stationName}`}
-                                      onError={setDefaultSrc}
-                                      className={
-                                        hoveredItem ===
-                                        favStation.stationData.id
-                                          ? "blurred"
-                                          : ""
-                                      }
-                                    />
-                                  )}
-                                  {hoveredItem === favStation.stationData.id &&
-                                  props.stationUrl !==
-                                    favStation.stationData.url ? (
-                                    <div className="hoverPlayDash">
-                                      <i className="fa-solid fa-play"></i>
+                                  <button
+                                    className="playButtonDivFav"
+                                    onClick={playStation}
+                                    value={[
+                                      `${favStation.stationData.id}`,
+                                      `${favStation.stationData.url}`,
+                                      `${favStation.stationData.icon}`,
+                                      `${favStation.stationData.latitude}`,
+                                      `${favStation.stationData.longitude}`,
+                                      `${favStation.stationData.stationName}`,
+                                    ]}
+                                  ></button>
+                                  <div className="imageAndText">
+                                    {props.currentKey ===
+                                    favStation.stationData.id ? (
+                                      <div className="playingBarsFav"></div>
+                                    ) : (
+                                      <img
+                                        src={`${favStation.stationData.icon}`}
+                                        alt={`${favStation.stationData.stationName}`}
+                                        onError={setDefaultSrc}
+                                        className={
+                                          hoveredItem ===
+                                          favStation.stationData.id
+                                            ? "blurred"
+                                            : ""
+                                        }
+                                      />
+                                    )}
+                                    <div className="favText">
+                                      <p className="favTextTitle">{`${favStation.stationData.stationName
+                                        .replace(/_/g, "")
+                                        .replace(/-/g, " ")
+                                        .replace(/  +/, " ")
+                                        .replace(/\//g, "")}`}</p>
                                     </div>
-                                  ) : null}
-                                  <div className="favText">
-                                    <p className="favTextTitle">{`${favStation.stationData.stationName
-                                      .replace(/_/g, "")
-                                      .replace(/-/g, " ")
-                                      .replace(/  +/, " ")
-                                      .replace(/\//g, "")}`}</p>
                                   </div>
                                   <div className="favButtons">
                                     <button
@@ -590,12 +579,7 @@ const Dashboard = (props) => {
                                         props.removeFav(favStation.key)
                                       }
                                     >
-                                      {hoveredItem ===
-                                      favStation.stationData.id ? (
-                                        <i class="fa-solid fa-trash-can trash"></i>
-                                      ) : (
-                                        <i className="fa-solid fa-star faved"></i>
-                                      )}
+                                      <i class="fa-solid fa-trash-can trash"></i>
                                     </button>
                                   </div>
                                 </div>
