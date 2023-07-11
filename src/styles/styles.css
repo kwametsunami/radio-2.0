@@ -629,22 +629,6 @@ input {
   width: 12.5px;
   height: 12.5px;
   padding: 0;
-  touch-action: manipulation;
-  user-select: text;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  user-select: text;
-  touch-action: manipulation;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  -webkit-user-select: auto !important;
-  -moz-user-select: auto !important;
-  -o-user-select: auto !important;
-  user-select: auto !important;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
 }
 @media (max-width: 680px) {
   .landing .centerContent .searchForm .searchContainer .checkBox input {
@@ -668,6 +652,24 @@ input {
 .landing .centerContent .searchForm .searchContainer .searchInner input,
 .landing .centerContent .searchForm .searchContainer .searchInner input::placeholder {
   font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
+}
+.landing .centerContent .searchForm .searchContainer .searchInner .landingSearch {
+  touch-action: manipulation;
+  user-select: text;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+  touch-action: manipulation;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
 }
 .landing .centerContent .searchForm .searchContainer .searchInner .searchButton {
   background-color: #edd05f;

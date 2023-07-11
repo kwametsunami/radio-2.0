@@ -203,6 +203,24 @@
             width: 12.5px;
             height: 12.5px;
             padding: 0;
+            @include mobileLarge {
+              width: 9px;
+              height: 9px;
+            }
+            @include mobile {
+              width: 11px;
+              height: 11px;
+            }
+          }
+        }
+        .searchInner {
+          display: flex;
+          text-align: center;
+          input,
+          input::placeholder {
+            font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
+          }
+          .landingSearch {
             touch-action: manipulation;
             user-select: text;
             -webkit-tap-highlight-color: transparent;
@@ -223,22 +241,6 @@
             -ms-user-select: auto !important;
             user-select: auto !important;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-            @include mobileLarge {
-              width: 9px;
-              height: 9px;
-            }
-            @include mobile {
-              width: 11px;
-              height: 11px;
-            }
-          }
-        }
-        .searchInner {
-          display: flex;
-          text-align: center;
-          input,
-          input::placeholder {
-            font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
           }
           .searchButton {
             background-color: $yellow;
