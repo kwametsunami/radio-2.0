@@ -275,7 +275,6 @@ const Radio = (props) => {
 
   const randomClick = () => {
     setRandomMobile(true);
-    console.log(randomMobile);
     closeOptions();
   };
 

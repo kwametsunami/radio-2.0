@@ -43,7 +43,6 @@ const Login = (props) => {
           props.closeModal();
         }, 1000);
       } else {
-        console.log(user);
         setLoginError(false);
         setLoginSuccess(true);
         props.setUser(user);
@@ -56,7 +55,6 @@ const Login = (props) => {
     } catch (error) {
       setLoginError(true);
       setLoginPassword("");
-      console.log(error);
     }
   };
 
