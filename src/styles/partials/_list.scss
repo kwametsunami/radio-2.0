@@ -33,6 +33,7 @@
         word-wrap: break-word;
         font-size: 2rem;
         text-align: center;
+        position: relative;
       }
       #amountReturned,
       #listSearchTerm {
@@ -139,12 +140,21 @@
           .buttonContainer {
             .favourite {
               i {
+                font-size: 2rem;
                 color: transparent;
                 -webkit-text-stroke-width: 1px;
                 -webkit-text-stroke-color: $black;
                 @include tablet {
                   color: $white;
                   -webkit-text-stroke-width: 0px;
+                }
+                &:hover {
+                  transform: scale(1.15);
+                  color: $white;
+                  transition: 0.2s;
+                  @include mobileLarge {
+                    transform: scale(1);
+                  }
                 }
               }
             }
@@ -190,7 +200,7 @@
             color: $black;
             @include mobileLarge {
               color: $white;
-              font-size: 1rem;
+              font-size: 1.5rem;
             }
           }
         }
@@ -262,31 +272,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          .infoButton {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            color: $red;
-            background-color: $white;
-            margin: 2px 5px;
-            &:hover {
-              transform: scale(1.05);
-            }
-            @include smallDesktop {
-              width: 30px;
-              height: 30px;
-            }
-            @include tablet {
-              width: 25px;
-              height: 25px;
-            }
-            @include mobileLarge {
-              width: 20px;
-              height: 20px;
-              font-size: 0.7rem;
-            }
-          }
           .favourite {
             width: 45px;
             height: 45px;
@@ -368,8 +353,8 @@
       position: relative;
       justify-content: center;
       width: calc((80% / 2) - 30px);
-      margin: 12.5px;
       max-height: 150px;
+      margin: 12.5px;
       border: 2.5px solid $black;
       border-radius: 20px;
       background-color: $playingYellow;
@@ -393,10 +378,16 @@
                 color: $grey;
                 -webkit-text-stroke-width: 1px;
                 -webkit-text-stroke-color: $black;
+                @include mobileLarge {
+                  -webkit-text-stroke-width: 0px;
+                }
                 &:hover {
                   transform: scale(1.15);
                   color: $white;
                   transition: 0.2s;
+                  @include mobileLarge {
+                    transform: scale(1);
+                  }
                 }
               }
             }
@@ -419,6 +410,9 @@
         padding: 5px;
         .information {
           width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           @include tablet {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -427,12 +421,17 @@
           .stationName {
             font-family: $bold;
           }
+          .stationCountry {
+            text-transform: capitalize;
+            margin: 0;
+            padding-bottom: 10px;
+          }
           p {
             font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
             color: $black;
             @include mobileLarge {
-              font-size: 1.5rem;
               color: $yellow;
+              font-size: 1.5rem;
             }
           }
         }
@@ -443,6 +442,9 @@
           align-content: center;
           justify-content: center;
           position: relative;
+          @include mobileLarge {
+            margin: 0 20px;
+          }
           .icon {
             margin: auto 0;
             width: 70px;
@@ -462,14 +464,10 @@
               font-size: 0.7rem;
             }
             @include mobileLarge {
-              width: 75px;
-              height: 75px;
-              max-height: 75px;
+              width: 65px;
+              height: 65px;
+              max-height: 65px;
             }
-          }
-          .blurred {
-            filter: blur(3px);
-            -webkit-filter: blur(3px);
           }
           .playingBars {
             width: 60px;
@@ -482,9 +480,8 @@
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            // margin: auto;
             padding: 5px;
-            margin: 0 auto;
+            margin: auto 0;
             align-self: center;
             @include smallDesktop {
               width: 50px;
@@ -499,9 +496,9 @@
               background-size: 65px;
             }
             @include mobileLarge {
-              width: 75px;
-              height: 75px;
-              max-height: 75px;
+              width: 70px;
+              height: 70px;
+              max-height: 70px;
             }
           }
         }
@@ -512,11 +509,17 @@
           .favourite {
             width: 45px;
             height: 45px;
-            border: none;
             margin: 2px 5px;
+            border: none;
             background-color: transparent;
             cursor: pointer;
             z-index: 1;
+            &:hover {
+              transform: scale(1.25);
+              i {
+                color: $white;
+              }
+            }
             @include smallDesktop {
               width: 30px;
               height: 30px;
@@ -532,6 +535,10 @@
             }
             i {
               color: transparent;
+              font-size: 2rem;
+              @include tablet {
+                font-size: 1.5rem;
+              }
               @include mobileLarge {
                 font-size: 1.5rem;
                 color: $white;

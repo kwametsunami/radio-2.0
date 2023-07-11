@@ -4,7 +4,7 @@
 @use "./partials/global";
 
 //sections
-@use "./partials/landing";
+@use "./partials/search";
 @use "./partials/about";
 @use "./partials/login";
 @use "./partials/radio";
@@ -12,6 +12,7 @@
 @use "./partials/loading";
 @use "./partials/loginLoading";
 @use "./partials/signedUp";
+@use "./partials/signedout";
 @use "./partials/map";
 @use "./partials/list";
 @use "./partials/hlsplayer";

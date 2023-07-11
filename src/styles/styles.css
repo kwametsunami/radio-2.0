@@ -1055,10 +1055,10 @@ input {
 }
 
 .filterAndControls {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
-  z-index: 5;
+  z-index: 20;
 }
 .filterAndControls .openFilter {
   background: transparent;
@@ -2751,7 +2751,7 @@ input {
   position: fixed;
   top: 20px;
   left: 45px;
-  z-index: 5;
+  z-index: 10;
   background: transparent;
   border: none;
   color: #1a1a1c;
@@ -2768,7 +2768,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  z-index: 4;
+  z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
@@ -3177,10 +3177,12 @@ input {
   position: relative;
   padding: 5px;
   width: 100%;
+  height: 655px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentPrompt {
   padding: 20px 10px;
@@ -3190,10 +3192,11 @@ input {
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade {
   padding: 5px;
-  overflow: hidden;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .recentContainer .recentContainerContainer .recentFade .recentItems {
   display: flex;
@@ -3387,7 +3390,9 @@ input {
   position: relative;
   padding: 5px;
   width: 100%;
+  height: 100%;
   display: flex;
+  overflow-y: hidden;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -3426,6 +3431,12 @@ input {
   flex-direction: column;
   position: relative;
   width: 100%;
+  height: 100%;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent {
+  height: 655px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItems,
 .dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying {
@@ -3948,7 +3959,7 @@ h2 {
     visibility: hidden;
     display: flex;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     left: 0;
     width: 100vw;
   }
@@ -4211,6 +4222,7 @@ h2 {
     word-wrap: break-word;
     font-size: 2rem;
     text-align: center;
+    position: relative;
   }
 }
 .stationList .listFilters .returned #amountReturned,
@@ -4328,6 +4340,7 @@ h2 {
   background-color: rgba(225, 224, 224, 0.8901960784);
 }
 .stationList .stationListContainer .stationInfoList:hover .imageInfoContainer .buttonContainer .favourite i {
+  font-size: 2rem;
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
@@ -4336,6 +4349,16 @@ h2 {
   .stationList .stationListContainer .stationInfoList:hover .imageInfoContainer .buttonContainer .favourite i {
     color: #f7f5ea;
     -webkit-text-stroke-width: 0px;
+  }
+}
+.stationList .stationListContainer .stationInfoList:hover .imageInfoContainer .buttonContainer .favourite i:hover {
+  transform: scale(1.15);
+  color: #f7f5ea;
+  transition: 0.2s;
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoList:hover .imageInfoContainer .buttonContainer .favourite i:hover {
+    transform: scale(1);
   }
 }
 @media (max-width: 950px) {
@@ -4385,7 +4408,7 @@ h2 {
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoList .imageInfoContainer .information p {
     color: #f7f5ea;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
@@ -4463,37 +4486,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-  width: 45px;
-  height: 45px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
-  color: #d32631;
-  background-color: #f7f5ea;
-  margin: 2px 5px;
-}
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton:hover {
-  transform: scale(1.05);
-}
-@media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-    width: 25px;
-    height: 25px;
-  }
-}
-@media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
-  }
 }
 .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
   width: 45px;
@@ -4592,8 +4584,8 @@ h2 {
   position: relative;
   justify-content: center;
   width: calc(40% - 30px);
-  margin: 12.5px;
   max-height: 150px;
+  margin: 12.5px;
   border: 2.5px solid #1a1a1c;
   border-radius: 20px;
   background-color: rgba(240, 206, 69, 0.8352941176);
@@ -4619,10 +4611,20 @@ h2 {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList:hover .imageInfoContainer .buttonContainer .favourite i {
+    -webkit-text-stroke-width: 0px;
+  }
+}
 .stationList .stationListContainer .stationInfoPlayingList:hover .imageInfoContainer .buttonContainer .favourite i:hover {
   transform: scale(1.15);
   color: #f7f5ea;
   transition: 0.2s;
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList:hover .imageInfoContainer .buttonContainer .favourite i:hover {
+    transform: scale(1);
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .playButtonDiv {
   background: transparent;
@@ -4641,6 +4643,9 @@ h2 {
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 @media (max-width: 950px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
@@ -4652,14 +4657,19 @@ h2 {
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information .stationName {
   font-family: "Jost Bold";
 }
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information .stationCountry {
+  text-transform: capitalize;
+  margin: 0;
+  padding-bottom: 10px;
+}
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
   font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
-    font-size: 1.5rem;
     color: #edd05f;
+    font-size: 1.5rem;
   }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
@@ -4669,6 +4679,11 @@ h2 {
   align-content: center;
   justify-content: center;
   position: relative;
+}
+@media (max-width: 680px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
+    margin: 0 20px;
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
   margin: auto 0;
@@ -4695,14 +4710,10 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
-    width: 75px;
-    height: 75px;
-    max-height: 75px;
+    width: 65px;
+    height: 65px;
+    max-height: 65px;
   }
-}
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .blurred {
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
   width: 60px;
@@ -4716,7 +4727,7 @@ h2 {
   background-position: center;
   display: inline-block;
   padding: 5px;
-  margin: 0 auto;
+  margin: auto 0;
   align-self: center;
 }
 @media (max-width: 1130px) {
@@ -4737,9 +4748,9 @@ h2 {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
-    width: 75px;
-    height: 75px;
-    max-height: 75px;
+    width: 70px;
+    height: 70px;
+    max-height: 70px;
   }
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer {
@@ -4750,11 +4761,17 @@ h2 {
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
   width: 45px;
   height: 45px;
-  border: none;
   margin: 2px 5px;
+  border: none;
   background-color: transparent;
   cursor: pointer;
   z-index: 1;
+}
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite:hover {
+  transform: scale(1.25);
+}
+.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite:hover i {
+  color: #f7f5ea;
 }
 @media (max-width: 1130px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
@@ -4777,6 +4794,12 @@ h2 {
 }
 .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
   color: transparent;
+  font-size: 2rem;
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
+    font-size: 1.5rem;
+  }
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {

@@ -1,17 +1,28 @@
+// imports
+// react-leaflet
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
-import PropagateLoader from "react-spinners/PropagateLoader";
+// react
+import { useEffect, useState } from "react";
 
+// firebase
 import firebase from "../firebase";
 import { getDatabase, ref, onValue, push } from "firebase/database";
 
-import { useEffect, useState } from "react";
+// packages
+import PropagateLoader from "react-spinners/PropagateLoader";
 
+// defaults
 import defaultImage from "../assets/radio.png";
 
+const setDefaultSrc = (event) => {
+  event.target.src = defaultImage;
+};
+
+// react-leftlet icons
 const defaultIcon = L.icon({
   iconUrl: require("../assets/iconDefault.png"),
   iconSize: [48, 48],
@@ -27,21 +38,27 @@ const selectedIcon = L.icon({
   iconSize: [60, 60],
 });
 
+// map restraints
 const worldBounds = [
   [-90, -180], // southwest corner
   [90, 180], // northeast corner
 ];
 
 const Map = (props) => {
+  // states
+  // station information to be sent
   const [radioUrl, setRadioUrl] = useState("");
   const [playingName, setPlayingName] = useState("");
 
+  // filter states
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
+  // latitude and longitude states
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
+  //if station was played from list or dashboard components, se tthe station name in the map component as well
   useEffect(() => {
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
@@ -61,6 +78,7 @@ const Map = (props) => {
     longitude,
   ]);
 
+  // check if sorting filter was used in other components
   useEffect(() => {
     setFilterTrue(false);
   }, [props.stations]);
@@ -72,6 +90,7 @@ const Map = (props) => {
     }
   }, [props.filterAmount]);
 
+  // play logic
   const radioSelect = (event) => {
     event.preventDefault();
 
@@ -95,6 +114,7 @@ const Map = (props) => {
     props.setCurrentLong(selectedStationArr[4]);
   };
 
+  // gather from firebase database to indicated favourites
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
@@ -113,10 +133,7 @@ const Map = (props) => {
     });
   }, []);
 
-  const setDefaultSrc = (event) => {
-    event.target.src = defaultImage;
-  };
-
+  // filter logic to reduce search results
   const grabFilter = (event) => {
     const randomizer = (min = 0, max = props.stations.length) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -154,6 +171,7 @@ const Map = (props) => {
     randomizer();
   };
 
+  // random station logic
   const randomStation = () => {
     if (filterTrue) {
       const randomizer = (min = 0, max = filteredStations.length) => {
@@ -218,18 +236,21 @@ const Map = (props) => {
     }
   };
 
+  // if random station logic was used in list component, update it in map component
   useEffect(() => {
     if (props.randomMobile) {
       randomStation();
     }
   }, [props.randomMobile]);
 
+  // if filter logic was used in list component, update it in map component
   useEffect(() => {
     if (props.filterEvent) {
       grabFilter(props.filterEvent);
     }
   }, [props.filterEvent]);
 
+  // favourite logic: push to firebase
   const favourite = (event, userId) => {
     const pushToDatabase = (event, userId) => {
       const stationFav = event.currentTarget.value;
@@ -278,6 +299,7 @@ const Map = (props) => {
           />
         ) : (
           <h3 className="returned">
+            {/* ///////////////////////////////////////////////////////////////////////////////////////////// buttons and search query */}
             returned{" "}
             <span id="amountReturnedMap">
               {filterTrue ? filteredStations.length : props.stations.length}{" "}
@@ -332,6 +354,7 @@ const Map = (props) => {
           {filterTrue
             ? filteredStations.map((stationDetails) => {
                 return (
+                  ///////////////////////////////////////////////////////////////////////////////////////// filter logic
                   <div key={stationDetails.changeuuid}>
                     <Marker
                       icon={
@@ -450,6 +473,7 @@ const Map = (props) => {
               })
             : props.stations.map((stationDetails) => {
                 return (
+                  ///////////////////////////////////////////////////////////////////////////////////////////// non-filter logic
                   <div key={stationDetails.changeuuid}>
                     <Marker
                       icon={

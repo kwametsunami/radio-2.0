@@ -6,10 +6,10 @@
   -webkit-filter: blur(7px);
 }
 .filterAndControls {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
-  z-index: 5;
+  z-index: 20;
   .openFilter {
     background: transparent;
     border: none;
@@ -335,13 +335,13 @@
   background: transparent;
   .loginModalContainer {
     width: 54vw;
-    height: 65vh;
+    height: 75vh;
     background: $red;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 70px;
+    border-radius: 25px;
     position: relative;
     transform: scale(0.8);
     @include mobileLarge {

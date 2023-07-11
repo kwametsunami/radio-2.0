@@ -1,33 +1,141 @@
+// firebase imports
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import { auth } from "../firebase";
+
+// react
 import { useEffect, useState } from "react";
 
-import LoginLoading from "./LoginLoading";
+// image assets
+import googleLogo from "../assets/social/googleLogo.png";
 
-import FadeIn from "react-fade-in/lib/FadeIn";
+// components
+import LoginLoading from "./LoginLoading";
 import SignedUp from "./SignedUp";
 
+// npms
+import FadeIn from "react-fade-in/lib/FadeIn";
+
 const Login = (props) => {
+  // states
+  // register
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [registerError, setRegisterError] = useState(false);
 
+  // login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
-  const [user, setUser] = useState({});
-
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [loginError, setLoginError] = useState(false);
 
+  // saved user information
+  const [user, setUser] = useState({});
+  const [usersName, setUsersName] = useState("");
+
+  // mobile
+  const [mobile, setMobile] = useState(false);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
+  // switch forms
+  const [loginForm, setLoginForm] = useState(true);
+
+  // check if mobile device
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    if (window.innerWidth < 680) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowSize]);
+
+  // sign in with Google logic
+  const googleProvider = new GoogleAuthProvider();
+
+  ///////////////////////////////////////////////////////////////////////// sign in -- google
+  const signInWithGoogle = async () => {
+    try {
+      const user = await signInWithPopup(auth, googleProvider);
+      let string = user.user.displayName;
+      let splitString = string.split(" ");
+      let splitWithSpace = " " + splitString[0];
+
+      setUsersName(splitWithSpace);
+
+      if (props.fromRadio) {
+        props.setUser(user);
+        props.setUserDetails(user);
+        setLoginError(false);
+        setLoginSuccess(true);
+        setTimeout(() => {
+          props.closeModal();
+        }, 1000);
+      } else {
+        setLoginError(false);
+        setLoginSuccess(true);
+        props.setUser(user);
+        props.setHideFooter(true);
+        setTimeout(() => {
+          props.landingView();
+          props.setHideFooter(false);
+        }, 1200);
+      }
+    } catch (error) {}
+  };
+
+  ///////////////////////////////////////////////////////////////////////// register -- google
+  const signUpWithGoogle = async () => {
+    try {
+      const user = await signInWithPopup(auth, googleProvider);
+
+      // get name from google login to welcome user
+      let string = user.user.displayName;
+      let splitString = string.split(" ");
+      let splitWithSpace = " " + splitString[0];
+
+      setUsersName(splitWithSpace);
+      if (props.fromRadio) {
+        props.setUser(user);
+        props.setUserDetails(user);
+        setRegisterError(false);
+        setRegisterSuccess(true);
+        setTimeout(() => {
+          props.closeModal();
+        }, 1000);
+      } else {
+        props.setUser(user);
+        setRegisterError(false);
+        setRegisterSuccess(true);
+        setTimeout(() => {
+          props.landingView();
+          props.setHideFooter(false);
+        }, 1200);
+      }
+    } catch (error) {}
+  };
+
+  ///////////////////////////////////////////////////////////////////////// login -- email auth
   const login = async (event) => {
     event.preventDefault();
-
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -58,15 +166,16 @@ const Login = (props) => {
     }
   };
 
+  // check if user information has changed
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
   }, []);
 
+  ///////////////////////////////////////////////////////////////////////// register -- email auth
   const register = async (event) => {
     event.preventDefault();
-
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -97,7 +206,7 @@ const Login = (props) => {
     }
   };
 
-  const [loginForm, setLoginForm] = useState(true);
+  // onClick -- switch from login to signUp and vice versa
 
   const switchForms = (event) => {
     event.preventDefault();
@@ -108,9 +217,9 @@ const Login = (props) => {
   return (
     <section className="login">
       {registerSuccess ? (
-        <SignedUp />
+        <SignedUp usersName={usersName} />
       ) : loginSuccess ? (
-        <LoginLoading />
+        <LoginLoading usersName={usersName} />
       ) : (
         <div className="loginSectionContainer">
           <nav className="loginNav">
@@ -119,6 +228,7 @@ const Login = (props) => {
             </button>
           </nav>
           {loginForm ? (
+            //////////////////////////////////////////////////////////////////// login
             <FadeIn className="loginFadeIn">
               <div className="loginContainer">
                 <h2>
@@ -160,14 +270,28 @@ const Login = (props) => {
                       here
                     </button>
                   </p>
-
-                  <button className="loginButton" type="submit" onClick={login}>
-                    login
-                  </button>
+                  <div className="signUpOptions">
+                    <button
+                      className="loginButton"
+                      type="submit"
+                      onClick={login}
+                    >
+                      login
+                    </button>
+                    <h3>or</h3>
+                    <button
+                      className="googleLoginButton"
+                      onClick={signInWithGoogle}
+                    >
+                      <img src={googleLogo} alt="Google Logo" />
+                      <p>Continue with Google</p>
+                    </button>
+                  </div>
                 </form>
               </div>
             </FadeIn>
           ) : (
+            //////////////////////////////////////////////////////////////////// register
             <div className="signUpContainer">
               <h2>
                 <span id="highlight">register</span> a new account
@@ -207,9 +331,19 @@ const Login = (props) => {
                     here
                   </button>
                 </p>
-                <button className="signUpButton" type="submit">
-                  register
-                </button>
+                <div className="signUpOptions">
+                  <button className="signUpButton" type="submit">
+                    register
+                  </button>
+                  <h3>or</h3>
+                  <button
+                    className="googleSignUpButton"
+                    onClick={signUpWithGoogle}
+                  >
+                    <img src={googleLogo} alt="Google Logo" />
+                    <p>Sign up with Google</p>
+                  </button>
+                </div>
               </form>
             </div>
           )}

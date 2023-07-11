@@ -59,22 +59,22 @@
             @include mobileLarge {
               font-size: 2rem;
             }
-            .signUpButton {
-              background: transparent;
-              border: none;
-              color: $white;
-              font-size: 1.5rem;
-              margin: 0;
-              border-bottom: 2px solid transparent;
-              @include mobileLarge {
-                font-size: 2rem;
-                color: $yellow;
-              }
-              &:hover {
-                color: $yellow;
-                transition: 0.3s;
-                border-bottom: 2px solid $yellow;
-              }
+          }
+          .signUpButton {
+            background: transparent;
+            border: none;
+            color: $white;
+            font-size: 1.5rem;
+            margin: 0;
+            border-bottom: 2px solid transparent;
+            @include mobileLarge {
+              font-size: 2rem;
+              color: $yellow;
+            }
+            &:hover {
+              color: $yellow;
+              transition: 0.3s;
+              border-bottom: 2px solid $yellow;
             }
           }
           #loginError {
@@ -95,6 +95,59 @@
               color: $black;
               border: 2px solid $black;
               transition: 0.3s;
+            }
+          }
+          .signUpOptions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            .loginButton {
+              margin: 0 5px;
+              width: 60%;
+              font-size: 2rem;
+              padding: 10px 10px;
+              border-radius: 5px;
+              background: transparent;
+              color: $black;
+              background: $yellow;
+              border: 2px solid $black;
+              &:hover {
+                background: $darkYellow;
+                color: $black;
+                border: 2px solid $black;
+                transition: 0.3s;
+              }
+            }
+            h3 {
+              margin: 5px 0;
+              font-size: 1.5rem;
+              color: $white;
+            }
+            .googleLoginButton {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: $white;
+              border: 2px solid $black;
+              border-radius: 5px;
+              padding: 5px 10px;
+              width: 60%;
+              &:hover {
+                background: $eggshell;
+                img {
+                  transform: scale(1.05);
+                }
+              }
+              img {
+                width: 20px;
+                height: 20px;
+                margin: 10px;
+              }
+              p {
+                color: $black;
+              }
             }
           }
         }
@@ -167,21 +220,57 @@
         #registerError {
           color: $yellow;
         }
-        .signUpButton {
-          margin: 0 5px;
-          width: 150px;
-          font-size: 2rem;
-          padding: 10px 10px;
-          border-radius: 5px;
-          background: transparent;
-          color: $black;
-          background: $yellow;
-          border: 2px solid $black;
-          &:hover {
-            background: $darkYellow;
+        .signUpOptions {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-evenly;
+          width: 100%;
+          .signUpButton {
+            margin: 0 5px;
+            width: 60%;
+            font-size: 2rem;
+            padding: 10px 10px;
+            border-radius: 5px;
+            background: transparent;
             color: $black;
+            background: $yellow;
             border: 2px solid $black;
-            transition: 0.3s;
+            &:hover {
+              background: $darkYellow;
+              color: $black;
+              border: 2px solid $black;
+              transition: 0.3s;
+            }
+          }
+          h3 {
+            margin: 5px 0;
+            font-size: 1.5rem;
+            color: $white;
+          }
+          .googleSignUpButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: $white;
+            border: 2px solid $black;
+            border-radius: 5px;
+            padding: 5px 10px;
+            width: 60%;
+            &:hover {
+              background: $eggshell;
+              img {
+                transform: scale(1.05);
+              }
+            }
+            img {
+              width: 20px;
+              height: 20px;
+              margin: 10px;
+            }
+            p {
+              color: $black;
+            }
           }
         }
       }

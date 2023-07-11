@@ -1,14 +1,20 @@
+// imports
 import React, { useRef, useState } from "react";
+
+// react player -- this is an HLS player which is used for .m3u8 links. works on desktops only
 import ReactPlayer from "react-player";
 
 const HLSPlayer = (props) => {
+  // load player with url
   const url = props.stationUrl;
   const playerRef = useRef(null);
 
+  // states
   const [playing, setPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [volumeLevel, setVolumeLevel] = useState(1);
 
+  // controls
   const handlePlay = () => {
     if (playerRef.current) {
       playerRef.current.getInternalPlayer().play();
@@ -38,18 +44,12 @@ const HLSPlayer = (props) => {
     }
   };
 
+  // error handling
   const setDefaultAlert = () => {
     alert(
       "Sorry, this station is offline or unavailable in your region. Please select another stream."
     );
   };
-
-  // const handlePlayerError = () => {
-  //   if (playerRef.current) {
-  //     playerRef.current.getInternalPlayer().load(); // Retry loading the media
-  //     playerRef.current.getInternalPlayer().play(); // Start playing again
-  //   }
-  // };
 
   return (
     <div className="hlsplayer">

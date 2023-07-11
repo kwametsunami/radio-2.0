@@ -1,6 +1,6 @@
 import PropagateLoader from "react-spinners/PropagateLoader";
 
-const LoginLoading = () => {
+const LoginLoading = (props) => {
   return (
     <div className="loginLoading">
       <div className="musicNotes">
@@ -23,7 +23,7 @@ const LoginLoading = () => {
       </div>
       <div className="loginLoadingText">
         <h2 className="loginGreeting">
-          Welcome back! Loading your preferences
+          Welcome back{props.usersName}! Loading your preferences
         </h2>
         <PropagateLoader
           color={"#EDD060"}

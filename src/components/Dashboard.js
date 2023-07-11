@@ -1,33 +1,52 @@
+// imports
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// firebase
 import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
 
+// npms
 import FadeIn from "react-fade-in";
 
+// components
 import DashboardLoading from "./DashboardLoading";
 
+//images
 import defaultImage from "../assets/radio.png";
 
+//setDefault -- for stations with no images
+const setDefaultSrc = (event) => {
+  event.target.src = defaultImage;
+};
+
 const Dashboard = (props) => {
-  const [showInfo, setShowInfo] = useState(false);
+  // states
+  // hover
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  // views
   const [popularView, setPopularView] = useState(1);
+  const [recentPrompt, setRecentPrompt] = useState(false);
   const [recentView, setRecentView] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [userPage, setUserPage] = useState(false);
+  const [favPrompt, setFavPrompt] = useState(false);
   const [userDate, setUserDate] = useState("");
+
+  // mobile
   const [showMobile, setShowMobile] = useState(false);
 
-  const [favPrompt, setFavPrompt] = useState(false);
-  const [recentPrompt, setRecentPrompt] = useState(false);
-
+  // default view for mobile
   useEffect(() => {
     if (props.mobile === false) {
       setPopularView(1);
     } else {
       setPopularView(null);
     }
-  }, []);
+  }, [props.mobile]);
 
+  // recentStations update logic
   useEffect(() => {
     props.recentStations.length === 0
       ? setRecentPrompt(true)
@@ -42,11 +61,7 @@ const Dashboard = (props) => {
     userDate,
   ]);
 
-  const mobileMenu = () => {
-    setShowMobile(!showMobile);
-    setPopularView(null);
-    props.setShowCaret(!props.showCaret);
-  };
+  // view functions
 
   const userView = () => {
     setRecentView(false);
@@ -82,10 +97,19 @@ const Dashboard = (props) => {
     }
   };
 
+  // mobile only
+
+  const mobileMenu = () => {
+    setShowMobile(!showMobile);
+    setPopularView(null);
+    props.setShowCaret(!props.showCaret);
+  };
+
   const backMobile = () => {
     setPopularView(null);
   };
 
+  // user date information logic
   useEffect(() => {
     if (props.userDetails.user.email !== "anon@tr1.fm") {
       const moment = require("moment");
@@ -108,6 +132,7 @@ const Dashboard = (props) => {
     }
   }, [props.userDetails, props.logout]);
 
+  // play button logic: sends information to radio component
   const playStation = (event) => {
     event.preventDefault();
 
@@ -125,6 +150,7 @@ const Dashboard = (props) => {
     props.addToRecent(dashboardStationArr);
   };
 
+  // play logic from recent station array
   const recentPlayStation = (event) => {
     event.preventDefault();
 
@@ -140,6 +166,7 @@ const Dashboard = (props) => {
     props.longitude(dashboardStationArr[4]);
   };
 
+  // play logic from favourited station array
   const favourite = (event, userId) => {
     const pushToDatabase = (event, userId) => {
       const stationFav = event.currentTarget.value;
@@ -173,14 +200,12 @@ const Dashboard = (props) => {
     pushToDatabase(event, props.userDetails.user.uid);
   };
 
+  // onClick functions
+
   const clearRecent = (event) => {
     event.preventDefault();
 
     props.setRecentStations([]);
-  };
-
-  const setDefaultSrc = (event) => {
-    event.target.src = defaultImage;
   };
 
   const goToLogin = (event) => {
@@ -193,7 +218,7 @@ const Dashboard = (props) => {
     setUserDate("");
   };
 
-  const [hoveredItem, setHoveredItem] = useState(null);
+  // hover logic for desktop browsing
 
   const handleMouseEnter = (index) => {
     setHoveredItem(index);
@@ -206,6 +231,7 @@ const Dashboard = (props) => {
   return (
     <>
       {props.mobile ? (
+        ///////////////////////////////////////////////////////////////////////////////// mobile
         <div className="dashboardContainerMobile">
           {showMobile || props.mobileOptions ? null : (
             <div className="hamburgerMenu">
@@ -243,6 +269,7 @@ const Dashboard = (props) => {
                 className="mobileDashboardContainer"
               >
                 {popularView === 5 ? (
+                  ////////////////////////////////////////////////////////////////// instructions -- mobile
                   <div className="instructionsMobile">
                     <p>
                       Discover the world through radio! In map mode, click on a
@@ -261,6 +288,7 @@ const Dashboard = (props) => {
                     </p>
                   </div>
                 ) : popularView === null ? (
+                  ///////////////////////////////////////////////////////////////// user dashboard -- mobile
                   <div className="mobileDashButtons">
                     <FadeIn transitionDuration={750}>
                       <button onClick={userView} className="userButtonMobile">
@@ -293,6 +321,18 @@ const Dashboard = (props) => {
                     <h2 id="userContainerTitle">dashboard</h2>
                     {userDate !== "" ? (
                       <div className="userContent">
+                        {props.userDetails.user.photoURL !== null ? (
+                          <div className="userPhoto">
+                            <img
+                              id="photo"
+                              src={props.userDetails.user.photoURL}
+                              alt={`${props.userDetails.user.displayName}'s avatar`}
+                            />
+                            <p id="displayName">
+                              {props.userDetails.user.displayName}
+                            </p>
+                          </div>
+                        ) : null}
                         <div className="creationDate">
                           <p>
                             member since <br />
@@ -318,6 +358,7 @@ const Dashboard = (props) => {
                     )}
                   </div>
                 ) : recentView ? (
+                  //////////////////////////////////////////////////////////////////// recent view -- mobile
                   <div className="recentContainer">
                     <div className="recentContainerTop">
                       <h2>
@@ -418,6 +459,7 @@ const Dashboard = (props) => {
                     </div>
                   </div>
                 ) : popularView === 1 ? (
+                  /////////////////////////////////////////////////////////////////////// popular view -- mobile
                   <div className="popularView">
                     {!props.dashboardLoading ? (
                       props.badSearch ? null : (
@@ -506,6 +548,7 @@ const Dashboard = (props) => {
                     ;
                   </div>
                 ) : (
+                  /////////////////////////////////////////////////////////////////////// favourite view -- mobile
                   <div className="favContainer">
                     <h2 className="favTitleTotal">
                       your
@@ -612,6 +655,7 @@ const Dashboard = (props) => {
               </FadeIn>
               <div className="userLoggedIn">
                 {props.userDetails.user.email !== "anon@tr1.fm" ? (
+                  /////////////////////////////////////////////////////////////////////// logged in username
                   <p id="dashboardUser">{props.userDetails.user.email}</p>
                 ) : null}
               </div>
@@ -619,6 +663,7 @@ const Dashboard = (props) => {
           ) : null}
         </div>
       ) : (
+        /////////////////////////////////////////////////////////////////////////////// desktop
         <div
           className="dashboardContainer"
           id={props.stationUrl === "" ? "fullDashContainer" : ""}
@@ -640,10 +685,23 @@ const Dashboard = (props) => {
             id={props.stationUrl === "" ? "fullMiddle" : ""}
           >
             {userPage ? (
+              /////////////////////////////////////////////////////////////////////// user page -- desktop
               <div className="userContainer">
                 <h2 id="userContainerTitle">dashboard</h2>
                 {userDate !== "" ? (
                   <div className="userContent">
+                    {props.userDetails.user.photoURL !== null ? (
+                      <div className="userPhoto">
+                        <img
+                          id="photo"
+                          src={props.userDetails.user.photoURL}
+                          alt={`${props.userDetails.user.displayName}'s avatar`}
+                        />
+                        <p id="displayName">
+                          {props.userDetails.user.displayName}
+                        </p>
+                      </div>
+                    ) : null}
                     <div className="creationDate">
                       <p>
                         member since <br />
@@ -666,6 +724,7 @@ const Dashboard = (props) => {
                 )}
               </div>
             ) : recentView ? (
+              //////////////////////////////////////////////////////////////////////// recent page -- desktop
               <div className="recentContainer">
                 <h2>
                   <span id="recentTitle">recently </span>played
@@ -769,6 +828,7 @@ const Dashboard = (props) => {
                 </div>
               </div>
             ) : popularView === 1 ? (
+              /////////////////////////////////////////////////////////////////////// popular view -- desktop
               <div className="popularView">
                 {!props.dashboardLoading ? (
                   props.badSearch ? null : (
@@ -870,6 +930,7 @@ const Dashboard = (props) => {
                 ;
               </div>
             ) : (
+              ///////////////////////////////////////////////////////////////////// favourite view -- desktop
               <div className="favContainer">
                 <h2 className="favTitleTotal">
                   your
@@ -984,11 +1045,13 @@ const Dashboard = (props) => {
               </div>
             )}
           </div>
+          {/* ///////////////////////////////////////////////////////// infoContainer --  desktop */}
           <div
             className={
               props.stationUrl === "" ? "infoContainerBottom" : "infoContainer"
             }
           >
+            {/* ///////////////////////////////////////////////////////////// info buttons -- desktop */}
             <div className="infoButtons">
               <button
                 className="dashLogin"
