@@ -328,7 +328,7 @@ const List = (props) => {
               <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
-              <option value="300">All</option>
+              <option value="2000">All</option>
             </select>
           </div>
         </div>
@@ -375,7 +375,8 @@ const List = (props) => {
                             src={stationDetails.favicon}
                             alt={stationDetails.name}
                             className={`icon ${
-                              hoveredItem === stationDetails.changeuuid
+                              hoveredItem === stationDetails.changeuuid &&
+                              !props.mobile
                                 ? "blurred"
                                 : ""
                             }`}
@@ -383,7 +384,8 @@ const List = (props) => {
                           />
                         )}
                         {hoveredItem === stationDetails.changeuuid &&
-                        playingName !== stationDetails.name ? (
+                        playingName !== stationDetails.name &&
+                        !props.mobile ? (
                           <button
                             className="hoverPlay"
                             value={[
@@ -488,7 +490,8 @@ const List = (props) => {
                             src={stationDetails.favicon}
                             alt={stationDetails.name}
                             className={`icon ${
-                              hoveredItem === stationDetails.changeuuid
+                              hoveredItem === stationDetails.changeuuid &&
+                              !props.mobile
                                 ? "blurred"
                                 : ""
                             }`}
@@ -496,7 +499,8 @@ const List = (props) => {
                           />
                         )}
                         {hoveredItem === stationDetails.changeuuid &&
-                        playingName !== stationDetails.name ? (
+                        playingName !== stationDetails.name &&
+                        !props.mobile ? (
                           <button
                             className="hoverPlay"
                             value={[

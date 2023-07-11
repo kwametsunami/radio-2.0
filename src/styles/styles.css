@@ -428,10 +428,21 @@ input {
   padding: 6px 15px;
   transform: translateY(-1px);
 }
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .userName i {
+    padding: 3px 10px 3px 0px;
+  }
+}
 .landing .landingNav .navItems .userName p {
   font-size: clamp(0.875rem, 0.75rem + 0.625vw, 2.25rem);
   color: #f7f5ea;
   margin: 0;
+}
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .userName p {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+  }
 }
 .landing .landingNav .navItems #hideUser {
   visibility: hidden;
@@ -1298,6 +1309,47 @@ input {
   animation: 2s favFade linear;
   z-index: 100;
 }
+@media (max-width: 950px) {
+  .resultsContainer .savedToFavPopUp {
+    transform: translate(50%, 35%);
+  }
+}
+.resultsContainer .mobileAlert {
+  z-index: 10;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #d32631;
+  border: 2px solid #1a1a1c;
+  border-radius: 10px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80vw;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertClose {
+  margin: 15px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertClose button {
+  background: #edd05f;
+  color: #1a1a1c;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 10px 17.5px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertText {
+  padding: 35px 20px 0px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertText p {
+  font-size: 2rem;
+  color: #f7f5ea;
+  text-align: center;
+}
 
 .radioView {
   display: flex;
@@ -1462,6 +1514,7 @@ input {
 .dashboardContainer .emailDashboard #dashboardUser {
   margin: 0;
   transform: translateY(-95%);
+  text-overflow: ellipsis;
 }
 .dashboardContainer .middleDashboard {
   overflow: hidden;
@@ -4081,25 +4134,6 @@ h2 {
   font-size: 1.5rem;
   cursor: default;
 }
-@media (max-width: 1130px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (max-width: 950px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added {
-    width: 25px;
-    height: 25px;
-  }
-}
-@media (max-width: 680px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
-  }
-}
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added i {
   color: #edd05f;
   text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
@@ -4936,6 +4970,11 @@ h2 {
   display: flex;
   align-items: center;
 }
+@media (max-width: 680px) {
+  .hlsplayer .playerControls .volume {
+    visibility: hidden;
+  }
+}
 .hlsplayer .playerControls .mute {
   background: transparent;
   border: none;
@@ -4945,6 +4984,21 @@ h2 {
 .hlsplayer .playerControls .mute i {
   font-size: 2rem;
   color: #f7f5ea;
+}
+@media (max-width: 680px) {
+  .hlsplayer .playerControls {
+    left: 0px;
+  }
+}
+@media (max-width: 450px) {
+  .hlsplayer .playerControls {
+    left: -100px;
+  }
+}
+@media (max-width: 300px) {
+  .hlsplayer .playerControls {
+    left: -120px;
+  }
 }
 .hlsplayer .playerControls input[type=range] {
   width: 100%;
@@ -5020,6 +5074,12 @@ h2 {
   margin-top: 10px;
   margin-right: 100px;
 }
+@media (max-width: 950px) {
+  .radio .radioPlayer .playerFav {
+    margin-right: 20px;
+    margin-top: 15px;
+  }
+}
 .radio .radioPlayer .playerFav .playerFavBtn {
   background: transparent;
   border: none;
@@ -5055,6 +5115,49 @@ h2 {
 }
 .radio .radioPlayer .playerContainer {
   z-index: 1;
+}
+
+.rhap_container {
+  box-shadow: none !important;
+  background-color: #d32631 !important;
+}
+@media (max-width: 680px) {
+  .rhap_container {
+    transform: translateX(-50px);
+  }
+}
+
+.rhap_button-clear {
+  color: #f7f5ea !important;
+}
+
+.rhap_volume-indicator {
+  background: #f7f5ea !important;
+}
+
+.rhap_current-time {
+  display: none;
+}
+
+.rhap_progress-section {
+  display: none !important;
+}
+
+.rhap_additional-controls {
+  display: none !important;
+}
+
+.rhap_volume-controls {
+  justify-content: flex-start !important;
+}
+@media (max-width: 450px) {
+  .rhap_volume-controls {
+    display: none !important;
+  }
+}
+
+.rhap_repeat-button {
+  display: none;
 }
 
 .radioInfo {
@@ -5100,7 +5203,7 @@ h2 {
     height: 61px;
     position: absolute;
     bottom: -5.5px;
-    margin-left: 2.5px;
+    margin-left: 0px;
     background: #d32631;
   }
 }
@@ -5158,6 +5261,7 @@ h2 {
     font-size: 1.5rem;
     margin-left: 75px;
     width: 125px;
+    text-overflow: ellipsis;
   }
 }
 @media (max-width: 450px) {
@@ -5167,7 +5271,7 @@ h2 {
 }
 @media (max-width: 300px) {
   .radioInfo .radioInfoTitleContainer .radioInfoTitle {
-    width: 145px;
+    width: 100px;
   }
 }
 

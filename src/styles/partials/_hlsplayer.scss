@@ -45,6 +45,9 @@
       width: 125px;
       display: flex;
       align-items: center;
+      @include mobileLarge {
+        visibility: hidden;
+      }
     }
     .mute {
       background: transparent;
@@ -55,6 +58,15 @@
         font-size: 2rem;
         color: $white;
       }
+    }
+    @include mobileLarge {
+      left: 0px;
+    }
+    @include mobile {
+      left: -100px;
+    }
+    @include small {
+      left: -120px;
     }
     input[type="range"] {
       width: 100%;

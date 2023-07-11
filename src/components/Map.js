@@ -308,7 +308,7 @@ const Map = (props) => {
               <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
-              <option value="300">All</option>
+              <option value="2000">All</option>
             </select>
           </div>
         </div>

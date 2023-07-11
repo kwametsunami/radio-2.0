@@ -38,11 +38,18 @@
           border-radius: 100px;
           padding: 6px 15px;
           transform: translateY(-1px);
+          @include mobileLarge {
+            padding: 3px 10px 3px 0px;
+          }
         }
         p {
           font-size: clamp(0.875rem, 0.75rem + 0.625vw, 2.25rem);
           color: $white;
           margin: 0;
+          @include mobileLarge {
+            font-size: 1.5rem;
+            word-wrap: break-word;
+          }
         }
       }
       #hideUser {

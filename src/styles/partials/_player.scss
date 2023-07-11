@@ -23,6 +23,10 @@
       right: 0;
       margin-top: 10px;
       margin-right: 100px;
+      @include tablet {
+        margin-right: 20px;
+        margin-top: 15px;
+      }
       .playerFavBtn {
         background: transparent;
         border: none;
@@ -59,37 +63,40 @@
   }
 }
 
-// .rhap_container {
-//   box-shadow: none !important;
-//   background-color: $red !important;
-// }
-// .rhap_button-clear {
-//   color: $white !important;
-// }
-// .rhap_volume-indicator {
-//   background: $white !important;
-// }
-// .rhap_current-time {
-//   display: none;
-// }
-// .rhap_progress-section {
-//   display: none !important;
-// }
+.rhap_container {
+  box-shadow: none !important;
+  background-color: $red !important;
+  @include mobileLarge {
+    transform: translateX(-50px);
+  }
+}
+.rhap_button-clear {
+  color: $white !important;
+}
+.rhap_volume-indicator {
+  background: $white !important;
+}
+.rhap_current-time {
+  display: none;
+}
+.rhap_progress-section {
+  display: none !important;
+}
 
-// .rhap_additional-controls {
-//   display: none !important;
-// }
+.rhap_additional-controls {
+  display: none !important;
+}
 
-// .rhap_volume-controls {
-//   justify-content: flex-start !important;
-//   @include mobile {
-//     display: none !important;
-//   }
-// }
+.rhap_volume-controls {
+  justify-content: flex-start !important;
+  @include mobile {
+    display: none !important;
+  }
+}
 
-// .rhap_repeat-button {
-//   display: none;
-// }
+.rhap_repeat-button {
+  display: none;
+}
 
 .radioInfo {
   position: absolute;
@@ -123,13 +130,12 @@
       height: 61px;
       position: absolute;
       bottom: -5.5px;
-      margin-left: 2.5px;
+      margin-left: 0px;
       background: $red;
     }
     .playingBlur {
       position: absolute;
       left: -50%;
-      // top: -25%;
       align-self: center;
       z-index: 1;
       height: auto;
@@ -148,7 +154,6 @@
       display: flex;
       margin: 0 auto;
       border-radius: 5px;
-      // box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2) inset;
     }
   }
   .radioInfoTitleContainer {
@@ -176,12 +181,13 @@
         font-size: 1.5rem;
         margin-left: 75px;
         width: 125px;
+        text-overflow: ellipsis;
       }
       @include mobile {
         width: 185px;
       }
       @include small {
-        width: 145px;
+        width: 100px;
       }
     }
   }

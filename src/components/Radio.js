@@ -83,7 +83,7 @@ const Radio = (props) => {
       }
     }
 
-    newFilter.length = 700;
+    newFilter.length = 30000;
 
     let bitrateFilter = [];
 
@@ -233,6 +233,7 @@ const Radio = (props) => {
   const [randomMobile, setRandomMobile] = useState(false);
   const [mobileFilter, setMobileFilter] = useState(false);
   const [filterEvent, setFilterEvent] = useState({});
+  const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -288,6 +289,20 @@ const Radio = (props) => {
   const mobileFilterClick = (event) => {
     event.preventDefault();
     setMobileFilter(!mobileFilter);
+  };
+
+  useEffect(() => {
+    const userDecision = localStorage.getItem("popupDecision");
+    if (userDecision === "dismissed") {
+      setShowPopup(false);
+    }
+  }, []);
+
+  const closeMobileAlert = (decision) => {
+    if (decision === "dismiss") {
+      localStorage.setItem("popupDecision", "dismissed");
+      setShowPopup(false);
+    }
   };
 
   const [testArr, setTestArr] = useState([]);
@@ -457,7 +472,7 @@ const Radio = (props) => {
                         <button onClick={filterClick} value={100}>
                           100
                         </button>
-                        <button onClick={filterClick} value={300}>
+                        <button onClick={filterClick} value={2000}>
                           all
                         </button>
                       </FadeIn>
@@ -573,6 +588,29 @@ const Radio = (props) => {
                     </div>
                   </div>
                 ) : null}
+                {mobile && showPopup ? (
+                  <div className="mobileAlert">
+                    <div className="mobileAlertContainer">
+                      <div className="mobileAlertText">
+                        <p>
+                          Hello, it looks like you're browsing from a mobile
+                          device!
+                        </p>
+                        <p>
+                          Certain stations are not playable on mobile -- We're
+                          still working on this! Still, thousands of stations
+                          are still accessible. Visit us on your desktop for the
+                          full experience!{" "}
+                        </p>
+                      </div>
+                      <div className="mobileAlertClose">
+                        <button onClick={() => closeMobileAlert("dismiss")}>
+                          Got it!
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
                 {listView ? (
                   <div className="listViewContainer">
                     <List
@@ -679,6 +717,7 @@ const Radio = (props) => {
           userDetails={userDetails}
           setSaveToFav={setSaveToFav}
           setFavPopUp={setFavPopUp}
+          mobile={mobile}
         />
       ) : null}
     </section>

@@ -1,4 +1,6 @@
 import HLSPlayer from "./HLSPlayer";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
@@ -9,6 +11,12 @@ import { useState, useEffect } from "react";
 
 const setDefaultSrc = (event) => {
   event.target.src = defaultImage;
+};
+
+const setDefaultAlert = () => {
+  alert(
+    "Sorry, this station is offline or not playable on mobile. Please select another stream."
+  );
 };
 
 const Player = (props) => {
@@ -85,7 +93,17 @@ const Player = (props) => {
           </div>
         </div>
         <div className="playerContainer">
-          <HLSPlayer stationUrl={stationUrl} />
+          {props.mobile ? (
+            <AudioPlayer
+              autoPlay
+              layout="horizontal-reverse"
+              showJumpControls={false}
+              onError={setDefaultAlert}
+              src={props.audioSource}
+            />
+          ) : (
+            <HLSPlayer stationUrl={stationUrl} />
+          )}
         </div>
         <div className="playerFav">
           <button
