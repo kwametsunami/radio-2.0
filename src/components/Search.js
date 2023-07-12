@@ -22,6 +22,7 @@ const Search = (props) => {
   const [value, setValue] = useState("");
   const [search, setSearch] = useState("");
   const [bitrate, setBitrate] = useState(32);
+  const [quality, setQuality] = useState(false);
 
   // display states
   const [display, setDisplay] = useState(false);
@@ -107,6 +108,19 @@ const Search = (props) => {
     setValue(searchTerm);
   };
 
+  const setHighQuality = (kbps) => {
+    if (kbps === 32) {
+      setBitrate(96);
+      setQuality(true);
+      console.log("it's 96");
+    }
+    if (kbps === 96) {
+      setBitrate(32);
+      setQuality(false);
+      console.log("its 32");
+    }
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     setSearch(value);
@@ -118,26 +132,11 @@ const Search = (props) => {
     setValue("");
   };
 
-  const setHighQuality = (kbps) => {
-    if (kbps === 32) {
-      setBitrate(96);
-      console.log(bitrate);
-    }
-    if (kbps === 96) {
-      setBitrate(32);
-      console.log(bitrate);
-    }
-  };
-
-  useEffect(() => {
-    setBitrate(32);
-    console.log(bitrate);
-  }, []);
-
   // show landing
   const landingView = () => {
     setShowLanding(true);
     setSearch("");
+    setBitrate(32);
   };
 
   // dropdown menu logic
@@ -230,7 +229,7 @@ const Search = (props) => {
                     name="hq"
                     id="hq"
                     onChange={() => setHighQuality(bitrate)}
-                    value={bitrate}
+                    value={quality ? 96 : 32}
                   />
                 </div>
                 <div className="searchInner">
