@@ -12,9 +12,6 @@
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
-    @include mobileLarge {
-      height: 60%;
-    }
   }
   .landingNav {
     display: flex;
