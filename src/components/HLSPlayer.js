@@ -1,12 +1,20 @@
+// imports
 import React, { useRef, useState } from "react";
+
+// react player -- this is an HLS player which is used for .m3u8 links. works on desktops only
 import ReactPlayer from "react-player";
 
 const HLSPlayer = (props) => {
+  // load player with url
   const url = props.stationUrl;
   const playerRef = useRef(null);
 
+  // states
   const [playing, setPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volumeLevel, setVolumeLevel] = useState(1);
 
+  // controls
   const handlePlay = () => {
     if (playerRef.current) {
       playerRef.current.getInternalPlayer().play();
@@ -21,17 +29,26 @@ const HLSPlayer = (props) => {
     setPlaying(false);
   };
 
+  const handleToggleMute = () => {
+    setIsMuted(!isMuted);
+    setVolumeLevel(isMuted ? 1 : 0);
+  };
+
   const handleVolumeChange = (volume) => {
     if (playerRef.current) {
       playerRef.current.getInternalPlayer().volume = volume;
+      setVolumeLevel(volume);
+      if (volume > 0 && isMuted) {
+        setIsMuted(false);
+      }
     }
   };
 
+  // error handling
   const setDefaultAlert = () => {
     alert(
       "Sorry, this station is offline or unavailable in your region. Please select another stream."
     );
-    setPlaying(false);
   };
 
   return (
@@ -41,9 +58,19 @@ const HLSPlayer = (props) => {
         url={url}
         controls={false}
         playing={true}
+        muted={isMuted}
+        config={{
+          file: {
+            attributes: {
+              playsInline: true,
+            },
+          },
+        }}
         width="100%"
         height="auto"
         volume={1}
+        onPlay={handlePlay}
+        onPause={handlePause}
         onError={setDefaultAlert}
       />
 
@@ -60,12 +87,23 @@ const HLSPlayer = (props) => {
           )}
         </div>
         <div className="volume">
+          <button className="mute" onClick={handleToggleMute}>
+            {isMuted ? (
+              <i className="fa-solid fa-volume-xmark"></i>
+            ) : volumeLevel === 0 ? (
+              <i className="fa-solid fa-volume-mute"></i>
+            ) : volumeLevel < 0.5 ? (
+              <i className="fa-solid fa-volume-low"></i>
+            ) : (
+              <i className="fa-solid fa-volume-high"></i>
+            )}
+          </button>
           <input
             type="range"
             min={0}
             max={1}
             step={0.1}
-            defaultValue={1}
+            defaultValue={volumeLevel}
             onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
           />
         </div>

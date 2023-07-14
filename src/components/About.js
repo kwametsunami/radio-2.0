@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 const About = (props) => {
+  // states
   const [backToSearch, setBackToSearch] = useState(false);
 
+  // functions
   const returnToSearch = () => {
     setBackToSearch(!backToSearch);
     setTimeout(() => {

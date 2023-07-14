@@ -12,6 +12,14 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    @include mobileLarge {
+      visibility: hidden;
+      display: flex;
+      justify-content: center;
+      left: 0;
+      width: 100vw;
+      margin-top: 20px;
+    }
     .textLoading {
       margin: 55px 0 25px;
     }
@@ -19,7 +27,13 @@
       font-size: clamp(1.25rem, 1.0909rem + 0.7955vw, 3rem);
       color: $eggshell;
       @include mobileLarge {
+        visibility: visible;
+        margin: 0 auto;
+        width: 200px;
+        word-wrap: break-word;
+        font-size: 2rem;
         text-align: center;
+        position: relative;
       }
       #amountReturned,
       #listSearchTerm {
@@ -113,7 +127,12 @@
         width: calc((85% / 2) - 25px);
       }
       @include mobileLarge {
-        width: calc((92.5% / 2) - 25px);
+        width: 100%;
+        height: 100px;
+        margin: 5px 10px;
+        background: transparent;
+        border: none;
+        border-radius: 0px;
       }
       &:hover {
         background-color: $grey;
@@ -121,12 +140,28 @@
           .buttonContainer {
             .favourite {
               i {
+                font-size: 2rem;
                 color: transparent;
                 -webkit-text-stroke-width: 1px;
                 -webkit-text-stroke-color: $black;
+                @include tablet {
+                  color: $white;
+                  -webkit-text-stroke-width: 0px;
+                }
+                &:hover {
+                  transform: scale(1.15);
+                  color: $white;
+                  transition: 0.2s;
+                  @include mobileLarge {
+                    transform: scale(1);
+                  }
+                }
               }
             }
           }
+        }
+        @include tablet {
+          background-color: transparent;
         }
       }
       .playButtonDiv {
@@ -142,11 +177,6 @@
         justify-content: space-between;
         width: 100%;
         padding: 5px;
-        @include mobileLarge {
-          flex-direction: column;
-          text-align: center;
-          align-items: center;
-        }
         .information {
           width: 50%;
           display: flex;
@@ -168,6 +198,10 @@
           p {
             font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
             color: $black;
+            @include mobileLarge {
+              color: $white;
+              font-size: 1.5rem;
+            }
           }
         }
         .imageList {
@@ -195,6 +229,11 @@
               max-height: 35px;
               font-size: 0.7rem;
             }
+            @include mobileLarge {
+              width: 75px;
+              height: 75px;
+              max-height: 75px;
+            }
           }
           .blurred {
             filter: blur(3px);
@@ -214,6 +253,12 @@
               font-size: 2rem;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1rem;
+              }
             }
             &:hover {
               i {
@@ -227,31 +272,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          .infoButton {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #1e2021;
-            border-radius: 50px;
-            color: $red;
-            background-color: $white;
-            margin: 2px 5px;
-            &:hover {
-              transform: scale(1.05);
-            }
-            @include smallDesktop {
-              width: 30px;
-              height: 30px;
-            }
-            @include tablet {
-              width: 25px;
-              height: 25px;
-            }
-            @include mobileLarge {
-              width: 20px;
-              height: 20px;
-              font-size: 0.7rem;
-            }
-          }
           .favourite {
             width: 45px;
             height: 45px;
@@ -282,6 +302,13 @@
             i {
               color: transparent;
               font-size: 2rem;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1.5rem;
+                color: $white;
+              }
             }
           }
           .added {
@@ -310,6 +337,12 @@
               animation: rotateOnce 0.65s linear 1;
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1.5rem;
+              }
             }
           }
         }
@@ -320,8 +353,8 @@
       position: relative;
       justify-content: center;
       width: calc((80% / 2) - 30px);
-      margin: 12.5px;
       max-height: 150px;
+      margin: 12.5px;
       border: 2.5px solid $black;
       border-radius: 20px;
       background-color: $playingYellow;
@@ -329,7 +362,12 @@
         width: calc((85% / 2) - 25px);
       }
       @include mobileLarge {
-        width: calc((92.5% / 2) - 25px);
+        width: 100%;
+        height: 100px;
+        margin: 5px 10px;
+        background: transparent;
+        border: none;
+        border-radius: 0px;
       }
       &:hover {
         .imageInfoContainer {
@@ -340,10 +378,16 @@
                 color: $grey;
                 -webkit-text-stroke-width: 1px;
                 -webkit-text-stroke-color: $black;
+                @include mobileLarge {
+                  -webkit-text-stroke-width: 0px;
+                }
                 &:hover {
                   transform: scale(1.15);
                   color: $white;
                   transition: 0.2s;
+                  @include mobileLarge {
+                    transform: scale(1);
+                  }
                 }
               }
             }
@@ -364,23 +408,31 @@
         justify-content: space-between;
         width: 100%;
         padding: 5px;
-        @include mobileLarge {
-          flex-direction: column;
-          text-align: center;
-          align-items: center;
-        }
         .information {
           width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           @include tablet {
             overflow: hidden;
             text-overflow: ellipsis;
+            width: 100%;
           }
           .stationName {
             font-family: $bold;
           }
+          .stationCountry {
+            text-transform: capitalize;
+            margin: 0;
+            padding-bottom: 10px;
+          }
           p {
             font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
             color: $black;
+            @include mobileLarge {
+              color: $yellow;
+              font-size: 1.5rem;
+            }
           }
         }
         .imageList {
@@ -390,6 +442,9 @@
           align-content: center;
           justify-content: center;
           position: relative;
+          @include mobileLarge {
+            margin: 0 20px;
+          }
           .icon {
             margin: auto 0;
             width: 70px;
@@ -408,10 +463,11 @@
               max-height: 35px;
               font-size: 0.7rem;
             }
-          }
-          .blurred {
-            filter: blur(3px);
-            -webkit-filter: blur(3px);
+            @include mobileLarge {
+              width: 65px;
+              height: 65px;
+              max-height: 65px;
+            }
           }
           .playingBars {
             width: 60px;
@@ -424,20 +480,25 @@
             background-repeat: no-repeat;
             background-position: center;
             display: inline-block;
-            margin: auto;
+            padding: 5px;
+            margin: auto 0;
+            align-self: center;
             @include smallDesktop {
-              width: 30px;
-              height: 30px;
+              width: 50px;
+              height: 50px;
+              max-height: 50px;
+              background-size: 100px;
             }
             @include tablet {
-              width: 25px;
-              height: 25px;
-              background-size: 60px;
+              width: 35px;
+              height: 35px;
+              max-height: 35px;
+              background-size: 65px;
             }
             @include mobileLarge {
-              width: 20px;
-              height: 20px;
-              background-size: 45px;
+              width: 70px;
+              height: 70px;
+              max-height: 70px;
             }
           }
         }
@@ -448,11 +509,17 @@
           .favourite {
             width: 45px;
             height: 45px;
-            border: none;
             margin: 2px 5px;
+            border: none;
             background-color: transparent;
             cursor: pointer;
             z-index: 1;
+            &:hover {
+              transform: scale(1.25);
+              i {
+                color: $white;
+              }
+            }
             @include smallDesktop {
               width: 30px;
               height: 30px;
@@ -468,6 +535,14 @@
             }
             i {
               color: transparent;
+              font-size: 2rem;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1.5rem;
+                color: $white;
+              }
             }
           }
           .added {
@@ -488,7 +563,6 @@
             @include mobileLarge {
               width: 20px;
               height: 20px;
-              font-size: 0.7rem;
             }
             i {
               font-size: 2rem;
@@ -496,6 +570,12 @@
               text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
                 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
               animation: rotateOnce 0.65s linear;
+              @include tablet {
+                font-size: 1.5rem;
+              }
+              @include mobileLarge {
+                font-size: 1.5rem;
+              }
             }
           }
         }
@@ -586,8 +666,6 @@
 ///
 ///
 ///
-// text-shadow: 0px 0.5px 0 #000, 0px 0px 0 #000, 0px 0px 0 #000,
-//   0px -0px 0 #000;
 
 @keyframes favourite {
   0% {

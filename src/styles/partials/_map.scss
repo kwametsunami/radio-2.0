@@ -69,6 +69,14 @@
     margin-left: 0px;
     left: 200px;
   }
+  @include mobileLarge {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+  }
   .textLoading {
     margin: 20px 0 25px;
   }
@@ -84,6 +92,13 @@
     #searchTerm {
       color: $black;
       font-family: $bold;
+    }
+    @include mobileLarge {
+      visibility: visible;
+      margin: 0 auto;
+      width: 200px;
+      word-wrap: break-word;
+      font-size: 2rem;
     }
   }
   .topControls {
@@ -153,8 +168,9 @@
 .actualMap {
   display: flex;
   justify-content: flex-end;
-  .testingMap {
-    color: $yellow;
+  @include mobileLarge {
+    height: 100%;
+    width: 100vw;
   }
   .leaflet-popup-content {
     margin: 15px 20px;
@@ -228,26 +244,15 @@
           height: 45px;
           border-radius: 0 5px 5px 0;
           border-left: 0.5px solid $black;
+          color: #d64b4b;
           background-color: $white;
+          align-self: center;
           font-size: 1.5rem;
           &:hover {
             i {
               transform: scale(1.25);
               transition: 0.2s;
             }
-          }
-          @include smallDesktop {
-            width: 30px;
-            height: 30px;
-          }
-          @include tablet {
-            width: 25px;
-            height: 25px;
-          }
-          @include mobileLarge {
-            width: 20px;
-            height: 20px;
-            font-size: 0.7rem;
           }
           i {
             color: $yellow;
@@ -262,19 +267,6 @@
           background-color: $white;
           font-size: 1.5rem;
           cursor: default;
-          @include smallDesktop {
-            width: 30px;
-            height: 30px;
-          }
-          @include tablet {
-            width: 25px;
-            height: 25px;
-          }
-          @include mobileLarge {
-            width: 20px;
-            height: 20px;
-            font-size: 0.7rem;
-          }
           i {
             color: $yellow;
             text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,

@@ -1,17 +1,28 @@
+// imports
+// react-leaflet
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
-import PropagateLoader from "react-spinners/PropagateLoader";
-
-import firebase from "../firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
-
+// react
 import { useEffect, useState } from "react";
 
+// firebase
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, push } from "firebase/database";
+
+// packages
+import PropagateLoader from "react-spinners/PropagateLoader";
+
+// defaults
 import defaultImage from "../assets/radio.png";
 
+const setDefaultSrc = (event) => {
+  event.target.src = defaultImage;
+};
+
+// react-leftlet icons
 const defaultIcon = L.icon({
   iconUrl: require("../assets/iconDefault.png"),
   iconSize: [48, 48],
@@ -27,23 +38,27 @@ const selectedIcon = L.icon({
   iconSize: [60, 60],
 });
 
+// map restraints
 const worldBounds = [
   [-90, -180], // southwest corner
   [90, 180], // northeast corner
 ];
 
 const Map = (props) => {
+  // states
+  // station information to be sent
   const [radioUrl, setRadioUrl] = useState("");
   const [playingName, setPlayingName] = useState("");
 
+  // filter states
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
+  // latitude and longitude states
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  const [favStation, setFavStation] = useState([]);
-
+  //if station was played from list or dashboard components, se tthe station name in the map component as well
   useEffect(() => {
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
@@ -63,6 +78,7 @@ const Map = (props) => {
     longitude,
   ]);
 
+  // check if sorting filter was used in other components
   useEffect(() => {
     setFilterTrue(false);
   }, [props.stations]);
@@ -71,10 +87,10 @@ const Map = (props) => {
     if (props.filterAmount !== "") {
       setFilterTrue(true);
       setFilteredStations(props.filteredArray);
-      console.log(props.filteredArray);
     }
   }, [props.filterAmount]);
 
+  // play logic
   const radioSelect = (event) => {
     event.preventDefault();
 
@@ -98,6 +114,7 @@ const Map = (props) => {
     props.setCurrentLong(selectedStationArr[4]);
   };
 
+  // gather from firebase database to indicated favourites
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
@@ -113,15 +130,10 @@ const Map = (props) => {
           ...data[key],
         });
       }
-
-      setFavStation(newState);
     });
   }, []);
 
-  const setDefaultSrc = (event) => {
-    event.target.src = defaultImage;
-  };
-
+  // filter logic to reduce search results
   const grabFilter = (event) => {
     const randomizer = (min = 0, max = props.stations.length) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -159,6 +171,7 @@ const Map = (props) => {
     randomizer();
   };
 
+  // random station logic
   const randomStation = () => {
     if (filterTrue) {
       const randomizer = (min = 0, max = filteredStations.length) => {
@@ -190,16 +203,12 @@ const Map = (props) => {
       props.sendImage(surpriseStation.favicon);
       props.setCurrentLat(surpriseStation.geo_lat);
       props.setCurrentLong(surpriseStation.geo_long);
-
-      console.log(surpriseStation);
     } else {
       const randomizer = (min = 0, max = props.stations.length) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       };
 
       let surpriseStation = props.stations[randomizer()];
-
-      console.log(surpriseStation);
 
       let sendToRecent = [];
 
@@ -227,6 +236,21 @@ const Map = (props) => {
     }
   };
 
+  // if random station logic was used in list component, update it in map component
+  useEffect(() => {
+    if (props.randomMobile) {
+      randomStation();
+    }
+  }, [props.randomMobile]);
+
+  // if filter logic was used in list component, update it in map component
+  useEffect(() => {
+    if (props.filterEvent) {
+      grabFilter(props.filterEvent);
+    }
+  }, [props.filterEvent]);
+
+  // favourite logic: push to firebase
   const favourite = (event, userId) => {
     const pushToDatabase = (event, userId) => {
       const stationFav = event.currentTarget.value;
@@ -248,6 +272,14 @@ const Map = (props) => {
       const dbRef = ref(database);
 
       push(dbRef, stationFavObj);
+
+      props.setSaveToFav(stationFavArr[5]);
+      props.setFavPopUp(true);
+
+      setTimeout(() => {
+        props.setSaveToFav("");
+        props.setFavPopUp(false);
+      }, 2000);
     };
 
     pushToDatabase(event, props.userDetails.user.uid);
@@ -267,6 +299,7 @@ const Map = (props) => {
           />
         ) : (
           <h3 className="returned">
+            {/* ///////////////////////////////////////////////////////////////////////////////////////////// buttons and search query */}
             returned{" "}
             <span id="amountReturnedMap">
               {filterTrue ? filteredStations.length : props.stations.length}{" "}
@@ -297,15 +330,15 @@ const Map = (props) => {
               <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
-              <option value="300">All</option>
+              <option value="2000">All</option>
             </select>
           </div>
         </div>
       </div>
       <div className="actualMap">
         <MapContainer
-          center={[22, 12.5]}
-          zoom={2.5}
+          center={props.mobile ? [45, -60] : [22, 12.5]}
+          zoom={props.mobile ? 0 : 2.5}
           scrollWheelZoom={true}
           maxZoom={30}
           minZoom={2}
@@ -321,6 +354,7 @@ const Map = (props) => {
           {filterTrue
             ? filteredStations.map((stationDetails) => {
                 return (
+                  ///////////////////////////////////////////////////////////////////////////////////////// filter logic
                   <div key={stationDetails.changeuuid}>
                     <Marker
                       icon={
@@ -439,6 +473,7 @@ const Map = (props) => {
               })
             : props.stations.map((stationDetails) => {
                 return (
+                  ///////////////////////////////////////////////////////////////////////////////////////////// non-filter logic
                   <div key={stationDetails.changeuuid}>
                     <Marker
                       icon={

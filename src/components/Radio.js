@@ -1,9 +1,16 @@
+// imports
+// react
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// firebase
 import firebase from "../firebase";
 import { getDatabase, ref, onValue, remove } from "firebase/database";
 
+// packages
+import FadeIn from "react-fade-in/lib/FadeIn";
+
+// components
 import Loading from "./Loading";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
@@ -11,9 +18,11 @@ import Map from "./Map";
 import List from "./List";
 import Player from "./Player";
 
+// data
 const list = require("../data/genreData.json");
 const stationsList = require("../data/stations.json");
 
+// filter out data to only include stations with longitude and latitude
 let geoFilter = [];
 
 for (let geo in stationsList) {
@@ -22,6 +31,7 @@ for (let geo in stationsList) {
   }
 }
 
+// if stations share coordinates, change add 0.00005 for less visual clutter
 const coordinateCounts = {};
 
 geoFilter.forEach((station) => {
@@ -37,18 +47,23 @@ geoFilter.forEach((station) => {
 });
 
 const Radio = (props) => {
-  const [stations, setStations] = useState([]);
-  const [stationFilter, setStationFilter] = useState(props.genre);
+  // states
+  // loading states
+  const [loading, setLoading] = useState(true);
   const [resultTextLoading, setResultTextLoading] = useState(false);
-  const [filterAmount, setFilterAmount] = useState("");
-  const [filteredArray, setFilteredArray] = useState([]);
+  const [dashboardLoading, setDashboardLoading] = useState(true);
 
+  // view state
   const [listView, setListView] = useState(false);
+
+  // error states
   const [badSearch, setBadSearch] = useState(false);
   const [badResponse, setBadResponse] = useState(false);
+
+  // station states
+  const [stations, setStations] = useState([]);
+  const [stationFilter, setStationFilter] = useState(props.genre);
   const [aGenre, setAGenre] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [dashboardLoading, setDashboardLoading] = useState(true);
   const [favStationInfo, setFavStationInfo] = useState([]);
   const [favKeys, setFavKeys] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -57,12 +72,45 @@ const Radio = (props) => {
   const [currentKey, setCurrentKey] = useState("");
   const [recentStations, setRecentStations] = useState([]);
 
+  // send to radio
+  const [stationUrl, setStationUrl] = useState("");
+  const [playingStation, setPlayingStation] = useState("");
+  const [currentIcon, setCurrentIcon] = useState("");
+
+  // filter states
+  const [filterAmount, setFilterAmount] = useState("");
+  const [filteredArray, setFilteredArray] = useState([]);
+
+  // login states
+  const [loginModal, setLoginModal] = useState(false);
+  const [fromRadio, setFromRadio] = useState(true);
+
+  // user states
   const [userDetails, setUserDetails] = useState(props.loggedInUser);
 
-  const switchView = () => {
-    setListView(!listView);
-  };
+  // mobile states
+  const [mobile, setMobile] = useState(false);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+  const [mobileOptions, setMobileOptions] = useState(false);
+  const [showCaret, setShowCaret] = useState(true);
+  const [mobileSearch, setMobileSearch] = useState(false);
+  const [randomMobile, setRandomMobile] = useState(false);
+  const [mobileFilter, setMobileFilter] = useState(false);
+  const [filterEvent, setFilterEvent] = useState({});
+  const [showPopup, setShowPopup] = useState(true);
 
+  // firebase states
+  const [testArr, setTestArr] = useState([]);
+  const [testKeys, setTestKeys] = useState([]);
+
+  // favourite states
+  const [savedToFav, setSaveToFav] = useState("");
+  const [favPopUp, setFavPopUp] = useState(false);
+
+  // gather stations
   useEffect(() => {
     setStationFilter(props.genre);
 
@@ -74,7 +122,7 @@ const Radio = (props) => {
       }
     }
 
-    newFilter.length = 700;
+    newFilter.length = 30000;
 
     let bitrateFilter = [];
 
@@ -153,12 +201,15 @@ const Radio = (props) => {
     if (storedData) {
       setRecentStations(JSON.parse(storedData));
     }
+
+    if (mobile) {
+      setMobileOptions(false);
+    }
+
+    setFilterEvent(null);
   }, [props.genre, props.quality, stationFilter, props.loggedInUser]);
 
-  const [stationUrl, setStationUrl] = useState("");
-  const [playingStation, setPlayingStation] = useState("");
-  const [currentIcon, setCurrentIcon] = useState("");
-
+  // state saving logic
   const sendToRadio = (url) => {
     setStationUrl(url);
   };
@@ -185,7 +236,7 @@ const Radio = (props) => {
 
   const addToRecent = (station) => {
     let matchFound = false;
-
+    // remove duplicates in the recent stations array
     if (recentStations.length > 0) {
       for (let i = 0; i < recentStations.length; i++) {
         if (recentStations[i][0] === station[0]) {
@@ -199,20 +250,16 @@ const Radio = (props) => {
       const newArr = recentStations.filter((item) => item !== station);
       setRecentStations(newArr);
     } else {
+      // limit recent stations array to 7
       const updatedStations = [station, ...recentStations.slice(0, 7)];
 
       setRecentStations(updatedStations);
-
+      // store recent stations to local storage
       localStorage.setItem("recentStations", JSON.stringify(recentStations));
     }
   };
 
-  const [mobile, setMobile] = useState(false);
-  const [windowSize, setWindowSize] = useState([
-    window.innerWidth,
-    window.innerHeight,
-  ]);
-
+  // check if mobile sizing
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
@@ -231,18 +278,18 @@ const Radio = (props) => {
     };
   }, [windowSize]);
 
-  const [testArr, setTestArr] = useState([]);
-  const [testKeys, setTestKeys] = useState([]);
-
+  // firebase logic
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
+    // gather value from firebase db
     onValue(dbRef, (response) => {
       const newState = [];
 
       const data = response.val();
 
+      // add a unique key that can be used to match remove logic
       for (let key in data) {
         newState.push({
           key: key,
@@ -262,26 +309,24 @@ const Radio = (props) => {
         }
       }
 
+      // filter favourites according to user uid
       const filteredFav = uniqueFav.filter(
         (item) => item.userId === userDetails.user.uid
       );
-
-      // Reverse the array in-place
       filteredFav.reverse();
 
       setTestArr(filteredFav);
 
       const stationKeys = [];
 
-      console.log(filteredFav);
-
       for (let i = 0; i < filteredFav.length; i++) {
         stationKeys.push(filteredFav[i].stationData.id);
       }
 
+      // this state holds station keys to check if they match to allow no duplicates
       setTestKeys(stationKeys);
     });
-  }, [props.loggedInUser]);
+  }, [props.loggedInUser, userDetails.user.uid]);
 
   useEffect(() => {
     setKeys(testKeys);
@@ -289,6 +334,19 @@ const Radio = (props) => {
     setFavs(testArr);
   }, [testArr, testKeys, props.loggedInUser]);
 
+  // onClick functions
+  const switchView = () => {
+    setListView(!listView);
+
+    if (mobile) {
+      setMobileOptions(false);
+      setMobileSearch(false);
+      setMobileFilter(false);
+      setRandomMobile(false);
+    }
+  };
+
+  // remove from firebase db
   const removeFav = (favId) => {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `/${favId}`);
@@ -296,9 +354,7 @@ const Radio = (props) => {
     remove(dbRef);
   };
 
-  const [loginModal, setLoginModal] = useState(false);
-  const [fromRadio, setFromRadio] = useState(true);
-
+  // login logic
   const login = () => {
     setLoginModal(true);
   };
@@ -312,33 +368,188 @@ const Radio = (props) => {
     setUserDetails(props.anonymous);
   };
 
+  // mobile functions
+  const openOptions = () => {
+    setMobileOptions(true);
+  };
+
+  const closeOptions = () => {
+    setMobileOptions(false);
+    setMobileSearch(false);
+    setMobileFilter(false);
+
+    if (randomMobile) {
+      setTimeout(() => {
+        setRandomMobile(false);
+      }, 500);
+    }
+  };
+
+  const mobileSearchClick = () => {
+    setMobileSearch(true);
+  };
+
+  const randomClick = () => {
+    setRandomMobile(true);
+    closeOptions();
+  };
+
+  const filterClick = (event) => {
+    event.preventDefault();
+    setFilterEvent(event);
+
+    closeOptions();
+  };
+
+  const mobileFilterClick = (event) => {
+    event.preventDefault();
+    setMobileFilter(!mobileFilter);
+  };
+
+  // mobile alert -- remember user decision
+  useEffect(() => {
+    const userDecision = localStorage.getItem("popupDecision");
+    if (userDecision === "dismissed") {
+      setShowPopup(false);
+    }
+  }, []);
+
+  const closeMobileAlert = (decision) => {
+    if (decision === "dismiss") {
+      localStorage.setItem("popupDecision", "dismissed");
+      setShowPopup(false);
+    }
+  };
+
   return (
     <section className="infoContainer">
-      <nav className="searchNav" id={loginModal ? "blurredContainer" : ""}>
-        <div className="searchNavContents">
-          <form
-            className="infoForm"
-            autoComplete="off"
-            onSubmit={props.onSubmit}
-          >
-            <input
-              className="infoSearch"
-              type="text"
-              onChange={props.onChange}
-              value={props.value}
-              onSubmit={props.onSubmit}
-              placeholder="search"
-              required
-            />
-            <button className="searchButton">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form>
+      {mobile && showCaret ? (
+        /////////////////////////////////////////////////////////////////// mobile options
+        <div className="filterAndControls">
+          <button className="openFilter" onClick={openOptions}>
+            <i className="fa-solid fa-caret-down"></i>
+          </button>
+          {mobileOptions ? (
+            <div className="filterPopOut">
+              <div className="filterTop">
+                <div className="filterLogo">
+                  <Link onClick={props.landingView} to="/">
+                    <h2>tr-1.fm</h2>
+                  </Link>
+                </div>
+                <div className="filterClose">
+                  <button className="hamburgerX" onClick={closeOptions}>
+                    <i className="fa-solid fa-caret-left"></i>
+                  </button>
+                </div>
+              </div>
+              <FadeIn
+                transitionDuration={350}
+                className="mobileFilterContainer"
+              >
+                <div className="filterButtons">
+                  {mobileSearch ? (
+                    <form
+                      className="infoForm"
+                      autoComplete="off"
+                      onSubmit={props.onSubmit}
+                    >
+                      <button className="searchButton">
+                        <i className="fa-solid fa-magnifying-glass"></i>
+                      </button>
+                      <input
+                        className="infoSearch"
+                        type="text"
+                        onChange={props.onChange}
+                        value={props.value}
+                        onSubmit={props.onSubmit}
+                        placeholder="search"
+                        required
+                      />
+                    </form>
+                  ) : (
+                    <button
+                      className="searchButton"
+                      onClick={mobileSearchClick}
+                    >
+                      <i className="fa-solid fa-magnifying-glass"></i>
+                      <p className="buttonText">search</p>
+                    </button>
+                  )}
+                  <button className="viewSwitch" onClick={switchView}>
+                    {listView ? (
+                      <i className="fa-solid fa-earth-americas"></i>
+                    ) : (
+                      <i className="fa-solid fa-list"></i>
+                    )}
+                    <p className="buttonText">
+                      {listView ? "map" : "list"} view
+                    </p>
+                  </button>
+                  <button className="randomStation" onClick={randomClick}>
+                    <i className="fa-solid fa-shuffle"></i>
+                    <p className="buttonText">random station</p>
+                  </button>
+                  <button className="filterButton" onClick={mobileFilterClick}>
+                    <i className="fa-solid fa-filter"></i>
+                    <p className="buttonText">limit results</p>
+                  </button>
+                  {mobileFilter ? (
+                    <div className="buttonValues">
+                      <FadeIn>
+                        <button onClick={filterClick} value={10}>
+                          10
+                        </button>
+                        <button onClick={filterClick} value={25}>
+                          25
+                        </button>
+                        <button onClick={filterClick} value={50}>
+                          50
+                        </button>
+                        <button onClick={filterClick} value={100}>
+                          100
+                        </button>
+                        <button onClick={filterClick} value={2000}>
+                          all
+                        </button>
+                      </FadeIn>
+                    </div>
+                  ) : null}
+                </div>
+              </FadeIn>
+            </div>
+          ) : null}
         </div>
-      </nav>
+      ) : (
+        <nav className="searchNav" id={loginModal ? "blurredContainer" : ""}>
+          {/* //////////////////////////////////////////////////////////// search nav -- mobile */}
+          <div className="searchNavContents">
+            <form
+              className="infoForm"
+              autoComplete="off"
+              onSubmit={props.onSubmit}
+            >
+              <input
+                className="infoSearch"
+                type="text"
+                onChange={props.onChange}
+                value={props.value}
+                onSubmit={props.onSubmit}
+                placeholder="search"
+                required
+              />
+              <button className="searchButton">
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+          </div>
+        </nav>
+      )}
       <div className="radioView" id={loginModal ? "blurredContainer" : ""}>
+        {/* //////////////////////////////////////////////////////////////// radio container */}
         <div className={mobile ? "dashboardMobile" : "dashboard"}>
           <Dashboard
+            //////////////////////////////////////////////////////////////// dashboard
             landingView={props.landingView}
             search={props.search}
             genreName={props.genre}
@@ -367,15 +578,22 @@ const Radio = (props) => {
             userDetails={userDetails}
             logout={logout}
             login={login}
+            setSaveToFav={setSaveToFav}
+            setFavPopUp={setFavPopUp}
+            mobileOptions={mobileOptions}
+            showCaret={showCaret}
+            setShowCaret={setShowCaret}
           />
         </div>
         {loading ? (
           <div className="loadingContainer">
             <Loading />
+            {/* //////////////////////////////////////////////////////////////// loading */}
           </div>
         ) : (
           <div className="resultsContainer">
             {badResponse ? (
+              //////////////////////////////////////////////////////////////// error components
               <div className="badResponse">
                 <div className="badResponseContent">
                   <h2>
@@ -399,9 +617,48 @@ const Radio = (props) => {
               </div>
             ) : (
               <div className="results">
+                {favPopUp ? (
+                  //////////////////////////////////////////////////////////////// favourite popup
+                  <div className="savedToFavPopUp">
+                    <div
+                      className="popupContainer"
+                      id={savedToFav ? "savedPopup" : ""}
+                    >
+                      <h3>
+                        <span id="favTitle">{savedToFav} </span>added to
+                        favourites
+                      </h3>
+                    </div>
+                  </div>
+                ) : null}
+                {mobile && showPopup ? (
+                  //////////////////////////////////////////////////////////////// mobile alert
+                  <div className="mobileAlert">
+                    <div className="mobileAlertContainer">
+                      <div className="mobileAlertText">
+                        <p>
+                          Hello, it looks like you're browsing from a mobile
+                          device!
+                        </p>
+                        <p>
+                          Certain stations are not playable on mobile -- We're
+                          still working on this! Still, thousands of stations
+                          are accessible. Visit us on your desktop for the full
+                          experience!{" "}
+                        </p>
+                      </div>
+                      <div className="mobileAlertClose">
+                        <button onClick={() => closeMobileAlert("dismiss")}>
+                          Got it!
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
                 {listView ? (
                   <div className="listViewContainer">
                     <List
+                      //////////////////////////////////////////////////////////////// list view
                       stations={stations}
                       setStations={setStations}
                       sendToRadio={sendToRadio}
@@ -427,11 +684,17 @@ const Radio = (props) => {
                       filteredArray={filteredArray}
                       setFilteredArray={setFilteredArray}
                       resultTextLoading={resultTextLoading}
+                      setSaveToFav={setSaveToFav}
+                      setFavPopUp={setFavPopUp}
+                      mobile={mobile}
+                      randomMobile={randomMobile}
+                      filterEvent={filterEvent}
                     />
                   </div>
                 ) : (
                   <div className="mapViewContainer">
                     <Map
+                      //////////////////////////////////////////////////////////////// map view
                       stations={stations}
                       sendToRadio={sendToRadio}
                       sendToRadioName={sendToRadioName}
@@ -459,6 +722,11 @@ const Radio = (props) => {
                       filteredArray={filteredArray}
                       setFilteredArray={setFilteredArray}
                       resultTextLoading={resultTextLoading}
+                      setSaveToFav={setSaveToFav}
+                      setFavPopUp={setFavPopUp}
+                      mobile={mobile}
+                      randomMobile={randomMobile}
+                      filterEvent={filterEvent}
                     />
                   </div>
                 )}
@@ -468,6 +736,7 @@ const Radio = (props) => {
         )}
       </div>
       {loginModal ? (
+        /////////////////////////////////////////////////////////////////////////// login modal
         <div className="loginModal">
           <div className="loginModalContainer">
             <button className="closeModalButton" onClick={closeModal}>
@@ -485,6 +754,7 @@ const Radio = (props) => {
       ) : null}
       {stationUrl ? (
         <Player
+          ///////////////////////////////////////////////////////////////////// player component
           stationKey={currentKey}
           audioSource={stationUrl}
           stationImage={currentIcon}
@@ -493,6 +763,9 @@ const Radio = (props) => {
           stationName={playingStation}
           favKeys={favKeys}
           userDetails={userDetails}
+          setSaveToFav={setSaveToFav}
+          setFavPopUp={setFavPopUp}
+          mobile={mobile}
         />
       ) : null}
     </section>

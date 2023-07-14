@@ -1,21 +1,40 @@
+// imports
+// firebase
+import firebase from "../firebase";
+import { getDatabase, ref, onValue, push } from "firebase/database";
+
+// react
 import { useState, useEffect, useRef } from "react";
+
+// packages
 import FadeIn from "react-fade-in";
 import PropagateLoader from "react-spinners/PropagateLoader";
 
-import firebase from "../firebase";
-import { getDatabase, ref, onValue, push, remove } from "firebase/database";
-
+// assets
 import defaultImage from "../assets/radio.png";
 
+const setDefaultSrc = (event) => {
+  event.target.src = defaultImage;
+};
+
 const List = (props) => {
+  // states
+  // station information to be sent
   const [radioUrl, setRadioUrl] = useState("");
   const [playingName, setPlayingName] = useState("");
 
+  // filter states
   const [filterTrue, setFilterTrue] = useState(false);
   const [filteredStations, setFilteredStations] = useState([]);
 
-  const [favStation, setFavStation] = useState([]);
+  // hover states
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
+  // store current genre
+  const [currentGenre, setCurrentGenre] = useState("");
+
+  // if station was played from map or dashboard components, set the station name in the list component as well
   useEffect(() => {
     if (props.playingStation !== "") {
       setPlayingName(props.playingStation);
@@ -28,6 +47,7 @@ const List = (props) => {
     props.playingStation,
   ]);
 
+  // check if sorting filter was used in other components
   useEffect(() => {
     setFilterTrue(false);
   }, [props.stations]);
@@ -39,6 +59,7 @@ const List = (props) => {
     }
   }, [props.filterAmount]);
 
+  // play logic
   const radioSelect = (event) => {
     event.preventDefault();
 
@@ -59,6 +80,7 @@ const List = (props) => {
     props.longitude(selectedStationArr[4]);
   };
 
+  // gather from firebase database to indicate favourites
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
@@ -74,11 +96,10 @@ const List = (props) => {
           ...data[key],
         });
       }
-
-      setFavStation(newState);
     });
   }, []);
 
+  // filter logic to reduce search results
   const grabFilter = (event) => {
     const randomizer = (min = 0, max = props.stations.length) => {
       let base = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -117,10 +138,7 @@ const List = (props) => {
     randomizer();
   };
 
-  const setDefaultSrc = (event) => {
-    event.target.src = defaultImage;
-  };
-
+  // random station logic
   const randomStation = () => {
     if (filterTrue) {
       const randomizer = (min = 0, max = filteredStations.length) => {
@@ -183,6 +201,21 @@ const List = (props) => {
     }
   };
 
+  // if randomStation logic was used in map component, set it in list component
+  useEffect(() => {
+    if (props.randomMobile) {
+      randomStation();
+    }
+  }, [props.randomMobile]);
+
+  // if filter logic was used in map component, set it in list component
+  useEffect(() => {
+    if (props.filterEvent) {
+      grabFilter(props.filterEvent);
+    }
+  }, [props.filterEvent]);
+
+  // favourite logic: push to firebase
   const favourite = (event, userId) => {
     const pushToDatabase = (event, userId) => {
       const stationFav = event.currentTarget.value;
@@ -205,14 +238,20 @@ const List = (props) => {
 
       console.log(stationFavObj);
       push(dbRef, stationFavObj);
+
+      props.setSaveToFav(stationFavArr[5]);
+      props.setFavPopUp(true);
+
+      setTimeout(() => {
+        props.setSaveToFav("");
+        props.setFavPopUp(false);
+      }, 2000);
     };
 
     pushToDatabase(event, props.userDetails.user.uid);
   };
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentGenre, setCurrentGenre] = useState("");
-
+  // hover logic
   const pageRef = useRef(null);
 
   useEffect(() => {
@@ -240,6 +279,7 @@ const List = (props) => {
     };
   }, [pageRef, props.stations]);
 
+  // return to top button
   const scrollToTop = () => {
     if (pageRef.current) {
       pageRef.current.scrollTo({
@@ -249,6 +289,7 @@ const List = (props) => {
     }
   };
 
+  // if list is scrolled down, a new search returns the page to the top
   const searchScroll = () => {
     if (pageRef.current) {
       pageRef.current.scrollTo({
@@ -258,8 +299,7 @@ const List = (props) => {
     }
   };
 
-  const [hoveredItem, setHoveredItem] = useState(null);
-
+  // hover logic -- station containers
   const handleMouseEnter = (index) => {
     setHoveredItem(index);
   };
@@ -282,6 +322,7 @@ const List = (props) => {
           />
         ) : (
           <h3 className="returned">
+            {/* ///////////////////////////////////////////////////////////////////////////////////////////// buttons and search query */}
             returned{" "}
             <span id="amountReturned">
               {filterTrue ? filteredStations.length : props.stations.length}
@@ -313,7 +354,7 @@ const List = (props) => {
               <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
-              <option value="300">All</option>
+              <option value="2000">All</option>
             </select>
           </div>
         </div>
@@ -323,6 +364,7 @@ const List = (props) => {
           {filterTrue
             ? filteredStations.map((stationDetails) => {
                 return (
+                  ///////////////////////////////////////////////////////////////////////////////////////// filter logic
                   <div
                     className={
                       playingName === stationDetails.name
@@ -360,7 +402,8 @@ const List = (props) => {
                             src={stationDetails.favicon}
                             alt={stationDetails.name}
                             className={`icon ${
-                              hoveredItem === stationDetails.changeuuid
+                              hoveredItem === stationDetails.changeuuid &&
+                              !props.mobile
                                 ? "blurred"
                                 : ""
                             }`}
@@ -368,7 +411,8 @@ const List = (props) => {
                           />
                         )}
                         {hoveredItem === stationDetails.changeuuid &&
-                        playingName !== stationDetails.name ? (
+                        playingName !== stationDetails.name &&
+                        !props.mobile ? (
                           <button
                             className="hoverPlay"
                             value={[
@@ -436,6 +480,7 @@ const List = (props) => {
               })
             : props.stations.map((stationDetails) => {
                 return (
+                  ///////////////////////////////////////////////////////////////////////////////////////////// non-filter logic
                   <div
                     className={
                       playingName === stationDetails.name
@@ -451,7 +496,22 @@ const List = (props) => {
                       onMouseLeave={handleMouseLeave}
                       key={stationDetails.changeuuid}
                     >
-                      {hoveredItem === stationDetails.changeuuid ? (
+                      {hoveredItem === stationDetails.changeuuid &&
+                      !props.mobile ? (
+                        <button
+                          className="playButtonDiv"
+                          value={[
+                            `${stationDetails.changeuuid}`,
+                            `${stationDetails.url_resolved}`,
+                            `${stationDetails.favicon}`,
+                            `${stationDetails.geo_lat}`,
+                            `${stationDetails.geo_long}`,
+                            `${stationDetails.name}`,
+                          ]}
+                          onClick={radioSelect}
+                        ></button>
+                      ) : null}
+                      {props.mobile ? (
                         <button
                           className="playButtonDiv"
                           value={[
@@ -473,7 +533,8 @@ const List = (props) => {
                             src={stationDetails.favicon}
                             alt={stationDetails.name}
                             className={`icon ${
-                              hoveredItem === stationDetails.changeuuid
+                              hoveredItem === stationDetails.changeuuid &&
+                              !props.mobile
                                 ? "blurred"
                                 : ""
                             }`}
@@ -481,7 +542,8 @@ const List = (props) => {
                           />
                         )}
                         {hoveredItem === stationDetails.changeuuid &&
-                        playingName !== stationDetails.name ? (
+                        playingName !== stationDetails.name &&
+                        !props.mobile ? (
                           <button
                             className="hoverPlay"
                             value={[
@@ -551,6 +613,7 @@ const List = (props) => {
       </FadeIn>
       {isVisible && (
         <div className="returnBtn">
+          {/* ///////////////////////////////////////////////////////////////////////////////////////////// scroll to top */}
           <button className="scrollToTop" onClick={scrollToTop}>
             <i className="fa-solid fa-circle-arrow-up"></i>
           </button>

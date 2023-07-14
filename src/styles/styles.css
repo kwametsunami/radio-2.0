@@ -8,7 +8,12 @@ body {
   margin: 0;
 }
 
-article, aside, footer, header, nav, section {
+article,
+aside,
+footer,
+header,
+nav,
+section {
   display: block;
 }
 
@@ -17,7 +22,9 @@ h1 {
   margin: 0.67em 0;
 }
 
-figcaption, figure, main {
+figcaption,
+figure,
+main {
   display: block;
 }
 
@@ -45,18 +52,22 @@ abbr[title] {
   border-bottom: none;
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
-b, strong {
+b,
+strong {
   font-weight: inherit;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bolder;
 }
 
-code, kbd, samp {
+code,
+kbd,
+samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
@@ -74,7 +85,8 @@ small {
   font-size: 80%;
 }
 
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -89,7 +101,8 @@ sup {
   top: -0.5em;
 }
 
-audio, video {
+audio,
+video {
   display: inline-block;
 }
 
@@ -106,31 +119,46 @@ svg:not(:root) {
   overflow: hidden;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font-family: sans-serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
 }
 
-button, input {
+button,
+input {
   overflow: visible;
 }
 
-button, select {
+button,
+select {
   text-transform: none;
 }
 
-button, html [type=button], [type=reset], [type=submit] {
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
-button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
 
-button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring {
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -156,21 +184,24 @@ textarea {
   overflow: auto;
 }
 
-[type=checkbox], [type=radio] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box;
   padding: 0;
 }
 
-[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
-[type=search] {
+[type="search"] {
   -webkit-appearance: textfield;
   outline-offset: -2px;
 }
 
-[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -179,7 +210,8 @@ textarea {
   font: inherit;
 }
 
-details, menu {
+details,
+menu {
   display: block;
 }
 
@@ -203,7 +235,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -216,7 +250,7 @@ html {
   padding: 0;
   white-space: nowrap;
   -webkit-clip-path: inset(100%);
-          clip-path: inset(100%);
+  clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
@@ -294,6 +328,10 @@ html::-webkit-scrollbar-thumb:hover {
   background: purple;
 }
 
+body {
+  background: #d32631;
+}
+
 .wrapper {
   max-width: 1728px;
   width: 90%;
@@ -321,6 +359,22 @@ input {
   border-radius: 5px 0 0 5px;
   outline: none;
   font-size: 1rem;
+  touch-action: manipulation;
+  user-select: text;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+  touch-action: manipulation;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
 }
 
 .dropdown {
@@ -368,11 +422,13 @@ input {
   height: 100vh;
   width: 100vw;
   display: flex;
+  overflow: hidden;
 }
 .landing .landingInfo {
   height: 100%;
   width: 100%;
   margin: 0 auto;
+  overflow: hidden;
 }
 .landing .landingNav {
   display: flex;
@@ -380,6 +436,11 @@ input {
   justify-content: flex-end;
   margin: 10px 50px 0 50px;
   padding-top: 10px;
+}
+@media (max-width: 680px) {
+  .landing .landingNav {
+    margin: 5px 20px 0 20px;
+  }
 }
 .landing .landingNav .navItems {
   display: flex;
@@ -401,10 +462,21 @@ input {
   padding: 6px 15px;
   transform: translateY(-1px);
 }
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .userName i {
+    padding: 3px 10px 3px 0px;
+  }
+}
 .landing .landingNav .navItems .userName p {
   font-size: clamp(0.875rem, 0.75rem + 0.625vw, 2.25rem);
   color: #f7f5ea;
   margin: 0;
+}
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .userName p {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+  }
 }
 .landing .landingNav .navItems #hideUser {
   visibility: hidden;
@@ -428,6 +500,23 @@ input {
   color: #edd05f;
   transition: 0.3s;
 }
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .navButtons .loginBtn {
+    width: 45px;
+    font-size: 2rem;
+    margin: 0 20px;
+  }
+}
+@media (max-width: 450px) {
+  .landing .landingNav .navItems .navButtons .loginBtn {
+    width: 30px;
+  }
+}
+@media (max-width: 300px) {
+  .landing .landingNav .navItems .navButtons .loginBtn {
+    width: 25px;
+  }
+}
 .landing .landingNav .navItems .navButtons .logoutBtn {
   margin: 0 5px;
   width: 75px;
@@ -440,6 +529,23 @@ input {
 .landing .landingNav .navItems .navButtons .logoutBtn:hover {
   color: #edd05f;
   transition: 0.3s;
+}
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .navButtons .logoutBtn {
+    width: 45px;
+    font-size: 2rem;
+    margin: 0 20px;
+  }
+}
+@media (max-width: 450px) {
+  .landing .landingNav .navItems .navButtons .logoutBtn {
+    width: 30px;
+  }
+}
+@media (max-width: 300px) {
+  .landing .landingNav .navItems .navButtons .logoutBtn {
+    width: 25px;
+  }
 }
 .landing .landingNav .navItems .navButtons .aboutBtn {
   margin: 0 5px;
@@ -454,6 +560,23 @@ input {
   color: #edd05f;
   transition: 0.3s;
 }
+@media (max-width: 680px) {
+  .landing .landingNav .navItems .navButtons .aboutBtn {
+    width: 45px;
+    font-size: 2rem;
+    margin: 0 20px;
+  }
+}
+@media (max-width: 450px) {
+  .landing .landingNav .navItems .navButtons .aboutBtn {
+    width: 30px;
+  }
+}
+@media (max-width: 300px) {
+  .landing .landingNav .navItems .navButtons .aboutBtn {
+    width: 25px;
+  }
+}
 .landing #vanish {
   transition: 0.5s;
 }
@@ -467,6 +590,11 @@ input {
   margin: 100px 0 0;
   text-align: center;
 }
+@media (max-width: 680px) {
+  .landing .centerContent .centerText {
+    margin: 115px 0 0;
+  }
+}
 .landing .centerContent .centerText .title {
   color: #f7f5ea;
   font-family: "Jost Bold";
@@ -476,10 +604,20 @@ input {
 .landing .centerContent .centerText .title:hover {
   color: #edd05f;
 }
+@media (max-width: 450px) {
+  .landing .centerContent .centerText .title {
+    font-size: 10rem;
+  }
+}
 .landing .centerContent .centerText .greeting {
   margin: 2px 0 10px;
   color: #f7f5ea;
   cursor: default;
+}
+@media (max-width: 680px) {
+  .landing .centerContent .centerText .greeting {
+    font-size: 2rem;
+  }
 }
 .landing .centerContent .searchForm {
   display: flex;
@@ -515,6 +653,11 @@ input {
   font-size: clamp(0.75rem, 0.6136rem + 0.6818vw, 2.25rem);
   color: #f7f5ea;
 }
+@media (max-width: 680px) {
+  .landing .centerContent .searchForm .searchContainer .checkBox label {
+    font-size: 1.2rem;
+  }
+}
 .landing .centerContent .searchForm .searchContainer .checkBox input {
   margin: 2px 5px 0;
   width: 12.5px;
@@ -527,37 +670,104 @@ input {
     height: 9px;
   }
 }
+@media (max-width: 450px) {
+  .landing .centerContent .searchForm .searchContainer .checkBox input {
+    width: 11px;
+    height: 11px;
+  }
+}
 .landing .centerContent .searchForm .searchContainer .searchInner {
   display: flex;
   text-align: center;
 }
-.landing .centerContent .searchForm .searchContainer .searchInner input::-moz-placeholder {
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  input::-moz-placeholder {
   font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
 }
 .landing .centerContent .searchForm .searchContainer .searchInner input,
-.landing .centerContent .searchForm .searchContainer .searchInner input::placeholder {
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  input::placeholder {
   font-size: clamp(0.9375rem, 0.8523rem + 0.4261vw, 1.875rem);
 }
-.landing .centerContent .searchForm .searchContainer .searchInner .searchButton {
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  .landingSearch {
+  touch-action: manipulation;
+  user-select: text;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+  touch-action: manipulation;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  .searchButton {
   background-color: #edd05f;
   border-radius: 0 5px 5px 0;
   width: 100px;
   border: 2px solid #1a1a1c;
 }
-.landing .centerContent .searchForm .searchContainer .searchInner .searchButton:hover {
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  .searchButton:hover {
   transition: 0.3s;
   background-color: #dcc155;
 }
-.landing .centerContent .searchForm .searchContainer .searchInner .searchButton:hover i {
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  .searchButton:hover
+  i {
   transition: 0.3s;
   transform: scale(1.15);
 }
-.landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
+.landing
+  .centerContent
+  .searchForm
+  .searchContainer
+  .searchInner
+  .searchButton
+  i {
   color: #1a1a1c;
   font-size: 2rem;
 }
 @media (max-width: 680px) {
-  .landing .centerContent .searchForm .searchContainer .searchInner .searchButton i {
+  .landing
+    .centerContent
+    .searchForm
+    .searchContainer
+    .searchInner
+    .searchButton
+    i {
     font-size: 1.5rem;
   }
 }
@@ -622,6 +832,11 @@ input {
   transform: scale(0.95);
   animation: modalOpen 0.5s forwards 0.5s;
 }
+@media (max-width: 680px) {
+  .about .aboutContainer {
+    width: 80vw;
+  }
+}
 .about .aboutContainer .aboutContent {
   text-align: center;
   display: flex;
@@ -629,6 +844,11 @@ input {
   align-items: center;
   padding: 65px;
   margin-top: 35px;
+}
+@media (max-width: 680px) {
+  .about .aboutContainer .aboutContent {
+    padding: 20px;
+  }
 }
 .about .aboutContainer .aboutContent .aboutTitle {
   font-size: 5rem;
@@ -713,8 +933,18 @@ input {
 .login .loginSectionContainer .loginNav .returnToSearch .title:hover {
   color: #edd05f;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginNav .returnToSearch .title {
+    font-size: 9rem;
+  }
+}
 .login .loginSectionContainer .loginFadeIn {
   width: 35%;
+}
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginFadeIn {
+    width: 100%;
+  }
 }
 .login .loginSectionContainer .loginFadeIn .loginContainer {
   width: 100%;
@@ -736,13 +966,39 @@ input {
   margin: 5px 0;
   font-size: 2rem;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .loginError {
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  .loginError {
   border: 2px solid #dcc155;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText {
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  .signUpText {
   color: #f7f5ea;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText .signUpButton {
+@media (max-width: 680px) {
+  .login
+    .loginSectionContainer
+    .loginFadeIn
+    .loginContainer
+    .loginForm
+    .signUpText {
+    font-size: 2rem;
+  }
+}
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  .signUpText
+  .signUpButton {
   background: transparent;
   border: none;
   color: #f7f5ea;
@@ -750,15 +1006,43 @@ input {
   margin: 0;
   border-bottom: 2px solid transparent;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .signUpText .signUpButton:hover {
+@media (max-width: 680px) {
+  .login
+    .loginSectionContainer
+    .loginFadeIn
+    .loginContainer
+    .loginForm
+    .signUpText
+    .signUpButton {
+    font-size: 2rem;
+    color: #edd05f;
+  }
+}
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  .signUpText
+  .signUpButton:hover {
   color: #edd05f;
   transition: 0.3s;
   border-bottom: 2px solid #edd05f;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm #loginError {
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  #loginError {
   color: #edd05f;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .loginButton {
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  .loginButton {
   margin: 0 5px;
   width: 150px;
   font-size: 2rem;
@@ -769,7 +1053,12 @@ input {
   background: #edd05f;
   border: 2px solid #1a1a1c;
 }
-.login .loginSectionContainer .loginFadeIn .loginContainer .loginForm .loginButton:hover {
+.login
+  .loginSectionContainer
+  .loginFadeIn
+  .loginContainer
+  .loginForm
+  .loginButton:hover {
   background: #dcc155;
   color: #1a1a1c;
   border: 2px solid #1a1a1c;
@@ -780,6 +1069,11 @@ input {
   color: #f7f5ea;
   cursor: default;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .loginFadeIn .loginContainer h2 {
+    font-size: 3rem;
+  }
+}
 .login .loginSectionContainer .signUpContainer {
   width: 35%;
   text-align: center;
@@ -788,10 +1082,20 @@ input {
   align-items: center;
   animation: formSlide 0.3s linear;
 }
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer {
+    width: 100%;
+  }
+}
 .login .loginSectionContainer .signUpContainer h2 {
   color: #f7f5ea;
   margin: 2px 0 10px;
   cursor: default;
+}
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer h2 {
+    font-size: 3rem;
+  }
 }
 .login .loginSectionContainer .signUpContainer .registerForm {
   display: flex;
@@ -806,13 +1110,27 @@ input {
   margin: 5px 0;
   font-size: 2rem;
 }
-.login .loginSectionContainer .signUpContainer .registerForm .registerErrorForm {
+.login
+  .loginSectionContainer
+  .signUpContainer
+  .registerForm
+  .registerErrorForm {
   border: 2px solid #dcc155;
 }
 .login .loginSectionContainer .signUpContainer .registerForm .loginText {
   color: #f7f5ea;
 }
-.login .loginSectionContainer .signUpContainer .registerForm .loginText .backToLoginButton {
+@media (max-width: 680px) {
+  .login .loginSectionContainer .signUpContainer .registerForm .loginText {
+    font-size: 2rem;
+  }
+}
+.login
+  .loginSectionContainer
+  .signUpContainer
+  .registerForm
+  .loginText
+  .backToLoginButton {
   background: transparent;
   border: none;
   color: #f7f5ea;
@@ -820,7 +1138,23 @@ input {
   margin: 0;
   border-bottom: 2px solid transparent;
 }
-.login .loginSectionContainer .signUpContainer .registerForm .loginText .backToLoginButton:hover {
+@media (max-width: 680px) {
+  .login
+    .loginSectionContainer
+    .signUpContainer
+    .registerForm
+    .loginText
+    .backToLoginButton {
+    font-size: 2rem;
+    color: #edd05f;
+  }
+}
+.login
+  .loginSectionContainer
+  .signUpContainer
+  .registerForm
+  .loginText
+  .backToLoginButton:hover {
   color: #edd05f;
   transition: 0.3s;
   border-bottom: 2px solid #edd05f;
@@ -839,11 +1173,18 @@ input {
   background: #edd05f;
   border: 2px solid #1a1a1c;
 }
-.login .loginSectionContainer .signUpContainer .registerForm .signUpButton:hover {
+.login
+  .loginSectionContainer
+  .signUpContainer
+  .registerForm
+  .signUpButton:hover {
   background: #dcc155;
   color: #1a1a1c;
   border: 2px solid #1a1a1c;
   transition: 0.3s;
+}
+.login #highlight {
+  color: #edd05f;
 }
 
 @keyframes formSlide {
@@ -859,6 +1200,169 @@ input {
 #blurredContainer {
   filter: blur(7px);
   -webkit-filter: blur(7px);
+}
+
+.filterAndControls {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
+}
+.filterAndControls .openFilter {
+  background: transparent;
+  border: none;
+  margin: 5px 20px 0 0;
+}
+.filterAndControls .openFilter i {
+  color: #1a1a1c;
+  font-size: 4.5rem;
+}
+.filterAndControls .filterPopOut {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #d32631;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-left: 1px solid #3a3a3c;
+  animation: 0.15s dashboardSlide linear;
+}
+.filterAndControls .filterPopOut .filterTop {
+  height: 10%;
+  padding: 15px;
+  margin: 10px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo {
+  display: flex;
+  flex-direction: column;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo a h2 {
+  transition: 0.9s;
+  color: #f7f5ea;
+  font-family: "Jost Bold";
+  font-size: 4rem;
+}
+.filterAndControls .filterPopOut .filterTop .filterLogo a h2:hover {
+  color: #edd05f;
+}
+.filterAndControls .filterPopOut .filterTop .filterClose .hamburgerX {
+  font-size: 3.75rem;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  color: #f7f5ea;
+  margin: 0;
+  opacity: 0;
+  animation: 0.2s linear forwards openMobile;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer {
+  height: 90%;
+  overflow-y: scroll;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 5px;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons button {
+  height: 80px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent;
+  border: none;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  button
+  .buttonText {
+  color: #f7f5ea;
+  font-size: 3rem;
+  padding: 15px;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  button
+  i {
+  font-size: 3rem;
+  padding: 15px;
+  color: #f7f5ea;
+}
+.filterAndControls .filterPopOut .mobileFilterContainer .filterButtons form {
+  height: 80px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  form
+  input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #f7f5ea;
+  border-radius: 0px;
+  width: 70%;
+  color: #f7f5ea;
+  font-size: 2rem;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  form
+  input::-moz-placeholder {
+  color: transparent;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  form
+  input::placeholder {
+  color: transparent;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  .buttonValues {
+  align-self: flex-start;
+  margin-left: 50px;
+}
+.filterAndControls
+  .filterPopOut
+  .mobileFilterContainer
+  .filterButtons
+  .buttonValues
+  button {
+  height: 20px;
+  font-size: 2.5rem;
+  color: #f7f5ea;
+  text-align: center;
+  margin: 25px auto;
+  padding-bottom: 10px;
 }
 
 .searchNav {
@@ -886,6 +1390,13 @@ input {
   padding-right: 80px;
   margin-top: 20px;
 }
+@media (max-width: 680px) {
+  .searchNav .searchNavContents .infoForm {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    margin-top: 5px;
+  }
+}
 .searchNav .searchNavContents .infoForm .infoSearch {
   width: 70%;
   font-size: 2rem;
@@ -895,6 +1406,11 @@ input {
 @media (max-width: 950px) {
   .searchNav .searchNavContents .infoForm .infoSearch {
     width: 50%;
+  }
+}
+@media (max-width: 680px) {
+  .searchNav .searchNavContents .infoForm .infoSearch {
+    visibility: hidden;
   }
 }
 .searchNav .searchNavContents .infoForm .searchButton {
@@ -909,7 +1425,16 @@ input {
   font-size: 1.5rem;
   color: #1a1a1c;
 }
+@media (max-width: 680px) {
+  .searchNav .searchNavContents .infoForm .searchButton {
+    border-radius: 5px;
+    visibility: hidden;
+  }
+}
 
+.resultsContainer {
+  overflow: hidden;
+}
 .resultsContainer .badResponse {
   height: 100vh;
   width: calc(100vw - 350px);
@@ -959,6 +1484,72 @@ input {
   text-transform: capitalize;
   color: #edd05f;
 }
+.resultsContainer .savedToFavPopUp {
+  position: fixed;
+  bottom: 0%;
+  right: 50%;
+  margin-bottom: 100px;
+  transform: translate(50%, 50%);
+  z-index: 2;
+}
+.resultsContainer .savedToFavPopUp .popupContainer {
+  background: #3a3a3c;
+  border-radius: 10px;
+  opacity: 0;
+}
+.resultsContainer .savedToFavPopUp .popupContainer h3 {
+  font-size: 2rem;
+  padding: 20px;
+  color: #f7f5ea;
+}
+.resultsContainer .savedToFavPopUp .popupContainer #favTitle {
+  color: #edd05f;
+}
+.resultsContainer .savedToFavPopUp #savedPopup {
+  animation: 2s favFade linear;
+  z-index: 100;
+}
+@media (max-width: 950px) {
+  .resultsContainer .savedToFavPopUp {
+    transform: translate(50%, 35%);
+  }
+}
+.resultsContainer .mobileAlert {
+  z-index: 10;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #d32631;
+  border: 2px solid #1a1a1c;
+  border-radius: 10px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80vw;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertClose {
+  margin: 15px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertClose button {
+  background: #edd05f;
+  color: #1a1a1c;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 10px 17.5px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertText {
+  padding: 35px 20px 0px;
+}
+.resultsContainer .mobileAlert .mobileAlertContainer .mobileAlertText p {
+  font-size: 2rem;
+  color: #f7f5ea;
+  text-align: center;
+}
 
 .radioView {
   display: flex;
@@ -969,6 +1560,66 @@ input {
   width: 100%;
   height: 100vh;
   overflow-y: hidden;
+}
+@media (max-width: 680px) {
+  .radioView .resultsContainer {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.loginModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  background: transparent;
+}
+.loginModal .loginModalContainer {
+  width: 54vw;
+  height: 65vh;
+  background: #d32631;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  position: relative;
+  transform: scale(0.8);
+}
+@media (max-width: 680px) {
+  .loginModal .loginModalContainer {
+    width: 100%;
+  }
+}
+.loginModal .loginModalContainer .closeModalButton {
+  position: absolute;
+  top: 0;
+  align-self: flex-end;
+  margin: 25px 65px 0 0;
+  background: transparent;
+  border: none;
+}
+@media (max-width: 680px) {
+  .loginModal .loginModalContainer .closeModalButton {
+    margin: -15px 25px 0 0;
+  }
+}
+.loginModal .loginModalContainer .closeModal {
+  font-size: 3rem;
+  color: #f7f5ea;
+}
+@media (max-width: 680px) {
+  .loginModal .loginModalContainer .closeModal {
+    font-size: 4rem;
+  }
 }
 
 .loginModal {
@@ -1008,7 +1659,6 @@ input {
   font-size: 3rem;
   color: #f7f5ea;
 }
-
 @keyframes showUp {
   0% {
     opacity: 0;
@@ -1018,6 +1668,36 @@ input {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes favFade {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+@keyframes dashboardSlide {
+  0% {
+    right: -450px;
+  }
+  100% {
+    right: 0px;
   }
 }
 .dashboard {
@@ -1071,6 +1751,7 @@ input {
 .dashboardContainer .emailDashboard #dashboardUser {
   margin: 0;
   transform: translateY(-95%);
+  text-overflow: ellipsis;
 }
 .dashboardContainer .middleDashboard {
   overflow: hidden;
@@ -1081,11 +1762,22 @@ input {
   font-size: clamp(1.5rem, 1.4545rem + 0.2273vw, 2rem);
   padding: 0 0 15px;
 }
-.dashboardContainer .middleDashboard .userContainer .userContent .creationDate p {
+.dashboardContainer
+  .middleDashboard
+  .userContainer
+  .userContent
+  .creationDate
+  p {
   color: #f7f5ea;
   font-size: 2rem;
 }
-.dashboardContainer .middleDashboard .userContainer .userContent .creationDate p #userDate {
+.dashboardContainer
+  .middleDashboard
+  .userContainer
+  .userContent
+  .creationDate
+  p
+  #userDate {
   font-size: 2.75rem;
   line-height: 2.45;
 }
@@ -1098,7 +1790,11 @@ input {
   font-size: 1.5rem;
   transition: 0.3s;
 }
-.dashboardContainer .middleDashboard .userContainer .userContent .userSignOut:hover {
+.dashboardContainer
+  .middleDashboard
+  .userContainer
+  .userContent
+  .userSignOut:hover {
   background: #dcc155;
 }
 .dashboardContainer .middleDashboard .userContainer .anonymousContent {
@@ -1106,13 +1802,22 @@ input {
   flex-direction: column;
   justify-content: center;
 }
-.dashboardContainer .middleDashboard .userContainer .anonymousContent .anonButtons {
+.dashboardContainer
+  .middleDashboard
+  .userContainer
+  .anonymousContent
+  .anonButtons {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin: 0 auto;
 }
-.dashboardContainer .middleDashboard .userContainer .anonymousContent .anonButtons button {
+.dashboardContainer
+  .middleDashboard
+  .userContainer
+  .anonymousContent
+  .anonButtons
+  button {
   background: #edd05f;
   border-radius: 5px;
   padding: 10px 17.5px;
@@ -1121,7 +1826,12 @@ input {
   font-size: 1.5rem;
   transition: 0.3s;
 }
-.dashboardContainer .middleDashboard .userContainer .anonymousContent .anonButtons button:hover {
+.dashboardContainer
+  .middleDashboard
+  .userContainer
+  .anonymousContent
+  .anonButtons
+  button:hover {
   background: #dcc155;
 }
 .dashboardContainer .middleDashboard .recentContainer h2 {
@@ -1136,14 +1846,25 @@ input {
 .dashboardContainer .middleDashboard .recentContainer p {
   color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer {
   position: relative;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentPrompt {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentPrompt {
   padding: 22.5px;
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade {
   padding: 5px;
   overflow: hidden;
   display: flex;
@@ -1152,29 +1873,61 @@ input {
   overflow-y: none;
   position: relative;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
   position: relative;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems:hover {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems:hover {
   background: #d14952;
   border-radius: 5px;
   transition: 0.1s;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems:hover .recentItemsButton .recentAddFav i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems:hover
+  .recentItemsButton
+  .recentAddFav
+  i {
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems:hover .recentItemsButton .recentAddFav i:hover {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems:hover
+  .recentItemsButton
+  .recentAddFav
+  i:hover {
   transform: scale(1.15);
   color: #f7f5ea;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .playButtonDivRecent {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .playButtonDivRecent {
   background: transparent;
   position: absolute;
   top: 0;
@@ -1183,38 +1936,83 @@ input {
   border: none;
   cursor: pointer;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems img {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems img {
+  .dashboardContainer
+    .middleDashboard
+    .recentContainer
+    .recentContainerContainer
+    .recentFade
+    .recentItems
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .blurred {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .blurred {
   filter: blur(2.5px);
   -webkit-filter: blur(2.5px);
   transition: 0.3s;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .hoverPlayDash {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .hoverPlayDash {
   position: absolute;
   top: 17.5px;
   left: 17.5px;
   cursor: pointer;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .hoverPlayDash i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .hoverPlayDash
+  i {
   color: #d32631;
   font-size: 1.5rem;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .hoverPlayDash i:hover {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .hoverPlayDash
+  i:hover {
   transform: scale(1.15);
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsText {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
@@ -1222,18 +2020,44 @@ input {
   line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsText p {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems:hover .favText {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems:hover
+  .favText {
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton {
   display: flex;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .recentAddFav {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .recentAddFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1243,18 +2067,41 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .recentAddFav i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .recentAddFav
+  i {
   font-size: 1.5rem;
   color: transparent;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .recentAddFav i:hover {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .recentAddFav
+  i:hover {
   transform: scale(1.15);
   color: #f7f5ea;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .added {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .added {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1265,14 +2112,27 @@ input {
   z-index: 1;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItems .recentItemsButton .added i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .added
+  i {
   font-size: 1.5rem;
   color: #edd05f;
   animation: rotateOnce 0.65s linear;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1281,17 +2141,39 @@ input {
   padding: 5px;
   position: relative;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying:hover .recentItemsButton .recentAddFav i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying:hover
+  .recentItemsButton
+  .recentAddFav
+  i {
   color: rgba(225, 224, 224, 0.8901960784);
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying:hover .recentItemsButton .recentAddFav i:hover {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying:hover
+  .recentItemsButton
+  .recentAddFav
+  i:hover {
   transform: scale(1.15);
   color: #f7f5ea;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .playingBarsRecent {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .playingBarsRecent {
   width: 35px;
   min-width: 35px;
   height: 35px;
@@ -1305,7 +2187,13 @@ input {
   background-position: center;
   display: inline-block;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .playButtonDivRecent {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .playButtonDivRecent {
   background: transparent;
   position: absolute;
   top: 0;
@@ -1314,33 +2202,71 @@ input {
   border: none;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying img {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying img {
+  .dashboardContainer
+    .middleDashboard
+    .recentContainer
+    .recentContainerContainer
+    .recentFade
+    .recentItemsPlaying
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsText {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsText p {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton {
   display: flex;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .recentAddFav {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .recentAddFav {
   width: 10px;
   padding: 7px 10px;
   background: transparent;
@@ -1350,11 +2276,26 @@ input {
   align-items: center;
   z-index: 2;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .recentAddFav i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .recentAddFav
+  i {
   font-size: 1.5rem;
   color: transparent;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .added {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .added {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1365,14 +2306,26 @@ input {
   cursor: default;
   z-index: 1;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .recentFade .recentItemsPlaying .recentItemsButton .added i {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .added
+  i {
   font-size: 1.5rem;
   color: #edd05f;
   animation: rotateOnce 0.65s linear;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .clearRecent {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .clearRecent {
   background: #edd05f;
   color: #1a1a1c;
   border-radius: 5px;
@@ -1382,7 +2335,11 @@ input {
   top: calc(100vh - 330px);
   right: calc(100vw - 140px);
 }
-.dashboardContainer .middleDashboard .recentContainer .recentContainerContainer .clearRecent:hover {
+.dashboardContainer
+  .middleDashboard
+  .recentContainer
+  .recentContainerContainer
+  .clearRecent:hover {
   background: #dcc155;
 }
 .dashboardContainer .middleDashboard .popularView #popularTitle {
@@ -1391,13 +2348,21 @@ input {
   padding: 0 0 15px;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .popularView #popularTitle #popularSearchTerm {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  #popularTitle
+  #popularSearchTerm {
   font-family: "Jost Bold";
 }
 .dashboardContainer .middleDashboard .popularView .popularContainerContainer {
   padding: 5px;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1406,7 +2371,12 @@ input {
   padding: 5px;
   position: relative;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .playButtonDivPopular {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .playButtonDivPopular {
   background: transparent;
   position: absolute;
   top: 0;
@@ -1415,18 +2385,33 @@ input {
   border: none;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying img {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying img {
+  .dashboardContainer
+    .middleDashboard
+    .popularView
+    .popularContainerContainer
+    .popularResultsPlaying
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .playingBarsPopular {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .playingBarsPopular {
   width: 35px;
   min-width: 35px;
   height: 35px;
@@ -1440,36 +2425,76 @@ input {
   background-position: center;
   display: inline-block;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularText {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularText p {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying:hover {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying:hover {
   border-radius: 5px;
   transition: 0.1s;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying:hover .popularButtons .addFav i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying:hover
+  .popularButtons
+  .addFav
+  i {
   color: rgba(225, 224, 224, 0.8901960784);
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying:hover .popularButtons .addFav i:hover {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying:hover
+  .popularButtons
+  .addFav
+  i:hover {
   transform: scale(1.15);
   color: #f7f5ea;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularButtons {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons {
   display: flex;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .addFav {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .addFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1480,11 +2505,24 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .addFav i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .addFav
+  i {
   font-size: 1.5rem;
   color: transparent;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .added {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .added {
   width: 10px;
   padding: 7px 10px;
   background-color: transparent;
@@ -1493,20 +2531,37 @@ input {
   justify-content: center;
   align-items: center;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResultsPlaying .popularButtons .added i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .added
+  i {
   font-size: 1.5rem;
   color: #edd05f;
   animation: rotateOnce 0.65s linear;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
   position: relative;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .playButtonDivPopular {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .playButtonDivPopular {
   background: transparent;
   position: absolute;
   top: 0;
@@ -1515,53 +2570,108 @@ input {
   border: none;
   cursor: pointer;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults img {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults img {
+  .dashboardContainer
+    .middleDashboard
+    .popularView
+    .popularContainerContainer
+    .popularResults
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .blurred {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .blurred {
   filter: blur(2.5px);
   -webkit-filter: blur(2.5px);
   transition: 0.3s;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .hoverPlayDash {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .hoverPlayDash {
   position: absolute;
   top: 17.5px;
   left: 17.5px;
   cursor: pointer;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .hoverPlayDash i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .hoverPlayDash
+  i {
   color: #d32631;
   font-size: 1.5rem;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .hoverPlayDash i:hover {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .hoverPlayDash
+  i:hover {
   transform: scale(1.15);
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularText {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularText p {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults:hover .popularTextTitle {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults:hover
+  .popularTextTitle {
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .popularButton {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .popularButton {
   border: 2px solid #1a1a1c;
   background: #f7f5ea;
   border-radius: 50px;
@@ -1571,52 +2681,106 @@ input {
   color: #d32631;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .popularButton {
+  .dashboardContainer
+    .middleDashboard
+    .popularView
+    .popularContainerContainer
+    .popularResults
+    .popularButtons
+    .popularButton {
     width: 20px;
     height: 20px;
     font-size: 0.7rem;
   }
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults:hover {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults:hover {
   background: #d14952;
   border-radius: 5px;
   transition: 0.1s;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults:hover .popularButtons .addFav i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults:hover
+  .popularButtons
+  .addFav
+  i {
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults img {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults img {
+  .dashboardContainer
+    .middleDashboard
+    .popularView
+    .popularContainerContainer
+    .popularResults
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularText {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularText p {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults:hover .popularTextTitle {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults:hover
+  .popularTextTitle {
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons {
   display: flex;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .addFav {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .addFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1627,20 +2791,46 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .addFav:hover {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .addFav:hover {
   transition: 0.3s;
   transform: scale(1.25);
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .addFav i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .addFav
+  i {
   font-size: 1.5rem;
   color: transparent;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .addFav i:hover {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .addFav
+  i:hover {
   color: #f7f5ea;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .added {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .added {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1649,13 +2839,27 @@ input {
   justify-content: center;
   align-items: center;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons .added i {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .added
+  i {
   font-size: 1.5rem;
   color: #edd05f;
   animation: rotateOnce 0.65s linear;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
-.dashboardContainer .middleDashboard .popularView .popularContainerContainer .popularResults .popularButtons button {
+.dashboardContainer
+  .middleDashboard
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  button {
   background: transparent;
 }
 .dashboardContainer .middleDashboard .favContainer h2 {
@@ -1670,30 +2874,66 @@ input {
 .dashboardContainer .middleDashboard .favContainer p {
   color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favPrompt {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favPrompt {
   padding: 17.5px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favPrompt p {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  p {
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favPrompt .notSignedIn #notSignedIn {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  .notSignedIn
+  #notSignedIn {
   color: #edd05f;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favPrompt .notSignedIn .notSignedInBtn {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  .notSignedIn
+  .notSignedInBtn {
   background: #dcc155;
   color: #1a1a1c;
   padding: 5px 18px;
   border-radius: 5px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favPrompt .notSignedIn .notSignedInBtn:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  .notSignedIn
+  .notSignedInBtn:hover {
   background: #edd05f;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent {
   height: 370px;
   display: flex;
   justify-content: center;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent {
   width: calc(100% - 10px);
   width: 100%;
   height: 100%;
@@ -1703,13 +2943,23 @@ input {
   flex-direction: column;
   position: relative;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar {
   width: 5px;
   opacity: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent.hovered::-webkit-scrollbar {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent.hovered::-webkit-scrollbar {
   display: flex;
   position: absolute;
   top: 0;
@@ -1718,27 +2968,69 @@ input {
   z-index: 5;
   opacity: 1;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar-thumb {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar-thumb:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar-track {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar-track {
   background-color: transparent;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar-track:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar-track:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar-track:active {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar-track:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent::-webkit-scrollbar-corner {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent::-webkit-scrollbar-corner {
   background-color: transparent;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems,
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems,
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1746,14 +3038,36 @@ input {
   position: relative;
   border-radius: 5px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems:hover {
   background: #d14952;
   border-radius: 5px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems:hover .favButtons .removeFav i {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems:hover
+  .favButtons
+  .removeFav
+  i {
   color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .playButtonDivFav {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .playButtonDivFav {
   background: transparent;
   position: absolute;
   top: 0;
@@ -1762,56 +3076,139 @@ input {
   border: none;
   cursor: pointer;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems img {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems img {
+  .dashboardContainer
+    .middleDashboard
+    .favContainer
+    .favContainerContainer
+    .favContent
+    .scrollableContent
+    .favItems
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .blurred {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .blurred {
   filter: blur(2.5px);
   -webkit-filter: blur(2.5px);
   transition: 0.3s;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .hoverPlayDash {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .hoverPlayDash {
   position: absolute;
   top: 17.5px;
   left: 17.5px;
   cursor: pointer;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .hoverPlayDash i {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .hoverPlayDash
+  i {
   color: #d32631;
   font-size: 1.5rem;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
   transition: 0.2s;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .hoverPlayDash i:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .hoverPlayDash
+  i:hover {
   transform: scale(1.15);
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favText {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favText p {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems:hover .favText p {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems:hover
+  .favText
+  p {
   color: #f7f5ea;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons {
   display: flex;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1821,28 +3218,77 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav i {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav
+  i {
   font-size: 1.5rem;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
   transition: 0.1s;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav .trash {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav
+  .trash {
   color: #1a1a1c;
   -webkit-text-stroke-width: 0.2px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav .trash:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav
+  .trash:hover {
   transform: scale(1.25);
   color: #3a3a3c;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItems .favButtons .removeFav .faved {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav
+  .faved {
   color: #edd05f;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying {
   background: #edd05f;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .playButtonDivFav {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .playButtonDivFav {
   background: transparent;
   position: absolute;
   top: 0;
@@ -1851,18 +3297,39 @@ input {
   border: none;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying img {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
 }
 @media (max-width: 1130px) {
-  .dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying img {
+  .dashboardContainer
+    .middleDashboard
+    .favContainer
+    .favContainerContainer
+    .favContent
+    .scrollableContent
+    .favItemsPlaying
+    img {
     width: 20px;
     height: 20px;
   }
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .playingBarsFav {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .playingBarsFav {
   width: 35px;
   min-width: 35px;
   height: 35px;
@@ -1876,22 +3343,52 @@ input {
   background-position: center;
   display: inline-block;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favText {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favText p {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favText
+  p {
   margin: 0;
   font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
   color: #1a1a1c;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons {
   display: flex;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav {
   width: 10px;
   padding: 7px 10px;
   border: none;
@@ -1902,24 +3399,64 @@ input {
   align-items: center;
   z-index: 1;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav i {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav
+  i {
   font-size: 1.5rem;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
   transition: 0.1s;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav .trash {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav
+  .trash {
   color: #3a3a3c;
   -webkit-text-stroke-width: 0.2px;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav .trash:hover {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav
+  .trash:hover {
   transform: scale(1.25);
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer .favContent .scrollableContent .favItemsPlaying .favButtons .removeFav .faved {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav
+  .faved {
   color: #edd05f;
   cursor: default;
 }
-.dashboardContainer .middleDashboard .favContainer .favContainerContainer #fullScroll {
+.dashboardContainer
+  .middleDashboard
+  .favContainer
+  .favContainerContainer
+  #fullScroll {
   height: 635px;
 }
 .dashboardContainer #fullMiddle {
@@ -2094,57 +3631,168 @@ input {
   color: #1a1a1c;
   padding: 6px;
   margin: 0;
-  font-size: 1.35rem;
+  font-size: clamp(0.8125rem, 0.7443rem + 0.3409vw, 1.5625rem);
   animation: textFade 0.3s linear;
 }
 .dashboardContainer .infoContainerBottom {
   display: flex;
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   width: 200px;
   justify-content: center;
+  z-index: 2;
+}
+@media (max-width: 1130px) {
+  .dashboardContainer .infoContainerBottom {
+    width: 150px;
+  }
 }
 .dashboardContainer .infoContainerBottom .infoButtons {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  position: relative;
 }
 .dashboardContainer .infoContainerBottom .infoButtons button {
-  width: 33.3333333333%;
-  background: transparent;
+  width: 20%;
   font-size: 1.7rem;
+  background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
 }
-.dashboardContainer .infoContainerBottom .infoButtons button:hover {
-  border: none;
-  border-bottom: 2px solid #f7f5ea;
+.dashboardContainer .infoContainerBottom .infoButtons button #selectedUser {
+  color: #0f8639;
+  transition: 0.35s;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #1a1a1c;
 }
 .dashboardContainer .infoContainerBottom .infoButtons button #selectedPopular {
-  color: #3a3a3c;
+  color: #f08a1c;
+  transition: 0.35s;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #1a1a1c;
 }
 .dashboardContainer .infoContainerBottom .infoButtons button #selectedRecent {
-  color: #33acff;
+  color: #3a3a3c;
+  transition: 0.35s;
+  -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: #1a1a1c;
 }
 .dashboardContainer .infoContainerBottom .infoButtons button #selectedFavs {
   color: #edd05f;
+  transition: 0.35s;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #3a3a3c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons button #selectedInfo {
+  color: #33acff;
+  transition: 0.35s;
+  -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .dashLogin {
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .dashLogin:hover {
+  border: none;
+  border-bottom: 2px solid #0f8639;
+  transition: 0.3s;
+  color: #f08a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .popular {
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .popular:hover {
+  border: none;
+  border-bottom: 2px solid #f08a1c;
+  transition: 0.3s;
+  color: #f08a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .recent {
+  -webkit-text-stroke-width: 0.35px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .recent:hover {
+  border: none;
+  border-bottom: 2px solid #3a3a3c;
+  transition: 0.3s;
+  color: #3a3a3c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .fav {
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #3a3a3c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .fav:hover {
+  border: none;
+  border-bottom: 2px solid #edd05f;
+  transition: 0.3s;
+  color: #edd05f;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .info {
+  -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons .info:hover {
+  border: none;
+  border-bottom: 2px solid #33acff;
+  transition: 0.3s;
+  color: #33acff;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedUserBtn {
+  border: none;
+  border-bottom: 2px solid #0f8639;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedUserBtn i {
+  transform: rotate(0deg);
+  animation: favBounce 0.45s linear;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedPopularBtn {
+  border: none;
+  border-bottom: 2px solid #f08a1c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedPopularBtn i {
+  transform: rotate(0deg);
+  animation: fire 0.55s linear;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedRecentBtn {
+  border: none;
+  border-bottom: 2px solid #3a3a3c;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedRecentBtn i {
+  transform: rotate(0deg);
+  animation: clockRotate 0.45s linear;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedFavsBtn {
+  border: none;
+  border-bottom: 2px solid #edd05f;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedFavsBtn i {
+  animation: favBounce 0.45s linear;
+}
+.dashboardContainer .infoContainerBottom .infoButtons #selectedInfoBtn {
+  border: none;
+  border-bottom: 2px solid #33acff;
 }
 .dashboardContainer .infoContainerBottom .instructions {
   position: fixed;
-  bottom: 35px;
+  top: 430px;
   width: 200px;
-  height: 258px;
   background: #f7f5ea;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   border: 2px solid #1a1a1c;
+  animation: 0.2s linear forwards instructions;
+  transition: 0.9s;
+  padding: 10px;
 }
 @media (max-width: 1130px) {
   .dashboardContainer .infoContainerBottom .instructions {
     width: 150px;
+    top: 337px;
   }
 }
 .dashboardContainer .infoContainerBottom .instructions .infoButton {
@@ -2159,8 +3807,10 @@ input {
 }
 .dashboardContainer .infoContainerBottom .instructions p {
   color: #1a1a1c;
-  padding: 10px;
-  font-size: clamp(0.75rem, 0.7045rem + 0.2273vw, 1.25rem);
+  padding: 6px;
+  margin: 0;
+  font-size: clamp(0.8125rem, 0.7443rem + 0.3409vw, 1.5625rem);
+  animation: textFade 0.3s linear;
 }
 
 #fullDashContainer {
@@ -2176,7 +3826,7 @@ input {
   position: fixed;
   top: 20px;
   left: 45px;
-  z-index: 5;
+  z-index: 10;
   background: transparent;
   border: none;
   color: #1a1a1c;
@@ -2185,101 +3835,405 @@ input {
   opacity: 0;
   animation: 0.2s linear forwards fade;
 }
-.dashboardContainerMobile .hamburgerX {
-  font-size: 3.75rem;
-  position: fixed;
-  top: 18px;
-  left: 45px;
-  z-index: 5;
-  background: transparent;
-  border: none;
-  color: #1a1a1c;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  animation: 0.2s linear forwards openMobile;
-}
 .dashboardContainerMobile .dashboardPopOut {
+  height: 100vh;
   width: 100vw;
-  height: 100px;
+  overflow: hidden;
   background: #d32631;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  z-index: 4;
-  position: absolute;
+  justify-content: flex-start;
+  z-index: 10;
+  position: fixed;
   top: 0;
   left: 0;
+  border-right: 1px solid #3a3a3c;
+  animation: 0.15s dashboardSlide linear;
 }
-.dashboardContainerMobile .dashboardPopOut .dashboardLogo {
-  position: fixed;
-  left: 60px;
-  top: 0;
-  margin-top: 25px;
-}
-.dashboardContainerMobile .dashboardPopOut .dashboardLogo a h2 {
-  transition: 0.9s;
-  color: #f7f5ea;
-  font-family: "Jost Bold";
-}
-.dashboardContainerMobile .dashboardPopOut .dashboardLogo a h2:hover {
-  color: #edd05f;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard {
-  overflow: hidden;
-  height: 500px;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView {
-  padding: 5px;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView #popularTitle {
-  color: #f7f5ea;
-  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-  padding: 0 0 15px;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView #popularTitle #popularSearchTerm {
-  font-family: "Jost Bold";
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying {
-  background: #edd05f;
-  border-radius: 5px;
+.dashboardContainerMobile .dashboardPopOut .dashboardControls {
+  height: 10%;
+  padding: 15px;
+  margin: 10px 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2px;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying img {
-  width: 35px;
-  height: 35px;
+.dashboardContainerMobile .dashboardPopOut .dashboardControls .dashboardLogo {
+  display: flex;
+  flex-direction: column;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardLogo
+  a
+  h2 {
+  transition: 0.9s;
+  color: #f7f5ea;
+  font-family: "Jost Bold";
+  font-size: 4rem;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardLogo
+  a
+  h2:hover {
+  color: #edd05f;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardLogo
+  .goBack
+  button {
+  background: transparent;
+  border: none;
+  color: #1a1a1c;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardLogo
+  .goBack
+  button
+  i {
+  font-size: 2rem;
+  padding: 0;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardLogo
+  .goBack
+  button
+  p {
+  font-size: 2rem;
+  margin: 0;
+  color: #f7f5ea;
+  padding-left: 5px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardLogo
+  #hidden {
+  visibility: hidden;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .dashboardControls
+  .dashboardClose
+  .hamburgerX {
+  font-size: 3.75rem;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  color: #f7f5ea;
+  margin: 0;
+  opacity: 0;
+  animation: 0.2s linear forwards openMobile;
+}
+.dashboardContainerMobile .dashboardPopOut .mobileDashboardContainer {
+  height: 90%;
+  overflow-y: scroll;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .mobileDashButtons {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 5px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .mobileDashButtons
+  button {
+  height: 80px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent;
+  border: none;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .mobileDashButtons
+  button
+  .buttonText {
+  color: #f7f5ea;
+  font-size: 3rem;
+  padding: 15px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .mobileDashButtons
+  button
+  i {
+  font-size: 3rem;
+  padding: 15px;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .instructionsMobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+  padding: 20px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .instructionsMobile
+  p {
+  font-size: 2rem;
+  color: #f7f5ea;
+  text-align: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 65vh;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  h2 {
+  font-size: 3rem;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  .userContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  .userContent
+  .creationDate
+  p {
+  color: #f7f5ea;
+  font-size: 2.5rem;
+  text-align: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  .userContent
+  .userSignOut {
+  background: #edd05f;
+  border-radius: 5px;
+  padding: 10px 17.5px;
+  margin-top: 10px;
+  color: #1a1a1c;
+  font-size: 2rem;
+  transition: 0.3s;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  .anonymousContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  .anonymousContent
+  p {
+  color: #f7f5ea;
+  font-size: 1.5rem;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .userContainer
+  .anonymousContent
+  .anonButtons
+  .logInDashboard {
+  background: #edd05f;
+  border-radius: 5px;
+  padding: 10px 17.5px;
+  margin-top: 10px;
+  color: #1a1a1c;
+  font-size: 2rem;
+  transition: 0.3s;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  #popularTitle {
+  color: #f7f5ea;
+  font-size: 3rem;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer {
+  padding: 5px;
+  width: 100%;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .imageAndText
+  img {
+  width: 50px;
+  height: 50px;
   border-radius: 5px;
 }
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying img {
-    width: 20px;
-    height: 20px;
-  }
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText .popularTextTitle {
-  padding: 0 4px;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .imageAndText
+  .popularText {
+  padding: 0 5px 0 25px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularText .popularTextTitle p {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .imageAndText
+  .popularText
+  p {
   margin: 0;
-  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-  color: #1a1a1c;
+  font-size: 2rem;
+  color: #edd05f;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons {
-  display: flex;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .playButtonDivPopular {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
-  width: 10px;
-  padding: 7px 10px;
-  border-radius: 5px 0 0 5px;
-  border-right: 0.5px solid #1a1a1c;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #d32631;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .playingBarsPopular {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
   background-color: #f7f5ea;
   font-family: "Poppins", sans-serif;
   background-image: url("../../assets/soundBars.gif");
@@ -2288,243 +4242,1188 @@ input {
   background-position: center;
   display: inline-block;
 }
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .popularButtonPlaying {
-    width: 20px;
-    height: 20px;
-  }
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons {
+  display: flex;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .addFav {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .addFav {
   width: 10px;
   padding: 7px 10px;
-  border-radius: 0 5px 5px 0;
-  border-left: 0.5px solid #1a1a1c;
-  color: #d32631;
+  border: none;
+  color: #edd05f;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .addFav
+  i {
+  font-size: 1.5rem;
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .added {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularView .popularResultsPlaying .popularButtons .addFav i {
-  font-size: 1rem;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  .added
+  i {
+  font-size: 1.5rem;
+  color: #edd05f;
+  animation: rotateOnce 0.65s linear;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResultsPlaying
+  .popularButtons
+  button {
+  background: transparent;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2px;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
-  width: 35px;
-  height: 35px;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .imageAndText
+  img {
+  width: 50px;
+  height: 50px;
   border-radius: 5px;
 }
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
-    width: 20px;
-    height: 20px;
-  }
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .imageAndText
+  .popularText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularText {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .imageAndText
+  .popularText
+  p {
+  margin: 0;
+  font-size: 2rem;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .playButtonDivPopular {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .popularButton {
+  border: 2px solid #1a1a1c;
+  background: #f7f5ea;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 2px 5px;
+  color: #d32631;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularText {
   padding: 0 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularText p {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularText
+  p {
   margin: 0;
-  font-size: clamp(0.625rem, 0.5682rem + 0.2841vw, 1.25rem);
-  color: #1a1a1c;
+  font-size: 2rem;
+  color: #f7f5ea;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults:hover .popularTextTitle {
-  color: #1a1a1c;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons {
+  display: flex;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .popluarButton {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .addFav {
   width: 10px;
   padding: 7px 10px;
-  border-radius: 5px 0 0 5px;
-  border-right: 0.5px solid #1a1a1c;
-  color: #d32631;
+  border: none;
+  color: #edd05f;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .addFav
+  i {
+  font-size: 1.5rem;
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .added {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .popluarButton i {
-  font-size: 1rem;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  .added
+  i {
+  font-size: 1.5rem;
+  color: #edd05f;
+  animation: rotateOnce 0.65s linear;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .popluarButton {
-    width: 20px;
-    height: 20px;
-  }
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .popularView
+  .popularContainerContainer
+  .popularResults
+  .popularButtons
+  button {
+  background: transparent;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .addFav {
-  width: 10px;
-  padding: 7px 10px;
-  border-radius: 0 5px 5px 0;
-  border-left: 0.5px solid #1a1a1c;
-  color: #d32631;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer {
+  height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults .popularButtons .addFav i {
-  font-size: 1rem;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults:hover {
-  background: #d14952;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerTop
+  h2 {
+  cursor: default;
+  color: #f7f5ea;
+  font-size: 3rem;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerTop
+  h2
+  #recentTitle {
+  font-family: "Jost Bold";
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerTop
+  .clearRecent {
+  background: #edd05f;
+  color: #1a1a1c;
   border-radius: 5px;
+  padding: 7px 15px;
+  margin: 15px 0 0;
+  font-size: 2rem;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
-  width: 35px;
-  height: 35px;
-  border-radius: 5px;
-}
-@media (max-width: 1130px) {
-  .dashboardContainerMobile .dashboardPopOut .middleDashboard .popularResults img {
-    width: 20px;
-    height: 20px;
-  }
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer {
+  position: relative;
   padding: 5px;
-  overflow: hidden;
+  width: 100%;
+  height: 655px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer h2 {
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
-  font-size: 1.75rem;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentPrompt {
+  padding: 20px 10px;
+  color: #f7f5ea;
+  font-size: 2rem;
+  text-align: center;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer p {
-  color: #1a1a1c;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade {
+  padding: 5px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2px;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems:hover {
-  background: #d14952;
-  border-radius: 5px;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .playButtonDivRecent {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
 }
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favText {
-  width: 60%;
-  word-wrap: break-word;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems .favText p {
-  margin: 0;
-  color: #1a1a1c;
-  font-size: 1.5rem;
-}
-.dashboardContainerMobile .dashboardPopOut .middleDashboard .favContainer .favItems img {
-  height: 35px;
-  width: 35px;
-  border-radius: 5px;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .imageAndText {
+  width: 100%;
   display: flex;
-  position: fixed;
-  bottom: 261px;
-  width: 200px;
+  align-items: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .imageAndText
+  img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .imageAndText
+  .recentItemsText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .imageAndText
+  .recentItemsText
+  p {
+  margin: 0;
+  font-size: 2rem;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton {
+  display: flex;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .recentAddFav {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  color: #edd05f;
+  background-color: transparent;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .recentAddFav
+  i {
+  font-size: 1.5rem;
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .added {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItems
+  .recentItemsButton
+  .added
+  i {
+  font-size: 1.5rem;
+  color: #edd05f;
+  animation: rotateOnce 0.65s linear;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .imageAndText
+  .playingBarsRecent {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .imageAndText
+  .recentItemsText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .imageAndText
+  .recentItemsText
+  p {
+  margin: 0;
+  font-size: 2rem;
+  color: #edd05f;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .playButtonDivRecent {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: default;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+}
+@media (max-width: 1130px) {
+  .dashboardContainerMobile
+    .dashboardPopOut
+    .mobileDashboardContainer
+    .recentContainer
+    .recentContainerContainer
+    .recentFade
+    .recentItemsPlaying
+    img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton {
+  display: flex;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .recentAddFav {
+  width: 10px;
+  padding: 7px 10px;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 2;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainer .infoButtons {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer .infoButtons button {
-  width: 33.3333333333%;
-  font-size: 1.7rem;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: #f7f5ea;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer .infoButtons button:hover {
-  border: none;
-  border-bottom: 2px solid #f7f5ea;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions {
-  position: fixed;
-  bottom: 290px;
-  width: 200px;
-  height: 150px;
-  background: #f7f5ea;
-  display: flex;
-  align-items: center;
-  border: 2px solid #1a1a1c;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions .infoButton {
-  position: absolute;
-  top: 1%;
-  right: 3%;
-  background: transparent;
-  border: none;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions .infoButton i {
-  color: #1a1a1c;
-}
-.dashboardContainerMobile .dashboardPopOut .infoContainer .instructions p {
-  color: #1a1a1c;
-  padding: 5px;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .recentAddFav
+  i {
   font-size: 1.5rem;
+  color: transparent;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .added {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
   display: flex;
-  position: fixed;
-  bottom: 0;
-  width: 200px;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  z-index: 1;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .recentContainer
+  .recentContainerContainer
+  .recentFade
+  .recentItemsPlaying
+  .recentItemsButton
+  .added
+  i {
+  font-size: 1.5rem;
+  color: #edd05f;
+  animation: rotateOnce 0.65s linear;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  h2 {
+  cursor: default;
+  color: #f7f5ea;
+  font-size: 3rem;
+  cursor: default;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  h2
+  #favouriteTitle {
+  font-family: "Jost Bold";
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  p {
+  color: #1a1a1c;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer {
+  position: relative;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-y: hidden;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons {
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favPrompt {
+  padding: 20px 10px;
+  text-align: center;
+  width: 80%;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons button {
-  width: 33.3333333333%;
-  background: transparent;
-  font-size: 1.7rem;
-  border: none;
-  border-bottom: 2px solid transparent;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  p {
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  font-size: 2rem;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons button:hover {
-  border: none;
-  border-bottom: 2px solid #f7f5ea;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  .notSignedIn {
+  width: 75%;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .infoButtons button i #selectedPopular {
-  font-size: 5rem;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  .notSignedIn
+  #notSignedIn {
+  color: #edd05f;
+  font-size: 2rem;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions {
-  position: fixed;
-  bottom: 35px;
-  width: 200px;
-  height: 258px;
-  background: #f7f5ea;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favPrompt
+  .notSignedIn
+  .notSignedInBtn {
+  background: #dcc155;
+  color: #1a1a1c;
+  padding: 10px 17.5px;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent {
+  padding: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent {
+  height: 655px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems,
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying {
   display: flex;
   align-items: center;
-  border: 2px solid #1a1a1c;
+  justify-content: space-between;
+  padding: 20px 5px;
+  margin: 20px 0;
+  position: relative;
+  height: 60px;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions .infoButton {
-  position: absolute;
-  top: 1%;
-  right: 3%;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .playButtonDivFav {
   background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   border: none;
+  cursor: pointer;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions .infoButton i {
-  color: #1a1a1c;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
-.dashboardContainerMobile .dashboardPopOut .infoContainerBottom .instructions p {
-  color: #1a1a1c;
-  padding: 5px;
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .imageAndText
+  img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .imageAndText
+  .favText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .imageAndText
+  .favText
+  p {
+  margin: 0;
+  font-size: 2rem;
+  color: #f7f5ea;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons {
+  display: flex;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav
+  i {
   font-size: 1.5rem;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+  transition: 0.1s;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItems
+  .favButtons
+  .removeFav
+  .trash {
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 0.2px;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .playButtonDivFav {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 50%;
+  border: none;
+  cursor: default;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .imageAndText {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .imageAndText
+  .playingBarsFav {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f5ea;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../assets/soundBars.gif");
+  background-size: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .imageAndText
+  .favText {
+  padding: 0 5px 0 25px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .imageAndText
+  .favText
+  p {
+  margin: 0;
+  font-size: 2rem;
+  color: #edd05f;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons {
+  display: flex;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav {
+  width: 10px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  color: #f7f5ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav
+  i {
+  font-size: 1.5rem;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a1a1c;
+  transition: 0.1s;
+}
+.dashboardContainerMobile
+  .dashboardPopOut
+  .mobileDashboardContainer
+  .favContainer
+  .favContainerContainer
+  .favContent
+  .scrollableContent
+  .favItemsPlaying
+  .favButtons
+  .removeFav
+  .trash {
+  color: #f7f5ea;
+  -webkit-text-stroke-width: 0.2px;
+}
+.dashboardContainerMobile .dashboardPopOut .userLoggedIn p {
+  color: #f7f5ea;
+  font-size: 2rem;
+  padding-left: 20px;
 }
 
 @keyframes openMobile {
@@ -2538,6 +5437,14 @@ input {
   100% {
     opacity: 1;
     left: 150px;
+  }
+}
+@keyframes dashboardSlide {
+  0% {
+    left: -450px;
+  }
+  100% {
+    left: 0px;
   }
 }
 @keyframes fade {
@@ -2576,7 +5483,8 @@ input {
   100% {
     transform: rotate(360deg) scale(1);
     color: #dcc155;
-    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea, 0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
+    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea,
+      0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
   }
 }
 @keyframes instructions {
@@ -2635,18 +5543,25 @@ input {
 .loadingPage {
   display: flex;
   flex-direction: column;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin-right: 165px;
   margin-bottom: 155px;
 }
-.loadingPage .loadingText {
+@media (max-width: 680px) {
+  .loadingPage {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
+.loadingText {
   width: 225px;
   text-align: center;
-  position: absolute;
-  top: 95px;
-  left: -35px;
 }
-.loadingPage .loadingText h2 {
+
+h2 {
   color: #f7f5ea;
 }
 
@@ -2845,7 +5760,11 @@ input {
   height: 100vh;
   z-index: 0;
   background: rgb(211, 38, 49);
-  background: linear-gradient(180deg, rgb(211, 38, 49) 0%, rgba(29, 28, 34, 0.9850533964) 90%);
+  background: linear-gradient(
+    180deg,
+    rgb(211, 38, 49) 0%,
+    rgba(29, 28, 34, 0.9850533964) 90%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }
 
@@ -2876,7 +5795,11 @@ input {
   align-items: center;
   justify-content: center;
   z-index: 2;
-  background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(215, 215, 215, 0.797));
+  background-image: linear-gradient(
+    to top,
+    rgba(255, 0, 0, 0),
+    rgba(215, 215, 215, 0.797)
+  );
   border-radius: 0 0 35px 35px;
   width: 600px;
   margin-left: -300px;
@@ -2895,6 +5818,16 @@ input {
     left: 200px;
   }
 }
+@media (max-width: 680px) {
+  .mapFilters {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+  }
+}
 .mapFilters .textLoading {
   margin: 20px 0 25px;
 }
@@ -2911,6 +5844,15 @@ input {
 .mapFilters .returned #searchTerm {
   color: #1a1a1c;
   font-family: "Jost Bold";
+}
+@media (max-width: 680px) {
+  .mapFilters .returned {
+    visibility: visible;
+    margin: 0 auto;
+    width: 200px;
+    word-wrap: break-word;
+    font-size: 2rem;
+  }
 }
 .mapFilters .topControls {
   display: flex;
@@ -2987,8 +5929,11 @@ input {
   display: flex;
   justify-content: flex-end;
 }
-.actualMap .testingMap {
-  color: #edd05f;
+@media (max-width: 680px) {
+  .actualMap {
+    height: 100%;
+    width: 100vw;
+  }
 }
 .actualMap .leaflet-popup-content {
   margin: 15px 20px;
@@ -3033,14 +5978,29 @@ input {
   align-self: center;
   font-size: 1.5rem;
 }
-.actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButton:hover i {
+.actualMap
+  .leaflet-popup-content
+  .stationDetails
+  .buttonContainer
+  .infoButton:hover
+  i {
   transform: scale(1.25);
   transition: 0.2s;
 }
-.actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButton i {
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+.actualMap
+  .leaflet-popup-content
+  .stationDetails
+  .buttonContainer
+  .infoButton
+  i {
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
-.actualMap .leaflet-popup-content .stationDetails .buttonContainer .infoButtonPlaying {
+.actualMap
+  .leaflet-popup-content
+  .stationDetails
+  .buttonContainer
+  .infoButtonPlaying {
   width: 45px;
   height: 45px;
   border-radius: 5px 0 0 5px;
@@ -3060,33 +6020,26 @@ input {
   height: 45px;
   border-radius: 0 5px 5px 0;
   border-left: 0.5px solid #1a1a1c;
+  color: #d64b4b;
   background-color: #f7f5ea;
+  align-self: center;
   font-size: 1.5rem;
 }
-.actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite:hover i {
+.actualMap
+  .leaflet-popup-content
+  .stationDetails
+  .buttonContainer
+  .favourite:hover
+  i {
   transform: scale(1.25);
   transition: 0.2s;
 }
-@media (max-width: 1130px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (max-width: 950px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
-    width: 25px;
-    height: 25px;
-  }
-}
-@media (max-width: 680px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
-  }
-}
-.actualMap .leaflet-popup-content .stationDetails .buttonContainer .favourite i {
+.actualMap
+  .leaflet-popup-content
+  .stationDetails
+  .buttonContainer
+  .favourite
+  i {
   color: #edd05f;
   font-size: 1.5rem;
 }
@@ -3099,28 +6052,10 @@ input {
   font-size: 1.5rem;
   cursor: default;
 }
-@media (max-width: 1130px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (max-width: 950px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added {
-    width: 25px;
-    height: 25px;
-  }
-}
-@media (max-width: 680px) {
-  .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
-  }
-}
 .actualMap .leaflet-popup-content .stationDetails .buttonContainer .added i {
   color: #edd05f;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
   animation: rotateOnce 0.65s linear 1;
 }
 
@@ -3136,7 +6071,8 @@ input {
   100% {
     transform: rotate(360deg) scale(1);
     color: #dcc155;
-    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea, 0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
+    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea,
+      0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
   }
 }
 .stationList {
@@ -3152,6 +6088,16 @@ input {
   align-items: center;
   margin-top: 50px;
 }
+@media (max-width: 680px) {
+  .stationList .listFilters {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    width: 100vw;
+    margin-top: 20px;
+  }
+}
 .stationList .listFilters .textLoading {
   margin: 55px 0 25px;
 }
@@ -3161,7 +6107,13 @@ input {
 }
 @media (max-width: 680px) {
   .stationList .listFilters .returned {
+    visibility: visible;
+    margin: 0 auto;
+    width: 200px;
+    word-wrap: break-word;
+    font-size: 2rem;
     text-align: center;
+    position: relative;
   }
 }
 .stationList .listFilters .returned #amountReturned,
@@ -3202,7 +6154,11 @@ input {
   font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #d32631;
 }
-.stationList .listFilters .topControls .filterButtonContainer .randomStation:hover {
+.stationList
+  .listFilters
+  .topControls
+  .filterButtonContainer
+  .randomStation:hover {
   background: rgba(225, 224, 224, 0.8901960784);
 }
 .stationList .listFilters .topControls .filterButtonContainer .mapViewButton {
@@ -3221,7 +6177,11 @@ input {
   font-size: clamp(1.125rem, 1.0227rem + 0.5114vw, 2.25rem);
   color: #d32631;
 }
-.stationList .listFilters .topControls .filterButtonContainer .mapViewButton:hover {
+.stationList
+  .listFilters
+  .topControls
+  .filterButtonContainer
+  .mapViewButton:hover {
   background: rgba(225, 224, 224, 0.8901960784);
 }
 @media (max-width: 450px) {
@@ -3267,16 +6227,67 @@ input {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoList {
-    width: calc(46.25% - 25px);
+    width: 100%;
+    height: 100px;
+    margin: 5px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
   }
 }
 .stationList .stationListContainer .stationInfoList:hover {
   background-color: rgba(225, 224, 224, 0.8901960784);
 }
-.stationList .stationListContainer .stationInfoList:hover .imageInfoContainer .buttonContainer .favourite i {
+.stationList
+  .stationListContainer
+  .stationInfoList:hover
+  .imageInfoContainer
+  .buttonContainer
+  .favourite
+  i {
+  font-size: 2rem;
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
+}
+@media (max-width: 950px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList:hover
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i {
+    color: #f7f5ea;
+    -webkit-text-stroke-width: 0px;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoList:hover
+  .imageInfoContainer
+  .buttonContainer
+  .favourite
+  i:hover {
+  transform: scale(1.15);
+  color: #f7f5ea;
+  transition: 0.2s;
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList:hover
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i:hover {
+    transform: scale(1);
+  }
+}
+@media (max-width: 950px) {
+  .stationList .stationListContainer .stationInfoList:hover {
+    background-color: transparent;
+  }
 }
 .stationList .stationListContainer .stationInfoList .playButtonDiv {
   background: transparent;
@@ -3292,39 +6303,70 @@ input {
   width: 100%;
   padding: 5px;
 }
-@media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-}
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .information {
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .information {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .information {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
   }
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .information .stationName {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .information
+  .stationName {
   font-family: "Jost Bold";
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .information .stationCountry {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .information
+  .stationCountry {
   text-transform: capitalize;
   margin: 0;
   padding-bottom: 10px;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .information p {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .information
+  p {
   font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList {
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .information
+    p {
+    color: #f7f5ea;
+    font-size: 1.5rem;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .imageList {
   width: 25%;
   margin: 0 15px;
   display: flex;
@@ -3332,7 +6374,12 @@ input {
   justify-content: center;
   position: relative;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .imageList
+  .icon {
   margin: auto 0;
   width: 70px;
   height: auto;
@@ -3341,25 +6388,57 @@ input {
   padding: 5px;
 }
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .imageList
+    .icon {
     width: 50px;
     height: auto;
     max-height: 50px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .icon {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .imageList
+    .icon {
     width: 35px;
     height: auto;
     max-height: 35px;
     font-size: 0.7rem;
   }
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .blurred {
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .imageList
+    .icon {
+    width: 75px;
+    height: 75px;
+    max-height: 75px;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .imageList
+  .blurred {
   filter: blur(3px);
   -webkit-filter: blur(3px);
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .hoverPlay {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .imageList
+  .hoverPlay {
   position: absolute;
   margin: 0 auto;
   align-self: center;
@@ -3369,52 +6448,65 @@ input {
   padding: 5px;
   background: transparent;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .hoverPlay i {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .imageList
+  .hoverPlay
+  i {
   color: #d32631;
   font-size: 2rem;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .imageList .hoverPlay:hover i {
+@media (max-width: 950px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .imageList
+    .hoverPlay
+    i {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .imageList
+    .hoverPlay
+    i {
+    font-size: 1rem;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .imageList
+  .hoverPlay:hover
+  i {
   transform: scale(1.15);
   transition: 0.2s;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-  width: 45px;
-  height: 45px;
-  border: 2px solid #1e2021;
-  border-radius: 50px;
-  color: #d32631;
-  background-color: #f7f5ea;
-  margin: 2px 5px;
-}
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton:hover {
-  transform: scale(1.05);
-}
-@media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-    width: 25px;
-    height: 25px;
-  }
-}
-@media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .infoButton {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7rem;
-  }
-}
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite {
   width: 45px;
   height: 45px;
   margin: 2px 5px;
@@ -3423,36 +6515,96 @@ input {
   z-index: 1;
   transition: 0.2s;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite:hover {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite:hover {
   transform: scale(1.25);
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite:hover i {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite:hover
+  i {
   color: #f7f5ea;
 }
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite {
     width: 30px;
     height: 30px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite {
     width: 25px;
     height: 25px;
   }
 }
 @media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite {
     width: 20px;
     height: 20px;
     font-size: 0.7rem;
   }
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .favourite i {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite
+  i {
   color: transparent;
   font-size: 2rem;
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added {
+@media (max-width: 950px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i {
+    font-size: 1.5rem;
+    color: #f7f5ea;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer
+  .added {
   width: 45px;
   height: 45px;
   border: none;
@@ -3462,36 +6614,80 @@ input {
   cursor: default;
 }
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .added {
     width: 30px;
     height: 30px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .added {
     width: 25px;
     height: 25px;
   }
 }
 @media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .added {
     width: 20px;
     height: 20px;
     font-size: 0.7rem;
   }
 }
-.stationList .stationListContainer .stationInfoList .imageInfoContainer .buttonContainer .added i {
+.stationList
+  .stationListContainer
+  .stationInfoList
+  .imageInfoContainer
+  .buttonContainer
+  .added
+  i {
   font-size: 2rem;
   animation: rotateOnce 0.65s linear 1;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
+}
+@media (max-width: 950px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .added
+    i {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoList
+    .imageInfoContainer
+    .buttonContainer
+    .added
+    i {
+    font-size: 1.5rem;
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList {
   display: flex;
   position: relative;
   justify-content: center;
   width: calc(40% - 30px);
-  margin: 12.5px;
   max-height: 150px;
+  margin: 12.5px;
   border: 2.5px solid #1a1a1c;
   border-radius: 20px;
   background-color: rgba(240, 206, 69, 0.8352941176);
@@ -3503,19 +6699,58 @@ input {
 }
 @media (max-width: 680px) {
   .stationList .stationListContainer .stationInfoPlayingList {
-    width: calc(46.25% - 25px);
+    width: 100%;
+    height: 100px;
+    margin: 5px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
   }
 }
-.stationList .stationListContainer .stationInfoPlayingList:hover .imageInfoContainer .buttonContainer .favourite i {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList:hover
+  .imageInfoContainer
+  .buttonContainer
+  .favourite
+  i {
   font-size: 2rem;
   color: rgba(225, 224, 224, 0.8901960784);
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #1a1a1c;
 }
-.stationList .stationListContainer .stationInfoPlayingList:hover .imageInfoContainer .buttonContainer .favourite i:hover {
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList:hover
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i {
+    -webkit-text-stroke-width: 0px;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList:hover
+  .imageInfoContainer
+  .buttonContainer
+  .favourite
+  i:hover {
   transform: scale(1.15);
   color: #f7f5ea;
   transition: 0.2s;
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList:hover
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i:hover {
+    transform: scale(1);
+  }
 }
 .stationList .stationListContainer .stationInfoPlayingList .playButtonDiv {
   background: transparent;
@@ -3532,30 +6767,70 @@ input {
   width: 100%;
   padding: 5px;
 }
-@media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-}
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .information {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .information {
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
   }
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information .stationName {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .information
+  .stationName {
   font-family: "Jost Bold";
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .information p {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .information
+  .stationCountry {
+  text-transform: capitalize;
+  margin: 0;
+  padding-bottom: 10px;
+}
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .information
+  p {
   font-size: clamp(0.75rem, 0.6705rem + 0.3977vw, 1.625rem);
   color: #1a1a1c;
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList {
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .information
+    p {
+    color: #edd05f;
+    font-size: 1.5rem;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .imageList {
   width: 25%;
   margin: 0 15px;
   display: flex;
@@ -3563,7 +6838,21 @@ input {
   justify-content: center;
   position: relative;
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList {
+    margin: 0 20px;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .imageList
+  .icon {
   margin: auto 0;
   width: 70px;
   height: auto;
@@ -3572,25 +6861,48 @@ input {
   padding: 5px;
 }
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList
+    .icon {
     width: 50px;
     height: auto;
     max-height: 50px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .icon {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList
+    .icon {
     width: 35px;
     height: auto;
     max-height: 35px;
     font-size: 0.7rem;
   }
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .blurred {
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList
+    .icon {
+    width: 65px;
+    height: 65px;
+    max-height: 65px;
+  }
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .imageList
+  .playingBars {
   width: 60px;
   height: 60px;
   border: none;
@@ -3601,65 +6913,161 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
-  margin: auto;
+  padding: 5px;
+  margin: auto 0;
+  align-self: center;
 }
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
-    width: 30px;
-    height: 30px;
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList
+    .playingBars {
+    width: 50px;
+    height: 50px;
+    max-height: 50px;
+    background-size: 100px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
-    width: 25px;
-    height: 25px;
-    background-size: 60px;
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList
+    .playingBars {
+    width: 35px;
+    height: 35px;
+    max-height: 35px;
+    background-size: 65px;
   }
 }
 @media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .imageList .playingBars {
-    width: 20px;
-    height: 20px;
-    background-size: 45px;
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .imageList
+    .playingBars {
+    width: 70px;
+    height: 70px;
+    max-height: 70px;
   }
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite {
   width: 45px;
   height: 45px;
-  border: none;
   margin: 2px 5px;
+  border: none;
   background-color: transparent;
   cursor: pointer;
   z-index: 1;
 }
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite:hover {
+  transform: scale(1.25);
+}
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite:hover
+  i {
+  color: #f7f5ea;
+}
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite {
     width: 30px;
     height: 30px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite {
     width: 25px;
     height: 25px;
   }
 }
 @media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite {
     width: 20px;
     height: 20px;
     font-size: 0.7rem;
   }
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .favourite i {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer
+  .favourite
+  i {
   color: transparent;
+  font-size: 2rem;
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added {
+@media (max-width: 950px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .favourite
+    i {
+    font-size: 1.5rem;
+    color: #f7f5ea;
+  }
+}
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer
+  .added {
   width: 45px;
   height: 45px;
   border: none;
@@ -3668,34 +7076,81 @@ input {
   cursor: default;
 }
 @media (max-width: 1130px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .added {
     width: 30px;
     height: 30px;
   }
 }
 @media (max-width: 950px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .added {
     width: 25px;
     height: 25px;
   }
 }
 @media (max-width: 680px) {
-  .stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .added {
     width: 20px;
     height: 20px;
-    font-size: 0.7rem;
   }
 }
-.stationList .stationListContainer .stationInfoPlayingList .imageInfoContainer .buttonContainer .added i {
+.stationList
+  .stationListContainer
+  .stationInfoPlayingList
+  .imageInfoContainer
+  .buttonContainer
+  .added
+  i {
   font-size: 2rem;
   color: #dcc155;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
   animation: rotateOnce 0.65s linear;
+}
+@media (max-width: 950px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .added
+    i {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 680px) {
+  .stationList
+    .stationListContainer
+    .stationInfoPlayingList
+    .imageInfoContainer
+    .buttonContainer
+    .added
+    i {
+    font-size: 1.5rem;
+  }
 }
 
 .listViewContainer {
   background: rgb(211, 38, 49);
-  background: linear-gradient(180deg, rgb(211, 38, 49) 0%, rgba(29, 28, 34, 0.9850533964) 90%);
+  background: linear-gradient(
+    180deg,
+    rgb(211, 38, 49) 0%,
+    rgba(29, 28, 34, 0.9850533964) 90%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d32631",endColorstr="#1d1c22",GradientType=1);
 }
 
@@ -3785,7 +7240,8 @@ input {
   100% {
     transform: rotate(720deg) translate(1280deg) scale(1);
     color: #edd05f;
-    text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+    text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+      -0.5px -0.5px 0 #000;
   }
 }
 @keyframes rotateOnce {
@@ -3800,7 +7256,8 @@ input {
   100% {
     transform: rotate(360deg) scale(1);
     color: #dcc155;
-    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea, 0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
+    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea,
+      0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
   }
 }
 .hlsplayer {
@@ -3812,8 +7269,9 @@ input {
   z-index: 1000;
   align-items: center;
   position: absolute;
-  top: 0;
+  top: -0.5%;
   left: 0;
+  margin-bottom: 5px;
 }
 .hlsplayer .playerControls .playPause {
   margin: 10px;
@@ -3833,36 +7291,78 @@ input {
   transform: scale(1.1);
   transition: 0.3s;
 }
+@media (max-width: 1130px) {
+  .hlsplayer .playerControls .playPause .playerButton {
+    width: 40px;
+  }
+}
 .hlsplayer .playerControls .playPause .playerButton i {
   font-size: 2rem;
   color: #d32631;
   margin: 0 auto;
 }
-.hlsplayer .playerControls .volume {
-  width: 100px;
+@media (max-width: 1130px) {
+  .hlsplayer .playerControls .playPause .playerButton i {
+    font-size: 1.5rem;
+  }
 }
-.hlsplayer .playerControls input[type=range] {
+.hlsplayer .playerControls .volume {
+  width: 125px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 680px) {
+  .hlsplayer .playerControls .volume {
+    visibility: hidden;
+  }
+}
+.hlsplayer .playerControls .mute {
+  background: transparent;
+  border: none;
+  padding: 5px;
+  margin-right: 5px;
+}
+.hlsplayer .playerControls .mute i {
+  font-size: 2rem;
+  color: #f7f5ea;
+}
+@media (max-width: 680px) {
+  .hlsplayer .playerControls {
+    left: 0px;
+  }
+}
+@media (max-width: 450px) {
+  .hlsplayer .playerControls {
+    left: -100px;
+  }
+}
+@media (max-width: 300px) {
+  .hlsplayer .playerControls {
+    left: -120px;
+  }
+}
+.hlsplayer .playerControls input[type="range"] {
   width: 100%;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: none;
   padding: 0;
 }
-.hlsplayer .playerControls input[type=range]::-webkit-slider-runnable-track {
+.hlsplayer .playerControls input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 5px;
   background-color: #ebe7e7;
   border-radius: 10px;
 }
-.hlsplayer .playerControls input[type=range]::-moz-range-track {
+.hlsplayer .playerControls input[type="range"]::-moz-range-track {
   width: 100%;
   height: 5px;
   background-color: #ebe7e7;
   border-radius: 10px;
 }
-.hlsplayer .playerControls input[type=range]::-webkit-slider-thumb {
+.hlsplayer .playerControls input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -3873,10 +7373,10 @@ input {
   border-radius: 50%;
   cursor: pointer;
 }
-.hlsplayer .playerControls input[type=range]::-webkit-slider-thumb:hover {
+.hlsplayer .playerControls input[type="range"]::-webkit-slider-thumb:hover {
   background-color: rgba(225, 224, 224, 0.8901960784);
 }
-.hlsplayer .playerControls input[type=range]::-moz-range-thumb {
+.hlsplayer .playerControls input[type="range"]::-moz-range-thumb {
   width: 15px;
   height: 15px;
   background-color: #f7f5ea;
@@ -3884,7 +7384,7 @@ input {
   border-radius: 50%;
   cursor: pointer;
 }
-.hlsplayer .playerControls input[type=range]::-moz-range-thumb:hover {
+.hlsplayer .playerControls input[type="range"]::-moz-range-thumb:hover {
   background-color: rgba(225, 224, 224, 0.8901960784);
 }
 
@@ -3912,8 +7412,14 @@ input {
   position: absolute;
   top: 0;
   right: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 100px;
+}
+@media (max-width: 950px) {
+  .radio .radioPlayer .playerFav {
+    margin-right: 20px;
+    margin-top: 15px;
+  }
 }
 .radio .radioPlayer .playerFav .playerFavBtn {
   background: transparent;
@@ -3927,6 +7433,11 @@ input {
   -webkit-text-stroke-color: #1a1a1c;
   cursor: default;
 }
+@media (max-width: 950px) {
+  .radio .radioPlayer .playerFav .playerFavBtn .added {
+    font-size: 2rem;
+  }
+}
 .radio .radioPlayer .playerFav .playerFavBtn .notAdded {
   font-size: 2.5rem;
   color: #d32631;
@@ -3938,8 +7449,56 @@ input {
   transform: scale(1.25);
   transition: 0.3s;
 }
+@media (max-width: 950px) {
+  .radio .radioPlayer .playerFav .playerFavBtn .notAdded {
+    font-size: 2rem;
+  }
+}
 .radio .radioPlayer .playerContainer {
   z-index: 1;
+}
+
+.rhap_container {
+  box-shadow: none !important;
+  background-color: #d32631 !important;
+}
+@media (max-width: 680px) {
+  .rhap_container {
+    transform: translateX(-50px);
+  }
+}
+
+.rhap_button-clear {
+  color: #f7f5ea !important;
+}
+
+.rhap_volume-indicator {
+  background: #f7f5ea !important;
+}
+
+.rhap_current-time {
+  display: none;
+}
+
+.rhap_progress-section {
+  display: none !important;
+}
+
+.rhap_additional-controls {
+  display: none !important;
+}
+
+.rhap_volume-controls {
+  justify-content: flex-start !important;
+}
+@media (max-width: 450px) {
+  .rhap_volume-controls {
+    display: none !important;
+  }
+}
+
+.rhap_repeat-button {
+  display: none;
 }
 
 .radioInfo {
@@ -3985,7 +7544,7 @@ input {
     height: 61px;
     position: absolute;
     bottom: -5.5px;
-    margin-left: 2.5px;
+    margin-left: 0px;
     background: #d32631;
   }
 }
@@ -4043,6 +7602,7 @@ input {
     font-size: 1.5rem;
     margin-left: 75px;
     width: 125px;
+    text-overflow: ellipsis;
   }
 }
 @media (max-width: 450px) {
@@ -4052,7 +7612,7 @@ input {
 }
 @media (max-width: 300px) {
   .radioInfo .radioInfoTitleContainer .radioInfoTitle {
-    width: 145px;
+    width: 100px;
   }
 }
 
@@ -4068,7 +7628,8 @@ input {
   100% {
     transform: rotate(360deg) scale(1);
     color: #dcc155;
-    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea, 0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
+    text-shadow: -0.5px 0.5px 0 #f7f5ea, 0.5px 0.5px 0 #f7f5ea,
+      0.5px -0.5px 0 #f7f5ea, -0.5px -0.5px 0 #f7f5ea;
   }
 }
 @keyframes fade {
@@ -4095,6 +7656,11 @@ input {
   color: #edd05f;
   transition: 0.3s;
 }
+@media (max-width: 450px) {
+  .footer .footerText p {
+    font-size: 1.2rem;
+  }
+}
 
 .danceParty {
   height: 100vh;
@@ -4114,7 +7680,8 @@ input {
 .danceParty h3 {
   font-size: 5rem;
   color: #f7f5ea;
-  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px -0.5px 0 #000;
+  text-shadow: -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 0.5px -0.5px 0 #000,
+    -0.5px -0.5px 0 #000;
 }
 .danceParty h3 a {
   color: #f7f5ea;
@@ -4125,18 +7692,4 @@ input {
 }
 .danceParty .danceBuddies img {
   width: 150px;
-}
-
-.audio-visualizer {
-  display: flex;
-  align-items: flex-end;
-  height: 100px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.audio-bar {
-  width: 2px;
-  background-color: #fff;
-  margin-right: 3px;
-}/*# sourceMappingURL=styles.css.map */
+} /*# sourceMappingURL=styles.css.map */
