@@ -140,7 +140,7 @@
       }
       .recentContainerContainer {
         position: relative;
-        @media (max-height: 750px) {
+        @media (max-height: 800px) {
           height: calc(100vh - 470px);
         }
         .recentPrompt {
@@ -414,8 +414,8 @@
 
       .popularContainerContainer {
         padding: 5px;
-        @media (max-height: 700px) {
-          height: calc(100vh - 400px);
+        @media (max-height: 800px) {
+          height: calc(100vh - 470px);
         }
         .popularResultsPlaying {
           display: flex;
@@ -723,7 +723,7 @@
           height: 400px;
           display: flex;
           justify-content: center;
-          @media (max-height: 765px) {
+          @media (max-height: 850px) {
             height: calc(100vh - 450px);
           }
           .scrollableContent {
