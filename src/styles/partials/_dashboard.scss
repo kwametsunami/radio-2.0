@@ -207,6 +207,10 @@
               position: absolute;
               top: 17.5px;
               left: 17.5px;
+              @include smallDesktop {
+                top: 11px;
+                left: 11px;
+              }
               cursor: pointer;
               i {
                 color: $red;
@@ -555,6 +559,10 @@
             position: absolute;
             top: 17.5px;
             left: 17.5px;
+            @include smallDesktop {
+              top: 11px;
+              left: 11px;
+            }
             cursor: pointer;
             i {
               color: $red;
@@ -845,6 +853,10 @@
                 position: absolute;
                 top: 17.5px;
                 left: 17.5px;
+                @include smallDesktop {
+                  top: 11px;
+                  left: 11px;
+                }
                 cursor: pointer;
                 i {
                   color: $red;
