@@ -135,14 +135,14 @@
     }
     .playingBlur {
       position: absolute;
-      left: -50%;
+      left: -20%;
       align-self: center;
       z-index: 1;
       height: auto;
       height: 300px;
       width: 300px;
-      filter: blur(50px);
-      -webkit-filter: blur(50px);
+      filter: blur(22.5px);
+      -webkit-filter: blur(22.5px);
     }
     .playingIcon {
       z-index: 2;
