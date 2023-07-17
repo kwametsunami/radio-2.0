@@ -1,11 +1,11 @@
-# tr-1.fm - Discover and Play Radio Stations Around the World
+# tr-1.fm - Discover Radio Stations Around the World
 
 [![Build Status](https://img.shields.io/github/workflow/status/kwametsunami/radio-2.0/CI)](https://github.com/kwametsunami/radio-2.0/actions)
 [![License](https://img.shields.io/github/license/kwametsunami/radio-2.0)](https://github.com/kwametsunami/radio-2.0/blob/master/LICENSE)
 
 tr-1.fm is a web application that allows users to discover and play radio stations from various countries around the world. The app utilizes the Radio-Browser API to access a wide range of radio stations. Users can listen to music, news, and more, immersing themselves in the diverse sounds of different cultures.
 
-<img src="./src/assets/demo/tr1fm.gif" alt="screen recording of the tr-1.fm radio app ">
+<video alt="A demo of tr-1.fm, a radio application" autoplay muted loop playsinline><source src="./src/assets/demo/tr1fmdemo.mov" type="video/mp4"/></video>
 
 ## Features
 
