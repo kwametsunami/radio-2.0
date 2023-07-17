@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# tr-1.fm - Discover and Play Radio Stations Around the World
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Build Status](https://img.shields.io/github/workflow/status/kwametsunami/radio-2.0/CI)](https://github.com/kwametsunami/radio-2.0/actions)
+[![License](https://img.shields.io/github/license/kwametsunami/radio-2.0)](https://github.com/kwametsunami/radio-2.0/blob/master/LICENSE)
 
-## Available Scripts
+tr-1.fm is a web application that allows users to discover and play radio stations from various countries around the world. The app utilizes the Radio-Browser API to access a wide range of radio stations. Users can listen to music, news, and more, immersing themselves in the diverse sounds of different cultures.
 
-In the project directory, you can run:
+<img src="./src/assets/demo/tr1fm.gif" alt="screen recording of the tr-1.fm radio app ">
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Explore and search for radio stations based on country, language, and genre.
+- Play radio stations in real-time using the React Player and React H5 Player libraries.
+- Save favorite radio stations using Firebase authentication and database.
+- Responsive design that works seamlessly across different devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Live Demo
 
-### `npm test`
+Check out the live demo of tr-1.fm [here](https://tr-1fm.netlify.app/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation and Usage
 
-### `npm run build`
+To run tr-1.fm locally on your machine, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/kwametsunami/radio-2.0.git
+cd radio-2.0
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies:
 
-### `npm run eject`
+`npm install`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Run the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Before running the application, make sure to create a Firebase project and set up the required configuration. Rename the .env.example file to .env and replace the placeholder values with your Firebase configuration.
 
-## Learn More
+## Dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The following dependencies are used in this project:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [React Player](https://github.com/CookPete/react-player): A React component to play audio and video.
+- [React H5 Player](https://github.com/dadioo/react-h5-audio-player): A customizable HTML5 audio player for React.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can find the complete list of dependencies along with their versions in the `package.json` file.
