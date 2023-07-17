@@ -1,4 +1,4 @@
-# tr-1.fm - Discover Radio Stations Around the World
+# [tr-1.fm - Discover Radio Stations Around the World](https://tr-1fm.netlify.app/)
 
 [![Build Status](https://img.shields.io/github/workflow/status/kwametsunami/radio-2.0/CI)](https://github.com/kwametsunami/radio-2.0/actions)
 [![License](https://img.shields.io/github/license/kwametsunami/radio-2.0)](https://github.com/kwametsunami/radio-2.0/blob/master/LICENSE)
@@ -39,7 +39,7 @@ cd radio-2.0
 
 ## Configuration
 
-Before running the application, make sure to create a Firebase project and set up the required configuration. Rename the .env.example file to .env and replace the placeholder values with your Firebase configuration.
+Before running the application, make sure to create a Firebase project and set up the required configuration. Rename the .env example file to .env and replace the placeholder values with your Firebase configuration.
 
 ## Dependencies
 
