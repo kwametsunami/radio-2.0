@@ -159,6 +159,8 @@ const Search = (props) => {
     }
   };
 
+  console.log(user);
+
   return (
     <section className="landing">
       {showLanding ? (
@@ -170,7 +172,7 @@ const Search = (props) => {
                   className="userName"
                   id={user.user.email !== "anon@tr1.fm" ? "" : "hideUser"}
                 >
-                  {user.user.photoURL === null ? (
+                  {user.user.photoURL == undefined || null ? (
                     <i className="fa-solid fa-user"></i>
                   ) : (
                     <img
@@ -180,7 +182,7 @@ const Search = (props) => {
                     />
                   )}
                   <p>
-                    {user.user.displayName === null
+                    {user.user.displayName == undefined || null
                       ? user.user.email
                       : user.user.displayName}
                   </p>
