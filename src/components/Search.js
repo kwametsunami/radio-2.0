@@ -159,8 +159,6 @@ const Search = (props) => {
     }
   };
 
-  console.log(user);
-
   return (
     <section className="landing">
       {showLanding ? (
