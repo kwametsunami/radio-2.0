@@ -101,7 +101,11 @@ const Search = (props) => {
 
   // search form logic
   const onChange = (event) => {
-    setValue(event.target.value);
+    const searchInput = event.target.value;
+
+    const lowercaseSearch = searchInput.toLowerCase();
+
+    setValue(lowercaseSearch);
   };
 
   const onSearch = (searchTerm) => {
@@ -155,6 +159,16 @@ const Search = (props) => {
     }
   };
 
+  console.log(user.user.photoURL);
+
+  console.log(user.user.photoURL === undefined);
+
+  console.log(user);
+
+  console.log(user.user.displayName === undefined);
+
+  console.log(user.user.email);
+
   return (
     <section className="landing">
       {showLanding ? (
@@ -166,14 +180,14 @@ const Search = (props) => {
                   className="userName"
                   id={user.user.email !== "anon@tr1.fm" ? "" : "hideUser"}
                 >
-                  {user.user.photoURL !== null ? (
+                  {user.user.photoURL === null ? (
+                    <i className="fa-solid fa-user"></i>
+                  ) : (
                     <img
                       className="userPhoto"
                       src={user.user.photoURL}
                       alt={`${user.user.displayName}'s avatar`}
                     />
-                  ) : (
-                    <i className="fa-solid fa-user"></i>
                   )}
                   <p>
                     {user.user.displayName === null
