@@ -159,16 +159,6 @@ const Search = (props) => {
     }
   };
 
-  console.log(user.user.photoURL);
-
-  console.log(user.user.photoURL === undefined);
-
-  console.log(user);
-
-  console.log(user.user.displayName === undefined);
-
-  console.log(user.user.email);
-
   return (
     <section className="landing">
       {showLanding ? (
